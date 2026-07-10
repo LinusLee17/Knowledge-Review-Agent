@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Knowledge Graph</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://unpkg.com/cytoscape@3.29.2/dist/cytoscape.min.js"></script>
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <div class="eyebrow">Knowledge Review Agent</div>
+          <h1>Interactive Knowledge Graph</h1>
+          <p>Explore canonical concepts, relationships, and provenance.</p>
+        </div>
+
+        <div class="topbar-controls">
+          <div class="search-panel">
+            <label for="graph-search">Search</label>
+            <input id="graph-search" type="search" placeholder="Concept, alias, topic, domain" autocomplete="off" />
+            <div id="search-results" class="search-results" hidden></div>
+          </div>
+
+          <div class="control-group">
+            <label for="layout-select">Layout</label>
+            <select id="layout-select">
+              <option value="cose">Force-directed</option>
+              <option value="breadthfirst">Hierarchical</option>
+              <option value="circle">Circular</option>
+            </select>
+          </div>
+
+          <div class="action-row">
+            <button id="fit-btn" type="button">Fit</button>
+            <button id="reset-btn" type="button">Reset</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="sidebar left">
+          <section class="panel">
+            <h2>Legend</h2>
+            <div id="legend" class="legend"></div>
+          </section>
+
+          <section class="panel">
+            <h2>Filters</h2>
+            <div class="filter-block">
+              <label for="importance-range">Importance</label>
+              <div class="range-row">
+                <input id="importance-range" type="range" min="1" max="5" step="1" value="1" />
+                <span id="importance-value">1+</span>
+              </div>
+            </div>
+
+            <div class="filter-block">
+              <label>Domains</label>
+              <div id="domain-filters" class="checkbox-grid"></div>
+            </div>
+
+            <div class="filter-block">
+              <label>Relationship types</label>
+              <div id="relation-filters" class="checkbox-grid"></div>
+            </div>
+
+            <div class="filter-block">
+              <label>Courses</label>
+              <div id="course-filters" class="checkbox-list"></div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h2>Statistics</h2>
+            <dl id="stats" class="stats"></dl>
+          </section>
+        </aside>
+
+        <section class="graph-stage" aria-label="Graph canvas">
+          <div id="graph" class="graph-canvas"></div>
+          <div id="tooltip" class="tooltip" hidden></div>
+        </section>
+
+        <aside class="sidebar right">
+          <section class="panel detail-panel">
+            <h2>Concept</h2>
+            <div id="detail-empty" class="empty-state">
+              Select a node to inspect concept detail.
+            </div>
+            <div id="detail-content" hidden>
+              <h3 id="detail-name"></h3>
+              <div id="detail-meta" class="detail-meta"></div>
+
+              <div class="detail-section">
+                <h4>Definition</h4>
+                <p id="detail-definition"></p>
+              </div>
+
+              <div class="detail-section">
+                <h4>Core Idea</h4>
+                <p id="detail-core"></p>
+              </div>
+
+              <div class="detail-section">
+                <h4>Applications</h4>
+                <ul id="detail-applications"></ul>
+              </div>
+
+              <div class="detail-section">
+                <h4>Interview Notes</h4>
+                <p id="detail-interview"></p>
+              </div>
+
+              <div class="detail-section">
+                <h4>Related Concepts</h4>
+                <ul id="detail-related"></ul>
+              </div>
+
+              <div class="detail-section">
+                <h4>Contributing Courses</h4>
+                <ul id="detail-courses"></ul>
+              </div>
+
+              <div class="detail-actions">
+                <a id="detail-open" class="button-link" target="_blank" rel="noreferrer">Open concept page</a>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h2>Selection</h2>
+            <div id="selection-summary" class="selection-summary">None</div>
+          </section>
+        </aside>
+      </main>
+    </div>
+  </body>
+</html>
