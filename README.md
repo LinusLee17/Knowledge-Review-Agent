@@ -1,6 +1,6 @@
 # Knowledge-Review-Agent
 
-AI repo for turning lecture PDFs into a durable revision knowledge base for Business Analytics, Machine Learning, Statistics, and Data Science.
+Agent for turning lecture notes into a durable revision knowledge base.
 
 ## What is tracked
 
