@@ -35,7 +35,14 @@ The incremental ingest layer then stores lecture artifacts in `data/processed/` 
 ## Runtime note
 
 `ANTHROPIC_PDF_SKILL_COMMAND` is required.
-The command can be a wrapper script around the installed PDF skill.
+The repo ships a local bridge command:
+
+```bash
+/Users/linus/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 \
+  /Users/linus/Downloads/Knowledge-Review-Agent/scripts/pdf_skill_bridge.py
+```
+
+The bridge script uses the installed PDF skill runtime and emits the JSON contract above.
 There is no supported direct Python API in this checkout, so the bridge is the correct integration point.
 
 ## Outside Codex

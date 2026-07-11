@@ -13,7 +13,11 @@ from .concept_rules import (
     EVIDENCE_STRENGTH_THRESHOLD,
     INTERVIEW_RELEVANCE_THRESHOLD,
     candidate_concepts_from_page,
+    domain_family,
+    educational_importance_prior,
+    graph_support_prior,
     profile_for_label,
+    same_domain_family,
 )
 from .models import (
     ConceptCandidate,
@@ -45,6 +49,43 @@ def discover_pdfs(raw_root: Path) -> list[Path]:
         for path in raw_root.rglob("*.pdf")
         if path.is_file() and not path.name.startswith(".")
     )
+
+
+def _default_graph_json() -> Path:
+    return Path(__file__).resolve().parents[2] / "knowledge_base" / "graphs" / "graph.json"
+
+
+def load_graph_context(graph_json_path: Path | None = None) -> dict[str, int]:
+    path = graph_json_path or _default_graph_json()
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    context: dict[str, int] = {}
+    for node in payload.get("nodes", []) or []:
+        key = normalize_concept_key(str(node.get("concept_key") or node.get("concept_name") or ""))
+        if not key:
+            continue
+        context[key] = int(node.get("degree", node.get("connected_edge_count", 0)) or 0)
+    return context
+
+
+def _course_domain(course: CourseMetadata) -> str:
+    course_id = (course.course_id or "").upper()
+    if course_id.startswith("ST"):
+        return "Statistics"
+    if course_id.startswith(("CS", "BT42")):
+        return "Machine Learning"
+    if course_id.startswith("BT4012"):
+        return "Data Science"
+    if course_id.startswith("IS"):
+        course_name = (course.course_name or "").lower()
+        if "leadership" in course_name or "communication" in course_name:
+            return "Leadership"
+        return "Leadership"
+    return course.category or ""
 
 
 def table_to_markdown(table: list[list[str]]) -> str:
@@ -107,10 +148,20 @@ def _extract_definition(candidate: ConceptCandidate, lines: list[str], heading: 
         " model that ",
         " method that ",
         " approach that ",
+        " framework that ",
+        " strategy that ",
+        " practice that ",
+        " skill that ",
+        " process that ",
+        " principle that ",
         " estimates ",
         " measures ",
         " predicts ",
         " describes ",
+        " leadership",
+        " communication",
+        " stakeholder",
+        " transformation",
     )
     for line in [heading, *lines]:
         lower = line.lower()
@@ -137,6 +188,16 @@ def _extract_definition(candidate: ConceptCandidate, lines: list[str], heading: 
                 "method",
                 "algorithm",
                 "metric",
+                "leadership",
+                "communication",
+                "stakeholder",
+                "change",
+                "strategy",
+                "culture",
+                "collaboration",
+                "transformation",
+                "project",
+                "business",
             )
         ):
             cleaned = _normalize_text_line(line)
@@ -146,6 +207,8 @@ def _extract_definition(candidate: ConceptCandidate, lines: list[str], heading: 
 
 
 def _extract_math(candidate: ConceptCandidate, lines: list[str]) -> str:
+    if domain_family(candidate.domain) == "professional":
+        return ""
     if candidate.importance_score < 5:
         return ""
     terms = [candidate.concept_name, *candidate.aliases]
@@ -243,6 +306,32 @@ def _is_substantive_text(text: str, concept_name: str) -> bool:
 
 
 def _extraction_depth_score(concept: ConceptExtraction) -> float:
+    if domain_family(concept.domain) == "professional":
+        score = 0.0
+        if _is_substantive_text(concept.definition, concept.concept_name):
+            score += 0.42
+        if _is_substantive_text(concept.intuition, concept.concept_name):
+            score += 0.20
+        if concept.applications:
+            score += 0.10
+        if concept.limitations:
+            score += 0.05
+        if concept.advantages:
+            score += 0.05
+        if concept.assumptions:
+            score += 0.03
+        if concept.prerequisites:
+            score += 0.05
+        if concept.related_concepts:
+            score += 0.05
+        if concept.broader_topics:
+            score += 0.04
+        if _is_substantive_text(concept.definition, concept.concept_name) and (
+            concept.applications or concept.related_concepts or concept.prerequisites
+        ):
+            score += 0.06
+        return min(1.0, score)
+
     score = 0.0
     if _is_substantive_text(concept.definition, concept.concept_name):
         score += 0.35
@@ -339,8 +428,21 @@ def build_structured_concepts(
     course: CourseMetadata,
     page_number: int,
     source_pdf: str,
+    lecture_context: str = "",
+    lecture_lines: list[str] | None = None,
+    graph_context: dict[str, int] | None = None,
 ) -> tuple[list[ConceptCandidate], list[ConceptExtraction], list[RejectedConcept], dict[str, int]]:
-    candidate_details = candidate_concepts_from_page(heading, text_lines, tables, course.course_name)
+    course_domain = _course_domain(course)
+    course_family = domain_family(course_domain)
+    candidate_details = candidate_concepts_from_page(
+        heading,
+        text_lines,
+        tables,
+        course.course_name,
+        lecture_context=lecture_context,
+        lecture_lines=lecture_lines,
+        graph_context=graph_context,
+    )
     approved: list[ConceptExtraction] = []
     rejected: list[RejectedConcept] = []
     metrics = {
@@ -355,26 +457,38 @@ def build_structured_concepts(
         "rejected_low_depth": 0,
     }
 
+    support_lines = [*text_lines, *(lecture_lines or [])]
     seen: set[str] = set()
     for candidate in candidate_details:
-        if candidate.confidence_score < CONCEPT_CONFIDENCE_THRESHOLD:
-            metrics["concepts_rejected"] += 1
-            metrics["rejected_low_confidence"] += 1
-            rejected.append(
-                RejectedConcept(
-                    concept_name=candidate.concept_name,
-                    reason="low confidence",
-                    concept_type=candidate.concept_type,
-                    confidence_score=candidate.confidence_score,
-                    evidence_strength=candidate.evidence_strength,
-                    definition_quality_score=candidate.definition_quality_score,
-                    interview_relevance=candidate.interview_relevance,
-                    domain=candidate.domain,
-                    topic=candidate.topic,
-                    evidence=candidate.evidence,
-                )
-            )
-            continue
+        importance_prior = educational_importance_prior(candidate.concept_name, lecture_context, course.course_name)
+        graph_prior = graph_support_prior(candidate.concept_name, graph_context)
+        lecture_support = min(1.0, sum(1 for line in support_lines if candidate.concept_name.lower() in line.lower()) / 4.0)
+        candidate_domain = candidate.domain or (profile_for_label(candidate.concept_name).domain if profile_for_label(candidate.concept_name) else "")
+        candidate_family = domain_family(candidate_domain)
+        domain_match = (
+            not course_domain
+            or not candidate_domain
+            or candidate_domain == course_domain
+            or same_domain_family(candidate_domain, course_domain)
+        )
+        professional_family = course_family == "professional" or candidate_family == "professional"
+        confidence_threshold = 0.46 if professional_family else CONCEPT_CONFIDENCE_THRESHOLD
+        evidence_threshold = 0.24 if professional_family else EVIDENCE_STRENGTH_THRESHOLD
+        definition_threshold = 0.22 if professional_family else DEFINITION_QUALITY_THRESHOLD
+        relevance_threshold = 0.33 if professional_family else INTERVIEW_RELEVANCE_THRESHOLD
+        importance_threshold = 0.72 if professional_family else 0.92
+        depth_threshold = 0.32 if professional_family else 0.55
+        selection_score = candidate.confidence_score
+        selection_score += 0.12 * importance_prior
+        selection_score += 0.06 * graph_prior
+        selection_score += 0.04 * lecture_support
+        importance_eligible = (
+            importance_prior >= importance_threshold
+            and domain_match
+            and candidate.evidence_strength >= evidence_threshold
+            and (candidate.definition_quality_score >= definition_threshold or lecture_support >= 0.5)
+        )
+
         if candidate.concept_name.lower() in {"agenda", "introduction", "summary"}:
             metrics["concepts_rejected"] += 1
             metrics["rejected_structural_noise"] += 1
@@ -393,7 +507,25 @@ def build_structured_concepts(
                 )
             )
             continue
-        if candidate.evidence_strength < EVIDENCE_STRENGTH_THRESHOLD:
+        if candidate.confidence_score < confidence_threshold and selection_score < confidence_threshold and not importance_eligible:
+            metrics["concepts_rejected"] += 1
+            metrics["rejected_low_confidence"] += 1
+            rejected.append(
+                RejectedConcept(
+                    concept_name=candidate.concept_name,
+                    reason="low confidence",
+                    concept_type=candidate.concept_type,
+                    confidence_score=candidate.confidence_score,
+                    evidence_strength=candidate.evidence_strength,
+                    definition_quality_score=candidate.definition_quality_score,
+                    interview_relevance=candidate.interview_relevance,
+                    domain=candidate.domain,
+                    topic=candidate.topic,
+                    evidence=candidate.evidence,
+                )
+            )
+            continue
+        if candidate.evidence_strength < evidence_threshold and not importance_eligible:
             metrics["concepts_rejected"] += 1
             metrics["rejected_low_confidence"] += 1
             rejected.append(
@@ -411,7 +543,7 @@ def build_structured_concepts(
                 )
             )
             continue
-        if candidate.definition_quality_score < DEFINITION_QUALITY_THRESHOLD:
+        if candidate.definition_quality_score < definition_threshold and not importance_eligible:
             metrics["concepts_rejected"] += 1
             metrics["rejected_weak_definition"] += 1
             if candidate.concept_name.lower() in {"accuracy", "prediction", "model", "training", "feature", "data", "classification", "regression"}:
@@ -431,7 +563,7 @@ def build_structured_concepts(
                 )
             )
             continue
-        if candidate.interview_relevance < INTERVIEW_RELEVANCE_THRESHOLD:
+        if candidate.interview_relevance < relevance_threshold and not importance_eligible:
             metrics["concepts_rejected"] += 1
             metrics["rejected_low_depth"] += 1
             rejected.append(
@@ -470,7 +602,7 @@ def build_structured_concepts(
             continue
         extraction = _build_concept_extraction(candidate, text_lines, heading, course, page_number, source_pdf)
         depth_score = _extraction_depth_score(extraction)
-        if depth_score < 0.55:
+        if depth_score < depth_threshold and not importance_eligible and selection_score < confidence_threshold:
             metrics["concepts_rejected"] += 1
             metrics["rejected_low_depth"] += 1
             rejected.append(
@@ -739,6 +871,13 @@ def extract_pdf_document(
     bridge = skill_bridge or ExternalPdfSkillBridge()
     skill_result = bridge.extract(pdf_path)
     extraction = result_to_document_extraction(pdf_path, relative_pdf, course, skill_result)
+    lecture_lines: list[str] = []
+    for page in extraction.pages:
+        lecture_lines.extend(normalize_lines(page.extracted_text))
+        if page.heading:
+            lecture_lines.append(page.heading)
+    lecture_context = normalize_spaces(" ".join(lecture_lines))
+    graph_context = load_graph_context()
 
     if not course.course_id and not course.course_name:
         extraction.warnings.append("no matching course metadata row found")
@@ -754,6 +893,9 @@ def extract_pdf_document(
             course,
             page.page_number,
             relative_pdf.as_posix(),
+            lecture_context=lecture_context,
+            lecture_lines=lecture_lines,
+            graph_context=graph_context,
         )
         concept_candidates = [concept.concept_name for concept in concepts]
         extraction_metrics.candidate_concepts_generated += page_metrics["candidate_concepts_generated"]

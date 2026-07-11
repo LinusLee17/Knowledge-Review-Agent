@@ -539,28 +539,80 @@ def _merged_text_block(mentions: list[ConceptMention], attr: str) -> str:
     return " ".join(fragments[:4]).strip()
 
 
+def _page_range_text(page_numbers: list[int]) -> str:
+    if not page_numbers:
+        return ""
+    pages = sorted({int(page) for page in page_numbers if int(page) > 0})
+    if not pages:
+        return ""
+    ranges: list[tuple[int, int]] = []
+    start = end = pages[0]
+    for page in pages[1:]:
+        if page == end + 1:
+            end = page
+            continue
+        ranges.append((start, end))
+        start = end = page
+    ranges.append((start, end))
+    parts = [f"p{a}" if a == b else f"p{a}-p{b}" for a, b in ranges]
+    return ", ".join(parts)
+
+
+def _page_range_link_target(page_numbers: list[int], source_pdf: str) -> str:
+    pages = sorted({int(page) for page in page_numbers if int(page) > 0})
+    if not pages or not source_pdf:
+        return ""
+    first_page = pages[0]
+    pdf_path = source_pdf.replace("\\", "/")
+    if not pdf_path.startswith("../"):
+        pdf_path = f"../data/raw/{pdf_path}"
+    return f"{pdf_path}#page={first_page}"
+
+
+def _markdown_link(label: str, target: str) -> str:
+    safe_label = label.replace("[", "\\[").replace("]", "\\]")
+    return f"[{safe_label}]({target})"
+
+
+def _grouped_source_mentions(mentions: list[ConceptMention]) -> list[tuple[str, str, str, str, list[int]]]:
+    grouped: dict[tuple[str, str, str, str], list[int]] = {}
+    for mention in mentions:
+        source_id = mention.course_id or mention.course_name or "unknown course"
+        lecture_file = mention.lecture_file or ""
+        source_pdf = mention.source_pdf or ""
+        evidence = normalize_spaces(mention.evidence or mention.definition or mention.page_heading)
+        key = (source_id, lecture_file, source_pdf, evidence)
+        grouped.setdefault(key, []).append(int(mention.page_number or 0))
+    ordered = sorted(
+        grouped.items(),
+        key=lambda item: (
+            item[0][0].lower(),
+            item[0][1].lower(),
+            min((page for page in item[1] if page > 0), default=0),
+            item[0][3].lower(),
+        ),
+    )
+    return [(source_id, lecture_file, source_pdf, evidence, pages) for (source_id, lecture_file, source_pdf, evidence), pages in ordered]
+
+
 def _slide_evidence_lines(mentions: list[ConceptMention], limit: int = 5) -> list[str]:
     lines: list[str] = []
-    seen: set[str] = set()
-    for mention in sorted(
-        mentions,
-        key=lambda item: (
-            item.course_id or item.course_name,
-            item.lecture_file,
-            item.page_number,
-            item.concept_label.lower(),
-        ),
-    ):
-        evidence = normalize_spaces(mention.evidence or mention.definition or mention.page_heading)
+    for source_id, lecture_file, _source_pdf, evidence, pages in _grouped_source_mentions(mentions):
         if not evidence:
             continue
-        source_id = mention.course_id or mention.course_name or "unknown course"
-        text = f"- {source_id} | p{mention.page_number} — {evidence}"
-        key = text.lower()
-        if key in seen:
-            continue
-        seen.add(key)
-        lines.append(text)
+        page_text = _page_range_text(pages)
+        parts = [f"- {source_id}"]
+        if page_text:
+            parts.append(page_text)
+        if _source_pdf:
+            pdf_label = _source_pdf.split("/")[-1]
+            pdf_target = _page_range_link_target(pages, _source_pdf)
+            if pdf_target:
+                parts.append(_markdown_link(pdf_label, pdf_target))
+            else:
+                parts.append(f"`{pdf_label}`")
+        line = " | ".join(parts) + f" — {evidence}"
+        lines.append(line)
         if len(lines) >= limit:
             break
     return lines
@@ -727,30 +779,23 @@ def _merged_text_list(mentions: list[ConceptMention], attr: str) -> list[str]:
 
 def _provenance_lines(metadata: ConceptMetadata, mentions: list[ConceptMention]) -> list[str]:
     lines: list[str] = []
-    seen: set[tuple[str, str, int, str]] = set()
     mention_lecture_files = {mention.lecture_file for mention in mentions}
 
-    for mention in sorted(
-        mentions,
-        key=lambda item: (
-            item.course_id or item.course_name,
-            item.lecture_file,
-            item.page_number,
-            item.concept_label.lower(),
-        ),
-    ):
-        source_id = mention.course_id or mention.course_name or "unknown course"
-        key = (source_id, mention.lecture_file, mention.page_number, mention.source_pdf)
-        if key in seen:
-            continue
-        seen.add(key)
-        line = f"- {source_id} | `{mention.lecture_file}` | p{mention.page_number}"
-        if mention.source_pdf:
-            line += f" | `{mention.source_pdf}`"
-        if mention.page_heading:
-            line += f" | {mention.page_heading}"
-        if mention.evidence:
-            line += f" — {mention.evidence}"
+    for source_id, lecture_file, source_pdf, evidence, pages in _grouped_source_mentions(mentions):
+        page_text = _page_range_text(pages)
+        parts = [f"- {source_id}"]
+        if page_text:
+            parts.append(page_text)
+        if source_pdf:
+            pdf_label = source_pdf.split("/")[-1]
+            pdf_target = _page_range_link_target(pages, source_pdf)
+            if pdf_target:
+                parts.append(_markdown_link(pdf_label, pdf_target))
+            else:
+                parts.append(f"`{pdf_label}`")
+        line = " | ".join(parts)
+        if evidence:
+            line += f" — {evidence}"
         lines.append(line)
 
     for lecture_file in metadata.contributing_lecture_files:

@@ -119,7 +119,7 @@ CONCEPT_PROFILES: tuple[ConceptProfile, ...] = (
         broader_topics=("Statistical Inference",),
         applications=("Experimentation", "A/B Testing"),
     ),
-    ConceptProfile(
+ConceptProfile(
         concept_name="Confidence Interval",
         domain="Statistics",
         topic="Inference",
@@ -132,6 +132,162 @@ CONCEPT_PROFILES: tuple[ConceptProfile, ...] = (
         applications=("Reporting Uncertainty", "Estimation"),
     ),
     ConceptProfile(
+        concept_name="Exploratory Data Analysis",
+        domain="Statistics",
+        topic="Data Exploration",
+        importance_score=4,
+        concept_type="workflow",
+        synonyms=("eda", "exploratory data analysis"),
+        prerequisites=("Data Visualization", "Summary Statistics"),
+        related_concepts=("Data Cleaning", "Descriptive Statistics", "Sampling Distribution"),
+        broader_topics=("Statistical Workflow",),
+        applications=("Data Exploration", "Feature Understanding"),
+    ),
+    ConceptProfile(
+        concept_name="Point Estimation",
+        domain="Statistics",
+        topic="Estimation",
+        importance_score=5,
+        concept_type="method",
+        synonyms=("point estimation", "point estimates"),
+        prerequisites=("Sampling", "Statistics"),
+        related_concepts=("Confidence Interval", "Maximum Likelihood Estimation", "Margin of Error"),
+        broader_topics=("Statistical Inference",),
+        applications=("Parameter Estimation",),
+    ),
+    ConceptProfile(
+        concept_name="Standard Error",
+        domain="Statistics",
+        topic="Inference",
+        importance_score=5,
+        concept_type="metric",
+        synonyms=("standard error", "se"),
+        prerequisites=("Sampling Distribution",),
+        related_concepts=("Margin of Error", "Confidence Interval", "Sampling Distribution"),
+        broader_topics=("Statistical Inference",),
+        applications=("Uncertainty Quantification",),
+    ),
+    ConceptProfile(
+        concept_name="Sampling Distribution",
+        domain="Statistics",
+        topic="Inference",
+        importance_score=5,
+        concept_type="theory",
+        synonyms=("sampling distribution",),
+        prerequisites=("Random Variable", "Probability"),
+        related_concepts=("Central Limit Theorem", "Standard Error", "Confidence Interval"),
+        broader_topics=("Statistical Inference",),
+        applications=("Confidence Intervals", "Hypothesis Testing"),
+    ),
+    ConceptProfile(
+        concept_name="Central Limit Theorem",
+        domain="Statistics",
+        topic="Inference",
+        importance_score=5,
+        concept_type="theorem",
+        synonyms=("central limit theorem", "clt"),
+        prerequisites=("Sampling Distribution", "Mean", "Variance"),
+        related_concepts=("Sampling Distribution", "Standard Error", "Confidence Interval"),
+        broader_topics=("Statistical Inference",),
+        applications=("Approximation", "Inference"),
+    ),
+    ConceptProfile(
+        concept_name="Null Hypothesis",
+        domain="Statistics",
+        topic="Hypothesis Testing",
+        importance_score=5,
+        concept_type="concept",
+        synonyms=("null hypothesis", "h0"),
+        prerequisites=("Hypothesis Testing",),
+        related_concepts=("Alternative Hypothesis", "p-value", "Type I Error"),
+        broader_topics=("Statistical Inference",),
+        applications=("Testing",),
+    ),
+    ConceptProfile(
+        concept_name="Alternative Hypothesis",
+        domain="Statistics",
+        topic="Hypothesis Testing",
+        importance_score=5,
+        concept_type="concept",
+        synonyms=("alternative hypothesis", "h1", "ha"),
+        prerequisites=("Hypothesis Testing",),
+        related_concepts=("Null Hypothesis", "p-value", "Type II Error"),
+        broader_topics=("Statistical Inference",),
+        applications=("Testing",),
+    ),
+    ConceptProfile(
+        concept_name="Test Statistic",
+        domain="Statistics",
+        topic="Hypothesis Testing",
+        importance_score=5,
+        concept_type="metric",
+        synonyms=("test statistic",),
+        prerequisites=("Null Hypothesis", "Sampling Distribution"),
+        related_concepts=("p-value", "Hypothesis Testing"),
+        broader_topics=("Statistical Inference",),
+        applications=("Testing",),
+    ),
+    ConceptProfile(
+        concept_name="p-value",
+        domain="Statistics",
+        topic="Hypothesis Testing",
+        importance_score=5,
+        concept_type="metric",
+        synonyms=("p-value", "p value"),
+        prerequisites=("Null Hypothesis", "Test Statistic"),
+        related_concepts=("Statistical Significance", "Hypothesis Testing", "Type I Error"),
+        broader_topics=("Statistical Inference",),
+        applications=("Testing",),
+    ),
+    ConceptProfile(
+        concept_name="Statistical Significance",
+        domain="Statistics",
+        topic="Hypothesis Testing",
+        importance_score=5,
+        concept_type="concept",
+        synonyms=("statistical significance",),
+        prerequisites=("p-value",),
+        related_concepts=("Hypothesis Testing", "Type I Error"),
+        broader_topics=("Statistical Inference",),
+        applications=("Testing",),
+    ),
+    ConceptProfile(
+        concept_name="Margin of Error",
+        domain="Statistics",
+        topic="Inference",
+        importance_score=5,
+        concept_type="metric",
+        synonyms=("margin of error", "moe"),
+        prerequisites=("Standard Error", "Confidence Interval"),
+        related_concepts=("Confidence Interval", "Point Estimation"),
+        broader_topics=("Statistical Inference",),
+        applications=("Survey Estimation",),
+    ),
+    ConceptProfile(
+        concept_name="Type I Error",
+        domain="Statistics",
+        topic="Hypothesis Testing",
+        importance_score=5,
+        concept_type="concept",
+        synonyms=("type i error", "false positive"),
+        prerequisites=("Hypothesis Testing",),
+        related_concepts=("Type II Error", "p-value", "Statistical Significance"),
+        broader_topics=("Statistical Inference",),
+        applications=("Testing",),
+    ),
+    ConceptProfile(
+        concept_name="Type II Error",
+        domain="Statistics",
+        topic="Hypothesis Testing",
+        importance_score=5,
+        concept_type="concept",
+        synonyms=("type ii error", "false negative"),
+        prerequisites=("Hypothesis Testing",),
+        related_concepts=("Type I Error", "Power", "Statistical Significance"),
+        broader_topics=("Statistical Inference",),
+        applications=("Testing",),
+    ),
+    ConceptProfile(
         concept_name="Probability",
         domain="Statistics",
         topic="Foundations",
@@ -142,6 +298,18 @@ CONCEPT_PROFILES: tuple[ConceptProfile, ...] = (
         related_concepts=("Distribution", "Random Variable"),
         broader_topics=("Statistical Foundations",),
         applications=("Risk Modeling", "Forecasting"),
+    ),
+    ConceptProfile(
+        concept_name="ROC Curve",
+        domain="Machine Learning",
+        topic="Model Evaluation",
+        importance_score=4,
+        concept_type="metric",
+        synonyms=("roc curve", "receiver operating characteristic curve"),
+        prerequisites=("Classification", "Threshold"),
+        related_concepts=("AUC", "Precision", "Recall"),
+        broader_topics=("Model Evaluation",),
+        applications=("Classification Evaluation",),
     ),
     ConceptProfile(
         concept_name="Forecasting",
@@ -371,6 +539,149 @@ CONCEPT_PROFILES: tuple[ConceptProfile, ...] = (
         broader_topics=("Unsupervised Learning",),
         applications=("Customer Segmentation",),
     ),
+    ConceptProfile(
+        concept_name="Leadership",
+        domain="Leadership",
+        topic="Leadership Foundations",
+        importance_score=5,
+        concept_type="framework",
+        synonyms=("leadership", "digital leadership", "people leadership", "leader"),
+        related_concepts=("Communication", "Change Management", "Stakeholder Management"),
+        broader_topics=("Professional Skills",),
+        applications=("IT Management", "Team Direction", "Organisational Change"),
+    ),
+    ConceptProfile(
+        concept_name="Communication",
+        domain="Communication",
+        topic="Leadership Communication",
+        importance_score=5,
+        concept_type="skill",
+        synonyms=("communication", "communication skills", "leadership communication", "communicate as a leader", "stakeholder communication"),
+        related_concepts=("Leadership", "Stakeholder Management", "Collaboration"),
+        broader_topics=("Professional Skills",),
+        applications=("Team Collaboration", "Stakeholder Alignment", "Presentation"),
+    ),
+    ConceptProfile(
+        concept_name="Digital Transformation",
+        domain="Digital Transformation",
+        topic="Transformation Strategy",
+        importance_score=5,
+        concept_type="framework",
+        synonyms=("digital transformation", "digital transformation strategy", "digitisation", "digitalization", "service process digitisation"),
+        related_concepts=("Change Management", "Digital Innovation", "IS Governance"),
+        broader_topics=("Business",),
+        applications=("Organisational Change", "Technology Adoption", "Process Redesign"),
+    ),
+    ConceptProfile(
+        concept_name="Stakeholder Management",
+        domain="Leadership",
+        topic="Stakeholder Engagement",
+        importance_score=5,
+        concept_type="practice",
+        synonyms=("stakeholder management", "stakeholder engagement", "managing stakeholders"),
+        related_concepts=("Communication", "Change Management", "Leadership"),
+        broader_topics=("Professional Skills", "Business"),
+        applications=("Cross-functional Alignment", "Change Initiatives", "Project Delivery"),
+    ),
+    ConceptProfile(
+        concept_name="Change Management",
+        domain="Leadership",
+        topic="Organizational Change",
+        importance_score=5,
+        concept_type="practice",
+        synonyms=("change management", "organizational change", "organisational change", "leading organizational change", "change leadership"),
+        related_concepts=("Digital Transformation", "Leadership", "Stakeholder Management"),
+        broader_topics=("Professional Skills", "Business"),
+        applications=("Transformation Programs", "Adoption Planning", "Culture Change"),
+    ),
+    ConceptProfile(
+        concept_name="Business Strategy",
+        domain="Business",
+        topic="Strategy Alignment",
+        importance_score=5,
+        concept_type="framework",
+        synonyms=("business strategy", "is strategy", "technology strategy", "technology and business strategies"),
+        related_concepts=("Digital Transformation", "IS Governance", "Decision Making"),
+        broader_topics=("Business",),
+        applications=("Strategic Alignment", "Resource Allocation", "Competitive Advantage"),
+    ),
+    ConceptProfile(
+        concept_name="IS Governance",
+        domain="Digital Transformation",
+        topic="Governance",
+        importance_score=5,
+        concept_type="framework",
+        synonyms=("is governance", "it governance", "digital governance", "governance"),
+        related_concepts=("Business Strategy", "Digital Transformation", "Change Management"),
+        broader_topics=("Business", "Professional Skills"),
+        applications=("Decision Rights", "Accountability", "Control"),
+    ),
+    ConceptProfile(
+        concept_name="Digital Innovation",
+        domain="Digital Transformation",
+        topic="Innovation",
+        importance_score=4,
+        concept_type="principle",
+        synonyms=("digital innovation", "organizing for digital innovation", "innovation", "technology initiatives"),
+        related_concepts=("Digital Transformation", "Technology Adoption", "Change Management"),
+        broader_topics=("Business",),
+        applications=("New Product Development", "Process Improvement", "Competitive Advantage"),
+    ),
+    ConceptProfile(
+        concept_name="Team Collaboration",
+        domain="Soft Skills",
+        topic="Collaboration",
+        importance_score=4,
+        concept_type="skill",
+        synonyms=("team collaboration", "collaboration", "working in teams", "teamwork"),
+        related_concepts=("Communication", "Leadership", "Stakeholder Management"),
+        broader_topics=("Professional Skills",),
+        applications=("Group Projects", "Cross-functional Work", "Agile Delivery"),
+    ),
+    ConceptProfile(
+        concept_name="Business Continuity Management",
+        domain="Business",
+        topic="Resilience",
+        importance_score=4,
+        concept_type="framework",
+        synonyms=("business continuity management", "continuity management", "business continuity"),
+        related_concepts=("Risk Management", "IS Governance", "Digital Transformation"),
+        broader_topics=("Business",),
+        applications=("Service Resilience", "Disruption Planning", "Recovery"),
+    ),
+    ConceptProfile(
+        concept_name="Technology Adoption",
+        domain="Digital Transformation",
+        topic="Adoption",
+        importance_score=4,
+        concept_type="process",
+        synonyms=("technology adoption", "adoption", "technology uptake", "adoption of technology"),
+        related_concepts=("Change Management", "Digital Transformation", "Stakeholder Management"),
+        broader_topics=("Business",),
+        applications=("Rollout Planning", "User Adoption", "Change Enablement"),
+    ),
+    ConceptProfile(
+        concept_name="Decision Making",
+        domain="Business",
+        topic="Decision Making",
+        importance_score=4,
+        concept_type="skill",
+        synonyms=("decision making", "decision-making", "decision analysis"),
+        related_concepts=("Business Strategy", "Leadership", "Stakeholder Management"),
+        broader_topics=("Professional Skills", "Business"),
+        applications=("Priority Setting", "Trade-off Analysis", "Planning"),
+    ),
+    ConceptProfile(
+        concept_name="Project Management",
+        domain="Project Management",
+        topic="Project Delivery",
+        importance_score=4,
+        concept_type="skill",
+        synonyms=("project management", "project planning", "project scope", "project delivery"),
+        related_concepts=("Stakeholder Management", "Communication", "Business Strategy"),
+        broader_topics=("Professional Skills", "Business"),
+        applications=("Delivery Planning", "Scheduling", "Execution"),
+    ),
 )
 
 
@@ -379,12 +690,121 @@ for profile in CONCEPT_PROFILES:
     for alias in (profile.concept_name, *profile.synonyms):
         _PROFILE_BY_KEY[normalize_concept_key(alias)] = profile
 
+FOUNDATIONAL_CONCEPTS_BY_DOMAIN: dict[str, tuple[str, ...]] = {
+    "Statistics": (
+        "Exploratory Data Analysis",
+        "Sampling Distribution",
+        "Central Limit Theorem",
+        "Confidence Interval",
+        "Hypothesis Testing",
+        "Null Hypothesis",
+        "Alternative Hypothesis",
+        "p-value",
+        "Statistical Significance",
+        "Test Statistic",
+        "Type I Error",
+        "Type II Error",
+        "Margin of Error",
+        "Point Estimation",
+        "Maximum Likelihood Estimation",
+        "Linear Regression",
+        "Probability",
+        "Standard Error",
+    ),
+    "Machine Learning": (
+        "Gradient Descent",
+        "Bias-Variance Tradeoff",
+        "Cross Validation",
+        "Regularization",
+        "Overfitting",
+        "Precision",
+        "Recall",
+        "ROC Curve",
+        "Decision Trees",
+        "Random Forest",
+        "Logistic Regression",
+        "Linear Regression",
+        "Maximum Likelihood Estimation",
+    ),
+    "Business Analytics": (
+        "CRISP-DM",
+        "Feature Engineering",
+        "Predictive Analytics",
+        "Exploratory Data Analysis",
+    ),
+    "Data Science": (
+        "Feature Engineering",
+        "Data Cleaning",
+        "Exploratory Data Analysis",
+        "Sampling Distribution",
+    ),
+    "Leadership": (
+        "Leadership",
+        "Change Management",
+        "Stakeholder Management",
+        "Communication",
+        "Decision Making",
+        "Team Collaboration",
+    ),
+    "Communication": (
+        "Communication",
+        "Leadership Communication",
+        "Audience Adaptation",
+        "Message Framing",
+        "Active Listening",
+    ),
+    "Digital Transformation": (
+        "Digital Transformation",
+        "IS Governance",
+        "Digital Innovation",
+        "Technology Adoption",
+        "Service Process Digitisation",
+    ),
+    "Business": (
+        "Business Strategy",
+        "Organizational Culture",
+        "Business Continuity Management",
+        "Decision Making",
+    ),
+    "Project Management": (
+        "Project Management",
+        "Scope Management",
+        "Risk Management",
+        "Stakeholder Management",
+    ),
+    "Soft Skills": (
+        "Communication",
+        "Team Collaboration",
+        "Leadership",
+    ),
+}
+
+_FOUNDATIONAL_KEY_TO_DOMAIN: dict[str, str] = {
+    normalize_concept_key(label): domain
+    for domain, labels in FOUNDATIONAL_CONCEPTS_BY_DOMAIN.items()
+    for label in labels
+}
+
 
 DOMAIN_KEYWORDS: dict[str, tuple[str, ...]] = {
-    "Business Analytics": ("predictive analytics", "business intelligence", "customer analytics", "forecasting", "decision analysis", "optimization"),
-    "Machine Learning": ("machine learning", "classification", "regression", "random forest", "gradient descent", "svm", "neural network", "regularization", "cross validation", "overfitting", "pca", "clustering"),
-    "Statistics": ("statistics", "probability", "hypothesis testing", "confidence interval", "sampling", "estimation", "regression", "distribution"),
-    "Data Science": ("data science", "data cleaning", "feature engineering", "visualization", "pipeline", "deployment", "ethics"),
+    "Business Analytics": ("predictive analytics", "business intelligence", "customer analytics", "forecasting", "decision analysis", "optimization", "crisp-dm"),
+    "Machine Learning": ("machine learning", "classification", "regression", "random forest", "gradient descent", "svm", "neural network", "regularization", "cross validation", "overfitting", "pca", "clustering", "roc curve"),
+    "Statistics": ("statistics", "probability", "hypothesis testing", "confidence interval", "sampling", "estimation", "regression", "distribution", "p-value", "central limit theorem", "sampling distribution", "point estimation"),
+    "Data Science": ("data science", "data cleaning", "feature engineering", "visualization", "pipeline", "deployment", "ethics", "eda"),
+    "Leadership": ("leadership", "stakeholder management", "change management", "change leadership", "decision making", "team collaboration", "organizational change", "management roles", "leader"),
+    "Communication": ("communication", "communicate", "message framing", "active listening", "audience", "stakeholder communication", "leadership communication"),
+    "Digital Transformation": ("digital transformation", "digitisation", "digitization", "digital innovation", "technology adoption", "is governance", "it governance", "service process digitisation"),
+    "Business": ("business strategy", "organizational culture", "business continuity", "decision making", "competitive advantage", "business process", "enterprise"),
+    "Project Management": ("project management", "project planning", "project scope", "risk management", "delivery planning", "project delivery"),
+    "Soft Skills": ("soft skills", "team collaboration", "collaboration", "communication skills", "leadership potential"),
+}
+
+TECHNICAL_DOMAINS = {"Business Analytics", "Machine Learning", "Statistics", "Data Science"}
+PROFESSIONAL_DOMAINS = {"Leadership", "Communication", "Digital Transformation", "Business", "Project Management", "Soft Skills"}
+DOMAIN_FAMILIES: dict[str, str] = {
+    **{domain: "technical" for domain in TECHNICAL_DOMAINS},
+    **{domain: "professional" for domain in PROFESSIONAL_DOMAINS},
+    "Other": "other",
 }
 
 
@@ -402,13 +822,13 @@ TOPIC_KEYWORDS: dict[str, tuple[str, ...]] = {
 
 
 _FIELD_CUES: dict[str, tuple[str, ...]] = {
-    "definition": (" is ", " are ", " refers to ", " means ", " defined as ", " model that ", " method that ", " approach that "),
-    "intuition": ("intuition", "intuitively", "idea", "goal", "aim", "in practice", "helps", "captures", "seek", "used to"),
+    "definition": (" is ", " are ", " refers to ", " means ", " defined as ", " model that ", " method that ", " approach that ", " framework that ", " strategy that ", " practice that ", " skill that "),
+    "intuition": ("intuition", "intuitively", "idea", "goal", "aim", "in practice", "helps", "captures", "seek", "used to", "leadership", "communication", "change", "stakeholder", "culture", "collaboration"),
     "math": ("=", "minimize", "maximize", "argmin", "argmax", "beta", "theta", "sigma", "variance", "log", "exp", "sum", "∑", "sqrt"),
     "assumptions": ("assumption", "assumes", "requires", "under the assumption", "conditions"),
-    "applications": ("used for", "applied to", "application", "applications", "for ", "in ", "predict", "classify", "forecast", "segment", "estimate"),
+    "applications": ("used for", "applied to", "application", "applications", "for ", "in ", "predict", "classify", "forecast", "segment", "estimate", "workplace", "stakeholder", "team", "business", "project", "transformation"),
     "limitations": ("limitation", "limitations", "drawback", "drawbacks", "fails", "sensitive", "problem", "not suitable", "cannot"),
-    "advantages": ("advantage", "advantages", "benefit", "benefits", "strength", "strengths", "simple", "interpretable", "efficient", "robust"),
+    "advantages": ("advantage", "advantages", "benefit", "benefits", "strength", "strengths", "simple", "interpretable", "efficient", "robust", "clear", "aligned"),
     "prerequisites": ("prerequisite", "background", "need", "requires", "must know", "review"),
     "related_concepts": ("related to", "compare", "contrast", "also", "similar to", "see also"),
     "broader_topics": ("topic", "chapter", "module", "domain"),
@@ -438,11 +858,37 @@ def profile_for_label(label: str) -> ConceptProfile | None:
     return _PROFILE_BY_KEY.get(normalize_concept_key(cleaned))
 
 
+def domain_family(domain: str) -> str:
+    return DOMAIN_FAMILIES.get(normalize_spaces(domain), "other")
+
+
+def same_domain_family(left: str, right: str) -> bool:
+    left = normalize_spaces(left)
+    right = normalize_spaces(right)
+    if not left or not right:
+        return False
+    return left == right or domain_family(left) == domain_family(right)
+
+
+def classify_course_domain(course_id: str = "", course_name: str = "", category: str = "", notes: str = "") -> str:
+    text = " ".join(filter(None, [course_id, course_name, category, notes]))
+    return infer_domain(text, text)
+
+
 def infer_domain(label: str, context_text: str = "") -> str:
     lower = f"{label} {context_text}".lower()
+    best_domain = ""
+    best_score = 0
     for domain, keywords in DOMAIN_KEYWORDS.items():
-        if any(keyword in lower for keyword in keywords):
-            return domain
+        score = sum(1 for keyword in keywords if keyword in lower)
+        profile = profile_for_label(label)
+        if profile and profile.domain == domain:
+            score += 2
+        if score > best_score:
+            best_domain = domain
+            best_score = score
+    if best_domain:
+        return best_domain
     profile = profile_for_label(label)
     return profile.domain if profile else ""
 
@@ -456,17 +902,51 @@ def infer_topic(label: str, context_text: str = "") -> str:
     return profile.topic if profile else ""
 
 
+def educational_importance_prior(label: str, context_text: str = "", course_name: str = "") -> float:
+    profile = profile_for_label(label)
+    key = normalize_concept_key(label)
+    domain = infer_domain(label, context_text)
+    score = 0.18
+    if profile:
+        score = max(score, profile.importance_score / 5.0)
+    if key in _FOUNDATIONAL_KEY_TO_DOMAIN:
+        score = max(score, 0.88)
+    if domain and _FOUNDATIONAL_KEY_TO_DOMAIN.get(key) == domain:
+        score = max(score, 0.95)
+    if course_name:
+        lower_course = course_name.lower()
+        if any(keyword in lower_course for keyword in ("statistics", "probability", "regression", "inference")) and domain == "Statistics":
+            score = max(score, 0.92)
+        if any(keyword in lower_course for keyword in ("machine learning", "ml", "classification", "prediction")) and domain == "Machine Learning":
+            score = max(score, 0.9)
+        if any(keyword in lower_course for keyword in ("leadership", "communication", "digital transformation", "management", "strategy", "stakeholder")) and domain in PROFESSIONAL_DOMAINS:
+            score = max(score, 0.9)
+    if domain in PROFESSIONAL_DOMAINS and key in _FOUNDATIONAL_KEY_TO_DOMAIN:
+        score = max(score, 0.9)
+    return max(0.0, min(1.0, score))
+
+
 def importance_for_label(label: str, context_text: str = "", course_name: str = "", page_count_hint: int = 0) -> int:
     lower = f"{label} {context_text} {course_name}".lower()
     profile = profile_for_label(label)
     score = profile.importance_score if profile else 1
 
+    importance_prior = educational_importance_prior(label, context_text, course_name)
+    if importance_prior >= 0.9:
+        score = max(score, 5)
+    elif importance_prior >= 0.75:
+        score = max(score, 4)
+    elif importance_prior >= 0.55:
+        score = max(score, 3)
+
     if profile and any(alias in _normalize(context_text) for alias in (profile.concept_name.lower(), *profile.synonyms)):
         score = max(score, 4)
     if any(keyword in lower for keyword in ("cross validation", "regression", "classification", "probability", "forecast", "decision tree", "random forest")):
         score = max(score, 4)
-    if any(keyword in lower for keyword in ("linear regression", "random forest", "gradient descent", "hypothesis testing", "confidence interval", "pca")):
+    if any(keyword in lower for keyword in ("linear regression", "random forest", "gradient descent", "hypothesis testing", "confidence interval", "pca", "central limit theorem", "sampling distribution", "p-value", "eda")):
         score = max(score, 5)
+    if any(keyword in lower for keyword in ("leadership", "communication", "stakeholder", "digital transformation", "change management", "business strategy", "team collaboration", "business continuity", "project management")):
+        score = max(score, 5 if profile and profile.importance_score >= 5 else 4)
     if "example" in lower or "exercise" in lower or "worked example" in lower:
         score = min(score, 2)
     if page_count_hint > 1:
@@ -480,7 +960,39 @@ def matches_candidate(label: str, context_text: str = "") -> bool:
         return True
 
     lower = f"{label} {context_text}".lower()
-    if any(keyword in lower for keyword in ("regression", "classification", "clustering", "forecast", "probability", "hypothesis", "confidence interval", "decision tree", "random forest", "gradient descent", "regularization", "pca", "support vector machine", "k-means", "feature engineering", "data cleaning", "business intelligence", "predictive analytics", "customer analytics")):
+    if any(keyword in lower for keyword in (
+        "regression",
+        "classification",
+        "clustering",
+        "forecast",
+        "probability",
+        "hypothesis",
+        "confidence interval",
+        "decision tree",
+        "random forest",
+        "gradient descent",
+        "regularization",
+        "pca",
+        "support vector machine",
+        "k-means",
+        "feature engineering",
+        "data cleaning",
+        "business intelligence",
+        "predictive analytics",
+        "customer analytics",
+        "leadership",
+        "communication",
+        "stakeholder",
+        "digital transformation",
+        "change management",
+        "business strategy",
+        "team collaboration",
+        "project management",
+        "business continuity",
+        "innovation",
+        "governance",
+        "decision making",
+    )):
         return True
     return False
 
@@ -769,6 +1281,18 @@ def canonical_summary_for_label(label: str) -> str:
     profile = profile_for_label(label)
     if not profile:
         return ""
+    if profile.domain in PROFESSIONAL_DOMAINS:
+        if profile.concept_type in {"framework", "practice", "process", "principle"}:
+            return (
+                f"{canonical} is a {profile.concept_type} in {profile.domain or 'the professional domain'} "
+                f"focused on {profile.topic or 'practical workplace performance'}. It helps people coordinate action, "
+                "manage change, and make better decisions in organisational settings."
+            )
+        if profile.concept_type in {"skill"}:
+            return (
+                f"{canonical} is a workplace skill in {profile.domain or 'the professional domain'} focused on "
+                f"{profile.topic or 'professional effectiveness'}. It supports everyday execution, collaboration, and communication."
+            )
     focus = profile.topic or profile.domain or "the target domain"
     return (
         f"{canonical} is a {profile.concept_type or 'concept'} in {profile.domain or 'the target domain'} "
@@ -784,6 +1308,11 @@ def canonical_intuition_for_label(label: str) -> str:
     profile = profile_for_label(label)
     if not profile:
         return ""
+    if profile.domain in PROFESSIONAL_DOMAINS:
+        return (
+            f"Think of {canonical} as a repeatable way to align people, decisions, and execution so the team "
+            f"moves toward {profile.topic or 'the desired outcome'} with less friction."
+        )
     if profile.concept_type in {"algorithm", "method", "workflow"}:
         return (
             f"Think of {canonical} as a repeatable procedure: start with the inputs, apply the core rule, "
@@ -923,6 +1452,14 @@ def canonical_how_it_works_for_label(label: str) -> str:
     profile = profile_for_label(label)
     if not profile:
         return ""
+    if profile.domain in PROFESSIONAL_DOMAINS:
+        return "\n".join(
+            [
+                f"1. Clarify the goal and the people affected by {canonical}.",
+                "2. Align actions, communication, and responsibilities around that goal.",
+                "3. Review the outcome, surface resistance or gaps, and adjust the approach.",
+            ]
+        )
     if profile.concept_type in {"algorithm", "method", "workflow"}:
         return "\n".join(
             [
@@ -1006,6 +1543,14 @@ def canonical_key_components_for_label(label: str) -> list[str]:
     profile = profile_for_label(label)
     if not profile:
         return []
+    if profile.domain in PROFESSIONAL_DOMAINS:
+        return [
+            "Goal",
+            "Stakeholders",
+            "Communication",
+            "Actions",
+            "Feedback loop",
+        ]
     if profile.concept_type in {"algorithm", "method", "workflow"}:
         return [
             "Inputs",
@@ -1076,6 +1621,12 @@ def canonical_common_variants_for_label(label: str) -> list[str]:
     profile = profile_for_label(label)
     if not profile:
         return []
+    if profile.domain in PROFESSIONAL_DOMAINS:
+        return [
+            f"{canonical} approach",
+            f"{canonical} framework",
+            f"{canonical} practice",
+        ]
     variant_cues = (
         "batch",
         "stochastic",
@@ -1146,6 +1697,12 @@ def canonical_common_mistakes_for_label(label: str) -> list[str]:
     profile = profile_for_label(label)
     if not profile:
         return []
+    if profile.domain in PROFESSIONAL_DOMAINS:
+        return [
+            f"Treating {canonical} as only a slogan instead of a repeatable practice.",
+            f"Ignoring the people, context, or constraints around {canonical}.",
+            f"Assuming {canonical} works without communication or follow-through.",
+        ]
     return [
         f"Confusing {canonical} with a nearby but different concept.",
         f"Using {canonical} without checking its assumptions or prerequisites.",
@@ -1198,6 +1755,13 @@ def canonical_interview_questions_for_label(label: str) -> list[str]:
     profile = profile_for_label(label)
     if not profile:
         return []
+    if profile.domain in PROFESSIONAL_DOMAINS:
+        return [
+            f"What problem does {canonical} solve in the workplace?",
+            f"How would you apply {canonical} to a real team or organisational scenario?",
+            f"What can go wrong if {canonical} is handled poorly?",
+            f"How does {canonical} relate to communication, alignment, or change?",
+        ]
     related = _join_items(profile.related_concepts[:3])
     questions = [
         f"What problem does {canonical} solve?",
@@ -1329,9 +1893,15 @@ def _alias_hit(alias: str, text: str) -> bool:
     return alias in text
 
 
-def _collect_evidence_lines(alias: str, heading: str, lines: list[str], tables: list[list[list[str]]]) -> list[str]:
+def _collect_evidence_lines(
+    alias: str,
+    heading: str,
+    lines: list[str],
+    tables: list[list[list[str]]],
+    extra_lines: list[str] | None = None,
+) -> list[str]:
     evidence: list[str] = []
-    for source_line in [heading, *lines]:
+    for source_line in [heading, *lines, *(extra_lines or [])]:
         if source_line and _alias_hit(alias, source_line):
             cleaned = normalize_spaces(source_line)
             if cleaned not in evidence:
@@ -1343,6 +1913,15 @@ def _collect_evidence_lines(alias: str, heading: str, lines: list[str], tables: 
                 if cell_text and _alias_hit(alias, cell_text) and cell_text not in evidence:
                     evidence.append(cell_text)
     return evidence
+
+
+def _support_count(label: str, lines: list[str], aliases: tuple[str, ...]) -> int:
+    texts = [label, *aliases]
+    hits = 0
+    for line in lines:
+        if any(_alias_hit(alias, line) for alias in texts):
+            hits += 1
+    return hits
 
 
 def _strong_signal_count(lines: list[str]) -> int:
@@ -1360,6 +1939,33 @@ def _first_signal_line(lines: list[str], alias: str, cues: tuple[str, ...]) -> s
         if _alias_hit(alias, lower) and any(cue in lower for cue in cues):
             return normalize_spaces(line)
     return ""
+
+
+def _graph_support_score(profile: ConceptProfile, graph_context: dict[str, int] | None) -> float:
+    if not graph_context:
+        return 0.0
+
+    normalized_graph = {normalize_concept_key(key): int(value or 0) for key, value in graph_context.items() if normalize_concept_key(key)}
+    profile_key = normalize_concept_key(profile.concept_name)
+    degree = normalized_graph.get(profile_key, 0)
+    related_terms = [
+        *profile.prerequisites,
+        *profile.related_concepts,
+        *profile.broader_topics,
+        *profile.applications,
+    ]
+    connected = sum(1 for term in related_terms if normalize_concept_key(term) in normalized_graph)
+    possible = max(len(related_terms), 1)
+    if degree:
+        return min(1.0, 0.3 + min(degree, 8) / 10.0)
+    return min(1.0, connected / possible)
+
+
+def graph_support_prior(label: str, graph_context: dict[str, int] | None = None) -> float:
+    profile = profile_for_label(label)
+    if not profile:
+        return 0.0
+    return _graph_support_score(profile, graph_context)
 
 
 def _is_structural_noise(label: str) -> bool:
@@ -1466,8 +2072,20 @@ def candidate_concepts_from_page(
     lines: list[str],
     tables: list[list[list[str]]],
     course_name: str = "",
+    lecture_context: str = "",
+    lecture_lines: list[str] | None = None,
+    graph_context: dict[str, int] | None = None,
 ) -> list[ConceptCandidate]:
-    page_text = normalize_spaces(" ".join([heading, *lines, *(normalize_spaces(str(cell or "")) for table in tables for row in table for cell in row)]))
+    page_text = normalize_spaces(
+        " ".join(
+            [
+                heading,
+                *lines,
+                *(normalize_spaces(str(cell or "")) for table in tables for row in table for cell in row),
+                lecture_context,
+            ]
+        )
+    )
     candidates: list[ConceptCandidate] = []
     seen: set[str] = set()
 
@@ -1477,12 +2095,14 @@ def candidate_concepts_from_page(
         if not any(_alias_hit(alias, page_text) for alias in aliases):
             continue
 
-        evidence_lines = _collect_evidence_lines(canonical, heading, lines, tables)
+        evidence_lines = _collect_evidence_lines(canonical, heading, lines, tables, lecture_lines)
         if not evidence_lines:
             continue
 
         heading_hit = _alias_hit(canonical, heading) or any(_alias_hit(alias, heading) for alias in aliases)
-        body_hits = sum(1 for line in lines if any(_alias_hit(alias, line) for alias in aliases))
+        body_hits = _support_count(canonical, lines, aliases)
+        lecture_hits = _support_count(canonical, lecture_lines or [], aliases)
+        combined_hits = body_hits + min(lecture_hits, 4)
         table_hits = sum(
             1
             for table in tables
@@ -1490,9 +2110,9 @@ def candidate_concepts_from_page(
             if any(_alias_hit(alias, " ".join(str(cell or "") for cell in row)) for alias in aliases)
         )
         evidence_text = " ".join(evidence_lines[:3])
-        definition_line = _first_signal_line(lines, canonical, _FIELD_CUE_MAP["definition"])
-        math_line = _first_signal_line(lines, canonical, _FIELD_CUE_MAP["math"])
-        application_line = _first_signal_line(lines, canonical, _FIELD_CUE_MAP["application"])
+        definition_line = _first_signal_line([*lines, *(lecture_lines or [])], canonical, _FIELD_CUE_MAP["definition"])
+        math_line = _first_signal_line([*lines, *(lecture_lines or [])], canonical, _FIELD_CUE_MAP["math"])
+        application_line = _first_signal_line([*lines, *(lecture_lines or [])], canonical, _FIELD_CUE_MAP["application"])
         structural_penalty = 0.0
         if _is_structural_noise(heading) and body_hits == 0:
             structural_penalty = 0.35
@@ -1506,7 +2126,7 @@ def candidate_concepts_from_page(
 
         evidence_strength = _evidence_strength(
             heading_hit=heading_hit,
-            body_hits=body_hits,
+            body_hits=combined_hits,
             table_hits=table_hits,
             definition_line=definition_line,
             math_line=math_line,
@@ -1515,7 +2135,7 @@ def candidate_concepts_from_page(
         )
         definition_quality = _definition_quality_score(
             heading_hit=heading_hit,
-            body_hits=body_hits,
+            body_hits=combined_hits,
             definition_line=definition_line,
             math_line=math_line,
             application_line=application_line,
@@ -1524,11 +2144,13 @@ def candidate_concepts_from_page(
         )
         interview_relevance = _interview_relevance(
             profile=profile,
-            body_hits=body_hits,
+            body_hits=combined_hits,
             definition_line=definition_line,
             math_line=math_line,
             application_line=application_line,
         )
+        graph_support = _graph_support_score(profile, graph_context)
+        importance_prior = educational_importance_prior(canonical, page_text, course_name)
         confidence = (
             0.42 * evidence_strength
             + 0.34 * definition_quality
@@ -1538,12 +2160,17 @@ def candidate_concepts_from_page(
         if _is_generic_label(canonical):
             confidence -= 0.10
         confidence = max(0.0, min(0.98, confidence))
+        selection_score = confidence
+        selection_score += 0.12 * importance_prior
+        selection_score += 0.06 * graph_support
+        selection_score += 0.04 * min(1.0, lecture_hits / 3.0)
+        selection_score = max(0.0, min(1.0, selection_score))
 
         reason_parts = []
         if heading_hit:
             reason_parts.append("appears in heading")
-        if body_hits:
-            reason_parts.append(f"repeated in body {body_hits}x")
+        if body_hits or lecture_hits:
+            reason_parts.append(f"repeated in lecture {max(body_hits, lecture_hits)}x")
         if table_hits:
             reason_parts.append(f"appears in table {table_hits}x")
         if definition_line:
@@ -1552,6 +2179,10 @@ def candidate_concepts_from_page(
             reason_parts.append("has mathematical cue")
         if application_line:
             reason_parts.append("has application cue")
+        if importance_prior >= 0.88:
+            reason_parts.append("foundational domain concept")
+        if graph_support >= 0.5:
+            reason_parts.append("well connected in knowledge graph")
         if definition_quality >= DEFINITION_QUALITY_THRESHOLD:
             reason_parts.append("definition is specific enough")
         if evidence_strength >= EVIDENCE_STRENGTH_THRESHOLD:
@@ -1574,7 +2205,7 @@ def candidate_concepts_from_page(
                 evidence_strength=round(evidence_strength, 3),
                 definition_quality_score=round(definition_quality, 3),
                 interview_relevance=round(interview_relevance, 3),
-                reason_for_inclusion=reason,
+                reason_for_inclusion=reason + f"; selection score={selection_score:.2f}",
                 domain=profile.domain,
                 topic=profile.topic,
                 importance_score=profile.importance_score,

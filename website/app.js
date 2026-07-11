@@ -3,6 +3,11 @@ const DOMAIN_COLORS = {
   Statistics: "#16a34a",
   "Business Analytics": "#f97316",
   "Data Science": "#8b5cf6",
+  Leadership: "#dc2626",
+  Communication: "#0ea5e9",
+  "Digital Transformation": "#7c3aed",
+  Business: "#f59e0b",
+  "Project Management": "#14b8a6",
   "Soft Skills": "#ef4444",
   Other: "#64748b",
 };
@@ -85,6 +90,17 @@ function siteUrlFromMetadataPath(metadataPath, suffix = "metadata.json") {
   return `../${encodeURI(normalized.replace(/metadata\.json$/i, suffix))}`;
 }
 
+function conceptViewerUrl(metadataPath) {
+  const normalized = String(metadataPath ?? "").replaceAll("\\", "/");
+  const marker = "/knowledge_base/";
+  const idx = normalized.lastIndexOf(marker);
+  if (idx >= 0) {
+    const rel = normalized.slice(idx + 1).replace(/metadata\.json$/i, "concept.md");
+    return `./concept.html?path=${encodeURIComponent(`../${rel}`)}`;
+  }
+  return `./concept.html?path=${encodeURIComponent(normalized.replace(/metadata\.json$/i, "concept.md"))}`;
+}
+
 function domainColor(domain) {
   return DOMAIN_COLORS[domain] || DOMAIN_COLORS.Other;
 }
@@ -108,7 +124,6 @@ function nodeSearchBlob(node) {
 
 function buildFallbackGraph(nodesPayload, edgesPayload) {
   const nodes = (nodesPayload.nodes || []).map((node) => {
-    const conceptUrl = siteUrlFromMetadataPath(node.metadata_path, "concept.md");
     const metadataUrl = siteUrlFromMetadataPath(node.metadata_path, "metadata.json");
     return {
       ...node,
@@ -123,7 +138,7 @@ function buildFallbackGraph(nodesPayload, edgesPayload) {
       connected_edge_count: 0,
       degree: 0,
       metadata_url: metadataUrl,
-      concept_url: conceptUrl,
+      concept_url: conceptViewerUrl(node.metadata_path),
       search_terms: [
         node.concept_name,
         node.concept_key,
@@ -197,7 +212,19 @@ function relationSet(graph) {
 }
 
 function renderLegend() {
-  const domains = ["Machine Learning", "Statistics", "Business Analytics", "Data Science", "Soft Skills", "Other"];
+  const domains = [
+    "Machine Learning",
+    "Statistics",
+    "Business Analytics",
+    "Data Science",
+    "Leadership",
+    "Communication",
+    "Digital Transformation",
+    "Business",
+    "Project Management",
+    "Soft Skills",
+    "Other",
+  ];
   els.legend.innerHTML = domains
     .map(
       (domain) => `
@@ -568,7 +595,7 @@ function createCy() {
         degree: Number(node.degree || 0),
         metadata_path: node.metadata_path || "",
         metadata_url: node.metadata_url || siteUrlFromMetadataPath(node.metadata_path, "metadata.json"),
-        concept_url: node.concept_url || siteUrlFromMetadataPath(node.metadata_path, "concept.md"),
+        concept_url: node.concept_url || conceptViewerUrl(node.metadata_path),
         search_terms: node.search_terms || [],
       },
     })),

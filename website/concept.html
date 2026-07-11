@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Concept Page</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+        },
+      };
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./concept.js"></script>
+  </head>
+  <body>
+    <div class="concept-shell">
+      <header class="concept-header">
+        <div>
+          <div class="eyebrow">Knowledge Review Agent</div>
+          <h1 id="concept-title">Concept</h1>
+          <p id="concept-subtitle">Loading concept page.</p>
+        </div>
+        <div class="concept-actions">
+          <a class="button-link" href="./index.html">Back to graph</a>
+          <a id="raw-link" class="button-link" target="_blank" rel="noreferrer">Open raw markdown</a>
+        </div>
+      </header>
+
+      <main class="concept-layout">
+        <aside class="concept-sidebar">
+          <section class="panel">
+            <h2>Overview</h2>
+            <dl id="concept-meta" class="stats"></dl>
+          </section>
+
+          <section class="panel">
+            <h2>Sections</h2>
+            <nav id="concept-toc" class="toc"></nav>
+          </section>
+        </aside>
+
+        <article id="concept-article" class="concept-article">
+          <div id="concept-status" class="empty-state">Loading...</div>
+        </article>
+      </main>
+    </div>
+  </body>
+</html>

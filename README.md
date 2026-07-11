@@ -67,7 +67,7 @@ These paths are generated from lecture PDFs or downstream runs and are ignored b
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-export ANTHROPIC_PDF_SKILL_COMMAND='...'
+export ANTHROPIC_PDF_SKILL_COMMAND="/Users/linus/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 /Users/linus/Downloads/Knowledge-Review-Agent/scripts/pdf_skill_bridge.py"
 python scripts/check_pdf_tooling.py
 ```
 

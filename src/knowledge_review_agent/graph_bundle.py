@@ -78,6 +78,11 @@ def _site_url(repo_root: Path, path: Path) -> str:
     return f"../{relative}"
 
 
+def _concept_viewer_url(repo_root: Path, path: Path) -> str:
+    relative = _relative_site_path(repo_root, path).replace("metadata.json", "concept.md")
+    return f"./concept.html?path=../{relative}"
+
+
 def _parse_markdown_sections(markdown: str) -> dict[str, str]:
     sections: dict[str, list[str]] = defaultdict(list)
     current = "__preamble__"
@@ -187,7 +192,7 @@ def _load_node_bundle(node: GraphNode, graphs_root: Path) -> dict[str, object]:
         "degree": 0,
         "metadata_path": _relative_site_path(repo_root, metadata_path),
         "metadata_url": _site_url(repo_root, metadata_path),
-        "concept_url": _site_url(repo_root, concept_md_path),
+        "concept_url": _concept_viewer_url(repo_root, metadata_path),
         "search_terms": search_terms,
     }
 
