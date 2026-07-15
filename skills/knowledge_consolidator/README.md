@@ -86,7 +86,6 @@ Recommended order:
 
 - Lecture material remains the primary source.
 - Supplement only with well-established knowledge.
-- Never contradict lecture content.
 - Clearly distinguish slide-derived content from enriched content.
 - Preserve provenance.
 - Keep study pages concise, specific, and interview oriented.

@@ -116,12 +116,11 @@ def test_build_knowledge_graph_resolves_aliases_and_skips_unknown_targets(tmp_pa
 
     third = build_knowledge_graph(concepts_root=concepts_root, graphs_root=graphs_root)
     assert "classification" in third.nodes_created
-    assert "used_in::decision tree::classification" in third.edges_created
+    assert "used_in::decision tree::classification" not in third.edges_created
     assert third.unresolved_edge_targets == 0
 
     updated_edges = load_graph_edges(graphs_root / "edges.json")
-    used_in = [edge for edge in updated_edges if edge.edge_id == "used_in::decision tree::classification"][0]
-    assert used_in.target_resolved is True
+    assert all(edge.relation_type in {"prerequisite", "related"} for edge in updated_edges)
 
     eval_result = evaluate_graph(graphs_root)
     assert eval_result.node_count == 4

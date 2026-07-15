@@ -3,18 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Knowledge Graph</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <title>Knowledge Review</title>
+    <link rel="stylesheet" href="./styles.css?v=20260714-6" />
     <script src="https://unpkg.com/cytoscape@3.29.2/dist/cytoscape.min.js"></script>
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./app.js?v=20260714-3"></script>
   </head>
-  <body>
+  <body class="graph-page">
     <div class="app-shell">
       <header class="topbar">
         <div class="brand-block">
           <div class="eyebrow">Knowledge Review Agent</div>
-          <h1>Interactive Knowledge Graph</h1>
-          <p>Explore canonical concepts, relationships, and provenance.</p>
+          <h1>Interactive Course Knowledge Graph</h1>
+          <p>From scattered lecture notes to a one stop, concept review system</p>
         </div>
 
         <div class="topbar-controls">
@@ -45,15 +45,27 @@
           <section class="panel">
             <h2>Legend</h2>
             <div id="legend" class="legend"></div>
+            <div class="legend-subheading">Relationships</div>
+            <div class="legend-row">
+              <span class="edge-key edge-key-prerequisite" aria-hidden="true"></span>
+              <span>Prerequisite</span>
+            </div>
+            <div class="legend-row">
+              <span class="edge-key edge-key-related" aria-hidden="true"></span>
+              <span>Related concept</span>
+            </div>
           </section>
 
           <section class="panel">
-            <h2>Filters</h2>
+            <div class="panel-heading-row">
+              <h2>Filters</h2>
+              <button id="clear-filters" class="panel-action" type="button">Clear</button>
+            </div>
             <div class="filter-block">
-              <label for="importance-range">Importance</label>
+              <label for="scope-range">Minimum scope (5 = broadest)</label>
               <div class="range-row">
-                <input id="importance-range" type="range" min="1" max="5" step="1" value="1" />
-                <span id="importance-value">1+</span>
+                <input id="scope-range" type="range" min="1" max="5" step="1" value="1" />
+                <span id="scope-value">1+</span>
               </div>
             </div>
 
@@ -74,7 +86,7 @@
           </section>
 
           <section class="panel">
-            <h2>Statistics</h2>
+            <h2>At a glance</h2>
             <dl id="stats" class="stats"></dl>
           </section>
         </aside>
@@ -94,12 +106,12 @@
               <h3 id="detail-name"></h3>
               <div id="detail-meta" class="detail-meta"></div>
 
-              <div class="detail-section">
+              <div class="detail-section detail-definition-section">
                 <h4>Definition</h4>
                 <p id="detail-definition"></p>
               </div>
 
-              <div class="detail-section">
+              <div class="detail-section detail-core-section">
                 <h4>Core Idea</h4>
                 <p id="detail-core"></p>
               </div>

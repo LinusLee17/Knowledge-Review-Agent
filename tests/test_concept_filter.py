@@ -6,7 +6,7 @@ from pathlib import Path
 from knowledge_review_agent.ingestion import run_incremental_ingestion
 from knowledge_review_agent.models import PageExtraction
 from knowledge_review_agent.pdf_skill_adapter import PdfSkillResult, StaticPdfSkillBridge
-from knowledge_review_agent.slide_extractor import run_slide_extractor
+from knowledge_review_agent.concept_filter import run_concept_filter
 
 
 class CountingBridge:
@@ -33,7 +33,7 @@ class CountingBridge:
         )
 
 
-def test_slide_extractor_writes_lecture_markdown_and_json(tmp_path: Path) -> None:
+def test_concept_filter_writes_lecture_markdown_and_json(tmp_path: Path) -> None:
     raw_root = tmp_path / "data" / "raw"
     processed_root = tmp_path / "data" / "processed"
     raw_root.mkdir(parents=True)
@@ -82,7 +82,7 @@ def test_slide_extractor_writes_lecture_markdown_and_json(tmp_path: Path) -> Non
         )
     )
 
-    results = run_slide_extractor(
+    results = run_concept_filter(
         raw_root=raw_root,
         processed_root=processed_root,
         metadata_csv=metadata_csv,
@@ -109,7 +109,7 @@ def test_slide_extractor_writes_lecture_markdown_and_json(tmp_path: Path) -> Non
     assert "Assumptions" in lecture_json_text
 
 
-def test_slide_extractor_filters_slide_noise_and_emits_metrics(tmp_path: Path) -> None:
+def test_concept_filter_filters_slide_noise_and_emits_metrics(tmp_path: Path) -> None:
     raw_root = tmp_path / "data" / "raw"
     processed_root = tmp_path / "data" / "processed"
     raw_root.mkdir(parents=True)
@@ -148,7 +148,7 @@ def test_slide_extractor_filters_slide_noise_and_emits_metrics(tmp_path: Path) -
         )
     )
 
-    results = run_slide_extractor(
+    results = run_concept_filter(
         raw_root=raw_root,
         processed_root=processed_root,
         metadata_csv=metadata_csv,
@@ -170,7 +170,7 @@ def test_slide_extractor_filters_slide_noise_and_emits_metrics(tmp_path: Path) -
     assert "Week 5" not in page["concept_candidates"]
 
 
-def test_slide_extractor_rejects_template_like_profile_pages(tmp_path: Path) -> None:
+def test_concept_filter_rejects_template_like_profile_pages(tmp_path: Path) -> None:
     raw_root = tmp_path / "data" / "raw"
     processed_root = tmp_path / "data" / "processed"
     raw_root.mkdir(parents=True)
@@ -210,7 +210,7 @@ def test_slide_extractor_rejects_template_like_profile_pages(tmp_path: Path) -> 
         )
     )
 
-    results = run_slide_extractor(
+    results = run_concept_filter(
         raw_root=raw_root,
         processed_root=processed_root,
         metadata_csv=metadata_csv,

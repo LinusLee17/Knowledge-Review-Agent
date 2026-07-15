@@ -9,8 +9,6 @@ const els = {
 };
 
 const SECTION_ORDER = [
-  "Classification",
-  "Contributing Courses",
   "Definition",
   "Why it Matters",
   "Core Intuition",
@@ -26,11 +24,30 @@ const SECTION_ORDER = [
   "Related Concepts",
   "Connections",
   "Prerequisites",
+  "Classification",
+  "Contributing Courses",
   "Further Reading",
   "Slide-derived Evidence",
   "Provenance",
   "Extraction Metadata",
 ];
+
+const SECTION_GROUPS = {
+  Learn: new Set([
+    "Definition",
+    "Why it Matters",
+    "Core Intuition",
+    "How it Works",
+    "Mathematical Foundation",
+    "Key Components",
+    "Advantages",
+    "Limitations",
+    "Common Mistakes",
+  ]),
+  Apply: new Set(["Common Variants", "Real-world applications", "Interview Questions"]),
+  Connect: new Set(["Related Concepts", "Connections", "Prerequisites", "Classification", "Contributing Courses"]),
+  Source: new Set(["Further Reading", "Slide-derived Evidence", "Provenance", "Extraction Metadata"]),
+};
 
 function slugify(text) {
   return String(text ?? "")
@@ -339,12 +356,41 @@ function renderSectionContent(lines) {
 }
 
 function renderToc(sections) {
-  els.toc.innerHTML = sections
-    .map(
-      (section) =>
-        `<a class="toc-link" href="#section-${slugify(section.title)}">${escapeHtml(section.title)}</a>`,
-    )
+  const groups = ["Learn", "Apply", "Connect", "Source"];
+  els.toc.innerHTML = groups
+    .map((group) => {
+      const items = sections.filter((section) => SECTION_GROUPS[group].has(section.title));
+      if (!items.length) return "";
+      return `<div class="toc-group"><h3>${group}</h3>${items
+        .map(
+          (section) =>
+            `<a class="toc-link" href="#section-${slugify(section.title)}">${escapeHtml(section.title)}</a>`,
+        )
+        .join("")}</div>`;
+    })
     .join("");
+}
+
+function observeSections(sections) {
+  if (!("IntersectionObserver" in window)) return;
+  const links = new Map(
+    [...els.toc.querySelectorAll(".toc-link")].map((link) => [link.getAttribute("href").slice(1), link]),
+  );
+  const firstLink = els.toc.querySelector(".toc-link");
+  firstLink?.classList.add("is-active");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      if (!visible.length) return;
+      links.forEach((link) => link.classList.remove("is-active"));
+      links.get(visible[0].target.id)?.classList.add("is-active");
+    },
+    { rootMargin: "-12% 0px -72% 0px", threshold: 0 },
+  );
+  sections.forEach((section) => {
+    const element = document.getElementById(`section-${slugify(section.title)}`);
+    if (element) observer.observe(element);
+  });
 }
 
 function renderMeta(meta) {
@@ -352,7 +398,8 @@ function renderMeta(meta) {
     ["Domain", meta.domain || "Unknown"],
     ["Topic", meta.topic || "Unknown"],
     ["Type", meta.concept_type || "Unknown"],
-    ["Importance", meta.importance_score ? `${meta.importance_score}/5` : "Unknown"],
+    ["Scope", meta.scope_level ? `${meta.scope_level}/5` : "Unknown"],
+    ["Study priority", meta.study_priority ? `${meta.study_priority}/5` : "Unknown"],
     ["Version", meta.version_number || "1"],
   ];
   els.meta.innerHTML = rows
@@ -409,6 +456,8 @@ async function main() {
     `;
     els.article.appendChild(sectionEl);
   });
+
+  observeSections(orderedSections);
 
   if (window.MathJax?.typesetPromise) {
     await window.MathJax.typesetPromise([els.article]).catch(() => null);

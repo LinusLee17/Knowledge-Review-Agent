@@ -1,8 +1,8 @@
-# Slide Extractor
+# Concept Filter
 
 ## Purpose
 
-Transform parsed lecture content into high-quality candidate knowledge concepts.
+Transform parsed lecture content into high-quality candidate knowledge concepts, filtered by its relevance to the user's domain.
 
 ## Inputs
 
@@ -18,11 +18,9 @@ Transform parsed lecture content into high-quality candidate knowledge concepts.
 
 ## Foundation
 
-The Slide Extractor is designed to run inside Codex.
+The Concept Filter is designed to run inside Codex.
 
 It relies on the installed Anthropic PDF Skill for all PDF parsing and layout-aware document inspection.
-
-The Slide Extractor must not implement its own PDF parser.
 
 Whenever PDF parsing is required, invoke the installed Anthropic PDF Skill through Codex's Skill system rather than using standalone Python libraries.
 
@@ -58,8 +56,8 @@ Do not accept based only on:
 
 ## Notes
 
-- Reject headings, agenda items, OCR artifacts.
-- Reject generic terms unless sufficiently contextualized.
+- reject headings, agenda items, OCR artifacts.
+- reject generic terms unless sufficiently contextualized.
 - keep page-level provenance
 - mark uncertain text instead of guessing
 - ignore course related information such as lecturer backgrounds, assignment deadlines, grading rubrics, and other non-conceptual information

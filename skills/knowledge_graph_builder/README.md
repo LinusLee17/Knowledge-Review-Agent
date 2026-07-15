@@ -20,7 +20,6 @@ Create relationship data between canonical concepts.
 
 - prerequisite
 - related
-- used-in
 
 ## Notes
 

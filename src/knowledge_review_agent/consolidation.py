@@ -21,6 +21,9 @@ from .concept_rules import (
     canonical_interview_questions_for_label,
     canonical_intuition_for_label,
     canonical_key_components_for_label,
+    canonical_advantages_for_label,
+    canonical_assumptions_for_label,
+    canonical_limitations_for_label,
     canonical_math_for_label,
     canonical_summary_for_label,
     canonical_why_it_matters_for_label,
@@ -89,6 +92,16 @@ class ConsolidationReport:
     deleted: list[str] = field(default_factory=list)
     duplicate_dirs: list[str] = field(default_factory=list)
     total_mentions: int = 0
+
+
+def _scope_label(scope_level: int) -> str:
+    return {
+        5: "broad family",
+        4: "topic or workflow",
+        3: "core concept or method",
+        2: "supporting concept or practice",
+        1: "specific metric or detail",
+    }.get(int(scope_level or 3), "core concept or method")
 
 
 def sha256_file(path: Path, chunk_size: int = 1024 * 1024) -> str:
@@ -167,6 +180,47 @@ def _unique_text_list(values: Iterable[str]) -> list[str]:
     return results
 
 
+def _is_usable_field_fragment(value: str, field_name: str = "") -> bool:
+    """Reject stale slide fragments and generated placeholder prose."""
+    text = normalize_spaces(value)
+    if not text:
+        return False
+    lowered = text.lower()
+    if "extra topic if time permits" in lowered:
+        return False
+    if lowered.startswith(("page ", "slide ", "week ", "agenda", "introduction")):
+        return False
+    if lowered.startswith(("some limitations", "some advantages")):
+        return False
+    if lowered.startswith("use the metric definition from the confusion matrix"):
+        return False
+    if lowered.startswith("the mathematical form is") or lowered.startswith("the mathematical form follows"):
+        return False
+    if field_name in {"advantages", "limitations", "assumptions"} and lowered.endswith(
+        (" there are", " there is", " are", " is", ":")
+    ):
+        return False
+    if field_name == "assumptions" and re.match(r"^assumptions for .+ model$", lowered):
+        return False
+    if field_name == "applications" and lowered in {
+        "used in examples",
+        "used in this lecture",
+        "used in the lecture",
+        "examples",
+    }:
+        return False
+    return len(text.split()) >= 2 or field_name not in {"advantages", "limitations", "assumptions"}
+
+
+def _clean_field_list(values: Iterable[str], field_name: str = "") -> list[str]:
+    return _unique_text_list(value for value in values if _is_usable_field_fragment(value, field_name))
+
+
+def _clean_math(value: str) -> str:
+    text = normalize_spaces(value)
+    return text if _is_usable_field_fragment(text, "mathematical_foundation") else ""
+
+
 def _normalise_concept_source(item: dict, artifact: LectureArtifact, page_number: int, course_id: str, course_name: str) -> ConceptMention | None:
     raw_label = normalize_spaces(
         str(
@@ -201,7 +255,10 @@ def _normalise_concept_source(item: dict, artifact: LectureArtifact, page_number
     page_heading = normalize_spaces(str(item.get("page_heading", "") or item.get("heading", "") or ""))
     evidence = normalize_spaces(str(item.get("evidence", "") or page_heading or ""))
 
-    applications = _unique_text_list([*(item.get("applications", []) or []), *application_suffixes, *(profile.applications if profile else [])])
+    applications = _clean_field_list(
+        [*(item.get("applications", []) or []), *application_suffixes, *(profile.applications if profile else [])],
+        "applications",
+    )
     prerequisites = _unique_text_list([*(item.get("prerequisites", []) or []), *(profile.prerequisites if profile else [])])
     related = _unique_text_list([*(item.get("related_concepts", []) or []), *(profile.related_concepts if profile else [])])
     broader_topics = _unique_text_list([*(item.get("broader_topics", []) or []), *(profile.broader_topics if profile else [])])
@@ -221,11 +278,11 @@ def _normalise_concept_source(item: dict, artifact: LectureArtifact, page_number
         reason_for_inclusion=str(item.get("reason_for_inclusion", "") or item.get("reason", "") or ""),
         definition=normalize_spaces(str(item.get("definition", "") or "")),
         intuition=normalize_spaces(str(item.get("intuition", "") or "")),
-        mathematical_foundation=normalize_spaces(str(item.get("mathematical_foundation", "") or "")),
-        assumptions=_unique_text_list(item.get("assumptions", []) or []),
+        mathematical_foundation=_clean_math(str(item.get("mathematical_foundation", "") or "")),
+        assumptions=_clean_field_list(item.get("assumptions", []) or [], "assumptions"),
         applications=applications,
-        limitations=_unique_text_list(item.get("limitations", []) or []),
-        advantages=_unique_text_list(item.get("advantages", []) or []),
+        limitations=_clean_field_list(item.get("limitations", []) or [], "limitations"),
+        advantages=_clean_field_list(item.get("advantages", []) or [], "advantages"),
         broader_topics=broader_topics,
         prerequisites=prerequisites,
         related_concepts=related,
@@ -663,9 +720,9 @@ def _synthesized_math(concept_name: str, metadata: ConceptMetadata, mentions: li
     if math:
         return math
     if metadata.mathematical_foundation:
-        return metadata.mathematical_foundation
+        return _clean_math(metadata.mathematical_foundation)
     fallback = _merged_text_block(mentions, "mathematical_foundation")
-    return fallback
+    return _clean_math(fallback)
 
 
 def _further_reading(concept_name: str) -> list[str]:
@@ -713,13 +770,8 @@ def _key_components(concept_name: str, metadata: ConceptMetadata, mentions: list
 
 
 def _common_variants(concept_name: str, metadata: ConceptMetadata, mentions: list[ConceptMention]) -> list[str]:
-    variants = canonical_common_variants_for_label(concept_name)
-    if variants:
-        return variants
-    aliases = metadata.aliases or _merged_text_list(mentions, "aliases")
-    if aliases:
-        return [alias for alias in aliases if normalize_concept_key(alias) != normalize_concept_key(concept_name)][:5]
-    return []
+    # Aliases belong in Classification. Do not present them as variants.
+    return canonical_common_variants_for_label(concept_name)
 
 
 def _common_mistakes(concept_name: str, metadata: ConceptMetadata, mentions: list[ConceptMention]) -> list[str]:
@@ -866,6 +918,8 @@ def build_concept_markdown(
         f'domain: "{metadata.domain}"',
         f'topic: "{metadata.topic}"',
         f"importance_score: {metadata.importance_score}",
+        f"scope_level: {metadata.scope_level}",
+        f"study_priority: {metadata.study_priority}",
         f"version_number: {metadata.version_number}",
         f'last_updated_timestamp: "{metadata.last_updated_timestamp}"',
         f'explanation_basis: "{_explanation_basis(concept_name)}"',
@@ -877,7 +931,8 @@ def build_concept_markdown(
         f"- domain: {metadata.domain or 'unknown'}",
         f"- topic: {metadata.topic or 'unknown'}",
         f"- type: {getattr(metadata, 'concept_type', '') or 'unknown'}",
-        f"- importance: {metadata.importance_score}/5",
+        f"- scope: {metadata.scope_level}/5 ({_scope_label(metadata.scope_level)})",
+        f"- study priority: {metadata.study_priority}/5",
     ]
 
     if aliases:
@@ -1016,7 +1071,7 @@ def _merge_metadata(
             values.extend(getattr(existing, attr, []) or [])
         for mention in mentions:
             values.extend(getattr(mention, attr, []) or [])
-        return _unique_text_list(values)
+        return _clean_field_list(values, attr)
 
     if existing:
         merged_courses = sorted(set(existing.contributing_courses + course_names))
@@ -1026,17 +1081,17 @@ def _merge_metadata(
         merged_related = _merged_list("related_concepts")
         merged_prereqs = _merged_list("prerequisites")
         merged_used_in = _merged_list("used_in")
-        merged_assumptions = _merged_list("assumptions")
+        merged_assumptions = canonical_assumptions_for_label(concept_name) or _merged_list("assumptions")
         merged_applications = _merged_list("applications")
-        merged_limitations = _merged_list("limitations")
-        merged_advantages = _merged_list("advantages")
+        merged_limitations = canonical_limitations_for_label(concept_name) or _merged_list("limitations")
+        merged_advantages = canonical_advantages_for_label(concept_name) or _merged_list("advantages")
         merged_broader_topics = _merged_list("broader_topics")
         merged_aliases = _merged_list("aliases")
         merged_domain = _best_text("domain", existing.domain)
         merged_topic = _best_text("topic", existing.topic)
         merged_definition = _best_text("definition", existing.definition)
         merged_intuition = _best_text("intuition", existing.intuition)
-        merged_math = _best_text("mathematical_foundation", existing.mathematical_foundation)
+        merged_math = _clean_math(_best_text("mathematical_foundation", existing.mathematical_foundation))
         merged_concept_type = _best_text("concept_type", getattr(existing, "concept_type", ""))
         merged_confidence_score = max([getattr(existing, "confidence_score", 0.0), *[getattr(mention, "confidence_score", 0.0) for mention in mentions]], default=getattr(existing, "confidence_score", 0.0))
         merged_evidence_strength = max([getattr(existing, "evidence_strength", 0.0), *[getattr(mention, "evidence_strength", 0.0) for mention in mentions]], default=getattr(existing, "evidence_strength", 0.0))
@@ -1125,10 +1180,10 @@ def _merge_metadata(
             graph_node_id=merged_graph_node_id,
         )
 
-    merged_assumptions = _merged_list("assumptions")
+    merged_assumptions = canonical_assumptions_for_label(concept_name) or _merged_list("assumptions")
     merged_applications = _merged_list("applications")
-    merged_limitations = _merged_list("limitations")
-    merged_advantages = _merged_list("advantages")
+    merged_limitations = canonical_limitations_for_label(concept_name) or _merged_list("limitations")
+    merged_advantages = canonical_advantages_for_label(concept_name) or _merged_list("advantages")
     merged_broader_topics = _merged_list("broader_topics")
     merged_aliases = _merged_list("aliases")
     merged_related = _merged_list("related_concepts")
@@ -1138,7 +1193,7 @@ def _merge_metadata(
     merged_topic = _best_text("topic")
     merged_definition = _best_text("definition")
     merged_intuition = _best_text("intuition")
-    merged_math = _best_text("mathematical_foundation")
+    merged_math = _clean_math(_best_text("mathematical_foundation"))
     merged_importance = max([mention.importance_score for mention in mentions], default=1)
     merged_concept_type = _best_text("concept_type")
     merged_confidence_score = max([getattr(mention, "confidence_score", 0.0) for mention in mentions], default=0.0)
@@ -1295,6 +1350,26 @@ def consolidate_concepts(processed_root: Path, concepts_root: Path) -> Consolida
                     report.updated.append(key)
             else:
                 report.created.append(key)
+        else:
+            report.unchanged.append(key)
+
+    # Legacy concept pages may have no mention in the current processed corpus
+    # but still need migration to the current study-page format.
+    for key, records in sorted(records_by_key.items()):
+        if key in current_keys or not records:
+            continue
+        record = records[0]
+        concept_name = record.metadata.concept_name or canonical_concept_name(key) or key
+        normalized_meta = _merge_metadata(concept_name, key, [], record.metadata)
+        if _write_concept_record(
+            record.directory,
+            record.metadata_path,
+            concept_name,
+            key,
+            normalized_meta,
+            [],
+        ):
+            report.updated.append(key)
         else:
             report.unchanged.append(key)
 

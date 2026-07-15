@@ -5,7 +5,7 @@ flowchart LR
   A["data/raw lecture PDFs"] --> B["ingest / hash scan"]
   B --> C["data/index.json"]
   C --> D["PDF Parser Skill"]
-  D --> E["Slide Extractor Skill"]
+  D --> E["Concept Filter Skill"]
   E --> F["data/processed/<course>/<lecture>/lecture.md + lecture.json"]
   F --> G["Knowledge Consolidator Skill"]
   G --> H["knowledge_base/concepts"]

@@ -157,8 +157,8 @@ def test_consolidate_concepts_merges_duplicates_and_keeps_provenance(tmp_path: P
     decision_tree_md = grouped["decision tree"][0].directory / "concept.md"
     markdown = decision_tree_md.read_text(encoding="utf-8")
     assert "Decision Trees" in markdown
-    assert "cs101/week1/lecture.json" in markdown
-    assert "stats201/week2/lecture.json" in markdown
+    assert "cs101/week1/lecture1.pdf" in markdown
+    assert "stats201/week2/lecture2.pdf" in markdown
     assert "old/decision_tree/lecture.json" in markdown
 
     linear_regression_md = grouped["linear regression"][0].directory / "concept.md"

@@ -78,7 +78,7 @@ def _course_domain(course: CourseMetadata) -> str:
         return "Statistics"
     if course_id.startswith(("CS", "BT42")):
         return "Machine Learning"
-    if course_id.startswith("BT4012"):
+    if course_id.startswith(("BT4012", "BT2102")):
         return "Data Science"
     if course_id.startswith("IS"):
         course_name = (course.course_name or "").lower()
@@ -142,6 +142,13 @@ def _extract_definition(candidate: ConceptCandidate, lines: list[str], heading: 
     cues = (
         " is ",
         " are ",
+        ": a ",
+        " shared collection ",
+        " integrated collection ",
+        " consists of ",
+        " comprises ",
+        " designed to ",
+        " used to ",
         " refers to ",
         " means ",
         " defined as ",
@@ -169,6 +176,14 @@ def _extract_definition(candidate: ConceptCandidate, lines: list[str], heading: 
             cleaned = _normalize_text_line(line)
             if cleaned:
                 return cleaned
+    # PDF extraction often splits a definition over adjacent lines. Rejoin the
+    # page before giving up, then keep only the sentence carrying the concept.
+    joined = normalize_spaces(" ".join(lines))
+    if joined and _term_hits_line(joined, terms) and any(cue in joined.lower() for cue in cues):
+        for sentence in re.split(r"(?<=[.!?])\s+", joined):
+            if _term_hits_line(sentence, terms) and len(sentence.split()) >= 8:
+                return _normalize_text_line(sentence)[:500]
+        return _normalize_text_line(joined)[:500]
     for line in lines:
         lower = line.lower()
         if _term_hits_line(line, terms) and len(line.split()) <= 40 and any(
@@ -195,7 +210,17 @@ def _extract_definition(candidate: ConceptCandidate, lines: list[str], heading: 
                 "strategy",
                 "culture",
                 "collaboration",
-                "transformation",
+        "transformation",
+        " stores ",
+        " retrieves ",
+        " queries ",
+        " visualizes ",
+        " communicates ",
+        "stores",
+        "retrieves",
+        "queries",
+        "visualizes",
+        "communicates",
                 "project",
                 "business",
             )
@@ -270,6 +295,20 @@ _GENERIC_PROSE_PHRASES = (
 
 _SUBSTANTIVE_VERBS = (
     "estimates",
+    "based",
+        "designed",
+        "describes",
+        "organizes",
+        "stores",
+        "supports",
+        "represents",
+        "defines",
+        "ensures",
+        "retrieves",
+        "queries",
+        "joins",
+        "visualizes",
+        "communicates",
     "maps",
     "predicts",
     "measures",
@@ -393,6 +432,8 @@ def _build_concept_extraction(
         domain=candidate.domain,
         topic=candidate.topic,
         importance_score=candidate.importance_score,
+        scope_level=candidate.scope_level,
+        study_priority=candidate.study_priority,
         confidence_score=candidate.confidence_score,
         confidence_reason=candidate.reason_for_inclusion,
         evidence_strength=candidate.evidence_strength,
@@ -478,6 +519,15 @@ def build_structured_concepts(
         relevance_threshold = 0.33 if professional_family else INTERVIEW_RELEVANCE_THRESHOLD
         importance_threshold = 0.72 if professional_family else 0.92
         depth_threshold = 0.32 if professional_family else 0.55
+        # Data-management foundations often have strong source definitions but
+        # little mathematics. Accept them when evidence and importance are high.
+        if (
+            candidate.domain == "Data Science"
+            and candidate.importance_score >= 4
+            and candidate.evidence_strength >= 0.68
+            and candidate.definition_quality_score >= 0.58
+        ):
+            depth_threshold = 0.45
         selection_score = candidate.confidence_score
         selection_score += 0.12 * importance_prior
         selection_score += 0.06 * graph_prior
@@ -602,7 +652,9 @@ def build_structured_concepts(
             continue
         extraction = _build_concept_extraction(candidate, text_lines, heading, course, page_number, source_pdf)
         depth_score = _extraction_depth_score(extraction)
-        if depth_score < depth_threshold and not importance_eligible and selection_score < confidence_threshold:
+        # Educational importance may rescue weak confidence, but never an explanation
+        # that lacks enough substance to justify a standalone knowledge page.
+        if depth_score < depth_threshold:
             metrics["concepts_rejected"] += 1
             metrics["rejected_low_depth"] += 1
             rejected.append(
@@ -823,7 +875,7 @@ def write_extraction_outputs(
     return written
 
 
-def run_slide_extractor(
+def run_concept_filter(
     raw_root: Path,
     processed_root: Path,
     metadata_csv: Path,

@@ -7,7 +7,7 @@ from .index_store import index_entries_by_hash, index_entries_by_path, load_inde
 from .metadata import load_metadata, resolve_course
 from .models import CourseMetadata, IngestionResult, RepositoryIndexEntry
 from .pdf_skill_adapter import ExternalPdfSkillBridge, PdfSkillBridge, PARSER_VERSION
-from .slide_extractor import discover_pdfs, run_slide_extractor
+from .concept_filter import discover_pdfs, run_concept_filter
 
 
 def relative_pdf_path(pdf_path: Path, raw_root: Path) -> str:
@@ -55,6 +55,7 @@ def run_incremental_ingestion(
     metadata_csv: Path,
     skill_bridge: PdfSkillBridge | None = None,
     rebuild_all: bool = False,
+    force_course_ids: set[str] | None = None,
 ) -> IngestionResult:
     metadata_rows = load_metadata(metadata_csv)
     index = load_index(index_path)
@@ -62,6 +63,7 @@ def run_incremental_ingestion(
     by_hash = index_entries_by_hash(index)
     seen_hashes = set(by_hash.keys())
     bridge = skill_bridge or ExternalPdfSkillBridge()
+    forced_courses = {str(course_id).strip() for course_id in (force_course_ids or set()) if str(course_id).strip()}
 
     all_pdfs = discover_pdfs(raw_root)
     changed_pdfs: list[Path] = []
@@ -71,6 +73,11 @@ def run_incremental_ingestion(
     for pdf_path in all_pdfs:
         rel_path = relative_pdf_path(pdf_path, raw_root)
         current_hash = sha256_file(pdf_path)
+        course = resolve_course(pdf_path, raw_root, metadata_rows)
+        if course.course_id in forced_courses:
+            seen_hashes.add(current_hash)
+            changed_pdfs.append(pdf_path)
+            continue
         existing_by_path = by_path.get(rel_path)
         existing_by_hash = by_hash.get(current_hash)
 
@@ -105,7 +112,7 @@ def run_incremental_ingestion(
         changed_pdfs.append(pdf_path)
 
     if changed_pdfs:
-        extractions = run_slide_extractor(
+        extractions = run_concept_filter(
             raw_root=raw_root,
             processed_root=processed_root,
             metadata_csv=metadata_csv,

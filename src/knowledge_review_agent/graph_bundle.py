@@ -19,6 +19,8 @@ class GraphBundleNode:
     domain: str
     topic: str
     importance_score: int
+    scope_level: int
+    study_priority: int
     contributing_courses: list[str]
     contributing_lecture_files: list[str]
     aliases: list[str]
@@ -178,6 +180,8 @@ def _load_node_bundle(node: GraphNode, graphs_root: Path) -> dict[str, object]:
         "domain": node.domain,
         "topic": node.topic,
         "importance_score": node.importance_score,
+        "scope_level": node.scope_level,
+        "study_priority": node.study_priority,
         "contributing_courses": sorted(set(node.contributing_courses)),
         "contributing_lecture_files": sorted(set(node.contributing_lecture_files)),
         "aliases": aliases,

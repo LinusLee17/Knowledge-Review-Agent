@@ -1,62 +1,40 @@
 # Knowledge-Review-Agent
 
-Agent for turning lecture notes into a durable revision knowledge base.
+Agent for turning scattered lecture notes into a one stop revision knowledge base.
 
-## What is tracked
-
-```text
-README.md
-AGENTS.md
-requirements.txt
-scripts/
-src/knowledge_review_agent/
-skills/
-docs/
-tests/
-website/
-evaluation/*.py
-knowledge_base/*/README.md
-```
-
-## What stays local
-
-These paths are generated from lecture PDFs or downstream runs and are ignored by git:
-
-- `data/`
-- `evaluation/runs/`
-- `evaluation/workflow_test_report.md`
-- `knowledge_base/concepts/`
-- `knowledge_base/refined/`
-- `knowledge_base/graphs/*.json`
-- `knowledge_base/graphs/deltas/`
+![Knowledge Review Agent overview](outputs/Knowledge-Review-Agent-overview-edited.png)
 
 ## Pipeline
 
-1. `slide_extractor`
-   - PDF to structured lecture Markdown / JSON
-   - preserves page-level provenance
-   - uses the installed Anthropic PDF Skill through the repo bridge
+1. `concept_filter`
+   - Extracts durable concepts from parsed lecture content
+   - Filters slide noise
+   - Assigns domains and topics to concepts
 
 2. `knowledge_consolidator`
-   - merges overlapping concepts across lectures and courses
-   - writes canonical concept pages
-   - keeps provenance and version history
+   - Merges overlapping concepts across lectures and courses
+   - Writes canonical concept pages
+   - Synthesizes one explanation
+   - Preserves source material and references
 
 3. `evaluation + quality_gate`
-   - checks merge quality before polish
-   - blocks refinement when output is weak
+   - LLM-as-a-judge to evaluate completeness, factual accuracy, hallucination risk, clarity, usefulness for revision / interview preparation.
+   - Checks merge quality before polish
+   - Blocks refinement when output is weak
 
 4. `presentation_refinement`
    - Impeccable-backed presentation pass
-   - reorders and polishes pages without changing meaning
+   - Reorders and polishes pages without changing meaning
 
 5. `knowledge_graph_builder`
-   - builds incremental node / edge data
-   - exports `knowledge_base/graphs/graph.json` for the site
+   - Normalizes relationships between concepts
+   - Connects prerequisites and related concepts
+   - Builds incremental node / edge data
+   - Exports `knowledge_base/graphs/graph.json` for the site
 
 6. `graph_visualization`
    - Cytoscape.js UI over graph JSON
-   - search, filters, layouts, detail panel
+   - Search, filters, layouts, detail panel
 
 7. `website`
    - renders refined concept pages and interactive graph views
@@ -79,6 +57,9 @@ python scripts/ingest.py \
   --processed data/processed \
   --index data/index.json \
   --metadata data/metadata.csv
+
+# Optional: refresh one course after extractor-rule changes
+python scripts/ingest.py --course BT2102
 
 python scripts/consolidate_knowledge.py \
   --processed data/processed \
@@ -104,11 +85,16 @@ Serve the repo root and open:
 http://127.0.0.1:8000/website/index.html
 ```
 
-The graph UI reads `knowledge_base/graphs/graph.json` directly. It does not rebuild relationships in the browser.
+The graph UI reads `knowledge_base/graphs/graph.json` directly.
 
-## Notes
+## What stays local
 
-- Raw PDFs stay in `data/raw/` locally.
-- Incremental ingestion is hash-driven.
-- Presentation refinement stays separate from knowledge generation.
-- The repo is designed so generated state can grow without being pushed to GitHub.
+These paths are generated from lecture PDFs or downstream runs and are ignored by git:
+
+- `data/`
+- `evaluation/runs/`
+- `evaluation/workflow_test_report.md`
+- `knowledge_base/concepts/`
+- `knowledge_base/refined/`
+- `knowledge_base/graphs/*.json`
+- `knowledge_base/graphs/deltas/`

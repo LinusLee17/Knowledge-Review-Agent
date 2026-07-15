@@ -15,9 +15,6 @@ const DOMAIN_COLORS = {
 const RELATION_LABELS = {
   prerequisite: "Prerequisite",
   related: "Related concept",
-  broader: "Broader topic",
-  used_in: "Used in",
-  application: "Application",
 };
 
 const state = {
@@ -28,7 +25,7 @@ const state = {
   searchQuery: "",
   searchResultIds: [],
   filters: {
-    minImportance: 1,
+    minScope: 1,
     domains: new Set(),
     relationTypes: new Set(),
     courses: new Set(),
@@ -43,8 +40,9 @@ const els = {
   layoutSelect: document.getElementById("layout-select"),
   fitBtn: document.getElementById("fit-btn"),
   resetBtn: document.getElementById("reset-btn"),
-  importanceRange: document.getElementById("importance-range"),
-  importanceValue: document.getElementById("importance-value"),
+  clearFilters: document.getElementById("clear-filters"),
+  scopeRange: document.getElementById("scope-range"),
+  scopeValue: document.getElementById("scope-value"),
   legend: document.getElementById("legend"),
   domainFilters: document.getElementById("domain-filters"),
   relationFilters: document.getElementById("relation-filters"),
@@ -127,6 +125,8 @@ function buildFallbackGraph(nodesPayload, edgesPayload) {
     const metadataUrl = siteUrlFromMetadataPath(node.metadata_path, "metadata.json");
     return {
       ...node,
+      scope_level: Number(node.scope_level || 3),
+      study_priority: Number(node.study_priority || node.importance_score || 1),
       aliases: [],
       prerequisites: [],
       related_concepts: [],
@@ -241,10 +241,11 @@ function renderCheckboxList(container, items, selectedSet, prefix, onChange) {
     .map((item) => {
       const id = `${prefix}-${normalizeText(item).replace(/[^a-z0-9]+/g, "-")}`;
       const checked = selectedSet.size === 0 || selectedSet.has(item);
+      const displayItem = prefix === "relation" ? RELATION_LABELS[item] || item : item;
       return `
         <label class="filter-option" for="${id}">
           <input id="${id}" type="checkbox" data-value="${escapeHtml(item)}" ${checked ? "checked" : ""} />
-          <span>${escapeHtml(item)}</span>
+          <span>${escapeHtml(displayItem)}</span>
         </label>`;
     })
     .join("");
@@ -257,8 +258,8 @@ function renderCheckboxList(container, items, selectedSet, prefix, onChange) {
   });
 }
 
-function updateImportanceLabel() {
-  els.importanceValue.textContent = `${els.importanceRange.value}+`;
+function updateScopeLabel() {
+  els.scopeValue.textContent = `${els.scopeRange.value}+`;
 }
 
 function visibleNodeIds() {
@@ -280,9 +281,9 @@ function visibleNodeIds() {
     const courseAllowed =
       state.filters.courses.size === 0 ||
       (data.contributing_courses || []).some((course) => state.filters.courses.has(course));
-    const importanceAllowed = Number(data.importance_score || 1) >= Number(state.filters.minImportance || 1);
+    const scopeAllowed = Number(data.scope_level || 3) >= Number(state.filters.minScope || 1);
     const forcedVisible = selectedIds.has(node.id());
-    if ((domainAllowed && courseAllowed && importanceAllowed) || forcedVisible) {
+    if ((domainAllowed && courseAllowed && scopeAllowed) || forcedVisible) {
       visible.add(node.id());
     }
   });
@@ -316,18 +317,36 @@ function updateStatsPanel() {
   const visibleNodes = visibleNodeIds();
   const visibleEdges = visibleEdgeIds(visibleNodes);
   const stats = state.graph.stats || {};
+  const visibleNodeData = state.cy.nodes().filter((node) => visibleNodes.has(node.id())).map((node) => node.data());
+  const connectedCount = visibleNodeData.filter((node) => Number(node.connected_edge_count || 0) > 0).length;
+  const crossCourseCount = visibleNodeData.filter((node) => (node.contributing_courses || []).length > 1).length;
+  const relationCounts = state.cy
+    .edges()
+    .filter((edge) => visibleEdges.has(edge.id()))
+    .reduce((counts, edge) => {
+      const relation = edge.data("relation_type");
+      counts[relation] = (counts[relation] || 0) + 1;
+      return counts;
+    }, {});
+  const percent = (value, total) => (total ? `${Math.round((value / total) * 100)}%` : "0%");
   const rows = [
-    ["Total concepts", stats.total_concepts || 0],
-    ["Total edges", stats.total_edges || 0],
-    ["Visible concepts", visibleNodes.size],
-    ["Visible edges", visibleEdges.size],
-    ["Domains", (stats.domains || []).length],
-    ["Average degree", stats.average_node_degree || 0],
-    ["Multi-course", stats.multi_course_concepts || 0],
+    ["Showing", `${visibleNodes.size} / ${stats.total_concepts || 0} concepts`],
+    ["Connections", `${visibleEdges.size} / ${stats.total_edges || 0}`],
+    ["Connected", `${connectedCount} (${percent(connectedCount, visibleNodeData.length)})`],
+    ["Cross-course", `${crossCourseCount} (${percent(crossCourseCount, visibleNodeData.length)})`],
+    ["Relationship mix", `${relationCounts.prerequisite || 0} prerequisite, ${relationCounts.related || 0} related`],
   ];
   els.stats.innerHTML = rows
     .map(([label, value]) => `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`)
     .join("");
+}
+
+function clearFilters() {
+  state.filters.minScope = 1;
+  els.scopeRange.value = "1";
+  updateScopeLabel();
+  renderFilters();
+  applyFilterClasses();
 }
 
 function setDetailList(target, values) {
@@ -358,7 +377,8 @@ function showDetail(node) {
   setPills(els.detailMeta, [
     data.domain || "Other",
     data.topic || "Unknown topic",
-    `Importance ${data.importance_score || 1}`,
+    `Scope ${data.scope_level || 3}/5`,
+    `Study priority ${data.study_priority || 1}/5`,
   ]);
   els.detailDefinition.textContent = data.definition || "No definition available.";
   els.detailCore.textContent = data.core_idea || data.definition || "No core idea available.";
@@ -381,7 +401,8 @@ function showTooltip(node, renderedPosition) {
   const tooltipHtml = `
     <h4>${escapeHtml(data.concept_name || data.node_id)}</h4>
     <p><strong>Domain:</strong> ${escapeHtml(data.domain || "Other")}</p>
-    <p><strong>Importance:</strong> ${escapeHtml(data.importance_score || 1)}</p>
+    <p><strong>Scope:</strong> ${escapeHtml(data.scope_level || 3)}/5</p>
+    <p><strong>Study priority:</strong> ${escapeHtml(data.study_priority || 1)}/5</p>
     <p><strong>Connections:</strong> ${escapeHtml(data.connected_edge_count || 0)}</p>
     <p>${escapeHtml(data.definition || "No definition available.")}</p>
   `;
@@ -426,7 +447,7 @@ function layoutOptions(name) {
       padding: 40,
       spacingFactor: 1.2,
       animate: false,
-      roots: selected && selected.length ? selected : state.cy.nodes().filter((node) => Number(node.data("importance_score") || 1) >= 5).slice(0, 12),
+      roots: selected && selected.length ? selected : state.cy.nodes().filter((node) => Number(node.data("scope_level") || 3) >= 4).slice(0, 12),
     };
   }
   return {
@@ -579,8 +600,11 @@ function createCy() {
         concept_name: node.concept_name,
         concept_key: node.concept_key,
         domain: node.domain || "Other",
+        domainColor: domainColor(node.domain || "Other"),
         topic: node.topic || "",
-        importance_score: Number(node.importance_score || 1),
+        importance_score: Number(node.importance_score || node.study_priority || 1),
+        scope_level: Number(node.scope_level || 3),
+        study_priority: Number(node.study_priority || node.importance_score || 1),
         contributing_courses: node.contributing_courses || [],
         contributing_lecture_files: node.contributing_lecture_files || [],
         aliases: node.aliases || [],
@@ -639,8 +663,8 @@ function createCy() {
         "background-color": "data(domainColor)",
         "border-width": 1.5,
         "border-color": "rgba(17, 24, 39, 0.18)",
-        width: "mapData(importance_score, 1, 5, 28, 66)",
-        height: "mapData(importance_score, 1, 5, 28, 66)",
+        width: "mapData(scope_level, 1, 5, 28, 66)",
+        height: "mapData(scope_level, 1, 5, 28, 66)",
         "text-outline-color": "rgba(17, 24, 39, 0.28)",
         "text-outline-width": 2,
       },
@@ -671,29 +695,6 @@ function createCy() {
         "line-style": "dashed",
         "target-arrow-shape": "none",
         "line-color": "#64748b",
-      },
-    },
-    {
-      selector: ".edge-broader",
-      style: {
-        "line-color": "#f97316",
-        "target-arrow-color": "#f97316",
-        width: 2,
-      },
-    },
-    {
-      selector: ".edge-used_in",
-      style: {
-        "line-color": "#8b5cf6",
-        "target-arrow-color": "#8b5cf6",
-      },
-    },
-    {
-      selector: ".edge-application",
-      style: {
-        "line-color": "#10b981",
-        "target-arrow-color": "#10b981",
-        "line-style": "dotted",
       },
     },
     {
@@ -734,16 +735,11 @@ function createCy() {
     container: els.graph,
     elements,
     style: styles,
-    wheelSensitivity: 0.2,
     minZoom: 0.1,
     maxZoom: 2.5,
     hideEdgesOnViewport: true,
     textureOnViewport: true,
     motionBlur: true,
-  });
-
-  state.cy.nodes().forEach((node) => {
-    node.data("domainColor", domainColor(node.data("domain")));
   });
 
   state.cy.on("tap", "node", (evt) => {
@@ -804,24 +800,23 @@ function wireControls() {
   });
 
   els.resetBtn.addEventListener("click", () => {
-    state.filters.minImportance = 1;
+    clearFilters();
     state.selectedNodeId = "";
     state.searchQuery = "";
     els.searchInput.value = "";
-    els.importanceRange.value = "1";
-    updateImportanceLabel();
-    renderFilters();
     clearSelection();
     renderSearchResults([]);
     applyLayout(els.layoutSelect.value);
     state.cy.fit(state.cy.elements(":visible"), 40);
   });
 
-  els.importanceRange.addEventListener("input", () => {
-    state.filters.minImportance = Number(els.importanceRange.value);
-    updateImportanceLabel();
+  els.scopeRange.addEventListener("input", () => {
+    state.filters.minScope = Number(els.scopeRange.value);
+    updateScopeLabel();
     applyFilterClasses();
   });
+
+  els.clearFilters.addEventListener("click", clearFilters);
 
   document.addEventListener("click", (event) => {
     if (!els.searchResults.contains(event.target) && event.target !== els.searchInput) {
@@ -832,7 +827,7 @@ function wireControls() {
 
 async function init() {
   renderLegend();
-  updateImportanceLabel();
+  updateScopeLabel();
   state.graph = await loadGraphData();
   renderFilters();
   createCy();

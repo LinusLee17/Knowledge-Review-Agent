@@ -96,7 +96,7 @@ Treat the repository as a persistent knowledge system, not a rebuild-on-every-ru
 
 ## PDF skill rule
 
-- Use the installed Anthropic PDF Skill. Do not use the OpenAI PDF Skill.
+- Use the installed Anthropic PDF Skill. 
 - Do not reimplement PDF parsing from scratch.
 - Use local Python tooling only for repo orchestration, validation, and output shaping.
 

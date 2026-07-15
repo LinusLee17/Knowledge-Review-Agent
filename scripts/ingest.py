@@ -22,6 +22,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--index", default=str(ROOT / "data" / "index.json"), help="Repository index JSON")
     parser.add_argument("--metadata", default=str(ROOT / "data" / "metadata.csv"), help="Course metadata CSV")
     parser.add_argument("--rebuild-all", action="store_true", help="Reprocess every PDF explicitly")
+    parser.add_argument(
+        "--course",
+        action="append",
+        default=[],
+        help="Reprocess only PDFs belonging to this course ID; repeat for multiple courses",
+    )
     return parser.parse_args()
 
 
@@ -33,6 +39,7 @@ def main() -> int:
         index_path=Path(args.index),
         metadata_csv=Path(args.metadata),
         rebuild_all=args.rebuild_all,
+        force_course_ids=set(args.course),
     )
     payload = {
         "processed": [entry.relative_file_path for entry in report.processed],

@@ -4,6 +4,38 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 
+_SCOPE_LEVEL_BY_TYPE = {
+    "framework": 5,
+    "workflow": 4,
+    "theory": 4,
+    "model": 3,
+    "algorithm": 3,
+    "method": 3,
+    "theorem": 3,
+    "principle": 3,
+    "process": 3,
+    "metric": 1,
+    "concept": 2,
+    "phenomenon": 2,
+    "practice": 2,
+    "skill": 2,
+}
+
+
+def infer_scope_level(concept_type: str = "", concept_name: str = "", topic: str = "") -> int:
+    """Return structural breadth, separate from educational value."""
+    normalized_type = str(concept_type or "").strip().lower()
+    if normalized_type in _SCOPE_LEVEL_BY_TYPE:
+        return _SCOPE_LEVEL_BY_TYPE[normalized_type]
+
+    normalized_name = str(concept_name or "").strip().lower()
+    if normalized_name in {"regression", "classification", "inference", "optimization", "analytics"}:
+        return 4
+    if str(topic or "").strip() and normalized_name == str(topic).strip().lower():
+        return 4
+    return 3
+
+
 @dataclass(frozen=True)
 class CourseMetadata:
     course_id: str = ""
@@ -39,6 +71,8 @@ class ConceptCandidate:
     domain: str = ""
     topic: str = ""
     importance_score: int = 1
+    scope_level: int = 0
+    study_priority: int = 0
     evidence: str = ""
     aliases: list[str] = field(default_factory=list)
 
@@ -80,6 +114,8 @@ class ConceptExtraction:
     domain: str = ""
     topic: str = ""
     importance_score: int = 1
+    scope_level: int = 0
+    study_priority: int = 0
     confidence_score: float = 0.0
     confidence_reason: str = ""
     evidence_strength: float = 0.0
@@ -154,6 +190,8 @@ class ConceptMetadata:
     domain: str = ""
     topic: str = ""
     importance_score: int = 1
+    scope_level: int = 0
+    study_priority: int = 0
     confidence_score: float = 0.0
     evidence_strength: float = 0.0
     definition_quality_score: float = 0.0
@@ -177,6 +215,12 @@ class ConceptMetadata:
     used_in: list[str] = field(default_factory=list)
     graph_node_id: str = ""
 
+    def __post_init__(self) -> None:
+        if self.scope_level <= 0:
+            object.__setattr__(self, "scope_level", infer_scope_level(self.concept_type, self.concept_name, self.topic))
+        if self.study_priority <= 0:
+            object.__setattr__(self, "study_priority", max(1, min(5, self.importance_score or 1)))
+
 
 @dataclass(frozen=True)
 class GraphNode:
@@ -189,6 +233,8 @@ class GraphNode:
     domain: str = ""
     topic: str = ""
     importance_score: int = 1
+    scope_level: int = 3
+    study_priority: int = 1
     contributing_courses: list[str] = field(default_factory=list)
     contributing_lecture_files: list[str] = field(default_factory=list)
     graph_node_id: str = ""

@@ -4,7 +4,7 @@ from dataclasses import dataclass
 import re
 from typing import Iterable
 
-from .models import ConceptCandidate
+from .models import ConceptCandidate, infer_scope_level
 from .utils import normalize_concept_key, normalize_spaces
 
 
@@ -682,6 +682,146 @@ ConceptProfile(
         broader_topics=("Professional Skills", "Business"),
         applications=("Delivery Planning", "Scheduling", "Execution"),
     ),
+    ConceptProfile(
+        concept_name="Database",
+        domain="Data Science",
+        topic="Data Management",
+        importance_score=5,
+        concept_type="system",
+        synonyms=("database", "databases"),
+        related_concepts=("Database Management System", "Data Model", "SQL", "NoSQL"),
+        broader_topics=("Data Management",),
+        applications=("Operational Data Management", "Analytics", "Information Systems"),
+    ),
+    ConceptProfile(
+        concept_name="Database Management System",
+        domain="Data Science",
+        topic="Data Management",
+        importance_score=5,
+        concept_type="system",
+        synonyms=("database management system", "dbms", "database management system dbms"),
+        prerequisites=("Database", "Data Model"),
+        related_concepts=("SQL", "Relational Data Model", "NoSQL"),
+        broader_topics=("Data Management",),
+        applications=("Data Storage", "Data Integrity", "Information Systems"),
+    ),
+    ConceptProfile(
+        concept_name="Data Model",
+        domain="Data Science",
+        topic="Data Management",
+        importance_score=5,
+        concept_type="model",
+        synonyms=("data model", "data modeling", "data modelling"),
+        prerequisites=("Database",),
+        related_concepts=("Relational Data Model", "Entity-Relationship Model", "Database Normalization"),
+        broader_topics=("Data Management",),
+        applications=("Database Design", "Data Integration", "Analytics Systems"),
+    ),
+    ConceptProfile(
+        concept_name="Relational Data Model",
+        domain="Data Science",
+        topic="Data Management",
+        importance_score=5,
+        concept_type="model",
+        synonyms=("relational data model", "relational model", "relational database"),
+        prerequisites=("Data Model", "Database"),
+        related_concepts=("SQL", "Functional Dependency", "Database Normalization"),
+        broader_topics=("Data Management",),
+        applications=("Transactional Systems", "Reporting", "Analytics"),
+    ),
+    ConceptProfile(
+        concept_name="Entity-Relationship Model",
+        domain="Data Science",
+        topic="Database Design",
+        importance_score=4,
+        concept_type="model",
+        synonyms=("entity relationship model", "entity-relationship model", "er model", "erd", "entity relationship diagram"),
+        prerequisites=("Data Model",),
+        related_concepts=("Relational Data Model", "Database Normalization", "Primary Key", "Foreign Key"),
+        broader_topics=("Data Management", "Database Design"),
+        applications=("Conceptual Database Design", "Requirements Analysis"),
+    ),
+    ConceptProfile(
+        concept_name="Functional Dependency",
+        domain="Data Science",
+        topic="Database Design",
+        importance_score=4,
+        concept_type="theory",
+        synonyms=("functional dependency", "functional dependencies"),
+        prerequisites=("Relational Data Model",),
+        related_concepts=("Database Normalization", "Primary Key"),
+        broader_topics=("Data Management", "Database Design"),
+        applications=("Schema Design", "Data Integrity"),
+    ),
+    ConceptProfile(
+        concept_name="Database Normalization",
+        domain="Data Science",
+        topic="Database Design",
+        importance_score=5,
+        concept_type="method",
+        synonyms=("database normalization", "database normalisation", "normalization", "normalisation", "normal forms"),
+        prerequisites=("Relational Data Model", "Functional Dependency"),
+        related_concepts=("Entity-Relationship Model", "Functional Dependency", "Data Integrity"),
+        broader_topics=("Data Management", "Database Design"),
+        applications=("Schema Design", "Reducing Data Redundancy", "Data Integrity"),
+    ),
+    ConceptProfile(
+        concept_name="SQL",
+        domain="Data Science",
+        topic="Data Management",
+        importance_score=5,
+        concept_type="language",
+        synonyms=("sql", "structured query language"),
+        prerequisites=("Relational Data Model", "Database"),
+        related_concepts=("Database Management System", "Relational Data Model", "NoSQL"),
+        broader_topics=("Data Management",),
+        applications=("Querying Data", "Data Transformation", "Reporting"),
+    ),
+    ConceptProfile(
+        concept_name="NoSQL",
+        domain="Data Science",
+        topic="Data Management",
+        importance_score=4,
+        concept_type="model",
+        synonyms=("nosql", "non-relational database", "non relational database"),
+        prerequisites=("Database", "Data Model"),
+        related_concepts=("Relational Data Model", "Database Management System"),
+        broader_topics=("Data Management",),
+        applications=("Distributed Systems", "Semi-Structured Data", "Large-Scale Data Storage"),
+    ),
+    ConceptProfile(
+        concept_name="Data Visualization",
+        domain="Data Science",
+        topic="Data Communication",
+        importance_score=5,
+        concept_type="workflow",
+        synonyms=("data visualization", "data visualisation"),
+        related_concepts=("Exploratory Data Analysis", "Data Storytelling", "Dashboard"),
+        broader_topics=("Data Science", "Data Communication"),
+        applications=("Exploratory Analysis", "Decision Support", "Reporting"),
+    ),
+    ConceptProfile(
+        concept_name="Data Storytelling",
+        domain="Data Science",
+        topic="Data Communication",
+        importance_score=4,
+        concept_type="practice",
+        synonyms=("data storytelling", "data story", "storytelling with data"),
+        related_concepts=("Data Visualization", "Communication", "Dashboard"),
+        broader_topics=("Data Communication",),
+        applications=("Executive Communication", "Decision Support", "Business Reporting"),
+    ),
+    ConceptProfile(
+        concept_name="Dashboard",
+        domain="Data Science",
+        topic="Data Communication",
+        importance_score=4,
+        concept_type="workflow",
+        synonyms=("dashboard", "dashboards", "data dashboard"),
+        related_concepts=("Data Visualization", "Data Storytelling"),
+        broader_topics=("Data Communication",),
+        applications=("Operational Monitoring", "Performance Reporting", "Decision Support"),
+    ),
 )
 
 
@@ -737,6 +877,13 @@ FOUNDATIONAL_CONCEPTS_BY_DOMAIN: dict[str, tuple[str, ...]] = {
         "Data Cleaning",
         "Exploratory Data Analysis",
         "Sampling Distribution",
+        "Database",
+        "Data Model",
+        "Relational Data Model",
+        "Database Normalization",
+        "SQL",
+        "Data Visualization",
+        "Data Storytelling",
     ),
     "Leadership": (
         "Leadership",
@@ -790,7 +937,7 @@ DOMAIN_KEYWORDS: dict[str, tuple[str, ...]] = {
     "Business Analytics": ("predictive analytics", "business intelligence", "customer analytics", "forecasting", "decision analysis", "optimization", "crisp-dm"),
     "Machine Learning": ("machine learning", "classification", "regression", "random forest", "gradient descent", "svm", "neural network", "regularization", "cross validation", "overfitting", "pca", "clustering", "roc curve"),
     "Statistics": ("statistics", "probability", "hypothesis testing", "confidence interval", "sampling", "estimation", "regression", "distribution", "p-value", "central limit theorem", "sampling distribution", "point estimation"),
-    "Data Science": ("data science", "data cleaning", "feature engineering", "visualization", "pipeline", "deployment", "ethics", "eda"),
+    "Data Science": ("data science", "data cleaning", "feature engineering", "visualization", "visualisation", "database", "data model", "relational", "sql", "nosql", "dashboard", "data storytelling", "pipeline", "deployment", "ethics", "eda"),
     "Leadership": ("leadership", "stakeholder management", "change management", "change leadership", "decision making", "team collaboration", "organizational change", "management roles", "leader"),
     "Communication": ("communication", "communicate", "message framing", "active listening", "audience", "stakeholder communication", "leadership communication"),
     "Digital Transformation": ("digital transformation", "digitisation", "digitization", "digital innovation", "technology adoption", "is governance", "it governance", "service process digitisation"),
@@ -818,6 +965,9 @@ TOPIC_KEYWORDS: dict[str, tuple[str, ...]] = {
     "Predictive Analytics": ("forecasting", "predictive analytics", "customer analytics"),
     "Data Preparation": ("feature engineering", "data cleaning", "data wrangling", "preprocessing"),
     "Clustering": ("k-means", "cluster", "centroid"),
+    "Data Management": ("database", "data model", "relational", "sql", "nosql", "normalization", "normalisation"),
+    "Database Design": ("entity-relationship", "functional dependency", "normalization", "normalisation", "primary key", "foreign key"),
+    "Data Communication": ("data visualization", "data visualisation", "dashboard", "data storytelling"),
 }
 
 
@@ -1104,6 +1254,30 @@ _CANONICAL_SUMMARIES: dict[str, str] = {
         "Recall is a classification metric that measures the fraction of actual positive cases that a model correctly "
         "identifies. It matters when missing a positive case is more costly than producing a false alarm."
     ),
+    "Database": (
+        "A database is an organized collection of related data stored so it can be accessed, managed, and updated reliably. "
+        "It separates durable organizational information from the applications that use it."
+    ),
+    "Data Model": (
+        "A data model is a structured description of the data an organization needs, the relationships among data items, "
+        "and the rules that constrain valid data. It provides the blueprint for designing a database."
+    ),
+    "Relational Data Model": (
+        "The relational data model represents data as relations, commonly implemented as tables, with rows for records and "
+        "columns for attributes. Keys and integrity rules describe how tables relate and which values are valid."
+    ),
+    "Functional Dependency": (
+        "A functional dependency states that one set of attributes determines another set of attributes in a relation. "
+        "It helps identify keys, validate schemas, and reason about redundancy during database design."
+    ),
+    "SQL": (
+        "SQL is a declarative language for defining, querying, changing, and controlling data in relational database systems. "
+        "It describes the result required while the database system chooses how to execute the request."
+    ),
+    "Data Visualization": (
+        "Data visualization uses graphical representations to reveal patterns, comparisons, trends, and uncertainty in data. "
+        "A good visualization matches the analytical question and the audience's decision needs."
+    ),
 }
 
 _CANONICAL_INTUITION: dict[str, str] = {
@@ -1113,6 +1287,12 @@ _CANONICAL_INTUITION: dict[str, str] = {
     "Probability": "Quantify uncertainty so later models can reason about risk, evidence, and random variation.",
     "Maximum Likelihood Estimation": "Pick the parameters that best explain the observed sample under the model.",
     "Recall": "Count how many real positives you captured, not just how many predictions were correct overall.",
+    "Database": "Think of a database as a well-organized, shared store of related facts with rules that keep the facts usable.",
+    "Data Model": "Think of a data model as a blueprint: it decides what information exists, how pieces connect, and what counts as valid.",
+    "Relational Data Model": "Think of tables joined by keys, with each table representing one kind of thing or relationship.",
+    "Functional Dependency": "If knowing X always tells you Y, then X determines Y; that dependency is a clue about how the schema should be designed.",
+    "SQL": "Describe the rows or changes you want; the database engine decides how to produce them.",
+    "Data Visualization": "Choose visual encodings that make the important comparison or pattern easy to see before adding decoration.",
 }
 
 _CANONICAL_MATH: dict[str, str] = {
@@ -1344,15 +1524,68 @@ def canonical_math_for_label(label: str) -> str:
     profile = profile_for_label(label)
     if not profile:
         return ""
-    if profile.concept_type in {"metric"}:
-        return "Use the metric definition from the confusion matrix or outcome counts and compute the ratio or score directly."
-    if profile.concept_type in {"algorithm", "method"}:
-        return "The mathematical form follows the update rule, objective function, or optimization criterion used by the method."
-    if profile.concept_type in {"model"}:
-        return "The mathematical form is the model equation that maps features to predictions or probabilities."
-    if profile.concept_type in {"theory"}:
-        return "The mathematical form is the set of probability or algebraic relationships that define the concept precisely."
+    # Do not manufacture mathematics for concepts whose source evidence does
+    # not contain a complete, useful equation or mathematical relationship.
     return ""
+
+
+_CANONICAL_ADVANTAGES: dict[str, list[str]] = {
+    "Linear Regression": [
+        "Simple to fit, explain, and use as a baseline.",
+        "Coefficients provide a direct interpretation of feature effects under the model assumptions.",
+        "Efficient on small and large tabular datasets.",
+    ],
+    "Logistic Regression": [
+        "Produces interpretable class probabilities.",
+        "Fast to train and effective as a classification baseline.",
+        "Supports regularization and scales well to high-dimensional features.",
+    ],
+    "Gradient Descent": [
+        "Works for large parameter spaces where closed-form optimization is impractical.",
+        "Applies to many differentiable objectives and model architectures.",
+    ],
+}
+
+_CANONICAL_LIMITATIONS: dict[str, list[str]] = {
+    "Linear Regression": [
+        "Sensitive to outliers, influential observations, and multicollinearity.",
+        "Requires checking linearity, independent errors, and constant error variance for reliable inference.",
+        "Can underfit relationships that are substantially nonlinear.",
+    ],
+    "Logistic Regression": [
+        "Assumes a linear relationship between features and log-odds unless transformed or extended.",
+        "Can be affected by multicollinearity, separation, and severe class imbalance.",
+    ],
+    "Gradient Descent": [
+        "A poor learning rate can cause slow convergence or divergence.",
+        "Convergence depends on the objective, initialization, conditioning, and stopping rule.",
+    ],
+}
+
+_CANONICAL_ASSUMPTIONS: dict[str, list[str]] = {
+    "Linear Regression": [
+        "The expected relationship between predictors and outcome is linear.",
+        "Errors are independent and have constant variance for standard inference.",
+        "Predictors are not perfectly multicollinear.",
+    ],
+    "Logistic Regression": [
+        "The predictors have a linear relationship with the log-odds of the outcome.",
+        "Observations are independent unless the model explicitly accounts for dependence.",
+        "Perfect separation is absent or handled with an appropriate remedy.",
+    ],
+}
+
+
+def canonical_advantages_for_label(label: str) -> list[str]:
+    return list(_CANONICAL_ADVANTAGES.get(_canonical_name(label), []))
+
+
+def canonical_limitations_for_label(label: str) -> list[str]:
+    return list(_CANONICAL_LIMITATIONS.get(_canonical_name(label), []))
+
+
+def canonical_assumptions_for_label(label: str) -> list[str]:
+    return list(_CANONICAL_ASSUMPTIONS.get(_canonical_name(label), []))
 
 
 def canonical_why_it_matters_for_label(label: str) -> str:
@@ -1446,6 +1679,36 @@ def canonical_how_it_works_for_label(label: str) -> str:
             "2. Count the true positives and false negatives.\n"
             "3. Compute recall as the share of actual positives that were correctly identified."
         ),
+        "Database": (
+            "1. Define the data items, relationships, and integrity rules.\n"
+            "2. Store the data through a database management system.\n"
+            "3. Query or update the data while the system enforces the defined rules."
+        ),
+        "Data Model": (
+            "1. Identify the entities, attributes, and business rules.\n"
+            "2. Represent relationships and constraints using a chosen modeling approach.\n"
+            "3. Translate the model into a database design that can be implemented and maintained."
+        ),
+        "Relational Data Model": (
+            "1. Represent entities and relationships as tables.\n"
+            "2. Use keys to identify rows and connect related tables.\n"
+            "3. Apply integrity constraints and query the relations with relational operations or SQL."
+        ),
+        "Functional Dependency": (
+            "1. Identify a determinant attribute set X and a dependent set Y.\n"
+            "2. Check whether each valid X value determines one Y value.\n"
+            "3. Use the dependency to reason about keys, redundancy, and normalization."
+        ),
+        "SQL": (
+            "1. State the required data or change with a SQL statement.\n"
+            "2. Let the database engine parse, optimize, and execute the statement.\n"
+            "3. Inspect the result or transaction outcome and validate it against the business question."
+        ),
+        "Data Visualization": (
+            "1. Clarify the question, audience, and decision.\n"
+            "2. Select data and visual encodings that fit the comparison or pattern.\n"
+            "3. Remove misleading clutter, test readability, and communicate the result with appropriate context."
+        ),
     }
     if canonical in manual:
         return manual[canonical]
@@ -1536,6 +1799,48 @@ def canonical_key_components_for_label(label: str) -> list[str]:
             "Confusion matrix",
             "Decision threshold",
             "Recall formula",
+        ],
+        "Database": [
+            "Stored data",
+            "Schema or data model",
+            "Database management system",
+            "Integrity constraints",
+            "Queries and updates",
+        ],
+        "Data Model": [
+            "Entities and attributes",
+            "Relationships",
+            "Constraints",
+            "Structural representation",
+            "Manipulation rules",
+        ],
+        "Relational Data Model": [
+            "Relations or tables",
+            "Rows and attributes",
+            "Primary and foreign keys",
+            "Integrity constraints",
+            "Relational operations",
+        ],
+        "Functional Dependency": [
+            "Determinant X",
+            "Dependent attributes Y",
+            "Candidate keys",
+            "Inference rules",
+            "Schema constraints",
+        ],
+        "SQL": [
+            "Data definition statements",
+            "Data manipulation statements",
+            "Queries and joins",
+            "Filtering and aggregation",
+            "Transactions and access control",
+        ],
+        "Data Visualization": [
+            "Analytical question",
+            "Data and transformations",
+            "Visual encodings",
+            "Audience and context",
+            "Readability and integrity checks",
         ],
     }
     if canonical in manual:
@@ -1690,6 +1995,36 @@ def canonical_common_mistakes_for_label(label: str) -> list[str]:
             "Assuming high accuracy means high recall.",
             "Optimizing recall without checking precision.",
             "Ignoring the decision threshold that drives the trade-off.",
+        ],
+        "Database": [
+            "Treating a database as just a file collection without a schema or integrity rules.",
+            "Ignoring access control, backup, and transaction requirements.",
+            "Changing stored data without checking dependent applications or constraints.",
+        ],
+        "Data Model": [
+            "Skipping business rules and modeling only the fields visible in one application.",
+            "Confusing a conceptual model with an implementation-specific schema.",
+            "Ignoring relationships and constraints until after tables are created.",
+        ],
+        "Relational Data Model": [
+            "Using duplicated fields instead of representing relationships with keys.",
+            "Confusing a primary key with a foreign key.",
+            "Ignoring nullability and integrity constraints when interpreting joins.",
+        ],
+        "Functional Dependency": [
+            "Assuming a dependency from a sample that does not hold as a business rule.",
+            "Confusing a functional dependency with a correlation.",
+            "Using dependencies without checking the determinant and candidate keys.",
+        ],
+        "SQL": [
+            "Forgetting that joins or filters can duplicate or remove rows.",
+            "Using SELECT * when explicit columns are safer and clearer.",
+            "Changing data without a transaction or a restrictive WHERE condition.",
+        ],
+        "Data Visualization": [
+            "Choosing a chart before clarifying the question and audience.",
+            "Using truncated axes, misleading scales, or decorative encodings.",
+            "Showing every available field instead of emphasizing the decision-relevant signal.",
         ],
     }
     if canonical in manual:
@@ -2095,7 +2430,11 @@ def candidate_concepts_from_page(
         if not any(_alias_hit(alias, page_text) for alias in aliases):
             continue
 
-        evidence_lines = _collect_evidence_lines(canonical, heading, lines, tables, lecture_lines)
+        evidence_lines: list[str] = []
+        for alias in aliases:
+            for evidence_line in _collect_evidence_lines(alias, heading, lines, tables, lecture_lines):
+                if evidence_line not in evidence_lines:
+                    evidence_lines.append(evidence_line)
         if not evidence_lines:
             continue
 
@@ -2209,6 +2548,8 @@ def candidate_concepts_from_page(
                 domain=profile.domain,
                 topic=profile.topic,
                 importance_score=profile.importance_score,
+                scope_level=infer_scope_level(profile.concept_type, profile.concept_name, profile.topic),
+                study_priority=profile.importance_score,
                 evidence=evidence_text,
                 aliases=[normalize_spaces(alias) for alias in aliases if normalize_spaces(alias)],
             )

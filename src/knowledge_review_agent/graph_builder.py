@@ -83,6 +83,8 @@ def _merge_records(records: list[GraphConceptRecord]) -> GraphConceptRecord:
         domain=_best_text("domain", primary.metadata.domain),
         topic=_best_text("topic", primary.metadata.topic),
         importance_score=max(record.metadata.importance_score for record in records),
+        scope_level=max(record.metadata.scope_level for record in records),
+        study_priority=max(record.metadata.study_priority for record in records),
         definition=_best_text("definition", primary.metadata.definition),
         intuition=_best_text("intuition", primary.metadata.intuition),
         mathematical_foundation=_best_text("mathematical_foundation", primary.metadata.mathematical_foundation),
@@ -154,6 +156,8 @@ def _build_node(record: GraphConceptRecord) -> GraphNode:
         domain=record.metadata.domain,
         topic=record.metadata.topic,
         importance_score=record.metadata.importance_score,
+        scope_level=record.metadata.scope_level,
+        study_priority=record.metadata.study_priority,
         contributing_courses=sorted(set(record.metadata.contributing_courses)),
         contributing_lecture_files=sorted(set(record.metadata.contributing_lecture_files)),
         graph_node_id=node_id,
@@ -178,33 +182,6 @@ def _relation_targets(metadata: ConceptMetadata) -> list[tuple[str, str]]:
         if not key:
             continue
         spec = ("related", key)
-        if spec not in seen:
-            seen.add(spec)
-            targets.append(spec)
-
-    for target in metadata.used_in:
-        key = normalize_concept_key(target)
-        if not key:
-            continue
-        spec = ("used_in", key)
-        if spec not in seen:
-            seen.add(spec)
-            targets.append(spec)
-
-    for target in metadata.applications:
-        key = normalize_concept_key(target)
-        if not key:
-            continue
-        spec = ("application", key)
-        if spec not in seen:
-            seen.add(spec)
-            targets.append(spec)
-
-    for target in metadata.broader_topics:
-        key = normalize_concept_key(target)
-        if not key:
-            continue
-        spec = ("broader", key)
         if spec not in seen:
             seen.add(spec)
             targets.append(spec)

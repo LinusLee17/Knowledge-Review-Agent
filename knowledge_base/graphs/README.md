@@ -7,8 +7,16 @@ Incremental knowledge-graph data lives here.
 - alias resolution
 - prerequisite relationships
 - related concepts
-- broader topics
-- application links
+- scope level and study priority
+- broader topics and applications remain concept metadata, not graph edges
+
+Visible relationship types:
+
+- `prerequisite`: directed learning dependency
+- `related`: undirected conceptual association
+
+`scope_level` describes structural breadth (5 = broad family, 1 = narrow detail).
+`study_priority` describes learner value. They are separate dimensions; scope controls node size, while priority remains available for future filtering.
 
 Expected layout:
 
