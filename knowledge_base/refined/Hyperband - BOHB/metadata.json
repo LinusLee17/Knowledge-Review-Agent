@@ -1,0 +1,63 @@
+{
+  "concept_name": "Hyperband / BOHB",
+  "canonical_key": "hyperband bohb",
+  "concept_type": "algorithm",
+  "domain": "Machine Learning",
+  "topic": "AutoML",
+  "importance_score": 4,
+  "scope_level": 3,
+  "study_priority": 4,
+  "confidence_score": 0.613,
+  "evidence_strength": 0.74,
+  "definition_quality_score": 0.24,
+  "interview_relevance": 0.92,
+  "definition": "Hyperband is a resource-allocation and successive-halving strategy for rapidly discarding weak configurations. BOHB combines this multi-fidelity racing idea with a model-based sampler so promising regions of the hyperparameter space receive more trials.",
+  "intuition": "Run many cheap candidates, repeatedly halve the pool, and give more resources to survivors; BOHB biases new candidates toward regions that already look good.",
+  "mathematical_foundation": "$$\nn_{j+1} = \\left\\lfloor n_j / \\eta \\right\\rfloor, \\qquad r_{j+1} = \\eta r_j\n$$\n\nSuccessive halving keeps roughly the best `1/\\eta` fraction while increasing their resource. BOHB supplies model-based candidates to the brackets.",
+  "advantages": [
+    "Allocates more budget to promising trials and stops weak trials early.",
+    "Works well when low-resource performance is informative about final performance."
+  ],
+  "assumptions": [],
+  "applications": [
+    "Budgeted Hyperparameter Search",
+    "Early Stopping"
+  ],
+  "limitations": [
+    "Successive halving can discard late-blooming configurations when early performance is misleading.",
+    "The reduction factor and resource brackets affect the allocation strategy."
+  ],
+  "broader_topics": [
+    "AutoML",
+    "Machine Learning",
+    "Resource Allocation"
+  ],
+  "aliases": [
+    "BOHB",
+    "BOHB hyperband",
+    "Hyperband / BOHB",
+    "bandit based hyperparameter optimization",
+    "hyperband"
+  ],
+  "contributing_courses": [
+    "Auto-ML"
+  ],
+  "contributing_lecture_files": [
+    "Auto-ML/5_Speedup_ALL/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "Auto-ML/5_Speedup_ALL/lecture.json": "55457ae1aa82349f262028301baf3dc3fb372d67a794e4031e01e8de7b87d593"
+  },
+  "last_updated_timestamp": "2026-08-05T15:34:07.902137+00:00",
+  "version_number": 4,
+  "related_concepts": [
+    "HPO Speedup Techniques",
+    "Hyperparameter Optimization"
+  ],
+  "prerequisites": [
+    "Bayesian Optimization",
+    "Multi-fidelity Optimization"
+  ],
+  "used_in": [],
+  "graph_node_id": "hyperband-bohb"
+}

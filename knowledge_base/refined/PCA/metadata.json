@@ -1,0 +1,61 @@
+{
+  "concept_name": "PCA",
+  "canonical_key": "pca",
+  "concept_type": "method",
+  "domain": "Data Science",
+  "topic": "Dimensionality Reduction",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.973,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.96,
+  "interview_relevance": 0.98,
+  "definition": "PCA (Principal Component Analysis) projects data onto orthogonal components ordered by explained variance, reducing dimensions while retaining prominent structure. It is used in Compression, Noise Reduction, Visualization. It is commonly considered alongside Dimensionality Reduction, Feature Engineering.",
+  "intuition": "Mental model: transform inputs through explicit steps until output meets its evaluation rule.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Compression",
+    "Noise Reduction",
+    "Visualization"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Data Science",
+    "Dimensionality Reduction",
+    "Unsupervised Learning"
+  ],
+  "aliases": [
+    "PCA",
+    "principal component analysis",
+    "principal components analysis"
+  ],
+  "contributing_courses": [
+    "BT1101",
+    "CS3244"
+  ],
+  "contributing_lecture_files": [
+    "BT1101/Week 9 Model Selection & Data Dimensionality Reduction/lecture.json",
+    "CS3244/Lecture08_data-processing/lecture.json",
+    "CS3244/Lecture09_feature-engineering/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT1101/Week 9 Model Selection & Data Dimensionality Reduction/lecture.json": "2ccf7b74167e79a5346d347237a977bcb235861a52b612aef4fe11846342510e",
+    "CS3244/Lecture08_data-processing/lecture.json": "82431510d07f865eb55ed4729f0d02f80c09ed546b598189d75dc49989cc36c0",
+    "CS3244/Lecture09_feature-engineering/lecture.json": "d4c3423884c11995140470d36dfc7dcd9d16e75694762d97e5fab23b029ec607"
+  },
+  "last_updated_timestamp": "2026-08-05T17:20:40.853940+00:00",
+  "version_number": 11,
+  "related_concepts": [
+    "Dimensionality Reduction",
+    "Feature Engineering"
+  ],
+  "prerequisites": [
+    "Linear Algebra",
+    "Variance"
+  ],
+  "used_in": [],
+  "graph_node_id": "pca"
+}

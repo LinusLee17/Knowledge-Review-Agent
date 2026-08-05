@@ -1,0 +1,73 @@
+{
+  "concept_name": "Standard Error",
+  "canonical_key": "standard error",
+  "concept_type": "metric",
+  "domain": "Statistics",
+  "topic": "Inference",
+  "importance_score": 5,
+  "scope_level": 1,
+  "study_priority": 5,
+  "confidence_score": 0.953,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.9,
+  "interview_relevance": 0.98,
+  "definition": "Standard Error measures the sampling variability of an estimator; smaller standard error means the estimator varies less across repeated samples. It is used in Uncertainty Quantification. It is commonly considered alongside Confidence Interval, Margin of Error, Sampling Distribution.",
+  "intuition": "Think of Standard Error as a summary number: it compresses many outcomes into one interpretable value so you can compare models or decisions.",
+  "mathematical_foundation": "SE of mean = if population standard deviation (\ud835\udf0e) is known SE of mean = if population standard deviation (\ud835\udf0e) is unknown, use an",
+  "advantages": [
+    "Also known as robust standard errors",
+    "Different formula for computing standard errors of coefficient estimates",
+    "Simplifying tip: always use robust standard errors",
+    "Standard Error Regression Coefficients",
+    "coefficients, and identical standard errors"
+  ],
+  "assumptions": [],
+  "applications": [
+    "Uncertainty Quantification"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Inference",
+    "Statistical Inference",
+    "Statistics"
+  ],
+  "aliases": [
+    "Standard Error",
+    "se"
+  ],
+  "contributing_courses": [
+    "BT1101",
+    "BT2101",
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "BT1101/Week 7 Linear Regression and Interpretation 2023/lecture.json",
+    "BT2101/BT2101 Midterms (L1-6)/lecture.json",
+    "BT2101/VK.wk10.2024/lecture.json",
+    "ST1131/Topic6_SamplingDistribution/lecture.json",
+    "ST1131/Topic7_CI/lecture.json",
+    "ST1131/Topic8_HypothesisTest/lecture.json",
+    "ST1131/Topic9_LinearRegression/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT1101/Week 7 Linear Regression and Interpretation 2023/lecture.json": "e9c41504a0140c9ca06a83c9e9c2e6ab25634276bf2498d9800e721ea8c6c5bc",
+    "BT2101/BT2101 Midterms (L1-6)/lecture.json": "03dc65ad077068acc70ed20aaf77b6ca84df5053ab13fa8338680e53d50b4c8f",
+    "BT2101/VK.wk10.2024/lecture.json": "21e946a5331a59d08b192ebbcbacd8be66a6f646f063771f62b960a1d9a5c228",
+    "ST1131/Topic6_SamplingDistribution/lecture.json": "7ccc900c22502c9ea7bf10cd731408bdc83b807abab5dbe6f7f18134453f6a79",
+    "ST1131/Topic7_CI/lecture.json": "69f661a8147c1a358e9ccc1457321ce0a33fc433449d732d673d32b385a30825",
+    "ST1131/Topic8_HypothesisTest/lecture.json": "f23d23067535be87b6e2304f89a067bd085f2301da1929b078ef17463be46823",
+    "ST1131/Topic9_LinearRegression/lecture.json": "f850e60dd2f36ea85c51b03485504f4217855c3f1bb701b93fae72519e4e5ba4"
+  },
+  "last_updated_timestamp": "2026-08-05T17:17:19.418071+00:00",
+  "version_number": 12,
+  "related_concepts": [
+    "Confidence Interval",
+    "Margin of Error",
+    "Sampling Distribution"
+  ],
+  "prerequisites": [
+    "Sampling Distribution"
+  ],
+  "used_in": [],
+  "graph_node_id": "standard-error"
+}

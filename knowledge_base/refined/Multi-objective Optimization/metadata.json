@@ -1,0 +1,65 @@
+{
+  "concept_name": "Multi-objective Optimization",
+  "canonical_key": "multi objective optimization",
+  "concept_type": "method",
+  "domain": "Machine Learning",
+  "topic": "AutoML",
+  "importance_score": 4,
+  "scope_level": 3,
+  "study_priority": 4,
+  "confidence_score": 0.542,
+  "evidence_strength": 0.62,
+  "definition_quality_score": 0.18,
+  "interview_relevance": 0.92,
+  "definition": "Multi-objective Optimization minimizes several objectives at once, such as validation error, runtime, memory, and model size. Because objectives can conflict, the result is usually a Pareto set of non-dominated trade-offs rather than one universally best configuration.",
+  "intuition": "There may be no single winner: a model can be more accurate but slower, smaller but less accurate, so keep only trade-offs that another candidate does not dominate.",
+  "mathematical_foundation": "$$\n\\min_{\\lambda \\in \\Lambda} c(\\lambda) = (c_1(\\lambda), \\ldots, c_m(\\lambda)), \\qquad m \\ge 2\n$$\n\nA configuration is Pareto-dominated when another is no worse on every objective and strictly better on at least one.",
+  "advantages": [
+    "Makes resource and quality trade-offs visible instead of hiding them in one score.",
+    "Returns alternatives suited to different deployment constraints."
+  ],
+  "assumptions": [],
+  "applications": [
+    "Accuracy-Resource Trade-offs",
+    "Pareto Optimization",
+    "Pipeline Optimization"
+  ],
+  "limitations": [
+    "Scaling and weighting objectives can change the apparent trade-off.",
+    "There may be many non-dominated solutions and no single default choice."
+  ],
+  "broader_topics": [
+    "AutoML",
+    "Decision Making",
+    "Machine Learning",
+    "Optimization"
+  ],
+  "aliases": [
+    "Multi-objective Optimization",
+    "multi criteria optimisation",
+    "multi criteria optimization",
+    "multi-criteria optimization",
+    "multi-objective optimisation"
+  ],
+  "contributing_courses": [
+    "Auto-ML"
+  ],
+  "contributing_lecture_files": [
+    "Auto-ML/6_Multicriteria_ALL/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "Auto-ML/6_Multicriteria_ALL/lecture.json": "bd2923321c767fd024236793a30905c2185775d41b9ef1994c032a7b746e6171"
+  },
+  "last_updated_timestamp": "2026-08-05T17:21:13.267514+00:00",
+  "version_number": 11,
+  "related_concepts": [
+    "AutoML Evaluation and Benchmarking",
+    "Bayesian Optimization"
+  ],
+  "prerequisites": [
+    "Hyperparameter Optimization",
+    "Model Evaluation"
+  ],
+  "used_in": [],
+  "graph_node_id": "multi-objective-optimization"
+}

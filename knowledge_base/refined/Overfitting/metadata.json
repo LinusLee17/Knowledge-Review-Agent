@@ -1,0 +1,50 @@
+{
+  "concept_name": "Overfitting",
+  "canonical_key": "overfitting",
+  "concept_type": "phenomenon",
+  "domain": "Machine Learning",
+  "topic": "Model Evaluation",
+  "importance_score": 4,
+  "scope_level": 2,
+  "study_priority": 4,
+  "confidence_score": 0.756,
+  "evidence_strength": 0.68,
+  "definition_quality_score": 0.75,
+  "interview_relevance": 0.94,
+  "definition": "Overfitting occurs when a model fits noise or idiosyncrasies in observed training data, giving low training error but poor performance on unseen data. It is used in Model Diagnostics. It is commonly considered alongside Cross Validation, Regularization.",
+  "intuition": "Think of Overfitting as a durable building block in Model Evaluation.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Model Diagnostics"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Machine Learning",
+    "Model Evaluation"
+  ],
+  "aliases": [
+    "Overfitting"
+  ],
+  "contributing_courses": [
+    "CS3244"
+  ],
+  "contributing_lecture_files": [
+    "CS3244/Lecture12a.deep-learning-rnn_26/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "CS3244/Lecture12a.deep-learning-rnn_26/lecture.json": "97d250d5ed09e4e21fd5aab170d4152280999669b35719708d75c814ce9dfc26"
+  },
+  "last_updated_timestamp": "2026-08-05T16:27:50.474765+00:00",
+  "version_number": 6,
+  "related_concepts": [
+    "Cross Validation",
+    "Regularization"
+  ],
+  "prerequisites": [
+    "Bias-Variance Tradeoff"
+  ],
+  "used_in": [],
+  "graph_node_id": "overfitting"
+}

@@ -1,0 +1,56 @@
+{
+  "concept_name": "Test Statistic",
+  "canonical_key": "test statistic",
+  "concept_type": "metric",
+  "domain": "Statistics",
+  "topic": "Hypothesis Testing",
+  "importance_score": 5,
+  "scope_level": 1,
+  "study_priority": 5,
+  "confidence_score": 0.973,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.96,
+  "interview_relevance": 0.98,
+  "definition": "Test Statistic is a quantity computed from sample data and compared with a null distribution to assess a hypothesis. It is used in Testing. It is commonly considered alongside Hypothesis Testing, p-value.",
+  "intuition": "Think of Test Statistic as a summary number: it compresses many outcomes into one interpretable value so you can compare models or decisions.",
+  "mathematical_foundation": "Hence, Test statistic T = 47.5\u221238.8 = 31.3 Step 3: Test statistic from the output is T = 7.06. Its null distribution is From the R output of the t-test, the test statistic value is T = 85.92, which",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Testing"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Hypothesis Testing",
+    "Statistical Inference",
+    "Statistics"
+  ],
+  "aliases": [
+    "Test Statistic"
+  ],
+  "contributing_courses": [
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "ST1131/Topic8_HypothesisTest/lecture.json",
+    "ST1131/Topic8_HypothesisTest_2/lecture.json",
+    "ST1131/Topic9_LinearRegression/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "ST1131/Topic8_HypothesisTest/lecture.json": "f23d23067535be87b6e2304f89a067bd085f2301da1929b078ef17463be46823",
+    "ST1131/Topic8_HypothesisTest_2/lecture.json": "9353adcce66f732b5365a8e0de35f94020a233d862673cbf480294693022737c",
+    "ST1131/Topic9_LinearRegression/lecture.json": "f850e60dd2f36ea85c51b03485504f4217855c3f1bb701b93fae72519e4e5ba4"
+  },
+  "last_updated_timestamp": "2026-08-05T16:27:50.529295+00:00",
+  "version_number": 8,
+  "related_concepts": [
+    "Hypothesis Testing",
+    "p-value"
+  ],
+  "prerequisites": [
+    "Null Hypothesis",
+    "Sampling Distribution"
+  ],
+  "used_in": [],
+  "graph_node_id": "test-statistic"
+}

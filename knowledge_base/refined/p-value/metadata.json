@@ -1,0 +1,63 @@
+{
+  "concept_name": "p-value",
+  "canonical_key": "p value",
+  "concept_type": "metric",
+  "domain": "Statistics",
+  "topic": "Hypothesis Testing",
+  "importance_score": 5,
+  "scope_level": 1,
+  "study_priority": 5,
+  "confidence_score": 0.953,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.9,
+  "interview_relevance": 0.98,
+  "definition": "p-value is the probability, assuming the null hypothesis is true, of observing a test statistic at least as extreme as the observed value. It is used in Testing. It is commonly considered alongside Hypothesis Testing, Statistical Significance, Type I Error.",
+  "intuition": "Think of p-value as a summary number: it compresses many outcomes into one interpretable value so you can compare models or decisions.",
+  "mathematical_foundation": "t = 31.326, df = 122, p-value < 2.2e-16 F = 1.0116, num df = 462, denom df = 267, p-value = 0.9234 t = 7.0568, df = 729, p-value = 3.971e-12 F = 0.67575, num df = 41181, denom df = 24977, p-value < 2.2e-16",
+  "advantages": [],
+  "assumptions": [
+    "We hope for a large p-value for the Normality assumption to hold",
+    "When p-value is very small, either the assumption\u201cH is true\u201dis not correct"
+  ],
+  "applications": [
+    "Testing"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Hypothesis Testing",
+    "Statistical Inference",
+    "Statistics"
+  ],
+  "aliases": [
+    "p value",
+    "p-value"
+  ],
+  "contributing_courses": [
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "ST1131/Topic8_HypothesisTest/lecture.json",
+    "ST1131/Topic8_HypothesisTest_2/lecture.json",
+    "ST1131/Topic8_QQplots_R/lecture.json",
+    "ST1131/Topic9_LinearRegression/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "ST1131/Topic8_HypothesisTest/lecture.json": "f23d23067535be87b6e2304f89a067bd085f2301da1929b078ef17463be46823",
+    "ST1131/Topic8_HypothesisTest_2/lecture.json": "9353adcce66f732b5365a8e0de35f94020a233d862673cbf480294693022737c",
+    "ST1131/Topic8_QQplots_R/lecture.json": "5e1659135f5a7e74830fa3739d8198c80d210d59ef3bccd89e2fbb9a3f47c3bc",
+    "ST1131/Topic9_LinearRegression/lecture.json": "f850e60dd2f36ea85c51b03485504f4217855c3f1bb701b93fae72519e4e5ba4"
+  },
+  "last_updated_timestamp": "2026-08-05T16:27:50.475565+00:00",
+  "version_number": 8,
+  "related_concepts": [
+    "Hypothesis Testing",
+    "Statistical Significance",
+    "Type I Error"
+  ],
+  "prerequisites": [
+    "Null Hypothesis",
+    "Test Statistic"
+  ],
+  "used_in": [],
+  "graph_node_id": "p-value"
+}

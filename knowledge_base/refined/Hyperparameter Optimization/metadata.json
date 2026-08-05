@@ -1,0 +1,80 @@
+{
+  "concept_name": "Hyperparameter Optimization",
+  "canonical_key": "hyperparameter optimization",
+  "concept_type": "workflow",
+  "domain": "Machine Learning",
+  "topic": "AutoML",
+  "importance_score": 5,
+  "scope_level": 4,
+  "study_priority": 5,
+  "confidence_score": 0.843,
+  "evidence_strength": 0.94,
+  "definition_quality_score": 0.7,
+  "interview_relevance": 0.98,
+  "definition": "Hyperparameter Optimization (HPO) searches a defined configuration space for hyperparameters that minimize a validation cost. Unlike learned model parameters, hyperparameters control the training procedure or model structure, so each trial requires training and evaluating a model.",
+  "intuition": "Treat each configuration as an expensive experiment: choose a setting, train/evaluate it, learn from the result, and spend the next budget where improvement is most plausible.",
+  "mathematical_foundation": "$$\n\\lambda^* = \\arg\\min_{\\lambda \\in \\Lambda} c(A_\\lambda, D_{train}, D_{valid})\n$$\n\n`\\Lambda` is the search space, `\\lambda` a configuration, and `c` the validation cost of the trained model.",
+  "advantages": [
+    "Can optimize mixed continuous, discrete, and conditional search spaces.",
+    "Improves a model or pipeline without requiring manual trial-and-error for every configuration.",
+    "Makes the search objective and compute budget explicit."
+  ],
+  "assumptions": [],
+  "applications": [
+    "Automated Machine Learning",
+    "Model Tuning",
+    "Pipeline Optimization"
+  ],
+  "limitations": [
+    "Results depend on the search space, budget, random seed, and evaluation protocol.",
+    "Search can be extremely expensive because every trial may require model training and validation.",
+    "Validation overfitting can occur when many configurations are tested against the same validation signal."
+  ],
+  "broader_topics": [
+    "AutoML",
+    "Machine Learning",
+    "Model Selection",
+    "Optimization"
+  ],
+  "aliases": [
+    "HPO",
+    "Hyperparameter Optimization",
+    "hyperparameter optimisation",
+    "hyperparameter tuning"
+  ],
+  "contributing_courses": [
+    "Auto-ML"
+  ],
+  "contributing_lecture_files": [
+    "Auto-ML/3_Basic-of-HPO_ALL/lecture.json",
+    "Auto-ML/4_BO-for-HPO_all/lecture.json",
+    "Auto-ML/5_Speedup_ALL/lecture.json",
+    "Auto-ML/6_Multicriteria_ALL/lecture.json",
+    "Auto-ML/8_dac_lectures/lecture.json",
+    "Auto-ML/ss25-AutoML-lecture-6 NAS /lecture.json",
+    "Auto-ML/w01_t01_04_big_picture/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "Auto-ML/3_Basic-of-HPO_ALL/lecture.json": "09989b4cdc3d2215cbeaad8b2f61988725bafd71b9d99a52e2e5d6118dafe611",
+    "Auto-ML/4_BO-for-HPO_all/lecture.json": "bbeeac97bbb2b2dabb2e7714d3bef7915ffd942c9858d9edb343e7c53ab16abd",
+    "Auto-ML/5_Speedup_ALL/lecture.json": "55457ae1aa82349f262028301baf3dc3fb372d67a794e4031e01e8de7b87d593",
+    "Auto-ML/6_Multicriteria_ALL/lecture.json": "bd2923321c767fd024236793a30905c2185775d41b9ef1994c032a7b746e6171",
+    "Auto-ML/8_dac_lectures/lecture.json": "cd3c2aac34b9533142757a1839de075e92bdbaec81eb6bb75a4d77748364d4b7",
+    "Auto-ML/ss25-AutoML-lecture-6 NAS /lecture.json": "c4e7118a29e0bd850d848929d96a7b6ac75dfd531dab122fd60c67df0d927033",
+    "Auto-ML/w01_t01_04_big_picture/lecture.json": "eb60c3619e59b1b90a8ff071d04715669f28528f1df894c4d664e36e75b9a604"
+  },
+  "last_updated_timestamp": "2026-08-05T17:21:13.209312+00:00",
+  "version_number": 13,
+  "related_concepts": [
+    "Algorithm Selection",
+    "Bayesian Optimization",
+    "Multi-fidelity Optimization",
+    "Neural Architecture Search"
+  ],
+  "prerequisites": [
+    "Cross Validation",
+    "Model Evaluation"
+  ],
+  "used_in": [],
+  "graph_node_id": "hyperparameter-optimization"
+}

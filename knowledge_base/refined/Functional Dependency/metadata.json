@@ -1,0 +1,53 @@
+{
+  "concept_name": "Functional Dependency",
+  "canonical_key": "functional dependency",
+  "concept_type": "theory",
+  "domain": "Data Science",
+  "topic": "Database Design",
+  "importance_score": 4,
+  "scope_level": 4,
+  "study_priority": 4,
+  "confidence_score": 0.813,
+  "evidence_strength": 0.8,
+  "definition_quality_score": 0.74,
+  "interview_relevance": 0.94,
+  "definition": "A functional dependency states that one set of attributes determines another set of attributes in a relation. It helps identify keys, validate schemas, and reason about redundancy during database design.",
+  "intuition": "If knowing X always tells you Y, then X determines Y; that dependency is a clue about how the schema should be designed.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Data Integrity",
+    "Schema Design"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Data Management",
+    "Data Science",
+    "Database Design"
+  ],
+  "aliases": [
+    "Functional Dependency",
+    "functional dependencies"
+  ],
+  "contributing_courses": [
+    "BT2102"
+  ],
+  "contributing_lecture_files": [
+    "BT2102/BT2102-06-FunctionalDependency/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT2102/BT2102-06-FunctionalDependency/lecture.json": "4efd1185bdfe0dba52864e0c591acbd4afd6292a8b4ef8175c06907b6e10351c"
+  },
+  "last_updated_timestamp": "2026-07-14T17:35:38.268683+00:00",
+  "version_number": 2,
+  "related_concepts": [
+    "Database Normalization",
+    "Primary Key"
+  ],
+  "prerequisites": [
+    "Relational Data Model"
+  ],
+  "used_in": [],
+  "graph_node_id": "functional-dependency"
+}

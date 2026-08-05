@@ -1,0 +1,52 @@
+{
+  "concept_name": "Data Visualization",
+  "canonical_key": "data visualization",
+  "concept_type": "workflow",
+  "domain": "Data Science",
+  "topic": "Data Communication",
+  "importance_score": 5,
+  "scope_level": 4,
+  "study_priority": 5,
+  "confidence_score": 0.907,
+  "evidence_strength": 0.92,
+  "definition_quality_score": 0.84,
+  "interview_relevance": 0.98,
+  "definition": "Data visualization uses graphical representations to reveal patterns, comparisons, trends, and uncertainty in data. A good visualization matches the analytical question and the audience's decision needs.",
+  "intuition": "Choose visual encodings that make the important comparison or pattern easy to see before adding decoration.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Decision Support",
+    "Exploratory Analysis",
+    "Reporting"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Data Communication",
+    "Data Science"
+  ],
+  "aliases": [
+    "Data Visualization",
+    "data visualisation"
+  ],
+  "contributing_courses": [
+    "BT2102"
+  ],
+  "contributing_lecture_files": [
+    "BT2102/BT2102-12-DataVisualisation/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT2102/BT2102-12-DataVisualisation/lecture.json": "a909884d3f7657357f5ce885f815172ae7fc66772c8da8e33706dedf5601559c"
+  },
+  "last_updated_timestamp": "2026-07-14T17:35:38.254621+00:00",
+  "version_number": 2,
+  "related_concepts": [
+    "Dashboard",
+    "Data Storytelling",
+    "Exploratory Data Analysis"
+  ],
+  "prerequisites": [],
+  "used_in": [],
+  "graph_node_id": "data-visualization"
+}

@@ -1,0 +1,60 @@
+{
+  "concept_name": "Project Management",
+  "canonical_key": "project management",
+  "concept_type": "skill",
+  "domain": "Project Management",
+  "topic": "Project Delivery",
+  "importance_score": 4,
+  "scope_level": 2,
+  "study_priority": 4,
+  "confidence_score": 0.422,
+  "evidence_strength": 0.42,
+  "definition_quality_score": 0.1,
+  "interview_relevance": 0.88,
+  "definition": "Project Management is a workplace skill in Project Management focused on Project Delivery. It supports everyday execution, collaboration, and communication.",
+  "intuition": "Think of Project Management as a repeatable way to align people, decisions, and execution so the team moves toward Project Delivery with less friction.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Delivery Planning",
+    "Execution",
+    "Scheduling"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Business",
+    "Professional Skills",
+    "Project Delivery",
+    "Project Management"
+  ],
+  "aliases": [
+    "Project Management",
+    "project delivery",
+    "project planning",
+    "project scope"
+  ],
+  "contributing_courses": [
+    "IS3103"
+  ],
+  "contributing_lecture_files": [
+    "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 5 - Organizing for Digital Innovation - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 8 - Managing IT Teams - Canvas/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json": "a7aeb83206c6f129bb8c3437a4bef9f41067273c2916c8af5144fa4464cc36c2",
+    "IS3103/IS3103 Workshop 5 - Organizing for Digital Innovation - Canvas/lecture.json": "2a89d369dfcb1d189cad1b3f7ded7c963097b9f50319a34d443edc91123a9835",
+    "IS3103/IS3103 Workshop 8 - Managing IT Teams - Canvas/lecture.json": "d5b2615b6736c5a6a5aa04c032038649c34152dccb2ca83ff984b3a9e3da5233"
+  },
+  "last_updated_timestamp": "2026-07-11T11:47:38.769355+00:00",
+  "version_number": 1,
+  "related_concepts": [
+    "Business Strategy",
+    "Communication",
+    "Stakeholder Management"
+  ],
+  "prerequisites": [],
+  "used_in": [],
+  "graph_node_id": "project-management"
+}

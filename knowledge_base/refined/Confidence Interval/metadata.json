@@ -1,0 +1,65 @@
+{
+  "concept_name": "Confidence Interval",
+  "canonical_key": "confidence interval",
+  "concept_type": "metric",
+  "domain": "Statistics",
+  "topic": "Inference",
+  "importance_score": 5,
+  "scope_level": 1,
+  "study_priority": 5,
+  "confidence_score": 0.932,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.84,
+  "interview_relevance": 0.98,
+  "definition": "Confidence Interval is an interval-estimation procedure that produces a range of plausible parameter values together with a stated confidence level. It is used in Estimation, Reporting Uncertainty. It is commonly considered alongside Hypothesis Testing, Margin of Error.",
+  "intuition": "Think of Confidence Interval as a summary number: it compresses many outcomes into one interpretable value so you can compare models or decisions.",
+  "mathematical_foundation": "",
+  "advantages": [
+    "Interpreting Confidence Interval for Regression Coefficients"
+  ],
+  "assumptions": [],
+  "applications": [
+    "Estimation",
+    "Reporting Uncertainty"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Inference",
+    "Statistical Inference",
+    "Statistics"
+  ],
+  "aliases": [
+    "Confidence Interval",
+    "confidence intervals"
+  ],
+  "contributing_courses": [
+    "BT1101",
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "BT1101/Week 7 Linear Regression and Interpretation 2023/lecture.json",
+    "ST1131/Topic7_CI/lecture.json",
+    "ST1131/Topic8_HypothesisTest/lecture.json",
+    "ST1131/Topic8_HypothesisTest_2/lecture.json",
+    "ST1131/Topic9_LinearRegression/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT1101/Week 7 Linear Regression and Interpretation 2023/lecture.json": "e9c41504a0140c9ca06a83c9e9c2e6ab25634276bf2498d9800e721ea8c6c5bc",
+    "ST1131/Topic7_CI/lecture.json": "69f661a8147c1a358e9ccc1457321ce0a33fc433449d732d673d32b385a30825",
+    "ST1131/Topic8_HypothesisTest/lecture.json": "f23d23067535be87b6e2304f89a067bd085f2301da1929b078ef17463be46823",
+    "ST1131/Topic8_HypothesisTest_2/lecture.json": "9353adcce66f732b5365a8e0de35f94020a233d862673cbf480294693022737c",
+    "ST1131/Topic9_LinearRegression/lecture.json": "f850e60dd2f36ea85c51b03485504f4217855c3f1bb701b93fae72519e4e5ba4"
+  },
+  "last_updated_timestamp": "2026-08-05T17:17:19.231134+00:00",
+  "version_number": 11,
+  "related_concepts": [
+    "Hypothesis Testing",
+    "Margin of Error"
+  ],
+  "prerequisites": [
+    "Estimation",
+    "Sampling"
+  ],
+  "used_in": [],
+  "graph_node_id": "confidence-interval"
+}

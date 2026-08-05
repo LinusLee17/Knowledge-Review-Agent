@@ -1,0 +1,55 @@
+{
+  "concept_name": "SQL",
+  "canonical_key": "sql",
+  "concept_type": "language",
+  "domain": "Data Science",
+  "topic": "Data Management",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.907,
+  "evidence_strength": 0.92,
+  "definition_quality_score": 0.84,
+  "interview_relevance": 0.98,
+  "definition": "SQL is a declarative language for defining, querying, changing, and controlling data in relational database systems. It describes the result required while the database system chooses how to execute the request.",
+  "intuition": "Describe the rows or changes you want; the database engine decides how to produce them.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Data Transformation",
+    "Querying Data",
+    "Reporting"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Data Management",
+    "Data Science"
+  ],
+  "aliases": [
+    "SQL",
+    "structured query language"
+  ],
+  "contributing_courses": [
+    "BT2102"
+  ],
+  "contributing_lecture_files": [
+    "BT2102/BT2102-09-SQL/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT2102/BT2102-09-SQL/lecture.json": "0d4160779b87122cb5a8f805c06376a2428addaa43ea916752df6c8f7bf4d45a"
+  },
+  "last_updated_timestamp": "2026-07-14T17:35:38.337612+00:00",
+  "version_number": 2,
+  "related_concepts": [
+    "Database Management System",
+    "NoSQL",
+    "Relational Data Model"
+  ],
+  "prerequisites": [
+    "Database",
+    "Relational Data Model"
+  ],
+  "used_in": [],
+  "graph_node_id": "sql"
+}

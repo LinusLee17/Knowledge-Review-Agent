@@ -2,8 +2,6 @@
 
 Agent for turning scattered lecture notes into a one stop revision knowledge base.
 
-![Knowledge Review Agent overview](outputs/Knowledge-Review-Agent-overview-edited.png)
-
 ## Pipeline
 
 1. `concept_filter`
@@ -87,9 +85,35 @@ http://127.0.0.1:8000/website/index.html
 
 The graph UI reads `knowledge_base/graphs/graph.json` directly.
 
-## What stays local
+## Final submission
 
-These paths are generated from lecture PDFs or downstream runs and are ignored by git:
+GitHub submission includes:
+
+- source code in `src/`
+- reproducible utility scripts in `scripts/`
+- tests in `tests/`
+- evaluation scripts and curated evidence in `evaluation/`
+- refined concept pages in `knowledge_base/refined/`
+- graph presentation bundles in `knowledge_base/graphs/`
+- static website files in `website/`
+
+Website viewing does not require raw PDFs or `data/`. Serve the repository root
+over HTTP so browser `fetch()` calls work:
+
+```bash
+python3 -m http.server 8000
+```
+
+Open `http://127.0.0.1:8000/website/index.html`.
+
+The PDF ingestion and full rebuild commands below are optional local workflows.
+They require source PDFs and the installed PDF skill bridge; they are not needed
+to view the submitted website.
+
+## What stays local and unsubmitted
+
+These paths remain local and are omitted from GitHub. Omission does not mean
+permanent local deletion:
 
 - `data/`
 - `evaluation/runs/`

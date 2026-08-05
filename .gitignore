@@ -25,6 +25,11 @@ tmp/
 output/
 outputs/
 
+# Local design/presentation artifacts kept on disk, not submitted.
+.impeccable/
+Knowledge-Review-Agent-overview-edited.excalidraw
+scripts/create_overview_excalidraw.py
+
 data/
 
 evaluation/runs/
@@ -34,3 +39,10 @@ knowledge_base/concepts/
 knowledge_base/refined/
 knowledge_base/graphs/*.json
 knowledge_base/graphs/deltas/
+
+# Submission presentation bundle: required for website viewing.
+!knowledge_base/refined/
+!knowledge_base/refined/**
+!knowledge_base/graphs/graph.json
+!knowledge_base/graphs/nodes.json
+!knowledge_base/graphs/edges.json

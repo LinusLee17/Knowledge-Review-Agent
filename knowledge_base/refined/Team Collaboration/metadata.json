@@ -1,0 +1,55 @@
+{
+  "concept_name": "Team Collaboration",
+  "canonical_key": "team collaboration",
+  "concept_type": "skill",
+  "domain": "Soft Skills",
+  "topic": "Collaboration",
+  "importance_score": 4,
+  "scope_level": 2,
+  "study_priority": 4,
+  "confidence_score": 0.422,
+  "evidence_strength": 0.42,
+  "definition_quality_score": 0.1,
+  "interview_relevance": 0.88,
+  "definition": "Team Collaboration is a workplace skill in Soft Skills focused on Collaboration. It supports everyday execution, collaboration, and communication.",
+  "intuition": "Think of Team Collaboration as a repeatable way to align people, decisions, and execution so the team moves toward Collaboration with less friction.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Agile Delivery",
+    "Cross-functional Work",
+    "Group Projects"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Collaboration",
+    "Professional Skills",
+    "Soft Skills"
+  ],
+  "aliases": [
+    "Team Collaboration",
+    "collaboration",
+    "teamwork",
+    "working in teams"
+  ],
+  "contributing_courses": [
+    "IS3103"
+  ],
+  "contributing_lecture_files": [
+    "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json": "9ee50291b2400ca619bc662b87ae3ce5a6c62a386e36e27522ea91d31e44f785"
+  },
+  "last_updated_timestamp": "2026-07-11T11:47:38.777811+00:00",
+  "version_number": 1,
+  "related_concepts": [
+    "Communication",
+    "Leadership",
+    "Stakeholder Management"
+  ],
+  "prerequisites": [],
+  "used_in": [],
+  "graph_node_id": "team-collaboration"
+}

@@ -1,0 +1,60 @@
+{
+  "concept_name": "IS Governance",
+  "canonical_key": "is governance",
+  "concept_type": "framework",
+  "domain": "Digital Transformation",
+  "topic": "Governance",
+  "importance_score": 5,
+  "scope_level": 5,
+  "study_priority": 5,
+  "confidence_score": 0.897,
+  "evidence_strength": 0.96,
+  "definition_quality_score": 0.78,
+  "interview_relevance": 0.98,
+  "definition": "IS Governance is a framework in Digital Transformation focused on Governance. It helps people coordinate action, manage change, and make better decisions in organisational settings.",
+  "intuition": "Think of IS Governance as a repeatable way to align people, decisions, and execution so the team moves toward Governance with less friction.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Accountability",
+    "Control",
+    "Decision Rights"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Business",
+    "Digital Transformation",
+    "Governance",
+    "Professional Skills"
+  ],
+  "aliases": [
+    "IS Governance",
+    "digital governance",
+    "governance",
+    "it governance"
+  ],
+  "contributing_courses": [
+    "IS3103"
+  ],
+  "contributing_lecture_files": [
+    "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 3 - Business Strategy and IS Strategy - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json": "9ee50291b2400ca619bc662b87ae3ce5a6c62a386e36e27522ea91d31e44f785",
+    "IS3103/IS3103 Workshop 3 - Business Strategy and IS Strategy - Canvas/lecture.json": "59e27a9084ef52c9c17b22ac0e033abaec9b48a5b39b9843bbe909e7ef36b7da",
+    "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json": "a7aeb83206c6f129bb8c3437a4bef9f41067273c2916c8af5144fa4464cc36c2"
+  },
+  "last_updated_timestamp": "2026-07-11T11:47:38.745124+00:00",
+  "version_number": 1,
+  "related_concepts": [
+    "Business Strategy",
+    "Change Management",
+    "Digital Transformation"
+  ],
+  "prerequisites": [],
+  "used_in": [],
+  "graph_node_id": "is-governance"
+}

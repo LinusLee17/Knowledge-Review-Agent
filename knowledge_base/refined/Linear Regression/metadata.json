@@ -1,0 +1,89 @@
+{
+  "concept_name": "Linear Regression",
+  "canonical_key": "linear regression",
+  "concept_type": "model",
+  "domain": "Statistics",
+  "topic": "Regression",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.953,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.9,
+  "interview_relevance": 0.98,
+  "definition": "Linear Regression is a statistical modeling method that estimates the relationship between a response variable and one or more predictors by fitting a linear function. It is a baseline method for prediction and inference because coefficients are easy to interpret and the model is simple to diagnose.",
+  "intuition": "Fit the best linear line or plane, then read coefficients as marginal effects under the model assumptions.",
+  "mathematical_foundation": "$$\n\\hat{y} = \\beta_0 + \\beta_1 x_1 + \\dots + \\beta_p x_p\n$$\n\n| Symbol | Meaning |\n| --- | --- |\n| `\\hat{y}` | Predicted value |\n| `\\beta` | Model coefficients |\n| `x` | Input features |\n| `\\epsilon` | Residual / error term |",
+  "advantages": [
+    "Coefficients provide a direct interpretation of feature effects under the model assumptions.",
+    "Efficient on small and large tabular datasets.",
+    "Simple to fit, explain, and use as a baseline."
+  ],
+  "assumptions": [
+    "Errors are independent and have constant variance for standard inference.",
+    "Predictors are not perfectly multicollinear.",
+    "The expected relationship between predictors and outcome is linear."
+  ],
+  "applications": [
+    "Business Analytics",
+    "Forecasting",
+    "Prediction"
+  ],
+  "limitations": [
+    "Can underfit relationships that are substantially nonlinear.",
+    "Requires checking linearity, independent errors, and constant error variance for reliable inference.",
+    "Sensitive to outliers, influential observations, and multicollinearity."
+  ],
+  "broader_topics": [
+    "Regression",
+    "Statistical Modeling",
+    "Statistics"
+  ],
+  "aliases": [
+    "Linear Regression",
+    "least squares regression",
+    "multiple linear regression",
+    "ols regression",
+    "regression model",
+    "simple linear regression"
+  ],
+  "contributing_courses": [
+    "BT1101",
+    "BT2101",
+    "BT4240",
+    "CS3244",
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "BT1101/Week 7 Linear Regression and Interpretation 2023/lecture.json",
+    "BT2101/BT2101 Midterms (L1-6)/lecture.json",
+    "BT4240/L2-Regression/lecture.json",
+    "CS3244/Lecture04_linear_models_svm/lecture.json",
+    "ST1131/Topic0_Introduction/lecture.json",
+    "ST1131/Topic9_LinearRegression/lecture.json",
+    "ST1131/Topic9_More_Details_R/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT1101/Week 7 Linear Regression and Interpretation 2023/lecture.json": "e9c41504a0140c9ca06a83c9e9c2e6ab25634276bf2498d9800e721ea8c6c5bc",
+    "BT2101/BT2101 Midterms (L1-6)/lecture.json": "03dc65ad077068acc70ed20aaf77b6ca84df5053ab13fa8338680e53d50b4c8f",
+    "BT4240/L2-Regression/lecture.json": "112db82c50b1e68e2d8e19d67a420dd31e078409b50f6a508326e8a3c2920c41",
+    "CS3244/Lecture04_linear_models_svm/lecture.json": "2684560ba2adcc9363b68acaffb7192c07171c90faff6207e514bc95dcd1b51b",
+    "ST1131/Topic0_Introduction/lecture.json": "38da302706ca014de7b3a526ef8f3d9adc17fd9e2ec0fce2dffcd9549d871360",
+    "ST1131/Topic9_LinearRegression/lecture.json": "f850e60dd2f36ea85c51b03485504f4217855c3f1bb701b93fae72519e4e5ba4",
+    "ST1131/Topic9_More_Details_R/lecture.json": "7370f37fa7e1187c7f6dcf7f8ada56728cf7bf811337c062c9fbff6dac884def"
+  },
+  "last_updated_timestamp": "2026-08-05T17:21:13.242941+00:00",
+  "version_number": 26,
+  "related_concepts": [
+    "Lasso Regression",
+    "Logistic Regression",
+    "Regularization",
+    "Ridge Regression"
+  ],
+  "prerequisites": [
+    "Matrix Algebra",
+    "Statistics"
+  ],
+  "used_in": [],
+  "graph_node_id": "linear-regression"
+}

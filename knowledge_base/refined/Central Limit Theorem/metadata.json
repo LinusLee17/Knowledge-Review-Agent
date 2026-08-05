@@ -1,0 +1,58 @@
+{
+  "concept_name": "Central Limit Theorem",
+  "canonical_key": "central limit theorem",
+  "concept_type": "theorem",
+  "domain": "Statistics",
+  "topic": "Inference",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.708,
+  "evidence_strength": 0.9,
+  "definition_quality_score": 0.75,
+  "interview_relevance": 0.98,
+  "definition": "Central Limit Theorem states that, under suitable conditions, the standardized sum or sample mean approaches a normal distribution as sample size grows. It is used in Approximation, Inference.",
+  "intuition": "Think of Central Limit Theorem as a durable building block in Inference.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Approximation",
+    "Inference"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Inference",
+    "Statistical Inference",
+    "Statistics"
+  ],
+  "aliases": [
+    "Central Limit Theorem",
+    "clt"
+  ],
+  "contributing_courses": [
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "ST1131/Topic6_SamplingDistribution/lecture.json",
+    "ST1131/Topic6_SamplingDistribution_R/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "ST1131/Topic6_SamplingDistribution/lecture.json": "7ccc900c22502c9ea7bf10cd731408bdc83b807abab5dbe6f7f18134453f6a79",
+    "ST1131/Topic6_SamplingDistribution_R/lecture.json": "1131a7261beaca53ba4a179fc307856bf54bb1de5138863b1663676433ce7f85"
+  },
+  "last_updated_timestamp": "2026-08-05T16:27:50.350573+00:00",
+  "version_number": 7,
+  "related_concepts": [
+    "Confidence Interval",
+    "Sampling Distribution",
+    "Standard Error"
+  ],
+  "prerequisites": [
+    "Mean",
+    "Sampling Distribution",
+    "Variance"
+  ],
+  "used_in": [],
+  "graph_node_id": "central-limit-theorem"
+}

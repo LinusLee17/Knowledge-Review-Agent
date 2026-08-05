@@ -1,0 +1,56 @@
+{
+  "concept_name": "Maximum Likelihood Estimation",
+  "canonical_key": "maximum likelihood estimation",
+  "concept_type": "method",
+  "domain": "Statistics",
+  "topic": "Estimation",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.908,
+  "evidence_strength": 0.88,
+  "definition_quality_score": 0.94,
+  "interview_relevance": 0.98,
+  "definition": "Maximum Likelihood Estimation chooses the parameter values that make the observed data most probable under the assumed model. It is a core estimation principle that connects probabilistic modeling, log-likelihood, and many classical statistical estimators.",
+  "intuition": "Pick the parameters that best explain the observed sample under the model.",
+  "mathematical_foundation": "$$\n\\hat{\\theta} = \\arg\\max_{\\theta} \\prod_i p(x_i \\mid \\theta)\n$$\n\nOften we maximize the log-likelihood instead:\n\n$$\n\\ell(\\theta) = \\sum_i \\log p(x_i \\mid \\theta)\n$$",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Parameter Estimation"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Estimation",
+    "Statistical Inference",
+    "Statistics"
+  ],
+  "aliases": [
+    "Maximum Likelihood Estimation",
+    "maximum likelihood",
+    "mle"
+  ],
+  "contributing_courses": [
+    "BT3102",
+    "BT4240"
+  ],
+  "contributing_lecture_files": [
+    "BT3102/W5-BN-MLE/lecture.json",
+    "BT4240/L2-Regression/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT3102/W5-BN-MLE/lecture.json": "f4ee36d71e7e10ca0e6e3740f2801f6b41dbe6415da75ff9a3a3b81caf650a46",
+    "BT4240/L2-Regression/lecture.json": "112db82c50b1e68e2d8e19d67a420dd31e078409b50f6a508326e8a3c2920c41"
+  },
+  "last_updated_timestamp": "2026-08-05T17:13:39.203591+00:00",
+  "version_number": 4,
+  "related_concepts": [
+    "Log-Likelihood",
+    "Logistic Regression"
+  ],
+  "prerequisites": [
+    "Probability"
+  ],
+  "used_in": [],
+  "graph_node_id": "maximum-likelihood-estimation"
+}

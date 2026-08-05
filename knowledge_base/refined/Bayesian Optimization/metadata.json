@@ -1,0 +1,78 @@
+{
+  "concept_name": "Bayesian Optimization",
+  "canonical_key": "bayesian optimization",
+  "concept_type": "method",
+  "domain": "Machine Learning",
+  "topic": "AutoML",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.907,
+  "evidence_strength": 0.94,
+  "definition_quality_score": 0.84,
+  "interview_relevance": 0.98,
+  "definition": "Bayesian Optimization is sequential black-box optimization for expensive evaluations. It fits a probabilistic surrogate to observed configurations and costs, then uses an acquisition function to choose the next configuration, balancing exploration and exploitation.",
+  "intuition": "Use a model of what is known about the objective to decide which unknown experiment is worth running next.",
+  "mathematical_foundation": "$$\nx_t = \\arg\\max_{x \\in \\mathcal{X}} a(x; \\mathcal{D}_{t-1})\n$$\n\nThe surrogate models the unknown objective from observations `\\mathcal{D}_{t-1}`; acquisition function `a` selects the next expensive evaluation.",
+  "advantages": [
+    "Acquisition functions expose the exploration-exploitation trade-off.",
+    "Supports noisy objectives and mixed search spaces through suitable surrogates.",
+    "Uses prior observations, so it can be efficient when evaluations are expensive."
+  ],
+  "assumptions": [],
+  "applications": [
+    "Automated Machine Learning",
+    "Expensive Function Optimization",
+    "Model Tuning"
+  ],
+  "limitations": [
+    "A misleading surrogate or noisy validation signal can direct trials to the wrong region.",
+    "Sequential decisions limit parallel throughput unless batch methods are used.",
+    "Surrogate and acquisition quality can degrade in very high-dimensional or highly conditional spaces."
+  ],
+  "broader_topics": [
+    "AutoML",
+    "Black-box Optimization",
+    "Machine Learning",
+    "Sequential Decision Making"
+  ],
+  "aliases": [
+    "BO",
+    "Bayesian Optimization",
+    "Gaussian process optimisation",
+    "Gaussian process optimization",
+    "bayesian optimisation"
+  ],
+  "contributing_courses": [
+    "Auto-ML"
+  ],
+  "contributing_lecture_files": [
+    "Auto-ML/10_Interpretability_ALL-2/lecture.json",
+    "Auto-ML/4_BO-for-HPO_all/lecture.json",
+    "Auto-ML/5_Speedup_ALL/lecture.json",
+    "Auto-ML/6_Multicriteria_ALL/lecture.json",
+    "Auto-ML/8_dac_lectures/lecture.json",
+    "Auto-ML/ss25-AutoML-lecture-6 NAS /lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "Auto-ML/10_Interpretability_ALL-2/lecture.json": "de334637e370ba973f361ece00eea872896cded80cff67204247586b4b0190c8",
+    "Auto-ML/4_BO-for-HPO_all/lecture.json": "bbeeac97bbb2b2dabb2e7714d3bef7915ffd942c9858d9edb343e7c53ab16abd",
+    "Auto-ML/5_Speedup_ALL/lecture.json": "55457ae1aa82349f262028301baf3dc3fb372d67a794e4031e01e8de7b87d593",
+    "Auto-ML/6_Multicriteria_ALL/lecture.json": "bd2923321c767fd024236793a30905c2185775d41b9ef1994c032a7b746e6171",
+    "Auto-ML/8_dac_lectures/lecture.json": "cd3c2aac34b9533142757a1839de075e92bdbaec81eb6bb75a4d77748364d4b7",
+    "Auto-ML/ss25-AutoML-lecture-6 NAS /lecture.json": "c4e7118a29e0bd850d848929d96a7b6ac75dfd531dab122fd60c67df0d927033"
+  },
+  "last_updated_timestamp": "2026-08-05T17:21:13.112138+00:00",
+  "version_number": 14,
+  "related_concepts": [
+    "Acquisition Function",
+    "Hyperband / BOHB",
+    "Multi-fidelity Optimization"
+  ],
+  "prerequisites": [
+    "Hyperparameter Optimization",
+    "Probability"
+  ],
+  "used_in": [],
+  "graph_node_id": "bayesian-optimization"
+}

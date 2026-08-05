@@ -1,0 +1,59 @@
+{
+  "concept_name": "Digital Innovation",
+  "canonical_key": "digital innovation",
+  "concept_type": "principle",
+  "domain": "Digital Transformation",
+  "topic": "Innovation",
+  "importance_score": 4,
+  "scope_level": 3,
+  "study_priority": 4,
+  "confidence_score": 0.637,
+  "evidence_strength": 0.82,
+  "definition_quality_score": 0.24,
+  "interview_relevance": 0.88,
+  "definition": "Digital Innovation is a principle in Digital Transformation focused on Innovation. It helps people coordinate action, manage change, and make better decisions in organisational settings.",
+  "intuition": "Think of Digital Innovation as a repeatable way to align people, decisions, and execution so the team moves toward Innovation with less friction.",
+  "mathematical_foundation": "",
+  "advantages": [
+    "Accelerate Innovation \u2013 Enable faster development and deployment of solutions. SHARE their advantage"
+  ],
+  "assumptions": [],
+  "applications": [
+    "Competitive Advantage",
+    "New Product Development",
+    "Process Improvement"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Business",
+    "Digital Transformation",
+    "Innovation"
+  ],
+  "aliases": [
+    "Digital Innovation",
+    "innovation",
+    "organizing for digital innovation",
+    "technology initiatives"
+  ],
+  "contributing_courses": [
+    "IS3103"
+  ],
+  "contributing_lecture_files": [
+    "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 5 - Organizing for Digital Innovation - Canvas/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json": "9ee50291b2400ca619bc662b87ae3ce5a6c62a386e36e27522ea91d31e44f785",
+    "IS3103/IS3103 Workshop 5 - Organizing for Digital Innovation - Canvas/lecture.json": "2a89d369dfcb1d189cad1b3f7ded7c963097b9f50319a34d443edc91123a9835"
+  },
+  "last_updated_timestamp": "2026-07-11T11:47:38.736905+00:00",
+  "version_number": 1,
+  "related_concepts": [
+    "Change Management",
+    "Digital Transformation",
+    "Technology Adoption"
+  ],
+  "prerequisites": [],
+  "used_in": [],
+  "graph_node_id": "digital-innovation"
+}

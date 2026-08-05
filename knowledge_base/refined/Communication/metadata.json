@@ -1,0 +1,74 @@
+{
+  "concept_name": "Communication",
+  "canonical_key": "communication",
+  "concept_type": "skill",
+  "domain": "Communication",
+  "topic": "Leadership Communication",
+  "importance_score": 5,
+  "scope_level": 2,
+  "study_priority": 5,
+  "confidence_score": 0.924,
+  "evidence_strength": 0.96,
+  "definition_quality_score": 0.84,
+  "interview_relevance": 0.98,
+  "definition": "Communication is a workplace skill in Communication focused on Leadership Communication. It supports everyday execution, collaboration, and communication.",
+  "intuition": "Think of Communication as a repeatable way to align people, decisions, and execution so the team moves toward Leadership Communication with less friction.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Presentation",
+    "Stakeholder Alignment",
+    "Team Collaboration"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Communication",
+    "Leadership Communication",
+    "Professional Skills"
+  ],
+  "aliases": [
+    "Communication",
+    "communicate as a leader",
+    "communication skills",
+    "leadership communication",
+    "stakeholder communication"
+  ],
+  "contributing_courses": [
+    "IS3103"
+  ],
+  "contributing_lecture_files": [
+    "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 1 - Overview of Leadership and Management - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 2 - Foundations of Digital Leadership - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 3 - Business Strategy and IS Strategy - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 5 - Organizing for Digital Innovation - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 6 - Service Process Digitisation - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 7 - Leading Organizational Change and Stakeholder Management - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 8 - Managing IT Teams - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 9 - Business Continuity Management and Emerging Issues of Digital Leadership - Canvas/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json": "9ee50291b2400ca619bc662b87ae3ce5a6c62a386e36e27522ea91d31e44f785",
+    "IS3103/IS3103 Workshop 1 - Overview of Leadership and Management - Canvas/lecture.json": "c094eeb145823ec048dc888737a9aee25ccc2c61cc7602348da481db73369813",
+    "IS3103/IS3103 Workshop 2 - Foundations of Digital Leadership - Canvas/lecture.json": "fbe793ad66b4edbb83c02f207492e9c22ee9e1b36291f8109788b7877d761058",
+    "IS3103/IS3103 Workshop 3 - Business Strategy and IS Strategy - Canvas/lecture.json": "59e27a9084ef52c9c17b22ac0e033abaec9b48a5b39b9843bbe909e7ef36b7da",
+    "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json": "a7aeb83206c6f129bb8c3437a4bef9f41067273c2916c8af5144fa4464cc36c2",
+    "IS3103/IS3103 Workshop 5 - Organizing for Digital Innovation - Canvas/lecture.json": "2a89d369dfcb1d189cad1b3f7ded7c963097b9f50319a34d443edc91123a9835",
+    "IS3103/IS3103 Workshop 6 - Service Process Digitisation - Canvas/lecture.json": "9baf2727690df161c52a390a35d195db04d8aa1d45e6b9260db4b06e4626b895",
+    "IS3103/IS3103 Workshop 7 - Leading Organizational Change and Stakeholder Management - Canvas/lecture.json": "e6f0cbc540535a6ecab02389c6b62a34ed885acb4a783640e405ae6eb265afd9",
+    "IS3103/IS3103 Workshop 8 - Managing IT Teams - Canvas/lecture.json": "d5b2615b6736c5a6a5aa04c032038649c34152dccb2ca83ff984b3a9e3da5233",
+    "IS3103/IS3103 Workshop 9 - Business Continuity Management and Emerging Issues of Digital Leadership - Canvas/lecture.json": "c1bb0933812c1de2df17978a9971e86219b2653e487156dec319698d858f1188"
+  },
+  "last_updated_timestamp": "2026-07-11T11:47:38.726459+00:00",
+  "version_number": 1,
+  "related_concepts": [
+    "Collaboration",
+    "Leadership",
+    "Stakeholder Management"
+  ],
+  "prerequisites": [],
+  "used_in": [],
+  "graph_node_id": "communication"
+}

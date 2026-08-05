@@ -1,0 +1,67 @@
+{
+  "concept_name": "Internal Validity",
+  "canonical_key": "internal validity",
+  "concept_type": "concept",
+  "domain": "Statistics",
+  "topic": "Causal Analysis",
+  "importance_score": 5,
+  "scope_level": 2,
+  "study_priority": 5,
+  "confidence_score": 0.973,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.96,
+  "interview_relevance": 0.98,
+  "definition": "Internal Validity is the degree to which an observed effect within a study can be attributed to the treatment or exposure rather than confounding, selection, measurement, or other systematic bias.",
+  "intuition": "Ask whether the study itself supports the claimed cause before asking whether the result generalizes.",
+  "mathematical_foundation": "Recall that \ud835\udc38 \ud835\udf16 \ud835\udc4b = 0 implies that there is no threat to internal validity",
+  "advantages": [
+    "Threats to internal validity bias the coefficient estimates and create"
+  ],
+  "assumptions": [
+    "Along with the assumptions about internal validity \u2013 statistical"
+  ],
+  "applications": [
+    "A/B Testing",
+    "Experimentation",
+    "Policy Evaluation"
+  ],
+  "limitations": [
+    "In the presence of threats to internal validity, you cannot make causal",
+    "OLS regression cannot establish causation if internal validity of the"
+  ],
+  "broader_topics": [
+    "Causal Analysis",
+    "Research Design",
+    "Statistics"
+  ],
+  "aliases": [
+    "Internal Validity",
+    "internal validity of an experiment"
+  ],
+  "contributing_courses": [
+    "BT2101"
+  ],
+  "contributing_lecture_files": [
+    "BT2101/BT2101 Midterms (L1-6)/lecture.json",
+    "BT2101/VK.wk12.2024/lecture.json",
+    "BT2101/VK.wk13.2024/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT2101/BT2101 Midterms (L1-6)/lecture.json": "03dc65ad077068acc70ed20aaf77b6ca84df5053ab13fa8338680e53d50b4c8f",
+    "BT2101/VK.wk12.2024/lecture.json": "a7d90676cd99d83ead7ccf70ad80f74121c6eb842afc0bf32c4618ffacbdc30c",
+    "BT2101/VK.wk13.2024/lecture.json": "f1e467304bdf14ecb0f74c94a5d3ea0a20d056a47b9867226b6f8035169e89aa"
+  },
+  "last_updated_timestamp": "2026-08-05T16:42:30.515815+00:00",
+  "version_number": 2,
+  "related_concepts": [
+    "Causal Inference",
+    "Experiment Design",
+    "External Validity"
+  ],
+  "prerequisites": [
+    "Causal Inference",
+    "Experiment Design"
+  ],
+  "used_in": [],
+  "graph_node_id": "internal-validity"
+}

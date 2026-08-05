@@ -1,0 +1,53 @@
+{
+  "concept_name": "Margin of Error",
+  "canonical_key": "margin of error",
+  "concept_type": "metric",
+  "domain": "Statistics",
+  "topic": "Inference",
+  "importance_score": 5,
+  "scope_level": 1,
+  "study_priority": 5,
+  "confidence_score": 0.98,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.98,
+  "interview_relevance": 0.98,
+  "definition": "Margin of Error is the half-width that quantifies sampling uncertainty around a point estimate, commonly computed as a critical value multiplied by a standard error. It is used in Survey Estimation. It is commonly considered alongside Confidence Interval, Point Estimation.",
+  "intuition": "Think of Margin of Error as a summary number: it compresses many outcomes into one interpretable value so you can compare models or decisions.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Survey Estimation"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Inference",
+    "Statistical Inference",
+    "Statistics"
+  ],
+  "aliases": [
+    "Margin of Error",
+    "moe"
+  ],
+  "contributing_courses": [
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "ST1131/Topic7_CI/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "ST1131/Topic7_CI/lecture.json": "69f661a8147c1a358e9ccc1457321ce0a33fc433449d732d673d32b385a30825"
+  },
+  "last_updated_timestamp": "2026-08-05T16:27:50.446475+00:00",
+  "version_number": 8,
+  "related_concepts": [
+    "Confidence Interval",
+    "Point Estimation"
+  ],
+  "prerequisites": [
+    "Confidence Interval",
+    "Standard Error"
+  ],
+  "used_in": [],
+  "graph_node_id": "margin-of-error"
+}

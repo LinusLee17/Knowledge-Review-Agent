@@ -1,0 +1,65 @@
+{
+  "concept_name": "Exploratory Data Analysis",
+  "canonical_key": "exploratory data analysis",
+  "concept_type": "workflow",
+  "domain": "Statistics",
+  "topic": "Data Exploration",
+  "importance_score": 4,
+  "scope_level": 4,
+  "study_priority": 4,
+  "confidence_score": 0.939,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.86,
+  "interview_relevance": 0.98,
+  "definition": "These are known as Exploratory Data Analysis (EDA) techniques",
+  "intuition": "Mental model: inspect evidence, choose next action, then validate what changed. Goal: Data Exploration, Feature Understanding.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Data Exploration",
+    "Feature Understanding"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Data Exploration",
+    "Statistical Workflow",
+    "Statistics"
+  ],
+  "aliases": [
+    "Exploratory Data Analysis",
+    "eda"
+  ],
+  "contributing_courses": [
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "ST1131/Topic0_Introduction/lecture.json",
+    "ST1131/Topic2_EDA_1/lecture.json",
+    "ST1131/Topic2_EDA_2/lecture.json",
+    "ST1131/Topic2_EDA_3/lecture.json",
+    "ST1131/Topic2_EDA_4/lecture.json",
+    "ST1131/Topic2_EDA_5/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "ST1131/Topic0_Introduction/lecture.json": "fa3141684d21e6896b56ef2ab38c0d98a780a3fdfd52c4b5d9ab048f601bd928",
+    "ST1131/Topic2_EDA_1/lecture.json": "51ee4d938d35444f3ffaaf92bd98e6021fc1283689804956a56db5d84a4e8c60",
+    "ST1131/Topic2_EDA_2/lecture.json": "260074d04db6afec6dfc5f513315bf26ed52571542f1ffc2bb781374dc5dca0c",
+    "ST1131/Topic2_EDA_3/lecture.json": "eae4da9cec8b33552056027946b62a93a79b4603a620fbfdae7284c9049d556a",
+    "ST1131/Topic2_EDA_4/lecture.json": "a97eba5d2a99ea33ec54dbbb824384abab81c25b8a491b819da5a3768b37e7fe",
+    "ST1131/Topic2_EDA_5/lecture.json": "88f9524669c95f0f24a6240d27119385c8721a522ada4caa0e711e472e0131d8"
+  },
+  "last_updated_timestamp": "2026-08-05T16:27:50.402060+00:00",
+  "version_number": 3,
+  "related_concepts": [
+    "Data Cleaning",
+    "Descriptive Statistics",
+    "Sampling Distribution"
+  ],
+  "prerequisites": [
+    "Data Visualization",
+    "Summary Statistics"
+  ],
+  "used_in": [],
+  "graph_node_id": "exploratory-data-analysis"
+}

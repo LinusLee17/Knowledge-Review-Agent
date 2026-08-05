@@ -1,0 +1,73 @@
+{
+  "concept_name": "Causal Inference",
+  "canonical_key": "causal inference",
+  "concept_type": "method",
+  "domain": "Statistics",
+  "topic": "Causal Analysis",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.953,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.9,
+  "interview_relevance": 0.98,
+  "definition": "Causal Inference estimates the effect of an intervention or treatment, separating causal effects from association. It requires assumptions or designs that identify the counterfactual comparison.",
+  "intuition": "Compare what happened with what would have happened under a different treatment or intervention.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [
+    "Assumptions for causal inference with Fixed Effects Regression",
+    "Can obtain causal effect using observational data if assumptions are met",
+    "Entity Fixed Effects regression \u2013 assumptions for causal inference",
+    "Least Squares Assumptions for causal inference",
+    "Least Squares Assumptions for causal inference (upcoming lectures)",
+    "OLS assumptions for causal inference"
+  ],
+  "applications": [
+    "Business Experiments",
+    "Policy Evaluation",
+    "Treatment Effects"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Causal Analysis",
+    "Statistical Inference",
+    "Statistics"
+  ],
+  "aliases": [
+    "Causal Inference",
+    "causal analysis",
+    "causal effect",
+    "causal effects"
+  ],
+  "contributing_courses": [
+    "BT2101"
+  ],
+  "contributing_lecture_files": [
+    "BT2101/BT2101 Midterms (L1-6)/lecture.json",
+    "BT2101/VK.wk11.2024/lecture.json",
+    "BT2101/VK.wk13.2024/lecture.json",
+    "BT2101/VK.wk8.2024/lecture.json",
+    "BT2101/VK.wk9.2024/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT2101/BT2101 Midterms (L1-6)/lecture.json": "03dc65ad077068acc70ed20aaf77b6ca84df5053ab13fa8338680e53d50b4c8f",
+    "BT2101/VK.wk11.2024/lecture.json": "8874adf09551732797a0a5c4cb5ca2dc8cd82e7b7d059e6cf767a4f7063d1566",
+    "BT2101/VK.wk13.2024/lecture.json": "f1e467304bdf14ecb0f74c94a5d3ea0a20d056a47b9867226b6f8035169e89aa",
+    "BT2101/VK.wk8.2024/lecture.json": "e753202a3de40d0c324a8e334a07edd9a8128a7f252d74c3119eabe254777e2c",
+    "BT2101/VK.wk9.2024/lecture.json": "71adf2597cd2dfa3b24b489ca6609279a0dcd0e4d96325cbd35709878f777f03"
+  },
+  "last_updated_timestamp": "2026-08-05T16:42:30.423650+00:00",
+  "version_number": 1,
+  "related_concepts": [
+    "Bayesian Networks",
+    "Experiment Design",
+    "Internal Validity"
+  ],
+  "prerequisites": [
+    "Experiment Design",
+    "Probability"
+  ],
+  "used_in": [],
+  "graph_node_id": "causal-inference"
+}

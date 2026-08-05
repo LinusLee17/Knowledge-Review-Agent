@@ -1,0 +1,68 @@
+{
+  "concept_name": "AutoML Evaluation and Benchmarking",
+  "canonical_key": "automl evaluation and benchmarking",
+  "concept_type": "workflow",
+  "domain": "Machine Learning",
+  "topic": "AutoML",
+  "importance_score": 5,
+  "scope_level": 4,
+  "study_priority": 5,
+  "confidence_score": 0.535,
+  "evidence_strength": 0.58,
+  "definition_quality_score": 0.18,
+  "interview_relevance": 0.96,
+  "definition": "AutoML Evaluation and Benchmarking compares automated systems under controlled datasets, tasks, metrics, budgets, and repetitions. A valid benchmark separates algorithm quality from search effort and reports variation rather than relying on one lucky run.",
+  "intuition": "A benchmark is an experiment about AutoML systems: hold the comparison protocol fixed, vary the system, and measure quality and cost across more than one task.",
+  "mathematical_foundation": "",
+  "advantages": [
+    "Separates predictive quality from runtime, budget, and variance.",
+    "Supports reproducible comparison across datasets and tasks."
+  ],
+  "assumptions": [],
+  "applications": [
+    "Performance Reporting",
+    "Reproducible Evaluation",
+    "System Comparison"
+  ],
+  "limitations": [
+    "Different time limits, hardware, seeds, and tuning rules can invalidate direct comparisons.",
+    "One benchmark suite cannot represent every dataset, task, or deployment constraint."
+  ],
+  "broader_topics": [
+    "AutoML",
+    "Experimental Design",
+    "Machine Learning",
+    "Model Evaluation"
+  ],
+  "aliases": [
+    "AutoML Evaluation and Benchmarking",
+    "Evaluation and",
+    "automl benchmarking",
+    "automl evaluation",
+    "benchmarking AutoML systems",
+    "evaluation and benchmarking",
+    "model benchmarking"
+  ],
+  "contributing_courses": [
+    "Auto-ML"
+  ],
+  "contributing_lecture_files": [
+    "Auto-ML/10_evaluation_and_benchmarking_slides/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "Auto-ML/10_evaluation_and_benchmarking_slides/lecture.json": "e39dc27eb7471b421d5c34adc3e5b031a1730a1c0629c84d23d0792daa9a17e6"
+  },
+  "last_updated_timestamp": "2026-08-05T17:21:13.104438+00:00",
+  "version_number": 9,
+  "related_concepts": [
+    "Hyperparameter Optimization",
+    "Model Interpretability",
+    "Multi-objective Optimization"
+  ],
+  "prerequisites": [
+    "Cross Validation",
+    "Model Evaluation"
+  ],
+  "used_in": [],
+  "graph_node_id": "automl-evaluation-and-benchmarking"
+}
