@@ -43,7 +43,14 @@ Agent for turning scattered lecture notes into a one stop revision knowledge bas
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-export ANTHROPIC_PDF_SKILL_COMMAND="/Users/linus/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 /Users/linus/Downloads/Knowledge-Review-Agent/scripts/pdf_skill_bridge.py"
+```
+
+Website viewing, tests, and evaluation do not need the PDF skill command.
+Set it only for optional PDF ingestion or full rebuilds, using the local PDF
+skill runtime path:
+
+```bash
+export ANTHROPIC_PDF_SKILL_COMMAND="$(command -v python3) $(pwd)/scripts/pdf_skill_bridge.py"
 python scripts/check_pdf_tooling.py
 ```
 
@@ -87,8 +94,6 @@ The graph UI reads `knowledge_base/graphs/graph.json` directly.
 
 ## Final submission
 
-GitHub submission includes:
-
 - source code in `src/`
 - reproducible utility scripts in `scripts/`
 - tests in `tests/`
@@ -110,15 +115,12 @@ The PDF ingestion and full rebuild commands below are optional local workflows.
 They require source PDFs and the installed PDF skill bridge; they are not needed
 to view the submitted website.
 
-## What stays local and unsubmitted
+## What stays local
 
-These paths remain local and are omitted from GitHub. Omission does not mean
-permanent local deletion:
+These paths remain local and are omitted from GitHub:
 
 - `data/`
 - `evaluation/runs/`
 - `evaluation/workflow_test_report.md`
 - `knowledge_base/concepts/`
-- `knowledge_base/refined/`
-- `knowledge_base/graphs/*.json`
 - `knowledge_base/graphs/deltas/`
