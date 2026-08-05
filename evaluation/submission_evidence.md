@@ -33,5 +33,24 @@ The historical report predates the checked-in presentation bundle. The current
 bundle contains 66 concepts and 159 graph connections, verified structurally and
 through the local website; no new evaluation score is claimed for that bundle.
 
+## Submission validation run
+
+Commands run after packaging:
+
+```bash
+pytest -q
+python3 evaluation/evaluate_consolidation.py --concepts knowledge_base/concepts
+python3 evaluation/evaluate_graph.py --graphs knowledge_base/graphs
+```
+
+Results:
+
+- Tests: 8 passed.
+- Consolidation: 66 concepts, 0 duplicate key groups, 0 orphan directories,
+  66 concepts with provenance, heuristic merge score 100.0.
+- Graph: 66 nodes, 159 edges, 0 unresolved targets, 0 self-loops, 0 isolated
+  nodes, integrity score 100.0.
+- PDF parsing: not run.
+
 Full historical run artifacts remain local under `evaluation/runs/` and are not
 part of the GitHub submission.
