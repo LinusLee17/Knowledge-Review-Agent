@@ -122,7 +122,10 @@ def run_incremental_ingestion(
         for result in extractions:
             pdf_path = Path(result["pdf"])
             if not pdf_path.is_absolute():
-                pdf_path = raw_root / pdf_path
+                # Extractor may return either raw-root-relative paths or paths
+                # already rooted at the caller's working directory.
+                if not pdf_path.exists():
+                    pdf_path = raw_root / pdf_path
             rel_path = relative_pdf_path(pdf_path, raw_root)
             current_hash = sha256_file(pdf_path)
             course = resolve_course(pdf_path, raw_root, metadata_rows)

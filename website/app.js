@@ -94,9 +94,9 @@ function conceptViewerUrl(metadataPath) {
   const idx = normalized.lastIndexOf(marker);
   if (idx >= 0) {
     const rel = normalized.slice(idx + 1).replace(/metadata\.json$/i, "concept.md");
-    return `./concept.html?path=${encodeURIComponent(`../${rel}`)}`;
+    return `./concept.html?path=${encodeURIComponent(`../${rel}`)}&view=20260805`;
   }
-  return `./concept.html?path=${encodeURIComponent(normalized.replace(/metadata\.json$/i, "concept.md"))}`;
+  return `./concept.html?path=${encodeURIComponent(normalized.replace(/metadata\.json$/i, "concept.md"))}&view=20260805`;
 }
 
 function domainColor(domain) {
@@ -387,12 +387,14 @@ function showDetail(node) {
   setDetailList(els.detailRelated, [...new Set([...(data.related_concepts || []), ...(data.prerequisites || [])])]);
   setDetailList(els.detailCourses, data.contributing_courses || []);
   els.detailOpen.href = data.concept_url || "#";
+  els.detailOpen.hidden = false;
   updateSelectionSummary(data);
 }
 
 function clearDetail() {
   els.detailEmpty.hidden = false;
   els.detailContent.hidden = true;
+  els.detailOpen.hidden = true;
   els.selectionSummary.textContent = "None";
 }
 
@@ -643,8 +645,8 @@ function createCy() {
     {
       selector: "core",
       style: {
-        "background-color": "#f4f6f9",
-        "selection-box-color": "#315efb",
+        "background-color": "#f2f1eb",
+        "selection-box-color": "#2e50c7",
         "selection-box-opacity": 0.12,
         "active-bg-opacity": 0.08,
       },
@@ -684,8 +686,8 @@ function createCy() {
     {
       selector: ".edge-prerequisite",
       style: {
-        "line-color": "#2563eb",
-        "target-arrow-color": "#2563eb",
+        "line-color": "#2e50c7",
+        "target-arrow-color": "#2e50c7",
         width: 2,
       },
     },
@@ -753,6 +755,7 @@ function createCy() {
   });
 
   state.cy.on("mouseover", "node", (evt) => {
+    els.graph.style.cursor = "pointer";
     showTooltip(evt.target, evt.renderedPosition);
   });
 
@@ -763,6 +766,7 @@ function createCy() {
   });
 
   state.cy.on("mouseout", "node", () => {
+    els.graph.style.cursor = "default";
     hideTooltip();
   });
 

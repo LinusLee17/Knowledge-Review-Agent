@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
 
-from .concept_store import concept_paths, load_concept_metadata, save_concept_metadata
+from .concept_store import concept_directory, concept_paths, load_concept_metadata, save_concept_metadata
 from .models import ConceptMetadata
 from .concept_rules import (
     canonical_candidate_label,
@@ -221,6 +221,24 @@ def _clean_math(value: str) -> str:
     return text if _is_usable_field_fragment(text, "mathematical_foundation") else ""
 
 
+def _usable_enrichment(text: str) -> bool:
+    """Reject old placeholder prose from optional named rules."""
+    lowered = normalize_spaces(text).lower()
+    blocked = (
+        "durable idea worth remembering",
+        "repeatable procedure: start from the inputs",
+        "apply the core rule",
+        "core rule",
+        "reusable building block",
+        "language that makes the rest of the topic precise",
+        "defines the objects, relationships, and assumptions",
+        "nearby but different concept",
+        "memorizing the name",
+        "do not memorize",
+    )
+    return bool(lowered) and not any(fragment in lowered for fragment in blocked)
+
+
 def _normalise_concept_source(item: dict, artifact: LectureArtifact, page_number: int, course_id: str, course_name: str) -> ConceptMention | None:
     raw_label = normalize_spaces(
         str(
@@ -334,7 +352,9 @@ def _fallback_mentions_from_candidates(
                 definition_quality_score=0.0,
                 interview_relevance=0.0,
                 reason_for_inclusion="fallback candidate",
-                definition=heading,
+                # Heading alone is not a definition. Keep it as provenance
+                # evidence so synthesis can flag weak pages for review.
+                definition="",
                 intuition="",
                 mathematical_foundation="",
                 assumptions=[],
@@ -681,38 +701,69 @@ def _explanation_basis(concept_name: str) -> str:
 
 def _synthesized_definition(concept_name: str, metadata: ConceptMetadata, mentions: list[ConceptMention]) -> str:
     summary = canonical_summary_for_label(concept_name)
-    if summary:
+    if _usable_enrichment(summary):
         return summary
 
-    profile = profile_for_label(concept_name)
-    if profile:
-        domain = metadata.domain or profile.domain
-        topic = metadata.topic or profile.topic
-        applications = ", ".join(metadata.applications[:3] or list(profile.applications)[:3]) if (metadata.applications or profile.applications) else ""
-        parts = [f"{profile.concept_name} is a {profile.concept_type or 'concept'} in {domain or 'the target domain'}"]
-        if topic:
-            parts.append(f"focused on {topic}")
-        base = " ".join(parts).strip() + "."
-        if applications:
-            base += f" It is used for {applications}."
-        return base
-
     fallback = _merged_text_block(mentions, "definition")
-    if fallback and normalize_concept_key(fallback) != normalize_concept_key(concept_name):
+    if _usable_enrichment(fallback) and normalize_concept_key(fallback) != normalize_concept_key(concept_name):
         return fallback
+
+    profile = profile_for_label(concept_name)
+    concept_type = (metadata.concept_type or (profile.concept_type if profile else "concept")).lower()
+    domain = metadata.domain or (profile.domain if profile else "")
+    topic = metadata.topic or (profile.topic if profile else "")
+    applications = metadata.applications or _merged_text_list(mentions, "applications")
+
+    # Generic enrichment. Uses semantic slots, not concept-name cases. Named
+    # profiles may improve wording, but weak profiles must never create filler.
+    type_nouns = {
+        "workflow": "repeatable workflow",
+        "algorithm": "algorithm",
+        "model": "model",
+        "method": "method",
+        "metric": "metric",
+        "theory": "theory",
+        "theorem": "theorem",
+        "principle": "principle",
+        "framework": "framework",
+        "process": "process",
+        "practice": "practice",
+    }
+    noun = type_nouns.get(concept_type, "concept")
+    context = f" in {domain}" if domain else ""
+    focus = f" for {topic}" if topic else ""
+    purpose = ""
+    if applications:
+        purpose = f" It supports {', '.join(applications[:3])}."
+    elif mentions and any(mention.evidence for mention in mentions):
+        purpose = " Its exact purpose should be read with the source evidence below."
+    return f"{concept_name} is a {noun}{context}{focus}.{purpose}"
+
     return f"{concept_name} is a durable knowledge concept relevant to the course material."
 
 
 def _synthesized_intuition(concept_name: str, metadata: ConceptMetadata, mentions: list[ConceptMention]) -> str:
     intuition = canonical_intuition_for_label(concept_name)
-    if intuition:
+    if _usable_enrichment(intuition):
         return intuition
-    if metadata.intuition:
+    if _usable_enrichment(metadata.intuition):
         return metadata.intuition
     fallback = _merged_text_block(mentions, "intuition")
     if fallback:
         return fallback
-    return ""
+    concept_type = (metadata.concept_type or "concept").lower()
+    applications = metadata.applications or _merged_text_list(mentions, "applications")
+    if concept_type == "workflow":
+        return "Mental model: inspect evidence, choose next action, then validate what changed." + (
+            f" Goal: {', '.join(applications[:2])}." if applications else ""
+        )
+    if concept_type in {"algorithm", "method", "process"}:
+        return "Mental model: transform inputs through explicit steps until output meets its evaluation rule."
+    if concept_type == "metric":
+        return "Mental model: compress one aspect of performance or uncertainty into a number; interpretation depends on its denominator and context."
+    if concept_type in {"model", "theory", "framework", "principle", "theorem"}:
+        return "Mental model: use stated assumptions to connect observable inputs with conclusions or decisions."
+    return "Mental model: identify the object, its role, and the evidence needed to use it correctly."
 
 
 def _synthesized_math(concept_name: str, metadata: ConceptMetadata, mentions: list[ConceptMention]) -> str:
@@ -731,14 +782,20 @@ def _further_reading(concept_name: str) -> list[str]:
 
 def _why_it_matters(concept_name: str, metadata: ConceptMetadata, mentions: list[ConceptMention]) -> str:
     text = canonical_why_it_matters_for_label(concept_name)
-    if text:
+    if _usable_enrichment(text):
         return text
     applications = metadata.applications or _merged_text_list(mentions, "applications")
     related = metadata.related_concepts or _merged_text_list(mentions, "related_concepts")
     if applications:
+        concept_type = (metadata.concept_type or "concept").lower()
+        if concept_type == "workflow":
+            return f"{concept_name} turns observations into evidence for {', '.join(applications[:3])}, helping decide what to investigate or model next."
+        if concept_type == "metric":
+            return f"{concept_name} makes {', '.join(applications[:3])} measurable, so alternatives can be compared against an explicit quantity."
+        if concept_type in {"model", "algorithm", "method", "theory", "theorem"}:
+            return f"{concept_name} provides a formal way to support {', '.join(applications[:3])} under stated assumptions."
         return (
-            f"{concept_name} matters because it shows up in {', '.join(applications[:3])} "
-            f"and gives you a reusable building block for the surrounding course material."
+            f"{concept_name} matters because it supports {', '.join(applications[:3])} with an explicit concept and evidence trail."
         )
     if related:
         return f"{concept_name} matters because it connects to {', '.join(related[:3])} and helps organize the topic."
@@ -749,24 +806,46 @@ def _why_it_matters(concept_name: str, metadata: ConceptMetadata, mentions: list
 
 def _how_it_works(concept_name: str, metadata: ConceptMetadata, mentions: list[ConceptMention]) -> str:
     text = canonical_how_it_works_for_label(concept_name)
-    if text:
+    if _usable_enrichment(text):
         return text
-    definition = _synthesized_definition(concept_name, metadata, mentions)
-    intuition = _synthesized_intuition(concept_name, metadata, mentions)
-    pieces = [piece for piece in (definition, intuition) if piece]
-    if pieces:
-        return "\n\n".join(pieces)
-    return ""
+    concept_type = (metadata.concept_type or "concept").lower()
+    prerequisites = metadata.prerequisites or _merged_text_list(mentions, "prerequisites")
+    applications = metadata.applications or _merged_text_list(mentions, "applications")
+    related = metadata.related_concepts or _merged_text_list(mentions, "related_concepts")
+    steps: list[str] = []
+    if concept_type == "workflow":
+        steps = ["1. Define question, objective, or decision.", "2. Inspect relevant evidence and identify signal, uncertainty, or failure.", "3. Apply suitable analysis steps.", "4. Validate findings before acting."]
+    elif concept_type in {"algorithm", "method", "process", "practice"}:
+        steps = ["1. Specify inputs and objective.", "2. Apply method steps under stated assumptions.", "3. Produce output, estimate, or decision.", "4. Evaluate output against an explicit criterion."]
+    elif concept_type == "metric":
+        steps = ["1. Define quantity and population being measured.", "2. Compute metric from observed outcomes.", "3. Interpret value with scale, denominator, and decision context."]
+    elif concept_type in {"model", "theory", "framework", "principle", "theorem"}:
+        steps = ["1. State objects and assumptions.", "2. Apply governing relationship or rule.", "3. Derive result or prediction.", "4. Check fit, limitations, and downstream decision use."]
+    else:
+        steps = ["1. Identify object and intended question.", "2. Apply definition under its assumptions.", "3. Compare result with related concepts and evidence."]
+    if prerequisites:
+        steps.insert(0, f"Prerequisites: {', '.join(prerequisites[:4])}.")
+    if applications:
+        steps.append(f"Typical use context: {', '.join(applications[:3])}.")
+    if related:
+        steps.append(f"Compare against: {', '.join(related[:3])}.")
+    return "\n".join(steps)
 
 
 def _key_components(concept_name: str, metadata: ConceptMetadata, mentions: list[ConceptMention]) -> list[str]:
     components = canonical_key_components_for_label(concept_name)
-    if components:
+    if components and not any(not _usable_enrichment(item) for item in components):
         return components
-    components = metadata.prerequisites or _merged_text_list(mentions, "prerequisites")
-    if components:
-        return components[:5]
-    return []
+    components: list[str] = []
+    if metadata.prerequisites:
+        components.append(f"Prerequisites: {', '.join(metadata.prerequisites[:4])}")
+    if metadata.assumptions:
+        components.append(f"Assumptions: {', '.join(metadata.assumptions[:4])}")
+    if metadata.applications:
+        components.append(f"Decision/use context: {', '.join(metadata.applications[:4])}")
+    if metadata.related_concepts:
+        components.append(f"Neighbor concepts: {', '.join(metadata.related_concepts[:4])}")
+    return components
 
 
 def _common_variants(concept_name: str, metadata: ConceptMetadata, mentions: list[ConceptMention]) -> list[str]:
@@ -776,7 +855,7 @@ def _common_variants(concept_name: str, metadata: ConceptMetadata, mentions: lis
 
 def _common_mistakes(concept_name: str, metadata: ConceptMetadata, mentions: list[ConceptMention]) -> list[str]:
     mistakes = canonical_common_mistakes_for_label(concept_name)
-    if mistakes:
+    if mistakes and all(_usable_enrichment(item) for item in mistakes):
         return mistakes
     items: list[str] = []
     if metadata.limitations:
@@ -788,14 +867,24 @@ def _common_mistakes(concept_name: str, metadata: ConceptMetadata, mentions: lis
 
 def _interview_questions(concept_name: str, metadata: ConceptMetadata, mentions: list[ConceptMention]) -> list[str]:
     questions = canonical_interview_questions_for_label(concept_name)
-    if questions:
+    generic_questions = (
+        f"what problem does {concept_name.lower()} solve?",
+        f"how does {concept_name.lower()} work at a high level?",
+        f"when would you use {concept_name.lower()}, and when would you avoid it?",
+    )
+    if questions and not any(normalize_spaces(item).lower().startswith(generic) for item in questions for generic in generic_questions):
         return questions
+    concept_type = (metadata.concept_type or "concept").lower()
     fallback = [
-        f"What problem does {concept_name} solve?",
-        f"How does {concept_name} work at a high level?",
-        f"When would you use {concept_name}, and when would you avoid it?",
-        f"What are the main assumptions or limitations of {concept_name}?",
+        f"What problem does {concept_name} solve, and what is its output?",
+        f"Explain {concept_name} using one concrete input-to-decision example.",
+        f"What assumptions must hold before using {concept_name}?",
+        f"Which trade-off decides whether to use {concept_name} instead of an alternative?",
     ]
+    if concept_type == "metric":
+        fallback.insert(2, f"What does the denominator of {concept_name} include or exclude?")
+    elif concept_type in {"algorithm", "method", "workflow", "process"}:
+        fallback.insert(2, f"Walk through {concept_name} step by step and name its stopping or evaluation rule.")
     related = metadata.related_concepts or _merged_text_list(mentions, "related_concepts")
     if related:
         fallback.append(f"How does {concept_name} compare with {related[0]}?")
@@ -820,6 +909,36 @@ def _connections(concept_name: str, metadata: ConceptMetadata, mentions: list[Co
     if broader_topics:
         lines.append(f"Broader topic: {', '.join(broader_topics[:4])}")
     return lines
+
+
+def _quality_review_flags(
+    metadata: ConceptMetadata,
+    mentions: list[ConceptMention],
+    definition: str,
+    mathematical_foundation: str,
+    key_components: list[str],
+    assumptions: list[str],
+    limitations: list[str],
+    applications: list[str],
+) -> list[str]:
+    """Expose missing evidence instead of hiding it behind generic prose."""
+    flags: list[str] = []
+    source_evidence = [mention.evidence for mention in mentions if normalize_spaces(mention.evidence)]
+    if not definition or len(definition.split()) < 12:
+        flags.append("definition lacks specific object, purpose, or scope")
+    if not source_evidence or all(normalize_concept_key(item) == normalize_concept_key(metadata.concept_name) for item in source_evidence):
+        flags.append("source evidence is too thin for a concrete explanation")
+    if metadata.concept_type in {"workflow", "algorithm", "method", "process"} and not key_components:
+        flags.append("workflow/method components not supported by extracted evidence")
+    if metadata.concept_type in {"model", "metric", "theory", "theorem"} and not mathematical_foundation:
+        flags.append("no meaningful equation or formal relationship extracted")
+    if not assumptions:
+        flags.append("assumptions not extracted")
+    if not limitations:
+        flags.append("trade-offs or limitations not extracted")
+    if not applications:
+        flags.append("real-world application not extracted")
+    return flags
 
 
 def _merged_text_list(mentions: list[ConceptMention], attr: str) -> list[str]:
@@ -909,6 +1028,7 @@ def build_concept_markdown(
     further_reading = _further_reading(concept_name)
     connections = _connections(concept_name, metadata, mentions)
     slide_evidence = _slide_evidence_lines(mentions)
+    review_flags = _quality_review_flags(metadata, mentions, definition, mathematical_foundation, key_components, assumptions, limitations, applications)
 
     lines = [
         "---",
@@ -1035,6 +1155,11 @@ def build_concept_markdown(
             lines.append(f"- version: {metadata.version_number}")
         if metadata.last_updated_timestamp:
             lines.append(f"- last updated: {metadata.last_updated_timestamp}")
+
+    if review_flags:
+        lines.extend(["", "## Quality Review"])
+        lines.append("- This page needs human review before treated as authoritative:")
+        lines.extend(f"- {flag}" for flag in review_flags)
 
     return "\n".join(lines).rstrip() + "\n"
 
@@ -1334,7 +1459,7 @@ def consolidate_concepts(processed_root: Path, concepts_root: Path) -> Consolida
             directory = existing_record.directory
             metadata_path = existing_record.metadata_path
         else:
-            directory = concepts_root / concept_name
+            directory = concept_directory(concepts_root, concept_name)
             metadata_path = concept_paths(concepts_root, concept_name)[1]
 
         if _write_concept_record(

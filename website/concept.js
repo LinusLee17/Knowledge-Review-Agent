@@ -6,6 +6,8 @@ const els = {
   article: document.getElementById("concept-article"),
   status: document.getElementById("concept-status"),
   rawLink: document.getElementById("raw-link"),
+  breadcrumbTitle: document.getElementById("breadcrumb-title"),
+  progressBar: document.getElementById("reading-progress-bar"),
 };
 
 const SECTION_ORDER = [
@@ -54,6 +56,15 @@ function slugify(text) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+function conceptNameFromPath(path) {
+  const rawName = String(path ?? "").split("/").filter(Boolean).pop() || "Concept";
+  try {
+    return decodeURIComponent(rawName).replace(/\.md$/i, "") || "Concept";
+  } catch {
+    return rawName.replace(/\.md$/i, "") || "Concept";
+  }
 }
 
 function escapeHtml(value) {
@@ -393,6 +404,17 @@ function observeSections(sections) {
   });
 }
 
+function observeReadingProgress() {
+  const update = () => {
+    const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = pageHeight > 0 ? Math.min(1, Math.max(0, window.scrollY / pageHeight)) : 0;
+    els.progressBar.style.transform = `scaleX(${progress})`;
+  };
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+}
+
 function renderMeta(meta) {
   const rows = [
     ["Domain", meta.domain || "Unknown"],
@@ -420,6 +442,11 @@ async function main() {
     return;
   }
 
+  const pathConceptName = conceptNameFromPath(rawPath);
+  document.title = pathConceptName;
+  els.title.textContent = pathConceptName;
+  els.breadcrumbTitle.textContent = pathConceptName;
+
   const markdownUrl = new URL(rawPath, window.location.href);
   els.rawLink.href = markdownUrl.href;
 
@@ -438,7 +465,10 @@ async function main() {
 
   await loadMathJax().catch(() => null);
 
-  els.title.textContent = title || meta.concept_name || "Concept";
+  const conceptName = title || meta.concept_name || "Concept";
+  els.title.textContent = conceptName;
+  document.title = conceptName;
+  els.breadcrumbTitle.textContent = conceptName;
   els.subtitle.textContent = `${meta.domain || "Unknown domain"} · ${meta.topic || "Unknown topic"}`;
   renderMeta(meta);
   renderToc(orderedSections);
@@ -458,6 +488,7 @@ async function main() {
   });
 
   observeSections(orderedSections);
+  observeReadingProgress();
 
   if (window.MathJax?.typesetPromise) {
     await window.MathJax.typesetPromise([els.article]).catch(() => null);

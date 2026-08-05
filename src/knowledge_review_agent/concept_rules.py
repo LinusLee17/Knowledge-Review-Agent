@@ -108,6 +108,126 @@ CONCEPT_PROFILES: tuple[ConceptProfile, ...] = (
         applications=("Visualization", "Compression", "Noise Reduction"),
     ),
     ConceptProfile(
+        concept_name="Dimensionality Reduction",
+        domain="Machine Learning",
+        topic="Unsupervised Learning",
+        importance_score=5,
+        concept_type="method",
+        synonyms=("dimensionality reduction", "dimension reduction", "feature space reduction"),
+        prerequisites=("Linear Algebra", "Variance"),
+        related_concepts=("PCA", "Feature Engineering", "Model Selection"),
+        broader_topics=("Unsupervised Learning", "Data Preparation"),
+        applications=("Visualization", "Compression", "Noise Reduction"),
+    ),
+    ConceptProfile(
+        concept_name="Model Selection",
+        domain="Machine Learning",
+        topic="Model Evaluation",
+        importance_score=5,
+        concept_type="method",
+        synonyms=("model selection", "model comparison", "selecting a model"),
+        prerequisites=("Cross Validation", "Overfitting"),
+        related_concepts=("Regularization", "Cross Validation", "Dimensionality Reduction"),
+        broader_topics=("Model Evaluation", "Predictive Modeling"),
+        applications=("Generalization", "Hyperparameter Tuning"),
+    ),
+    ConceptProfile(
+        concept_name="Bayesian Networks",
+        domain="Machine Learning",
+        topic="Probabilistic Modeling",
+        importance_score=5,
+        concept_type="model",
+        synonyms=("bayesian network", "bayesian networks", "belief network", "belief networks"),
+        prerequisites=("Probability", "Conditional Independence"),
+        related_concepts=("Markov Models", "Causal Inference", "Maximum Likelihood Estimation"),
+        broader_topics=("Probabilistic Graphical Models",),
+        applications=("Reasoning Under Uncertainty", "Diagnosis", "Prediction"),
+    ),
+    ConceptProfile(
+        concept_name="Markov Models",
+        domain="Machine Learning",
+        topic="Probabilistic Modeling",
+        importance_score=5,
+        concept_type="model",
+        synonyms=("markov model", "markov models", "markov chain", "markov chains"),
+        prerequisites=("Probability", "Conditional Probability"),
+        related_concepts=("Hidden Markov Models", "Bayesian Networks", "Reinforcement Learning"),
+        broader_topics=("Probabilistic Graphical Models", "Sequential Modeling"),
+        applications=("Time Series", "State Modeling", "Forecasting"),
+    ),
+    ConceptProfile(
+        concept_name="Hidden Markov Models",
+        domain="Machine Learning",
+        topic="Sequential Modeling",
+        importance_score=5,
+        concept_type="model",
+        synonyms=("hidden markov model", "hidden markov models", "hmm", "hmms"),
+        prerequisites=("Markov Models", "Probability"),
+        related_concepts=("Markov Models", "Bayesian Networks", "Viterbi Algorithm"),
+        broader_topics=("Probabilistic Graphical Models", "Sequential Modeling"),
+        applications=("Speech Recognition", "Sequence Labeling", "Time Series"),
+    ),
+    ConceptProfile(
+        concept_name="Reinforcement Learning",
+        domain="Machine Learning",
+        topic="Sequential Decision Making",
+        importance_score=5,
+        concept_type="method",
+        synonyms=("reinforcement learning", "reinforcement-learning", "markov decision process", "mdp"),
+        prerequisites=("Probability", "Markov Models"),
+        related_concepts=("Hidden Markov Models", "Model Selection", "Dynamic Programming"),
+        broader_topics=("Sequential Decision Making", "Machine Learning"),
+        applications=("Control", "Planning", "Recommendation"),
+    ),
+    ConceptProfile(
+        concept_name="Sampling",
+        domain="Statistics",
+        topic="Statistical Inference",
+        importance_score=5,
+        concept_type="method",
+        synonyms=("sampling", "sampling methods", "sample selection", "sample design"),
+        prerequisites=("Probability", "Random Variables"),
+        related_concepts=("Sampling Distribution", "Confidence Interval", "Standard Error"),
+        broader_topics=("Statistical Inference", "Data Collection"),
+        applications=("Survey Estimation", "Experimentation", "Data Collection"),
+    ),
+    ConceptProfile(
+        concept_name="Causal Inference",
+        domain="Statistics",
+        topic="Causal Analysis",
+        importance_score=5,
+        concept_type="method",
+        synonyms=("causal inference", "causal analysis", "causal effect", "causal effects"),
+        prerequisites=("Probability", "Experiment Design"),
+        related_concepts=("Experiment Design", "Internal Validity", "Bayesian Networks"),
+        broader_topics=("Causal Analysis", "Statistical Inference"),
+        applications=("Policy Evaluation", "Treatment Effects", "Business Experiments"),
+    ),
+    ConceptProfile(
+        concept_name="Experiment Design",
+        domain="Statistics",
+        topic="Causal Analysis",
+        importance_score=5,
+        concept_type="method",
+        synonyms=("experiment design", "experimental design", "experiment guidelines", "guidelines for a good experiment", "experiment", "experiments", "randomized experiment", "design of experiments"),
+        prerequisites=("Sampling", "Hypothesis Testing"),
+        related_concepts=("Causal Inference", "Internal Validity", "Hypothesis Testing"),
+        broader_topics=("Causal Analysis", "Statistical Inference"),
+        applications=("A/B Testing", "Treatment Effects", "Policy Evaluation"),
+    ),
+    ConceptProfile(
+        concept_name="Internal Validity",
+        domain="Statistics",
+        topic="Causal Analysis",
+        importance_score=5,
+        concept_type="concept",
+        synonyms=("internal validity", "internal validity of an experiment"),
+        prerequisites=("Experiment Design", "Causal Inference"),
+        related_concepts=("External Validity", "Causal Inference", "Experiment Design"),
+        broader_topics=("Causal Analysis", "Research Design"),
+        applications=("Experimentation", "Policy Evaluation", "A/B Testing"),
+    ),
+    ConceptProfile(
         concept_name="Hypothesis Testing",
         domain="Statistics",
         topic="Inference",
@@ -822,13 +942,160 @@ ConceptProfile(
         broader_topics=("Data Communication",),
         applications=("Operational Monitoring", "Performance Reporting", "Decision Support"),
     ),
+    ConceptProfile(
+        concept_name="Hyperparameter Optimization",
+        domain="Machine Learning",
+        topic="AutoML",
+        importance_score=5,
+        concept_type="workflow",
+        synonyms=("hyperparameter optimization", "hyperparameter optimisation", "HPO", "hyperparameter tuning"),
+        prerequisites=("Model Evaluation", "Cross Validation"),
+        related_concepts=("Bayesian Optimization", "Multi-fidelity Optimization", "Algorithm Selection", "Neural Architecture Search"),
+        broader_topics=("AutoML", "Model Selection", "Optimization"),
+        applications=("Model Tuning", "Automated Machine Learning", "Pipeline Optimization"),
+    ),
+    ConceptProfile(
+        concept_name="Bayesian Optimization",
+        domain="Machine Learning",
+        topic="AutoML",
+        importance_score=5,
+        concept_type="method",
+        synonyms=("bayesian optimization", "bayesian optimisation", "BO", "Gaussian process optimization", "Gaussian process optimisation"),
+        prerequisites=("Probability", "Hyperparameter Optimization"),
+        related_concepts=("Multi-fidelity Optimization", "Hyperband / BOHB", "Acquisition Function"),
+        broader_topics=("AutoML", "Black-box Optimization", "Sequential Decision Making"),
+        applications=("Expensive Function Optimization", "Model Tuning", "Automated Machine Learning"),
+    ),
+    ConceptProfile(
+        concept_name="Multi-fidelity Optimization",
+        domain="Machine Learning",
+        topic="AutoML",
+        importance_score=5,
+        concept_type="method",
+        synonyms=("multi-fidelity optimization", "multi-fidelity optimisation", "multi fidelity optimization", "multi-fidelity methods"),
+        prerequisites=("Hyperparameter Optimization", "Bayesian Optimization"),
+        related_concepts=("Hyperband / BOHB", "HPO Speedup Techniques"),
+        broader_topics=("AutoML", "Resource Allocation", "Optimization"),
+        applications=("Early Stopping", "Budgeted Optimization", "Expensive Model Training"),
+    ),
+    ConceptProfile(
+        concept_name="Hyperband / BOHB",
+        domain="Machine Learning",
+        topic="AutoML",
+        importance_score=4,
+        concept_type="algorithm",
+        synonyms=("hyperband", "BOHB", "BOHB hyperband", "bandit based hyperparameter optimization"),
+        prerequisites=("Multi-fidelity Optimization", "Bayesian Optimization"),
+        related_concepts=("Hyperparameter Optimization", "HPO Speedup Techniques"),
+        broader_topics=("AutoML", "Resource Allocation"),
+        applications=("Early Stopping", "Budgeted Hyperparameter Search"),
+    ),
+    ConceptProfile(
+        concept_name="Neural Architecture Search",
+        domain="Machine Learning",
+        topic="AutoML",
+        importance_score=5,
+        concept_type="workflow",
+        synonyms=("neural architecture search", "NAS", "neural architecture optimisation", "neural architecture optimization"),
+        prerequisites=("Hyperparameter Optimization", "Gradient Descent"),
+        related_concepts=("Meta-learning for AutoML", "Multi-fidelity Optimization"),
+        broader_topics=("AutoML", "Deep Learning", "Architecture Design"),
+        applications=("Automated Architecture Design", "Neural Network Design"),
+    ),
+    ConceptProfile(
+        concept_name="Algorithm Selection",
+        domain="Machine Learning",
+        topic="AutoML",
+        importance_score=5,
+        concept_type="method",
+        synonyms=("algorithm selection", "automated algorithm selection"),
+        prerequisites=("Model Evaluation", "Cross Validation"),
+        related_concepts=("Hyperparameter Optimization", "Meta-learning for AutoML"),
+        broader_topics=("AutoML", "Model Selection"),
+        applications=("Automated Machine Learning", "Pipeline Design"),
+    ),
+    ConceptProfile(
+        concept_name="Dynamic Algorithm Configuration",
+        domain="Machine Learning",
+        topic="AutoML",
+        importance_score=5,
+        concept_type="method",
+        synonyms=("dynamic algorithm configuration", "DAC", "dynamic configuration", "algorithm configuration"),
+        prerequisites=("Algorithm Selection", "Hyperparameter Optimization"),
+        related_concepts=("Meta-learning for AutoML", "Hyperparameter Optimization"),
+        broader_topics=("AutoML", "Algorithm Configuration", "Sequential Decision Making"),
+        applications=("Online Configuration", "Adaptive Algorithms", "Automated Machine Learning"),
+    ),
+    ConceptProfile(
+        concept_name="Meta-learning for AutoML",
+        domain="Machine Learning",
+        topic="AutoML",
+        importance_score=5,
+        concept_type="method",
+        synonyms=("meta-learning", "meta learning", "meta-learning for AutoML", "learning to learn"),
+        prerequisites=("Algorithm Selection", "Hyperparameter Optimization"),
+        related_concepts=("Dynamic Algorithm Configuration", "Bayesian Optimization"),
+        broader_topics=("AutoML", "Transfer Learning", "Model Selection"),
+        applications=("Warm Starting", "Learning Across Datasets", "Automated Machine Learning"),
+    ),
+    ConceptProfile(
+        concept_name="Multi-objective Optimization",
+        domain="Machine Learning",
+        topic="AutoML",
+        importance_score=4,
+        concept_type="method",
+        synonyms=("multi-objective optimization", "multi-objective optimisation", "multi criteria optimization", "multi-criteria optimization", "multi criteria optimisation"),
+        prerequisites=("Hyperparameter Optimization", "Model Evaluation"),
+        related_concepts=("Bayesian Optimization", "AutoML Evaluation and Benchmarking"),
+        broader_topics=("AutoML", "Optimization", "Decision Making"),
+        applications=("Accuracy-Resource Trade-offs", "Pareto Optimization", "Pipeline Optimization"),
+    ),
+    ConceptProfile(
+        concept_name="HPO Speedup Techniques",
+        domain="Machine Learning",
+        topic="AutoML",
+        importance_score=4,
+        concept_type="method",
+        synonyms=("HPO speedup techniques", "speedup techniques", "speedup for hyperparameter optimization", "speedup for hyperparameter optimisation"),
+        prerequisites=("Hyperparameter Optimization", "Multi-fidelity Optimization"),
+        related_concepts=("Hyperband / BOHB", "Multi-fidelity Optimization"),
+        broader_topics=("AutoML", "Computational Efficiency", "Optimization"),
+        applications=("Reducing Search Cost", "Early Stopping", "Parallel Search"),
+    ),
+    ConceptProfile(
+        concept_name="Model Interpretability",
+        domain="Machine Learning",
+        topic="AutoML",
+        importance_score=4,
+        concept_type="workflow",
+        synonyms=("interpretability", "model interpretability", "interpretable machine learning", "explainable machine learning", "XAI"),
+        prerequisites=("Model Evaluation",),
+        related_concepts=("AutoML Evaluation and Benchmarking", "Algorithm Selection"),
+        broader_topics=("AutoML", "Responsible Machine Learning"),
+        applications=("Model Analysis", "Trustworthy Machine Learning", "Model Comparison"),
+    ),
+    ConceptProfile(
+        concept_name="AutoML Evaluation and Benchmarking",
+        domain="Machine Learning",
+        topic="AutoML",
+        importance_score=5,
+        concept_type="workflow",
+        synonyms=("evaluation and benchmarking", "Evaluation and", "automl evaluation", "automl benchmarking", "benchmarking AutoML systems", "model benchmarking"),
+        prerequisites=("Model Evaluation", "Cross Validation"),
+        related_concepts=("Hyperparameter Optimization", "Model Interpretability", "Multi-objective Optimization"),
+        broader_topics=("AutoML", "Model Evaluation", "Experimental Design"),
+        applications=("System Comparison", "Reproducible Evaluation", "Performance Reporting"),
+    ),
 )
 
 
 _PROFILE_BY_KEY: dict[str, ConceptProfile] = {}
 for profile in CONCEPT_PROFILES:
     for alias in (profile.concept_name, *profile.synonyms):
-        _PROFILE_BY_KEY[normalize_concept_key(alias)] = profile
+        # Keep first registration when aliases overlap. Canonical profile
+        # names appear before broader legacy aliases, so exact concepts such
+        # as Model Selection do not resolve to Algorithm Selection.
+        _PROFILE_BY_KEY.setdefault(normalize_concept_key(alias), profile)
 
 FOUNDATIONAL_CONCEPTS_BY_DOMAIN: dict[str, tuple[str, ...]] = {
     "Statistics": (
@@ -865,6 +1132,15 @@ FOUNDATIONAL_CONCEPTS_BY_DOMAIN: dict[str, tuple[str, ...]] = {
         "Logistic Regression",
         "Linear Regression",
         "Maximum Likelihood Estimation",
+        "Hyperparameter Optimization",
+        "Bayesian Optimization",
+        "Multi-fidelity Optimization",
+        "Neural Architecture Search",
+        "Algorithm Selection",
+        "Dynamic Algorithm Configuration",
+        "Meta-learning for AutoML",
+        "Multi-objective Optimization",
+        "AutoML Evaluation and Benchmarking",
     ),
     "Business Analytics": (
         "CRISP-DM",
@@ -935,7 +1211,7 @@ _FOUNDATIONAL_KEY_TO_DOMAIN: dict[str, str] = {
 
 DOMAIN_KEYWORDS: dict[str, tuple[str, ...]] = {
     "Business Analytics": ("predictive analytics", "business intelligence", "customer analytics", "forecasting", "decision analysis", "optimization", "crisp-dm"),
-    "Machine Learning": ("machine learning", "classification", "regression", "random forest", "gradient descent", "svm", "neural network", "regularization", "cross validation", "overfitting", "pca", "clustering", "roc curve"),
+    "Machine Learning": ("machine learning", "classification", "regression", "random forest", "gradient descent", "svm", "neural network", "regularization", "cross validation", "overfitting", "pca", "clustering", "roc curve", "automl", "hyperparameter", "bayesian optimization", "neural architecture search", "meta-learning", "algorithm selection", "algorithm configuration", "multi-fidelity", "benchmarking", "interpretability"),
     "Statistics": ("statistics", "probability", "hypothesis testing", "confidence interval", "sampling", "estimation", "regression", "distribution", "p-value", "central limit theorem", "sampling distribution", "point estimation"),
     "Data Science": ("data science", "data cleaning", "feature engineering", "visualization", "visualisation", "database", "data model", "relational", "sql", "nosql", "dashboard", "data storytelling", "pipeline", "deployment", "ethics", "eda"),
     "Leadership": ("leadership", "stakeholder management", "change management", "change leadership", "decision making", "team collaboration", "organizational change", "management roles", "leader"),
@@ -959,8 +1235,9 @@ TOPIC_KEYWORDS: dict[str, tuple[str, ...]] = {
     "Regression": ("regression", "linear model", "ols", "logistic regression"),
     "Supervised Learning": ("decision tree", "random forest", "classification", "support vector machine"),
     "Ensemble Methods": ("random forest", "gradient boosting", "bagging", "boosting", "xgboost"),
-    "Optimization": ("gradient descent", "loss function", "minimize", "maximize", "learning rate"),
-    "Model Evaluation": ("cross validation", "overfitting", "bias variance", "validation", "generalization"),
+    "Optimization": ("gradient descent", "loss function", "minimize", "maximize", "learning rate", "hyperparameter", "bayesian optimization", "multi-fidelity", "multi-objective"),
+    "AutoML": ("automl", "hyperparameter optimization", "hyperparameter tuning", "bayesian optimization", "neural architecture search", "algorithm selection", "algorithm configuration", "meta-learning", "multi-fidelity", "hyperband", "BOHB"),
+    "Model Evaluation": ("cross validation", "overfitting", "bias variance", "validation", "generalization", "benchmarking", "interpretability"),
     "Inference": ("hypothesis testing", "confidence interval", "p-value", "estimation"),
     "Predictive Analytics": ("forecasting", "predictive analytics", "customer analytics"),
     "Data Preparation": ("feature engineering", "data cleaning", "data wrangling", "preprocessing"),
@@ -1245,6 +1522,46 @@ _CANONICAL_SUMMARIES: dict[str, str] = {
         "Probability is the mathematics of uncertainty. It provides the language for random variables, conditional "
         "events, likelihood, calibration, and statistical inference."
     ),
+    "Bayesian Networks": (
+        "Bayesian Networks represent a joint probability distribution with a directed acyclic graph and local conditional "
+        "probability tables. They make conditional independence assumptions explicit and support probabilistic inference."
+    ),
+    "Markov Models": (
+        "Markov Models describe systems whose next state depends on the current state through a transition model, rather "
+        "than on the full history. They provide a foundation for reasoning about sequential data."
+    ),
+    "Hidden Markov Models": (
+        "Hidden Markov Models represent sequences with unobserved states that emit observed outputs. Inference combines "
+        "state-transition probabilities with emission probabilities to reason about the hidden sequence."
+    ),
+    "Reinforcement Learning": (
+        "Reinforcement Learning learns how an agent should act by interacting with an environment and using rewards as "
+        "feedback. The objective is to maximize expected cumulative return over time."
+    ),
+    "Sampling": (
+        "Sampling selects observations from a population or data-generating process so that uncertainty and population "
+        "quantities can be estimated. The sampling design determines what conclusions are justified."
+    ),
+    "Causal Inference": (
+        "Causal Inference estimates the effect of an intervention or treatment, separating causal effects from association. "
+        "It requires assumptions or designs that identify the counterfactual comparison."
+    ),
+    "Experiment Design": (
+        "Experiment Design specifies treatments, controls, assignment, measurements, and analysis before data collection. "
+        "Good design makes the comparison informative and reduces bias in estimated effects."
+    ),
+    "Internal Validity": (
+        "Internal Validity is the degree to which an observed effect within a study can be attributed to the treatment or "
+        "exposure rather than confounding, selection, measurement, or other systematic bias."
+    ),
+    "Model Selection": (
+        "Model Selection chooses among candidate models using evidence such as validation performance, complexity, and "
+        "generalization. The goal is reliable performance on unseen data, not merely the best training fit."
+    ),
+    "Dimensionality Reduction": (
+        "Dimensionality Reduction maps high-dimensional data into fewer variables while retaining important structure, "
+        "variation, or predictive information. It can simplify visualization, storage, and modeling."
+    ),
     "Maximum Likelihood Estimation": (
         "Maximum Likelihood Estimation chooses the parameter values that make the observed data most probable under the "
         "assumed model. It is a core estimation principle that connects probabilistic modeling, log-likelihood, and many "
@@ -1280,11 +1597,70 @@ _CANONICAL_SUMMARIES: dict[str, str] = {
     ),
 }
 
+_AUTOML_SUMMARIES: dict[str, str] = {
+    "Hyperparameter Optimization": (
+        "Hyperparameter Optimization (HPO) searches a defined configuration space for hyperparameters that minimize a validation cost. "
+        "Unlike learned model parameters, hyperparameters control the training procedure or model structure, so each trial requires training and evaluating a model."
+    ),
+    "Bayesian Optimization": (
+        "Bayesian Optimization is sequential black-box optimization for expensive evaluations. "
+        "It fits a probabilistic surrogate to observed configurations and costs, then uses an acquisition function to choose the next configuration, balancing exploration and exploitation."
+    ),
+    "Multi-fidelity Optimization": (
+        "Multi-fidelity Optimization uses cheap, lower-fidelity evaluations, such as fewer epochs or fewer data points, to allocate computation toward promising configurations before spending the full budget."
+    ),
+    "Hyperband / BOHB": (
+        "Hyperband is a resource-allocation and successive-halving strategy for rapidly discarding weak configurations. "
+        "BOHB combines this multi-fidelity racing idea with a model-based sampler so promising regions of the hyperparameter space receive more trials."
+    ),
+    "Neural Architecture Search": (
+        "Neural Architecture Search (NAS) searches an architecture space for a neural network that performs well on validation data, optionally subject to resource constraints such as training time, memory, or parameter count."
+    ),
+    "Algorithm Selection": (
+        "Algorithm Selection maps a problem or dataset to an algorithm from a portfolio. "
+        "In per-instance selection, meta-features and prior performance are used to choose the algorithm expected to minimize a task-specific cost."
+    ),
+    "Dynamic Algorithm Configuration": (
+        "Dynamic Algorithm Configuration (DAC) changes algorithm parameters or components during execution using a learned policy. "
+        "It replaces fixed heuristics with state-dependent decisions that can adapt as the search or optimization process evolves."
+    ),
+    "Meta-learning for AutoML": (
+        "Meta-learning for AutoML transfers experience across datasets or tasks. "
+        "Dataset meta-features and prior trials can warm-start algorithm selection, hyperparameter search, or surrogate models on a new task."
+    ),
+    "Multi-objective Optimization": (
+        "Multi-objective Optimization minimizes several objectives at once, such as validation error, runtime, memory, and model size. "
+        "Because objectives can conflict, the result is usually a Pareto set of non-dominated trade-offs rather than one universally best configuration."
+    ),
+    "HPO Speedup Techniques": (
+        "HPO Speedup Techniques reduce the cost or wall-clock time of hyperparameter search. "
+        "The lecture material emphasizes early stopping, multi-fidelity evaluation, learning-curve information, parallelism, and reuse of information from previous trials."
+    ),
+    "Model Interpretability": (
+        "Model Interpretability concerns how clearly a model's predictions, parameters, or decisions can be understood by people. "
+        "In AutoML, interpretability analysis helps compare pipelines and exposes which features, components, or hyperparameters drive behavior."
+    ),
+    "AutoML Evaluation and Benchmarking": (
+        "AutoML Evaluation and Benchmarking compares automated systems under controlled datasets, tasks, metrics, budgets, and repetitions. "
+        "A valid benchmark separates algorithm quality from search effort and reports variation rather than relying on one lucky run."
+    ),
+}
+
 _CANONICAL_INTUITION: dict[str, str] = {
     "Linear Regression": "Fit the best linear line or plane, then read coefficients as marginal effects under the model assumptions.",
     "Logistic Regression": "Model class probability directly, then threshold it for classification when needed.",
     "Gradient Descent": "Move parameters downhill on the loss surface until improvement becomes small or stable.",
     "Probability": "Quantify uncertainty so later models can reason about risk, evidence, and random variation.",
+    "Bayesian Networks": "Draw dependencies as a graph, then use local probability rules to answer global uncertainty questions.",
+    "Markov Models": "The present state is a compact summary of the past; use transitions to project what may happen next.",
+    "Hidden Markov Models": "Infer an invisible state sequence from the noisy observations it generates.",
+    "Reinforcement Learning": "Try actions, observe rewards, and improve the policy that chooses future actions.",
+    "Sampling": "Use a carefully chosen subset to learn about a wider population while tracking selection uncertainty.",
+    "Causal Inference": "Compare what happened with what would have happened under a different treatment or intervention.",
+    "Experiment Design": "Plan the comparison before collecting outcomes so treatment differences have a credible interpretation.",
+    "Internal Validity": "Ask whether the study itself supports the claimed cause before asking whether the result generalizes.",
+    "Model Selection": "Prefer the model that should perform well on new data, balancing fit against complexity.",
+    "Dimensionality Reduction": "Keep the strongest structure while replacing many noisy coordinates with fewer useful ones.",
     "Maximum Likelihood Estimation": "Pick the parameters that best explain the observed sample under the model.",
     "Recall": "Count how many real positives you captured, not just how many predictions were correct overall.",
     "Database": "Think of a database as a well-organized, shared store of related facts with rules that keep the facts usable.",
@@ -1293,6 +1669,21 @@ _CANONICAL_INTUITION: dict[str, str] = {
     "Functional Dependency": "If knowing X always tells you Y, then X determines Y; that dependency is a clue about how the schema should be designed.",
     "SQL": "Describe the rows or changes you want; the database engine decides how to produce them.",
     "Data Visualization": "Choose visual encodings that make the important comparison or pattern easy to see before adding decoration.",
+}
+
+_AUTOML_INTUITION: dict[str, str] = {
+    "Hyperparameter Optimization": "Treat each configuration as an expensive experiment: choose a setting, train/evaluate it, learn from the result, and spend the next budget where improvement is most plausible.",
+    "Bayesian Optimization": "Use a model of what is known about the objective to decide which unknown experiment is worth running next.",
+    "Multi-fidelity Optimization": "Use cheap imperfect signals to eliminate weak trials early; reserve full training budgets for candidates that survive.",
+    "Hyperband / BOHB": "Run many cheap candidates, repeatedly halve the pool, and give more resources to survivors; BOHB biases new candidates toward regions that already look good.",
+    "Neural Architecture Search": "Turn architecture design into a search problem: define what structures are legal, generate candidates, estimate their performance, and keep the best under the resource budget.",
+    "Algorithm Selection": "Different datasets favor different algorithms; learn a mapping from dataset evidence to the best member of an algorithm portfolio.",
+    "Dynamic Algorithm Configuration": "The best setting can change during a run, so a policy observes algorithm state and chooses the next configuration or component.",
+    "Meta-learning for AutoML": "A new dataset should not start from zero when similar datasets have already been solved; reuse their metadata and trial history to get a better starting point.",
+    "Multi-objective Optimization": "There may be no single winner: a model can be more accurate but slower, smaller but less accurate, so keep only trade-offs that another candidate does not dominate.",
+    "HPO Speedup Techniques": "Make each search decision cheaper or make bad trials stop sooner; the goal is better performance per unit of compute, not just more trials.",
+    "Model Interpretability": "Interpretability asks what a model used and why a prediction changed, so performance claims can be checked against understandable behavior.",
+    "AutoML Evaluation and Benchmarking": "A benchmark is an experiment about AutoML systems: hold the comparison protocol fixed, vary the system, and measure quality and cost across more than one task.",
 }
 
 _CANONICAL_MATH: dict[str, str] = {
@@ -1358,6 +1749,51 @@ _CANONICAL_MATH: dict[str, str] = {
         "| --- | --- |\n"
         "| `TP` | True positives |\n"
         "| `FN` | False negatives |"
+    ),
+}
+
+_AUTOML_MATH: dict[str, str] = {
+    "Hyperparameter Optimization": (
+        "$$\n"
+        "\\lambda^* = \\arg\\min_{\\lambda \\in \\Lambda} c(A_\\lambda, D_{train}, D_{valid})\n"
+        "$$\n\n"
+        "`\\Lambda` is the search space, `\\lambda` a configuration, and `c` the validation cost of the trained model."
+    ),
+    "Bayesian Optimization": (
+        "$$\n"
+        "x_t = \\arg\\max_{x \\in \\mathcal{X}} a(x; \\mathcal{D}_{t-1})\n"
+        "$$\n\n"
+        "The surrogate models the unknown objective from observations `\\mathcal{D}_{t-1}`; acquisition function `a` selects the next expensive evaluation."
+    ),
+    "Multi-fidelity Optimization": (
+        "$$\n"
+        "c(\\lambda, r), \\quad r \\in \\mathcal{R}\n"
+        "$$\n\n"
+        "`r` is a resource or fidelity level, such as epochs, data volume, or resolution. Low `r` gives a cheaper but noisier estimate of final cost."
+    ),
+    "Hyperband / BOHB": (
+        "$$\n"
+        "n_{j+1} = \\left\\lfloor n_j / \\eta \\right\\rfloor, \\qquad r_{j+1} = \\eta r_j\n"
+        "$$\n\n"
+        "Successive halving keeps roughly the best `1/\\eta` fraction while increasing their resource. BOHB supplies model-based candidates to the brackets."
+    ),
+    "Neural Architecture Search": (
+        "$$\n"
+        "\\lambda^* = \\arg\\min_{\\lambda \\in \\Lambda} c(N_\\lambda, D_{train}, D_{valid})\n"
+        "$$\n\n"
+        "`\\lambda` encodes an architecture and `N_\\lambda` is the resulting neural network; constraints can add runtime, memory, or size objectives."
+    ),
+    "Algorithm Selection": (
+        "$$\n"
+        "s: D \\rightarrow A, \\qquad s(D) = \\arg\\min_{a \\in A} c(a,D)\n"
+        "$$\n\n"
+        "`D` is a dataset or problem, `A` an algorithm portfolio, and `c` the task-specific cost."
+    ),
+    "Multi-objective Optimization": (
+        "$$\n"
+        "\\min_{\\lambda \\in \\Lambda} c(\\lambda) = (c_1(\\lambda), \\ldots, c_m(\\lambda)), \\qquad m \\ge 2\n"
+        "$$\n\n"
+        "A configuration is Pareto-dominated when another is no worse on every objective and strictly better on at least one."
     ),
 }
 
@@ -1455,6 +1891,8 @@ def _join_items(values: Iterable[str], *, limit: int = 3) -> str:
 
 def canonical_summary_for_label(label: str) -> str:
     canonical = _canonical_name(label)
+    if canonical in _AUTOML_SUMMARIES:
+        return _AUTOML_SUMMARIES[canonical]
     summary = _CANONICAL_SUMMARIES.get(canonical, "")
     if summary:
         return summary
@@ -1482,6 +1920,8 @@ def canonical_summary_for_label(label: str) -> str:
 
 def canonical_intuition_for_label(label: str) -> str:
     canonical = _canonical_name(label)
+    if canonical in _AUTOML_INTUITION:
+        return _AUTOML_INTUITION[canonical]
     intuition = _CANONICAL_INTUITION.get(canonical, "")
     if intuition:
         return intuition
@@ -1518,6 +1958,8 @@ def canonical_intuition_for_label(label: str) -> str:
 
 def canonical_math_for_label(label: str) -> str:
     canonical = _canonical_name(label)
+    if canonical in _AUTOML_MATH:
+        return _AUTOML_MATH[canonical]
     math = _CANONICAL_MATH.get(canonical, "")
     if math:
         return math
@@ -1546,6 +1988,60 @@ _CANONICAL_ADVANTAGES: dict[str, list[str]] = {
     ],
 }
 
+_AUTOML_ADVANTAGES: dict[str, list[str]] = {
+    "Hyperparameter Optimization": [
+        "Improves a model or pipeline without requiring manual trial-and-error for every configuration.",
+        "Can optimize mixed continuous, discrete, and conditional search spaces.",
+        "Makes the search objective and compute budget explicit.",
+    ],
+    "Bayesian Optimization": [
+        "Uses prior observations, so it can be efficient when evaluations are expensive.",
+        "Supports noisy objectives and mixed search spaces through suitable surrogates.",
+        "Acquisition functions expose the exploration-exploitation trade-off.",
+    ],
+    "Multi-fidelity Optimization": [
+        "Rejects weak configurations before full training.",
+        "Converts partial learning-curve information into search savings.",
+        "Can trade fidelity bias against much lower evaluation cost.",
+    ],
+    "Hyperband / BOHB": [
+        "Allocates more budget to promising trials and stops weak trials early.",
+        "Works well when low-resource performance is informative about final performance.",
+    ],
+    "Neural Architecture Search": [
+        "Automates architecture decisions that otherwise require extensive expert experimentation.",
+        "Can optimize accuracy together with resource constraints.",
+    ],
+    "Algorithm Selection": [
+        "Uses a portfolio instead of assuming one algorithm wins on every dataset.",
+        "Can exploit dataset meta-features and prior benchmark results.",
+    ],
+    "Dynamic Algorithm Configuration": [
+        "Adapts decisions to the current state of a running algorithm.",
+        "Can replace brittle hand-designed parameter schedules with learned policies.",
+    ],
+    "Meta-learning for AutoML": [
+        "Reduces cold-start cost by reusing experience across datasets.",
+        "Can warm-start search with useful configurations, priors, or algorithm choices.",
+    ],
+    "Multi-objective Optimization": [
+        "Makes resource and quality trade-offs visible instead of hiding them in one score.",
+        "Returns alternatives suited to different deployment constraints.",
+    ],
+    "HPO Speedup Techniques": [
+        "Improves quality found per unit of time or compute.",
+        "Combines early stopping, fidelity reduction, parallelism, and information reuse.",
+    ],
+    "Model Interpretability": [
+        "Makes model behavior easier to audit, debug, and communicate.",
+        "Can reveal feature reliance or pipeline behavior that aggregate scores hide.",
+    ],
+    "AutoML Evaluation and Benchmarking": [
+        "Supports reproducible comparison across datasets and tasks.",
+        "Separates predictive quality from runtime, budget, and variance.",
+    ],
+}
+
 _CANONICAL_LIMITATIONS: dict[str, list[str]] = {
     "Linear Regression": [
         "Sensitive to outliers, influential observations, and multicollinearity.",
@@ -1559,6 +2055,59 @@ _CANONICAL_LIMITATIONS: dict[str, list[str]] = {
     "Gradient Descent": [
         "A poor learning rate can cause slow convergence or divergence.",
         "Convergence depends on the objective, initialization, conditioning, and stopping rule.",
+    ],
+}
+
+_AUTOML_LIMITATIONS: dict[str, list[str]] = {
+    "Hyperparameter Optimization": [
+        "Search can be extremely expensive because every trial may require model training and validation.",
+        "Validation overfitting can occur when many configurations are tested against the same validation signal.",
+        "Results depend on the search space, budget, random seed, and evaluation protocol.",
+    ],
+    "Bayesian Optimization": [
+        "Surrogate and acquisition quality can degrade in very high-dimensional or highly conditional spaces.",
+        "Sequential decisions limit parallel throughput unless batch methods are used.",
+        "A misleading surrogate or noisy validation signal can direct trials to the wrong region.",
+    ],
+    "Multi-fidelity Optimization": [
+        "Low-fidelity performance may not rank configurations reliably at full budget.",
+        "The method needs a meaningful resource axis and a useful early signal.",
+    ],
+    "Hyperband / BOHB": [
+        "Successive halving can discard late-blooming configurations when early performance is misleading.",
+        "The reduction factor and resource brackets affect the allocation strategy.",
+    ],
+    "Neural Architecture Search": [
+        "The architecture space and training cost can be enormous.",
+        "Weight sharing, proxies, or partial training can bias architecture rankings.",
+    ],
+    "Algorithm Selection": [
+        "A portfolio cannot select an algorithm absent from the portfolio.",
+        "Meta-features and historical results may fail to transfer to a distribution-shifted dataset.",
+    ],
+    "Dynamic Algorithm Configuration": [
+        "Learning a policy requires state definitions, trajectories, and a reliable reward or cost signal.",
+        "A policy that works for one workload may not generalize to another.",
+    ],
+    "Meta-learning for AutoML": [
+        "Transfer fails when prior datasets are unlike the new task.",
+        "Meta-datasets and trial histories can be expensive to collect and standardize.",
+    ],
+    "Multi-objective Optimization": [
+        "There may be many non-dominated solutions and no single default choice.",
+        "Scaling and weighting objectives can change the apparent trade-off.",
+    ],
+    "HPO Speedup Techniques": [
+        "Speedups can reduce fidelity or introduce ranking bias.",
+        "Parallel and asynchronous search may consume budget less efficiently than carefully sequenced trials.",
+    ],
+    "Model Interpretability": [
+        "An explanation can be locally useful without being a faithful global account of the model.",
+        "Interpretability methods can be unstable under correlated features or pipeline changes.",
+    ],
+    "AutoML Evaluation and Benchmarking": [
+        "One benchmark suite cannot represent every dataset, task, or deployment constraint.",
+        "Different time limits, hardware, seeds, and tuning rules can invalidate direct comparisons.",
     ],
 }
 
@@ -1577,11 +2126,13 @@ _CANONICAL_ASSUMPTIONS: dict[str, list[str]] = {
 
 
 def canonical_advantages_for_label(label: str) -> list[str]:
-    return list(_CANONICAL_ADVANTAGES.get(_canonical_name(label), []))
+    canonical = _canonical_name(label)
+    return list(_AUTOML_ADVANTAGES.get(canonical, _CANONICAL_ADVANTAGES.get(canonical, [])))
 
 
 def canonical_limitations_for_label(label: str) -> list[str]:
-    return list(_CANONICAL_LIMITATIONS.get(_canonical_name(label), []))
+    canonical = _canonical_name(label)
+    return list(_AUTOML_LIMITATIONS.get(canonical, _CANONICAL_LIMITATIONS.get(canonical, [])))
 
 
 def canonical_assumptions_for_label(label: str) -> list[str]:
@@ -1590,6 +2141,22 @@ def canonical_assumptions_for_label(label: str) -> list[str]:
 
 def canonical_why_it_matters_for_label(label: str) -> str:
     canonical = _canonical_name(label)
+    automl_why = {
+        "Hyperparameter Optimization": "HPO is the outer optimization loop around model training. It determines whether an AutoML system finds a strong pipeline within a fixed evaluation budget rather than relying on arbitrary defaults.",
+        "Bayesian Optimization": "BO is useful when one trial is expensive and the objective is a black box. It uses completed trials to avoid spending the next evaluation in clearly unpromising regions.",
+        "Multi-fidelity Optimization": "Multi-fidelity methods make AutoML practical under limited compute by using partial training signals to reserve full budgets for candidates that deserve them.",
+        "Hyperband / BOHB": "Hyperband and BOHB connect search quality to resource allocation. They address the central AutoML problem that evaluating every configuration to completion is too costly.",
+        "Neural Architecture Search": "NAS automates architecture design, one of the most consequential and expensive choices in deep learning. It also exposes the trade-off between accuracy and deployment resources.",
+        "Algorithm Selection": "Algorithm selection is the first AutoML decision: choose which learner should receive tuning effort. A good selector can outperform a fixed default across heterogeneous datasets.",
+        "Dynamic Algorithm Configuration": "DAC matters when the best action changes during execution. It lets AutoML adapt an algorithm rather than choosing one static configuration before the run starts.",
+        "Meta-learning for AutoML": "Meta-learning reduces repeated search across related tasks. It turns prior AutoML runs into useful information for cold-starting a new dataset.",
+        "Multi-objective Optimization": "AutoML systems often optimize more than accuracy. Multi-objective optimization makes runtime, memory, model size, and predictive quality explicit so deployment trade-offs remain visible.",
+        "HPO Speedup Techniques": "Speedup techniques determine how much useful search fits into a time or compute limit. They are central when full training of every trial is infeasible.",
+        "Model Interpretability": "Interpretability complements leaderboard metrics by showing whether a selected pipeline behaves for understandable reasons and whether its predictions can be audited.",
+        "AutoML Evaluation and Benchmarking": "Benchmarking is needed to distinguish a genuinely strong AutoML method from one that benefited from a favorable dataset, budget, seed, or tuning protocol.",
+    }
+    if canonical in automl_why:
+        return automl_why[canonical]
     if canonical == "Gradient Descent":
         return (
             "Gradient Descent is one of the fundamental optimization algorithms in machine learning. "
@@ -1648,6 +2215,79 @@ def canonical_why_it_matters_for_label(label: str) -> str:
 def canonical_how_it_works_for_label(label: str) -> str:
     canonical = _canonical_name(label)
     manual = {
+        "Hyperparameter Optimization": (
+            "1. Define the configuration space, including parameter types, bounds, conditional branches, and forbidden combinations.\n"
+            "2. Choose a validation cost, usually from a train/validation split or cross-validation protocol.\n"
+            "3. Select a configuration, train the pipeline, and record cost, runtime, resource use, and status.\n"
+            "4. Use random search, model-based search, or a multi-fidelity scheduler to choose the next trial.\n"
+            "5. Stop at the budget limit and report the best configuration on an untouched test evaluation."
+        ),
+        "Bayesian Optimization": (
+            "1. Evaluate an initial design of configurations and store observations in a trial set.\n"
+            "2. Fit or update a surrogate model of validation cost, including uncertainty when available.\n"
+            "3. Optimize an acquisition function such as expected improvement or probability of improvement.\n"
+            "4. Evaluate the selected configuration, append the result, and repeat until the evaluation budget is exhausted."
+        ),
+        "Multi-fidelity Optimization": (
+            "1. Define a resource axis, such as epochs, training data, or resolution, and the maximum fidelity.\n"
+            "2. Start many configurations at a cheap fidelity.\n"
+            "3. Observe partial learning curves or validation costs and stop clearly weak trials.\n"
+            "4. Promote promising trials to higher fidelities and return the best fully evaluated candidate."
+        ),
+        "Hyperband / BOHB": (
+            "1. Create brackets with different numbers of configurations and initial resource levels.\n"
+            "2. Run each configuration briefly, rank results, and retain only the strongest fraction.\n"
+            "3. Increase resources for survivors through successive-halving rounds.\n"
+            "4. In BOHB, sample new configurations from a model of good observations while Hyperband controls resource allocation."
+        ),
+        "Neural Architecture Search": (
+            "1. Encode a legal architecture search space: operations, connections, depth, width, or cell structure.\n"
+            "2. Choose a search strategy such as Bayesian optimization, evolutionary search, reinforcement learning, or gradients.\n"
+            "3. Train or estimate each candidate's validation performance, often with a proxy or shared weights.\n"
+            "4. Select a high-performing architecture and verify it with an independent full training run and resource check."
+        ),
+        "Algorithm Selection": (
+            "1. Define an algorithm portfolio and a task-specific cost metric.\n"
+            "2. Describe the dataset with meta-features or representative training information.\n"
+            "3. Learn or estimate the performance of portfolio members on similar tasks.\n"
+            "4. Map the new dataset to an algorithm, then evaluate the selected algorithm under the target protocol."
+        ),
+        "Dynamic Algorithm Configuration": (
+            "1. Define the algorithm state observed during execution and the configurable actions.\n"
+            "2. Collect trajectories or optimize a policy against a runtime cost or performance reward.\n"
+            "3. Let the policy choose parameter values or components as state changes.\n"
+            "4. Compare the adaptive run with a fixed-configuration baseline on the same task and budget."
+        ),
+        "Meta-learning for AutoML": (
+            "1. Build a meta-dataset containing dataset descriptors, prior trials, and observed performance.\n"
+            "2. Find related historical tasks or learn a cross-task surrogate.\n"
+            "3. Use that information to warm-start algorithm selection, HPO, or NAS.\n"
+            "4. Update the transferred model with observations from the new dataset and monitor negative transfer."
+        ),
+        "Multi-objective Optimization": (
+            "1. Define all objectives and their directions, scales, and resource constraints.\n"
+            "2. Evaluate configurations as objective vectors rather than collapsing them immediately into one score.\n"
+            "3. Remove dominated configurations and preserve the current Pareto front.\n"
+            "4. Present the remaining trade-offs so a deployment decision can select an operating point."
+        ),
+        "HPO Speedup Techniques": (
+            "1. Identify the dominant search cost: full training, validation, scheduling, or sequential decision latency.\n"
+            "2. Reduce wasted work with early stopping, lower fidelities, learning-curve prediction, warm starts, or surrogate models.\n"
+            "3. Parallelize independent trials where hardware permits, while accounting for stale information.\n"
+            "4. Compare quality at equal wall-clock or compute budgets, not only at equal trial counts."
+        ),
+        "Model Interpretability": (
+            "1. State the explanation target: global behavior, a single prediction, feature importance, architecture choice, or pipeline component.\n"
+            "2. Select an appropriate analysis method and define what its output means.\n"
+            "3. Check explanation stability, feature dependence, and faithfulness to the fitted model.\n"
+            "4. Use the explanation to diagnose, compare, or communicate the model; do not treat it as proof of causality."
+        ),
+        "AutoML Evaluation and Benchmarking": (
+            "1. Specify datasets, tasks, metrics, train/test protocol, hardware, time or compute budget, and random seeds.\n"
+            "2. Run each AutoML system under the same information and resource constraints.\n"
+            "3. Record predictive quality together with runtime, resource use, failures, and variance across repetitions.\n"
+            "4. Compare distributions or paired results across tasks, then report limitations and statistical uncertainty."
+        ),
         "Linear Regression": (
             "1. Represent the outcome as a linear combination of the input features.\n"
             "2. Fit the coefficients by minimizing squared residuals.\n"
@@ -1755,6 +2395,18 @@ def canonical_how_it_works_for_label(label: str) -> str:
 def canonical_key_components_for_label(label: str) -> list[str]:
     canonical = _canonical_name(label)
     manual = {
+        "Hyperparameter Optimization": ["Configuration space", "Hyperparameters", "Validation objective", "Trial evaluator", "Search strategy", "Budget and stopping rule"],
+        "Bayesian Optimization": ["Search space", "Observed trials", "Surrogate model", "Predictive uncertainty", "Acquisition function", "Evaluation budget"],
+        "Multi-fidelity Optimization": ["Configuration", "Fidelity/resource axis", "Partial evaluation", "Promotion rule", "Early-stopping rule", "Maximum budget"],
+        "Hyperband / BOHB": ["Brackets", "Initial configurations", "Resource levels", "Successive halving", "Reduction factor", "Model-based sampler in BOHB"],
+        "Neural Architecture Search": ["Architecture search space", "Architecture encoding", "Search strategy", "Performance estimator", "Resource constraint", "Final retraining"],
+        "Algorithm Selection": ["Algorithm portfolio", "Dataset meta-features", "Cost metric", "Performance model", "Selection mapping", "Evaluation protocol"],
+        "Dynamic Algorithm Configuration": ["Algorithm state", "Configurable actions", "Policy", "Reward/cost", "Execution trajectory", "Adaptation rule"],
+        "Meta-learning for AutoML": ["Meta-dataset", "Dataset descriptors", "Historical trials", "Task similarity", "Warm start", "Transfer update"],
+        "Multi-objective Optimization": ["Objective vector", "Objective scales", "Dominance relation", "Pareto set/front", "Constraint handling", "Decision point"],
+        "HPO Speedup Techniques": ["Cost bottleneck", "Early stopping", "Fidelity reduction", "Learning-curve signal", "Parallel scheduling", "Information reuse"],
+        "Model Interpretability": ["Explanation target", "Model/pipeline behavior", "Explanation method", "Feature or component attribution", "Faithfulness check", "Stability check"],
+        "AutoML Evaluation and Benchmarking": ["Task and dataset suite", "Evaluation protocol", "Quality metrics", "Resource budget", "Repetitions/seeds", "Variance and failure reporting"],
         "Linear Regression": [
             "Features",
             "Target variable",
@@ -1966,6 +2618,66 @@ def canonical_common_variants_for_label(label: str) -> list[str]:
 def canonical_common_mistakes_for_label(label: str) -> list[str]:
     canonical = _canonical_name(label)
     manual = {
+        "Hyperparameter Optimization": [
+            "Tuning on the test set or reporting the same validation score used for search.",
+            "Making the search space so broad that most budget goes to implausible configurations.",
+            "Treating hyperparameters like learned weights, rather than choices evaluated by retraining.",
+        ],
+        "Bayesian Optimization": [
+            "Using Bayesian optimization when evaluations are cheap or dimension is too high for a useful surrogate.",
+            "Ignoring noisy validation scores when fitting the surrogate and acquisition function.",
+            "Confusing acquisition optimization with the expensive model evaluation it selects.",
+        ],
+        "Multi-fidelity Optimization": [
+            "Assuming low-fidelity rankings always match rankings at the final resource level.",
+            "Changing resource levels without defining what resource means for the task.",
+            "Comparing methods at unequal total compute and calling the result an algorithm comparison.",
+        ],
+        "Hyperband / BOHB": [
+            "Stopping promising late-learning configurations because early scores look weak.",
+            "Confusing a Hyperband bracket and its successive-halving schedule with a single search trial.",
+            "Calling BOHB ordinary Bayesian optimization without accounting for its multi-fidelity budget allocation.",
+        ],
+        "Neural Architecture Search": [
+            "Treating the search-space design as neutral when it strongly limits possible architectures.",
+            "Trusting weight-sharing or proxy results without retraining selected architectures fairly.",
+            "Comparing architectures without matching parameter count, latency, hardware, and training budget.",
+        ],
+        "Algorithm Selection": [
+            "Leaving strong candidate algorithms out of the portfolio before selection begins.",
+            "Using test outcomes or future workload information as meta-features.",
+            "Ignoring distribution shift between benchmark instances used for training and deployment.",
+        ],
+        "Dynamic Algorithm Configuration": [
+            "Defining actions that cannot be applied at the decision points available during a run.",
+            "Optimizing a policy for one workload and assuming it transfers to another.",
+            "Comparing dynamic control with static defaults without fixing seeds, budgets, and workloads.",
+        ],
+        "Meta-learning for AutoML": [
+            "Leaking target-task outcomes into meta-features or meta-training data.",
+            "Assuming warm starts always help instead of checking for negative transfer.",
+            "Confusing similarity in dataset metadata with similarity in the best configuration.",
+        ],
+        "Multi-objective Optimization": [
+            "Collapsing objectives into a weighted score without justifying scales or stakeholder preferences.",
+            "Calling one solution best when several solutions are non-dominated on the Pareto front.",
+            "Reporting accuracy, cost, and latency without stating constraints, units, or measurement conditions.",
+        ],
+        "HPO Speedup Techniques": [
+            "Counting trials instead of comparing wall-clock time, total compute, and parallelism.",
+            "Stopping late-learning configurations using an early signal that is not predictive.",
+            "Letting asynchronous workers make decisions from stale or incomparable observations.",
+        ],
+        "Model Interpretability": [
+            "Treating a feature attribution as causal evidence.",
+            "Using an explanation method without checking its assumptions, baseline, and stability.",
+            "Explaining a single prediction while ignoring subgroup behavior and failure cases.",
+        ],
+        "AutoML Evaluation and Benchmarking": [
+            "Comparing systems with different datasets, hardware, seeds, time limits, or tuning budgets.",
+            "Using benchmark test results to choose configurations and then presenting them as unbiased evaluation.",
+            "Reporting only the best run instead of uncertainty across repeated runs and tasks.",
+        ],
         "Linear Regression": [
             "Treating correlation as causation.",
             "Ignoring multicollinearity and influential outliers.",
@@ -2048,6 +2760,78 @@ def canonical_common_mistakes_for_label(label: str) -> list[str]:
 def canonical_interview_questions_for_label(label: str) -> list[str]:
     canonical = _canonical_name(label)
     manual = {
+        "Hyperparameter Optimization": [
+            "Why is hyperparameter optimization an outer loop around model training?",
+            "How do random search, Bayesian optimization, and multi-fidelity search differ?",
+            "Why must the test set remain outside the search loop?",
+            "How would you allocate a fixed compute budget across configurations?",
+        ],
+        "Bayesian Optimization": [
+            "What do the surrogate model and acquisition function each do?",
+            "How does an acquisition function balance exploration and exploitation?",
+            "When is Bayesian optimization a poor choice?",
+            "How would you handle noisy or failed objective evaluations?",
+        ],
+        "Multi-fidelity Optimization": [
+            "What is fidelity, and why can it reduce optimization cost?",
+            "When is early performance a useful proxy for final performance?",
+            "How does multi-fidelity search differ from simply running fewer trials?",
+            "How should total compute be reported in a fair comparison?",
+        ],
+        "Hyperband / BOHB": [
+            "How does successive halving decide which configurations continue?",
+            "What does Hyperband add beyond one successive-halving schedule?",
+            "How does BOHB use model-based sampling within Hyperband?",
+            "What failure mode appears when early scores poorly predict final scores?",
+        ],
+        "Neural Architecture Search": [
+            "What are the search space, search strategy, and evaluation strategy in NAS?",
+            "Why can weight sharing make architecture ranking unreliable?",
+            "How would you compare NAS results under a fixed latency or compute budget?",
+            "Why must the selected architecture be retrained before final evaluation?",
+        ],
+        "Algorithm Selection": [
+            "How does algorithm selection map a dataset instance to a candidate algorithm?",
+            "What makes a useful meta-feature for algorithm selection?",
+            "How is algorithm selection different from hyperparameter optimization?",
+            "How would you avoid leakage across related benchmark instances?",
+        ],
+        "Dynamic Algorithm Configuration": [
+            "How does dynamic configuration differ from choosing parameters once before a run?",
+            "What are the state, action, and reward in a DAC formulation?",
+            "Why can a policy overfit a workload distribution?",
+            "How would you evaluate a DAC policy against a strong static baseline?",
+        ],
+        "Meta-learning for AutoML": [
+            "How can prior tasks guide search on a new task?",
+            "What is the difference between meta-features, warm starts, and learned priors?",
+            "What causes negative transfer in meta-learning for AutoML?",
+            "How would you prevent metadata or performance leakage?",
+        ],
+        "Multi-objective Optimization": [
+            "What does Pareto dominance mean?",
+            "Why can there be no single best solution under multiple objectives?",
+            "When should constraints be used instead of a weighted objective?",
+            "How would you report the trade-off between accuracy, latency, and cost?",
+        ],
+        "HPO Speedup Techniques": [
+            "Which speedup comes from parallelism, early stopping, surrogate modeling, or transfer?",
+            "Why can asynchronous scheduling improve utilization but hurt decisions?",
+            "What makes a learning-curve predictor useful for early termination?",
+            "Which metrics give a fair measure of speedup?",
+        ],
+        "Model Interpretability": [
+            "What is the difference between global and local interpretability?",
+            "Why is an explanation not automatically a causal explanation?",
+            "How can attribution stability and subgroup behavior be tested?",
+            "How does interpretability support AutoML model analysis and selection?",
+        ],
+        "AutoML Evaluation and Benchmarking": [
+            "What must be fixed to make two AutoML systems comparable?",
+            "Why are repeated runs and uncertainty important in benchmarking?",
+            "How do time, compute, and parallelism budgets change conclusions?",
+            "How can benchmark overfitting invalidate reported performance?",
+        ],
         "Linear Regression": [
             "What problem does linear regression solve?",
             "Why do we minimize squared residuals?",

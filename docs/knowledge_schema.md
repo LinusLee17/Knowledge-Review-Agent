@@ -28,6 +28,7 @@ Canonical concept pages are study guides, not pipeline records. The page should 
 20. Slide-derived Evidence
 21. Provenance
 22. Extraction Metadata
+23. Quality Review (only when evidence is incomplete)
 
 ## Section Rules
 
@@ -42,6 +43,7 @@ Canonical concept pages are study guides, not pipeline records. The page should 
 - `Common Mistakes` should highlight misconceptions or failure modes.
 - `Connections` should express graph-like relations in prose, such as `Depends on`, `Used in`, or `Related`.
 - `Interview Questions` should be actual questions a student can practice.
+- `Quality Review` must expose missing evidence; it must never be replaced with invented detail.
 - `Slide-derived Evidence`, `Provenance`, and `Extraction Metadata` belong at the bottom.
 
 ## Definition Quality Requirements
@@ -65,6 +67,18 @@ Rules:
 - Only populate mathematical foundations when the equation is meaningful.
 - Use complete notation and explain the symbols.
 - Leave the field empty if the math is incomplete or low value.
+
+## Generic Quality Layer
+
+Concept enrichment must use semantic fields, not one template per concept name:
+
+- choose language from concept type (`workflow`, `metric`, `model`, `method`, etc.)
+- compose definition from type + domain/topic + observed purpose/applications
+- derive workflow steps from available prerequisites, assumptions, outputs, and evaluation cues
+- derive trade-offs and interview prompts from applications, limitations, alternatives, and relations
+- emit `Quality Review` when required evidence is missing
+
+Named concept rules are optional overrides. Placeholder overrides must be rejected. Source evidence and graph relations remain authoritative.
 
 Example:
 

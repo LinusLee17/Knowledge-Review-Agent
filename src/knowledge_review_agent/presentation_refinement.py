@@ -149,7 +149,13 @@ def refine_concept_page(concept_dir: Path, refined_root: Path) -> RefinementResu
     concept_md = concept_dir / "concept.md"
     metadata_path = concept_dir / "metadata.json"
     if not concept_md.exists() or not metadata_path.exists():
-        return RefinementResult(concept_name=concept_dir.name, source_dir=concept_dir, refined_dir=refined_root / concept_dir.name, updated=False)
+        return RefinementResult(
+            concept_name=concept_dir.name,
+            source_dir=concept_dir,
+            refined_dir=refined_root / concept_dir.name,
+            created=False,
+            updated=False,
+        )
 
     metadata = load_concept_metadata(metadata_path)
     if not metadata:

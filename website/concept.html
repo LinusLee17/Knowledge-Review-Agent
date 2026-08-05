@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Concept Page</title>
-    <link rel="stylesheet" href="./styles.css?v=20260714-4" />
+    <title>Concept</title>
+    <link rel="stylesheet" href="./styles.css?v=20260805-4" />
     <script>
       window.MathJax = {
         tex: {
@@ -21,10 +21,16 @@
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="./concept.js?v=20260714-5"></script>
+    <script type="module" src="./concept.js?v=20260805-1"></script>
   </head>
-  <body>
+  <body class="concept-page">
+    <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
     <div class="concept-shell">
+      <nav class="concept-breadcrumbs" aria-label="Breadcrumb">
+        <a href="./index.html">Knowledge graph</a>
+        <span aria-hidden="true">/</span>
+        <span id="breadcrumb-title">Concept</span>
+      </nav>
       <header class="concept-header">
         <div>
           <div class="eyebrow">Knowledge Review Agent</div>
@@ -32,7 +38,7 @@
           <p id="concept-subtitle">Loading concept page.</p>
         </div>
         <div class="concept-actions">
-          <a class="button-link" href="./index.html">Back to graph</a>
+          <a class="button-link button-link-primary" href="./index.html">Back to graph</a>
           <a id="raw-link" class="button-link" target="_blank" rel="noreferrer">Open raw markdown</a>
         </div>
       </header>

@@ -43,6 +43,23 @@ from .utils import (
 )
 
 
+# These topics are often taught across many sparse slides: the slide has strong
+# topic evidence, while definition/math/application fields are distributed over
+# the lecture. Accept only when both confidence and evidence are substantial.
+CURATED_FOUNDATION_CONCEPTS = {
+    "bayesian network",
+    "markov model",
+    "hidden markov model",
+    "reinforcement learning",
+    "sampling",
+    "causal inference",
+    "experiment design",
+    "internal validity",
+    "model selection",
+    "dimensionality reduction",
+}
+
+
 def discover_pdfs(raw_root: Path) -> list[Path]:
     return sorted(
         path
@@ -538,6 +555,27 @@ def build_structured_concepts(
             and candidate.evidence_strength >= evidence_threshold
             and (candidate.definition_quality_score >= definition_threshold or lecture_support >= 0.5)
         )
+        profile = profile_for_label(candidate.concept_name)
+        curated_foundation_override = (
+            normalize_concept_key(candidate.concept_name) in CURATED_FOUNDATION_CONCEPTS
+            and candidate.confidence_score >= 0.55
+            and candidate.evidence_strength >= 0.58
+        )
+        auto_ml_seed = (
+            profile is not None
+            and profile.topic == "AutoML"
+            and profile.importance_score >= 4
+            and candidate.confidence_score >= 0.40
+            and candidate.evidence_strength >= 0.34
+        )
+        auto_ml_heading_seed = (
+            profile is not None
+            and profile.topic == "AutoML"
+            and profile.importance_score >= 5
+            and candidate.evidence_strength >= 0.30
+            and any(alias.lower() in heading.lower() for alias in (profile.concept_name, *profile.synonyms))
+        )
+        auto_ml_acceptance_override = auto_ml_seed or auto_ml_heading_seed
 
         if candidate.concept_name.lower() in {"agenda", "introduction", "summary"}:
             metrics["concepts_rejected"] += 1
@@ -557,7 +595,7 @@ def build_structured_concepts(
                 )
             )
             continue
-        if candidate.confidence_score < confidence_threshold and selection_score < confidence_threshold and not importance_eligible:
+        if candidate.confidence_score < confidence_threshold and selection_score < confidence_threshold and not importance_eligible and not auto_ml_acceptance_override and not curated_foundation_override:
             metrics["concepts_rejected"] += 1
             metrics["rejected_low_confidence"] += 1
             rejected.append(
@@ -575,7 +613,7 @@ def build_structured_concepts(
                 )
             )
             continue
-        if candidate.evidence_strength < evidence_threshold and not importance_eligible:
+        if candidate.evidence_strength < evidence_threshold and not importance_eligible and not auto_ml_acceptance_override and not curated_foundation_override:
             metrics["concepts_rejected"] += 1
             metrics["rejected_low_confidence"] += 1
             rejected.append(
@@ -593,7 +631,7 @@ def build_structured_concepts(
                 )
             )
             continue
-        if candidate.definition_quality_score < definition_threshold and not importance_eligible:
+        if candidate.definition_quality_score < definition_threshold and not importance_eligible and not auto_ml_acceptance_override and not curated_foundation_override:
             metrics["concepts_rejected"] += 1
             metrics["rejected_weak_definition"] += 1
             if candidate.concept_name.lower() in {"accuracy", "prediction", "model", "training", "feature", "data", "classification", "regression"}:
@@ -613,7 +651,7 @@ def build_structured_concepts(
                 )
             )
             continue
-        if candidate.interview_relevance < relevance_threshold and not importance_eligible:
+        if candidate.interview_relevance < relevance_threshold and not importance_eligible and not auto_ml_acceptance_override and not curated_foundation_override:
             metrics["concepts_rejected"] += 1
             metrics["rejected_low_depth"] += 1
             rejected.append(
@@ -652,6 +690,12 @@ def build_structured_concepts(
             continue
         extraction = _build_concept_extraction(candidate, text_lines, heading, course, page_number, source_pdf)
         depth_score = _extraction_depth_score(extraction)
+        # AutoML slides often define a method and compare it across several
+        # pages, without repeating intuition/math/application fields on each
+        # page. Strong source evidence + a usable definition is enough for a
+        # seeded AutoML profile; ordinary concepts keep the normal depth gate.
+        if (auto_ml_acceptance_override or curated_foundation_override) and depth_score < depth_threshold:
+            depth_score = depth_threshold
         # Educational importance may rescue weak confidence, but never an explanation
         # that lacks enough substance to justify a standalone knowledge page.
         if depth_score < depth_threshold:
@@ -905,6 +949,116 @@ def run_concept_filter(
             }
         )
 
+    return results
+
+
+def refilter_processed_lectures(
+    processed_root: Path,
+    course_ids: set[str] | None = None,
+) -> list[dict[str, object]]:
+    """Re-run concept selection against stored lecture JSON, without PDF parsing."""
+    wanted = {str(value).strip() for value in (course_ids or set()) if str(value).strip()}
+    results: list[dict[str, object]] = []
+    graph_context = load_graph_context()
+
+    for lecture_json_path in sorted(processed_root.rglob("lecture.json")):
+        try:
+            payload = json.loads(lecture_json_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        raw_course = payload.get("course", {}) or {}
+        course = CourseMetadata(
+            course_id=str(raw_course.get("course_id", "") or ""),
+            course_name=str(raw_course.get("course_name", "") or ""),
+            category=str(raw_course.get("category", "") or ""),
+            semester=str(raw_course.get("semester", "") or ""),
+            folder=str(raw_course.get("folder", "") or ""),
+            notes=str(raw_course.get("notes", "") or ""),
+        )
+        if wanted and course.course_id not in wanted:
+            continue
+
+        raw_pages = payload.get("pages", []) or []
+        lecture_lines: list[str] = []
+        for raw_page in raw_pages:
+            lecture_lines.extend(normalize_lines(str(raw_page.get("extracted_text", "") or "")))
+            heading = str(raw_page.get("heading", "") or "")
+            if heading:
+                lecture_lines.append(heading)
+        lecture_context = normalize_spaces(" ".join(lecture_lines))
+        normalized_pages: list[PageExtraction] = []
+        extraction_metrics = ExtractionMetrics(total_pages_processed=len(raw_pages))
+
+        for raw_page in raw_pages:
+            page_number = int(raw_page.get("page_number", 0) or 0)
+            text_lines = normalize_lines(str(raw_page.get("extracted_text", "") or ""))
+            tables = raw_page.get("tables", []) or []
+            candidate_details, concepts, rejected, page_metrics = build_structured_concepts(
+                text_lines,
+                str(raw_page.get("heading", "") or ""),
+                tables,
+                course,
+                page_number,
+                str(payload.get("pdf", "") or ""),
+                # Reuse whole-lecture context so sparse slide definitions can
+                # qualify when their evidence is distributed across pages.
+                lecture_context=lecture_context,
+                lecture_lines=lecture_lines,
+                graph_context=graph_context,
+            )
+            for metric_name in (
+                "candidate_concepts_generated",
+                "concepts_accepted",
+                "concepts_rejected",
+                "rejected_low_confidence",
+                "rejected_structural_noise",
+                "rejected_ocr_noise",
+                "rejected_generic_term",
+                "rejected_weak_definition",
+                "rejected_low_depth",
+            ):
+                setattr(extraction_metrics, metric_name, getattr(extraction_metrics, metric_name) + page_metrics[metric_name])
+            normalized_pages.append(
+                PageExtraction(
+                    page_number=page_number,
+                    heading=str(raw_page.get("heading", "") or ""),
+                    extracted_text="\n".join(text_lines),
+                    tables=tables,
+                    image_count=int(raw_page.get("image_count", 0) or 0),
+                    concept_candidates=[concept.concept_name for concept in concepts],
+                    candidate_concepts=candidate_details,
+                    rejected_concepts=rejected,
+                    concepts=concepts,
+                )
+            )
+
+        if extraction_metrics.candidate_concepts_generated:
+            extraction_metrics.acceptance_rate = round(
+                extraction_metrics.concepts_accepted / extraction_metrics.candidate_concepts_generated,
+                3,
+            )
+        extraction = DocumentExtraction(
+            pdf_path=Path(str(payload.get("pdf", "") or lecture_json_path.name)),
+            relative_path=Path(str(payload.get("pdf", "") or lecture_json_path.name)),
+            course=course,
+            title=str(payload.get("title", "") or lecture_json_path.parent.name),
+            page_count=int(payload.get("page_count", len(normalized_pages)) or len(normalized_pages)),
+            pages=normalized_pages,
+            warnings=[str(value) for value in (payload.get("warnings", []) or [])],
+            metrics=extraction_metrics,
+        )
+        written = write_extraction_outputs(extraction, processed_root)
+        results.append(
+            {
+                "lecture_json": lecture_json_path.as_posix(),
+                "lecture_md": written["lecture_md"].as_posix(),
+                "course_id": course.course_id,
+                "pages": len(normalized_pages),
+                "candidate_concepts": extraction_metrics.candidate_concepts_generated,
+                "concepts_accepted": extraction_metrics.concepts_accepted,
+                "concepts_rejected": extraction_metrics.concepts_rejected,
+            }
+        )
     return results
 
 
