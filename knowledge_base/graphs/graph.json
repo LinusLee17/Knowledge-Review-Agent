@@ -4181,7 +4181,7 @@
       ],
       "concept_key": "algorithm selection",
       "concept_name": "Algorithm Selection",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Algorithm Selection/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Algorithm Selection/concept.md",
       "connected_edge_count": 7,
       "contributing_courses": [
         "Auto-ML"
@@ -4198,7 +4198,7 @@
       "importance_score": 5,
       "interview_notes": "- How does algorithm selection map a dataset instance to a candidate algorithm?\n- What makes a useful meta-feature for algorithm selection?\n- How is algorithm selection different from hyperparameter optimization?\n- How would you avoid leakage across related benchmark instances?",
       "metadata_path": "knowledge_base/concepts/Algorithm Selection/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Algorithm Selection/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Algorithm Selection/metadata.json",
       "node_id": "algorithm-selection",
       "prerequisites": [
         "Cross Validation",
@@ -4242,7 +4242,7 @@
       ],
       "concept_key": "alternative hypothesis",
       "concept_name": "Alternative Hypothesis",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Alternative Hypothesis/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Alternative Hypothesis/concept.md",
       "connected_edge_count": 4,
       "contributing_courses": [
         "ST1131"
@@ -4258,7 +4258,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Alternative Hypothesis solve, and what is its output?\n- Explain Alternative Hypothesis using one concrete input-to-decision example.\n- What assumptions must hold before using Alternative Hypothesis?\n- Which trade-off decides whether to use Alternative Hypothesis instead of an alternative?\n- How does Alternative Hypothesis compare with Null Hypothesis?",
       "metadata_path": "knowledge_base/concepts/Alternative Hypothesis/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Alternative Hypothesis/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Alternative Hypothesis/metadata.json",
       "node_id": "alternative-hypothesis",
       "prerequisites": [
         "Hypothesis Testing"
@@ -4308,7 +4308,7 @@
       ],
       "concept_key": "automl evaluation and benchmarking",
       "concept_name": "AutoML Evaluation and Benchmarking",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/AutoML Evaluation and Benchmarking/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/AutoML Evaluation and Benchmarking/concept.md",
       "connected_edge_count": 3,
       "contributing_courses": [
         "Auto-ML"
@@ -4323,7 +4323,7 @@
       "importance_score": 5,
       "interview_notes": "- What must be fixed to make two AutoML systems comparable?\n- Why are repeated runs and uncertainty important in benchmarking?\n- How do time, compute, and parallelism budgets change conclusions?\n- How can benchmark overfitting invalidate reported performance?",
       "metadata_path": "knowledge_base/concepts/AutoML Evaluation and Benchmarking/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/AutoML Evaluation and Benchmarking/metadata.json",
+      "metadata_url": "../knowledge_base/refined/AutoML Evaluation and Benchmarking/metadata.json",
       "node_id": "automl-evaluation-and-benchmarking",
       "prerequisites": [
         "Cross Validation",
@@ -4378,7 +4378,7 @@
       ],
       "concept_key": "bayesian network",
       "concept_name": "Bayesian Networks",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Bayesian Networks/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Bayesian Networks/concept.md",
       "connected_edge_count": 5,
       "contributing_courses": [
         "BT3102"
@@ -4401,7 +4401,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Bayesian Networks solve, and what is its output?\n- Explain Bayesian Networks using one concrete input-to-decision example.\n- What assumptions must hold before using Bayesian Networks?\n- Which trade-off decides whether to use Bayesian Networks instead of an alternative?\n- How does Bayesian Networks compare with Causal Inference?",
       "metadata_path": "knowledge_base/concepts/Bayesian Networks/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Bayesian Networks/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Bayesian Networks/metadata.json",
       "node_id": "bayesian-network",
       "prerequisites": [
         "Conditional Independence",
@@ -4455,7 +4455,7 @@
       ],
       "concept_key": "bayesian optimization",
       "concept_name": "Bayesian Optimization",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Bayesian Optimization/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Bayesian Optimization/concept.md",
       "connected_edge_count": 9,
       "contributing_courses": [
         "Auto-ML"
@@ -4475,7 +4475,7 @@
       "importance_score": 5,
       "interview_notes": "- What do the surrogate model and acquisition function each do?\n- How does an acquisition function balance exploration and exploitation?\n- When is Bayesian optimization a poor choice?\n- How would you handle noisy or failed objective evaluations?",
       "metadata_path": "knowledge_base/concepts/Bayesian Optimization/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Bayesian Optimization/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Bayesian Optimization/metadata.json",
       "node_id": "bayesian-optimization",
       "prerequisites": [
         "Hyperparameter Optimization",
@@ -4527,7 +4527,7 @@
       ],
       "concept_key": "business continuity management",
       "concept_name": "Business Continuity Management",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Business Continuity Management/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Business Continuity Management/concept.md",
       "connected_edge_count": 2,
       "contributing_courses": [
         "IS3103"
@@ -4543,7 +4543,7 @@
       "importance_score": 4,
       "interview_notes": "- What problem does Business Continuity Management solve in the workplace?\n- How would you apply Business Continuity Management to a real team or organisational scenario?\n- What can go wrong if Business Continuity Management is handled poorly?\n- How does Business Continuity Management relate to communication, alignment, or change?",
       "metadata_path": "knowledge_base/concepts/Business Continuity Management/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Business Continuity Management/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Business Continuity Management/metadata.json",
       "node_id": "business-continuity-management",
       "prerequisites": [],
       "related_concepts": [
@@ -4587,7 +4587,7 @@
       ],
       "concept_key": "business strategy",
       "concept_name": "Business Strategy",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Business Strategy/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Business Strategy/concept.md",
       "connected_edge_count": 4,
       "contributing_courses": [
         "IS3103"
@@ -4604,7 +4604,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Business Strategy solve in the workplace?\n- How would you apply Business Strategy to a real team or organisational scenario?\n- What can go wrong if Business Strategy is handled poorly?\n- How does Business Strategy relate to communication, alignment, or change?",
       "metadata_path": "knowledge_base/concepts/Business Strategy/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Business Strategy/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Business Strategy/metadata.json",
       "node_id": "business-strategy",
       "prerequisites": [],
       "related_concepts": [
@@ -4650,7 +4650,7 @@
       ],
       "concept_key": "causal inference",
       "concept_name": "Causal Inference",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Causal Inference/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Causal Inference/concept.md",
       "connected_edge_count": 6,
       "contributing_courses": [
         "BT2101"
@@ -4669,7 +4669,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Causal Inference solve, and what is its output?\n- Explain Causal Inference using one concrete input-to-decision example.\n- Walk through Causal Inference step by step and name its stopping or evaluation rule.\n- What assumptions must hold before using Causal Inference?\n- Which trade-off decides whether to use Causal Inference instead of an alternative?\n- How does Causal Inference compare with Bayesian Networks?",
       "metadata_path": "knowledge_base/concepts/Causal Inference/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Causal Inference/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Causal Inference/metadata.json",
       "node_id": "causal-inference",
       "prerequisites": [
         "Experiment Design",
@@ -4716,7 +4716,7 @@
       ],
       "concept_key": "central limit theorem",
       "concept_name": "Central Limit Theorem",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Central Limit Theorem/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Central Limit Theorem/concept.md",
       "connected_edge_count": 4,
       "contributing_courses": [
         "ST1131"
@@ -4732,7 +4732,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Central Limit Theorem solve, and what is its output?\n- Explain Central Limit Theorem using one concrete input-to-decision example.\n- What assumptions must hold before using Central Limit Theorem?\n- Which trade-off decides whether to use Central Limit Theorem instead of an alternative?\n- How does Central Limit Theorem compare with Confidence Interval?",
       "metadata_path": "knowledge_base/concepts/Central Limit Theorem/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Central Limit Theorem/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Central Limit Theorem/metadata.json",
       "node_id": "central-limit-theorem",
       "prerequisites": [
         "Mean",
@@ -4783,7 +4783,7 @@
       ],
       "concept_key": "change management",
       "concept_name": "Change Management",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Change Management/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Change Management/concept.md",
       "connected_edge_count": 5,
       "contributing_courses": [
         "IS3103"
@@ -4798,7 +4798,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Change Management solve in the workplace?\n- How would you apply Change Management to a real team or organisational scenario?\n- What can go wrong if Change Management is handled poorly?\n- How does Change Management relate to communication, alignment, or change?",
       "metadata_path": "knowledge_base/concepts/Change Management/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Change Management/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Change Management/metadata.json",
       "node_id": "change-management",
       "prerequisites": [],
       "related_concepts": [
@@ -4846,7 +4846,7 @@
       ],
       "concept_key": "communication",
       "concept_name": "Communication",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Communication/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Communication/concept.md",
       "connected_edge_count": 4,
       "contributing_courses": [
         "IS3103"
@@ -4870,7 +4870,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Communication solve in the workplace?\n- How would you apply Communication to a real team or organisational scenario?\n- What can go wrong if Communication is handled poorly?\n- How does Communication relate to communication, alignment, or change?",
       "metadata_path": "knowledge_base/concepts/Communication/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Communication/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Communication/metadata.json",
       "node_id": "communication",
       "prerequisites": [],
       "related_concepts": [
@@ -4913,7 +4913,7 @@
       ],
       "concept_key": "confidence interval",
       "concept_name": "Confidence Interval",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Confidence Interval/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Confidence Interval/concept.md",
       "connected_edge_count": 8,
       "contributing_courses": [
         "BT1101",
@@ -4933,7 +4933,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Confidence Interval solve, and what is its output?\n- Explain Confidence Interval using one concrete input-to-decision example.\n- What does the denominator of Confidence Interval include or exclude?\n- What assumptions must hold before using Confidence Interval?\n- Which trade-off decides whether to use Confidence Interval instead of an alternative?\n- How does Confidence Interval compare with Hypothesis Testing?",
       "metadata_path": "knowledge_base/concepts/Confidence Interval/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Confidence Interval/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Confidence Interval/metadata.json",
       "node_id": "confidence-interval",
       "prerequisites": [
         "Estimation",
@@ -4978,7 +4978,7 @@
       ],
       "concept_key": "data model",
       "concept_name": "Data Model",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Data Model/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Data Model/concept.md",
       "connected_edge_count": 4,
       "contributing_courses": [
         "BT2102"
@@ -4994,7 +4994,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Data Model solve, and what is its output?\n- Explain Data Model using one concrete input-to-decision example.\n- What assumptions must hold before using Data Model?\n- Which trade-off decides whether to use Data Model instead of an alternative?\n- How does Data Model compare with Database Normalization?",
       "metadata_path": "knowledge_base/concepts/Data Model/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Data Model/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Data Model/metadata.json",
       "node_id": "data-model",
       "prerequisites": [
         "Database"
@@ -5039,7 +5039,7 @@
       ],
       "concept_key": "data visualization",
       "concept_name": "Data Visualization",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Data Visualization/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Data Visualization/concept.md",
       "connected_edge_count": 2,
       "contributing_courses": [
         "BT2102"
@@ -5054,7 +5054,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Data Visualization solve, and what is its output?\n- Explain Data Visualization using one concrete input-to-decision example.\n- Walk through Data Visualization step by step and name its stopping or evaluation rule.\n- What assumptions must hold before using Data Visualization?\n- Which trade-off decides whether to use Data Visualization instead of an alternative?\n- How does Data Visualization compare with Dashboard?",
       "metadata_path": "knowledge_base/concepts/Data Visualization/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Data Visualization/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Data Visualization/metadata.json",
       "node_id": "data-visualization",
       "prerequisites": [],
       "related_concepts": [
@@ -5095,7 +5095,7 @@
       ],
       "concept_key": "database",
       "concept_name": "Database",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Database/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Database/concept.md",
       "connected_edge_count": 5,
       "contributing_courses": [
         "BT2102"
@@ -5112,7 +5112,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Database solve, and what is its output?\n- Explain Database using one concrete input-to-decision example.\n- What assumptions must hold before using Database?\n- Which trade-off decides whether to use Database instead of an alternative?\n- How does Database compare with Data Model?",
       "metadata_path": "knowledge_base/concepts/Database/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Database/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Database/metadata.json",
       "node_id": "database",
       "prerequisites": [],
       "related_concepts": [
@@ -5157,7 +5157,7 @@
       ],
       "concept_key": "decision making",
       "concept_name": "Decision Making",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Decision Making/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Decision Making/concept.md",
       "connected_edge_count": 3,
       "contributing_courses": [
         "IS3103"
@@ -5174,7 +5174,7 @@
       "importance_score": 4,
       "interview_notes": "- What problem does Decision Making solve in the workplace?\n- How would you apply Decision Making to a real team or organisational scenario?\n- What can go wrong if Decision Making is handled poorly?\n- How does Decision Making relate to communication, alignment, or change?",
       "metadata_path": "knowledge_base/concepts/Decision Making/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Decision Making/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Decision Making/metadata.json",
       "node_id": "decision-making",
       "prerequisites": [],
       "related_concepts": [
@@ -5218,7 +5218,7 @@
       ],
       "concept_key": "decision tree",
       "concept_name": "Decision Trees",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Decision Trees/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Decision Trees/concept.md",
       "connected_edge_count": 3,
       "contributing_courses": [
         "BT4240",
@@ -5235,7 +5235,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Decision Trees solve, and what is its output?\n- Explain Decision Trees using one concrete input-to-decision example.\n- Walk through Decision Trees step by step and name its stopping or evaluation rule.\n- What assumptions must hold before using Decision Trees?\n- Which trade-off decides whether to use Decision Trees instead of an alternative?\n- How does Decision Trees compare with Classification?",
       "metadata_path": "knowledge_base/concepts/Decision Trees/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Decision Trees/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Decision Trees/metadata.json",
       "node_id": "decision-tree",
       "prerequisites": [
         "Entropy",
@@ -5286,7 +5286,7 @@
       ],
       "concept_key": "digital innovation",
       "concept_name": "Digital Innovation",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Digital Innovation/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Digital Innovation/concept.md",
       "connected_edge_count": 2,
       "contributing_courses": [
         "IS3103"
@@ -5302,7 +5302,7 @@
       "importance_score": 4,
       "interview_notes": "- What problem does Digital Innovation solve in the workplace?\n- How would you apply Digital Innovation to a real team or organisational scenario?\n- What can go wrong if Digital Innovation is handled poorly?\n- How does Digital Innovation relate to communication, alignment, or change?",
       "metadata_path": "knowledge_base/concepts/Digital Innovation/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Digital Innovation/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Digital Innovation/metadata.json",
       "node_id": "digital-innovation",
       "prerequisites": [],
       "related_concepts": [
@@ -5348,7 +5348,7 @@
       ],
       "concept_key": "digital transformation",
       "concept_name": "Digital Transformation",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Digital Transformation/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Digital Transformation/concept.md",
       "connected_edge_count": 5,
       "contributing_courses": [
         "IS3103"
@@ -5366,7 +5366,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Digital Transformation solve in the workplace?\n- How would you apply Digital Transformation to a real team or organisational scenario?\n- What can go wrong if Digital Transformation is handled poorly?\n- How does Digital Transformation relate to communication, alignment, or change?",
       "metadata_path": "knowledge_base/concepts/Digital Transformation/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Digital Transformation/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Digital Transformation/metadata.json",
       "node_id": "digital-transformation",
       "prerequisites": [],
       "related_concepts": [
@@ -5412,7 +5412,7 @@
       ],
       "concept_key": "dimensionality reduction",
       "concept_name": "Dimensionality Reduction",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Dimensionality Reduction/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Dimensionality Reduction/concept.md",
       "connected_edge_count": 3,
       "contributing_courses": [
         "BT1101"
@@ -5427,7 +5427,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Dimensionality Reduction solve, and what is its output?\n- Explain Dimensionality Reduction using one concrete input-to-decision example.\n- Walk through Dimensionality Reduction step by step and name its stopping or evaluation rule.\n- What assumptions must hold before using Dimensionality Reduction?\n- Which trade-off decides whether to use Dimensionality Reduction instead of an alternative?\n- How does Dimensionality Reduction compare with Feature Engineering?",
       "metadata_path": "knowledge_base/concepts/Dimensionality Reduction/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Dimensionality Reduction/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Dimensionality Reduction/metadata.json",
       "node_id": "dimensionality-reduction",
       "prerequisites": [
         "Linear Algebra",
@@ -5479,7 +5479,7 @@
       ],
       "concept_key": "dynamic algorithm configuration",
       "concept_name": "Dynamic Algorithm Configuration",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Dynamic Algorithm Configuration/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Dynamic Algorithm Configuration/concept.md",
       "connected_edge_count": 4,
       "contributing_courses": [
         "Auto-ML"
@@ -5495,7 +5495,7 @@
       "importance_score": 5,
       "interview_notes": "- How does dynamic configuration differ from choosing parameters once before a run?\n- What are the state, action, and reward in a DAC formulation?\n- Why can a policy overfit a workload distribution?\n- How would you evaluate a DAC policy against a strong static baseline?",
       "metadata_path": "knowledge_base/concepts/Dynamic Algorithm Configuration/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Dynamic Algorithm Configuration/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Dynamic Algorithm Configuration/metadata.json",
       "node_id": "dynamic-algorithm-configuration",
       "prerequisites": [
         "Algorithm Selection",
@@ -5541,7 +5541,7 @@
       ],
       "concept_key": "entropy",
       "concept_name": "Entropy",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Entropy/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Entropy/concept.md",
       "connected_edge_count": 2,
       "contributing_courses": [
         "BT4240",
@@ -5558,7 +5558,7 @@
       "importance_score": 4,
       "interview_notes": "- Derive entropy for a fair binary distribution and for a distribution where one class has probability 1. Why do values differ?\n- What do the probability values, logarithm base, and units mean in (H(X))?\n- How does a decision tree use entropy to calculate information gain?\n- Why can information gain prefer a feature with many distinct values?\n- Distinguish entropy, conditional entropy, cross-entropy, and Gini impurity.\n- When would you inspect calibration or log loss instead of entropy alone?",
       "metadata_path": "knowledge_base/concepts/Entropy/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Entropy/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Entropy/metadata.json",
       "node_id": "entropy",
       "prerequisites": [
         "Probability"
@@ -5608,7 +5608,7 @@
       ],
       "concept_key": "experiment design",
       "concept_name": "Experiment Design",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Experiment Design/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Experiment Design/concept.md",
       "connected_edge_count": 7,
       "contributing_courses": [
         "BT1101",
@@ -5630,7 +5630,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Experiment Design solve, and what is its output?\n- Explain Experiment Design using one concrete input-to-decision example.\n- Walk through Experiment Design step by step and name its stopping or evaluation rule.\n- What assumptions must hold before using Experiment Design?\n- Which trade-off decides whether to use Experiment Design instead of an alternative?\n- How does Experiment Design compare with Causal Inference?",
       "metadata_path": "knowledge_base/concepts/Experiment Design/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Experiment Design/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Experiment Design/metadata.json",
       "node_id": "experiment-design",
       "prerequisites": [
         "Hypothesis Testing",
@@ -5683,7 +5683,7 @@
       ],
       "concept_key": "exploratory data analysis",
       "concept_name": "Exploratory Data Analysis",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Exploratory Data Analysis/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Exploratory Data Analysis/concept.md",
       "connected_edge_count": 3,
       "contributing_courses": [
         "ST1131"
@@ -5703,7 +5703,7 @@
       "importance_score": 4,
       "interview_notes": "- Walk through an EDA workflow for a new dataset. What do you inspect first, and why?\n- Which plot and summary would you use for one numeric variable, two numeric variables, and a numeric/categorical pair?\n- How would you investigate an outlier before removing it?\n- Why does a visible association between two variables not establish causation?\n- How can missingness, sampling bias, or subgroup structure change your conclusion?\n- Give one example where EDA changes a modeling or data-collection decision.\n- How does Exploratory Data Analysis compare with Data Cleaning?",
       "metadata_path": "knowledge_base/concepts/Exploratory Data Analysis/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Exploratory Data Analysis/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Exploratory Data Analysis/metadata.json",
       "node_id": "exploratory-data-analysis",
       "prerequisites": [
         "Data Visualization",
@@ -5748,7 +5748,7 @@
       ],
       "concept_key": "functional dependency",
       "concept_name": "Functional Dependency",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Functional Dependency/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Functional Dependency/concept.md",
       "connected_edge_count": 2,
       "contributing_courses": [
         "BT2102"
@@ -5763,7 +5763,7 @@
       "importance_score": 4,
       "interview_notes": "- What problem does Functional Dependency solve, and what is its output?\n- Explain Functional Dependency using one concrete input-to-decision example.\n- What assumptions must hold before using Functional Dependency?\n- Which trade-off decides whether to use Functional Dependency instead of an alternative?\n- How does Functional Dependency compare with Database Normalization?",
       "metadata_path": "knowledge_base/concepts/Functional Dependency/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Functional Dependency/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Functional Dependency/metadata.json",
       "node_id": "functional-dependency",
       "prerequisites": [
         "Relational Data Model"
@@ -5810,7 +5810,7 @@
       ],
       "concept_key": "gradient descent",
       "concept_name": "Gradient Descent",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Gradient Descent/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Gradient Descent/concept.md",
       "connected_edge_count": 2,
       "contributing_courses": [
         "BT4240",
@@ -5830,7 +5830,7 @@
       "importance_score": 5,
       "interview_notes": "- Why is the learning rate so important?\n- How do batch, stochastic, and mini-batch gradient descent differ?\n- Why does feature scaling often help convergence?\n- Why can gradient descent be slow or unstable?",
       "metadata_path": "knowledge_base/concepts/Gradient Descent/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Gradient Descent/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Gradient Descent/metadata.json",
       "node_id": "gradient-descent",
       "prerequisites": [
         "Calculus",
@@ -5884,7 +5884,7 @@
       ],
       "concept_key": "hidden markov model",
       "concept_name": "Hidden Markov Models",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Hidden Markov Models/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Hidden Markov Models/concept.md",
       "connected_edge_count": 5,
       "contributing_courses": [
         "BT3102"
@@ -5903,7 +5903,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Hidden Markov Models solve, and what is its output?\n- Explain Hidden Markov Models using one concrete input-to-decision example.\n- What assumptions must hold before using Hidden Markov Models?\n- Which trade-off decides whether to use Hidden Markov Models instead of an alternative?\n- How does Hidden Markov Models compare with Bayesian Networks?",
       "metadata_path": "knowledge_base/concepts/Hidden Markov Models/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Hidden Markov Models/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Hidden Markov Models/metadata.json",
       "node_id": "hidden-markov-model",
       "prerequisites": [
         "Markov Models",
@@ -5955,7 +5955,7 @@
       ],
       "concept_key": "hpo speedup technique",
       "concept_name": "HPO Speedup Techniques",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/HPO Speedup Techniques/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/HPO Speedup Techniques/concept.md",
       "connected_edge_count": 4,
       "contributing_courses": [
         "Auto-ML"
@@ -5971,7 +5971,7 @@
       "importance_score": 4,
       "interview_notes": "- Which speedup comes from parallelism, early stopping, surrogate modeling, or transfer?\n- Why can asynchronous scheduling improve utilization but hurt decisions?\n- What makes a learning-curve predictor useful for early termination?\n- Which metrics give a fair measure of speedup?",
       "metadata_path": "knowledge_base/concepts/HPO Speedup Techniques/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/HPO Speedup Techniques/metadata.json",
+      "metadata_url": "../knowledge_base/refined/HPO Speedup Techniques/metadata.json",
       "node_id": "hpo-speedup-technique",
       "prerequisites": [
         "Hyperparameter Optimization",
@@ -6022,7 +6022,7 @@
       ],
       "concept_key": "hyperband bohb",
       "concept_name": "Hyperband / BOHB",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Hyperband - BOHB/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Hyperband - BOHB/concept.md",
       "connected_edge_count": 6,
       "contributing_courses": [
         "Auto-ML"
@@ -6037,7 +6037,7 @@
       "importance_score": 4,
       "interview_notes": "- How does successive halving decide which configurations continue?\n- What does Hyperband add beyond one successive-halving schedule?\n- How does BOHB use model-based sampling within Hyperband?\n- What failure mode appears when early scores poorly predict final scores?",
       "metadata_path": "knowledge_base/concepts/Hyperband - BOHB/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Hyperband - BOHB/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Hyperband - BOHB/metadata.json",
       "node_id": "hyperband-bohb",
       "prerequisites": [
         "Bayesian Optimization",
@@ -6089,7 +6089,7 @@
       ],
       "concept_key": "hyperparameter optimization",
       "concept_name": "Hyperparameter Optimization",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Hyperparameter Optimization/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Hyperparameter Optimization/concept.md",
       "connected_edge_count": 14,
       "contributing_courses": [
         "Auto-ML"
@@ -6110,7 +6110,7 @@
       "importance_score": 5,
       "interview_notes": "- Why is hyperparameter optimization an outer loop around model training?\n- How do random search, Bayesian optimization, and multi-fidelity search differ?\n- Why must the test set remain outside the search loop?\n- How would you allocate a fixed compute budget across configurations?",
       "metadata_path": "knowledge_base/concepts/Hyperparameter Optimization/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Hyperparameter Optimization/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Hyperparameter Optimization/metadata.json",
       "node_id": "hyperparameter-optimization",
       "prerequisites": [
         "Cross Validation",
@@ -6163,7 +6163,7 @@
       ],
       "concept_key": "hypothesis testing",
       "concept_name": "Hypothesis Testing",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Hypothesis Testing/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Hypothesis Testing/concept.md",
       "connected_edge_count": 13,
       "contributing_courses": [
         "ST1131"
@@ -6180,7 +6180,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Hypothesis Testing solve, and what is its output?\n- Explain Hypothesis Testing using one concrete input-to-decision example.\n- Walk through Hypothesis Testing step by step and name its stopping or evaluation rule.\n- What assumptions must hold before using Hypothesis Testing?\n- Which trade-off decides whether to use Hypothesis Testing instead of an alternative?\n- How does Hypothesis Testing compare with Confidence Interval?",
       "metadata_path": "knowledge_base/concepts/Hypothesis Testing/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Hypothesis Testing/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Hypothesis Testing/metadata.json",
       "node_id": "hypothesis-testing",
       "prerequisites": [
         "Probability",
@@ -6230,7 +6230,7 @@
       ],
       "concept_key": "internal validity",
       "concept_name": "Internal Validity",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Internal Validity/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Internal Validity/concept.md",
       "connected_edge_count": 4,
       "contributing_courses": [
         "BT2101"
@@ -6247,7 +6247,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Internal Validity solve, and what is its output?\n- Explain Internal Validity using one concrete input-to-decision example.\n- What assumptions must hold before using Internal Validity?\n- Which trade-off decides whether to use Internal Validity instead of an alternative?\n- How does Internal Validity compare with Causal Inference?",
       "metadata_path": "knowledge_base/concepts/Internal Validity/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Internal Validity/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Internal Validity/metadata.json",
       "node_id": "internal-validity",
       "prerequisites": [
         "Causal Inference",
@@ -6296,7 +6296,7 @@
       ],
       "concept_key": "is governance",
       "concept_name": "IS Governance",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/IS Governance/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/IS Governance/concept.md",
       "connected_edge_count": 4,
       "contributing_courses": [
         "IS3103"
@@ -6313,7 +6313,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does IS Governance solve in the workplace?\n- How would you apply IS Governance to a real team or organisational scenario?\n- What can go wrong if IS Governance is handled poorly?\n- How does IS Governance relate to communication, alignment, or change?",
       "metadata_path": "knowledge_base/concepts/IS Governance/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/IS Governance/metadata.json",
+      "metadata_url": "../knowledge_base/refined/IS Governance/metadata.json",
       "node_id": "is-governance",
       "prerequisites": [],
       "related_concepts": [
@@ -6359,7 +6359,7 @@
       ],
       "concept_key": "leadership",
       "concept_name": "Leadership",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Leadership/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Leadership/concept.md",
       "connected_edge_count": 5,
       "contributing_courses": [
         "IS3103"
@@ -6383,7 +6383,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Leadership solve in the workplace?\n- How would you apply Leadership to a real team or organisational scenario?\n- What can go wrong if Leadership is handled poorly?\n- How does Leadership relate to communication, alignment, or change?",
       "metadata_path": "knowledge_base/concepts/Leadership/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Leadership/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Leadership/metadata.json",
       "node_id": "leadership",
       "prerequisites": [],
       "related_concepts": [
@@ -6431,7 +6431,7 @@
       ],
       "concept_key": "linear regression",
       "concept_name": "Linear Regression",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Linear Regression/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Linear Regression/concept.md",
       "connected_edge_count": 4,
       "contributing_courses": [
         "BT1101",
@@ -6456,7 +6456,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Linear Regression solve, and what is its output?\n- Explain Linear Regression using one concrete input-to-decision example.\n- What assumptions must hold before using Linear Regression?\n- Which trade-off decides whether to use Linear Regression instead of an alternative?\n- How does Linear Regression compare with Lasso Regression?",
       "metadata_path": "knowledge_base/concepts/Linear Regression/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Linear Regression/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Linear Regression/metadata.json",
       "node_id": "linear-regression",
       "prerequisites": [
         "Matrix Algebra",
@@ -6512,7 +6512,7 @@
       ],
       "concept_key": "logistic regression",
       "concept_name": "Logistic Regression",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Logistic Regression/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Logistic Regression/concept.md",
       "connected_edge_count": 6,
       "contributing_courses": [
         "BT4240",
@@ -6529,7 +6529,7 @@
       "importance_score": 5,
       "interview_notes": "- Why does logistic regression use the sigmoid function?\n- How do you turn probabilities into class labels?\n- When is logistic regression a strong baseline?\n- How does regularization change the model?",
       "metadata_path": "knowledge_base/concepts/Logistic Regression/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Logistic Regression/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Logistic Regression/metadata.json",
       "node_id": "logistic-regression",
       "prerequisites": [
         "Linear Regression",
@@ -6572,7 +6572,7 @@
       ],
       "concept_key": "margin of error",
       "concept_name": "Margin of Error",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Margin of Error/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Margin of Error/concept.md",
       "connected_edge_count": 4,
       "contributing_courses": [
         "ST1131"
@@ -6587,7 +6587,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Margin of Error solve, and what is its output?\n- Explain Margin of Error using one concrete input-to-decision example.\n- What does the denominator of Margin of Error include or exclude?\n- What assumptions must hold before using Margin of Error?\n- Which trade-off decides whether to use Margin of Error instead of an alternative?\n- How does Margin of Error compare with Confidence Interval?",
       "metadata_path": "knowledge_base/concepts/Margin of Error/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Margin of Error/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Margin of Error/metadata.json",
       "node_id": "margin-of-error",
       "prerequisites": [
         "Confidence Interval",
@@ -6633,7 +6633,7 @@
       ],
       "concept_key": "markov model",
       "concept_name": "Markov Models",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Markov Models/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Markov Models/concept.md",
       "connected_edge_count": 6,
       "contributing_courses": [
         "BT3102"
@@ -6652,7 +6652,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Markov Models solve, and what is its output?\n- Explain Markov Models using one concrete input-to-decision example.\n- What assumptions must hold before using Markov Models?\n- Which trade-off decides whether to use Markov Models instead of an alternative?\n- How does Markov Models compare with Bayesian Networks?",
       "metadata_path": "knowledge_base/concepts/Markov Models/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Markov Models/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Markov Models/metadata.json",
       "node_id": "markov-model",
       "prerequisites": [
         "Conditional Probability",
@@ -6702,7 +6702,7 @@
       ],
       "concept_key": "maximum likelihood estimation",
       "concept_name": "Maximum Likelihood Estimation",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Maximum Likelihood Estimation/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Maximum Likelihood Estimation/concept.md",
       "connected_edge_count": 3,
       "contributing_courses": [
         "BT3102",
@@ -6719,7 +6719,7 @@
       "importance_score": 5,
       "interview_notes": "- What does it mean to maximize a likelihood?\n- Why do we usually work with the log-likelihood?\n- How is MLE connected to many standard statistical estimators?\n- How does MLE differ from MAP estimation?",
       "metadata_path": "knowledge_base/concepts/Maximum Likelihood Estimation/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Maximum Likelihood Estimation/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Maximum Likelihood Estimation/metadata.json",
       "node_id": "maximum-likelihood-estimation",
       "prerequisites": [
         "Probability"
@@ -6767,7 +6767,7 @@
       ],
       "concept_key": "meta learning for automl",
       "concept_name": "Meta-learning for AutoML",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Meta-learning for AutoML/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Meta-learning for AutoML/concept.md",
       "connected_edge_count": 6,
       "contributing_courses": [
         "Auto-ML"
@@ -6787,7 +6787,7 @@
       "importance_score": 5,
       "interview_notes": "- How can prior tasks guide search on a new task?\n- What is the difference between meta-features, warm starts, and learned priors?\n- What causes negative transfer in meta-learning for AutoML?\n- How would you prevent metadata or performance leakage?",
       "metadata_path": "knowledge_base/concepts/Meta-learning for AutoML/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Meta-learning for AutoML/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Meta-learning for AutoML/metadata.json",
       "node_id": "meta-learning-for-automl",
       "prerequisites": [
         "Algorithm Selection",
@@ -6840,7 +6840,7 @@
       ],
       "concept_key": "model interpretability",
       "concept_name": "Model Interpretability",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Model Interpretability/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Model Interpretability/concept.md",
       "connected_edge_count": 2,
       "contributing_courses": [
         "Auto-ML",
@@ -6857,7 +6857,7 @@
       "importance_score": 4,
       "interview_notes": "- What is the difference between global and local interpretability?\n- Why is an explanation not automatically a causal explanation?\n- How can attribution stability and subgroup behavior be tested?\n- How does interpretability support AutoML model analysis and selection?",
       "metadata_path": "knowledge_base/concepts/Model Interpretability/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Model Interpretability/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Model Interpretability/metadata.json",
       "node_id": "model-interpretability",
       "prerequisites": [
         "Model Evaluation"
@@ -6905,7 +6905,7 @@
       ],
       "concept_key": "model selection",
       "concept_name": "Model Selection",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Model Selection/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Model Selection/concept.md",
       "connected_edge_count": 3,
       "contributing_courses": [
         "BT1101"
@@ -6920,7 +6920,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Model Selection solve, and what is its output?\n- Explain Model Selection using one concrete input-to-decision example.\n- Walk through Model Selection step by step and name its stopping or evaluation rule.\n- What assumptions must hold before using Model Selection?\n- Which trade-off decides whether to use Model Selection instead of an alternative?\n- How does Model Selection compare with Regularization?",
       "metadata_path": "knowledge_base/concepts/Model Selection/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Model Selection/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Model Selection/metadata.json",
       "node_id": "model-selection",
       "prerequisites": [
         "Cross Validation",
@@ -6970,7 +6970,7 @@
       ],
       "concept_key": "multi fidelity optimization",
       "concept_name": "Multi-fidelity Optimization",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Multi-fidelity Optimization/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Multi-fidelity Optimization/concept.md",
       "connected_edge_count": 9,
       "contributing_courses": [
         "Auto-ML"
@@ -6987,7 +6987,7 @@
       "importance_score": 5,
       "interview_notes": "- What is fidelity, and why can it reduce optimization cost?\n- When is early performance a useful proxy for final performance?\n- How does multi-fidelity search differ from simply running fewer trials?\n- How should total compute be reported in a fair comparison?",
       "metadata_path": "knowledge_base/concepts/Multi-fidelity Optimization/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Multi-fidelity Optimization/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Multi-fidelity Optimization/metadata.json",
       "node_id": "multi-fidelity-optimization",
       "prerequisites": [
         "Bayesian Optimization",
@@ -7040,7 +7040,7 @@
       ],
       "concept_key": "multi objective optimization",
       "concept_name": "Multi-objective Optimization",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Multi-objective Optimization/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Multi-objective Optimization/concept.md",
       "connected_edge_count": 3,
       "contributing_courses": [
         "Auto-ML"
@@ -7055,7 +7055,7 @@
       "importance_score": 4,
       "interview_notes": "- What does Pareto dominance mean?\n- Why can there be no single best solution under multiple objectives?\n- When should constraints be used instead of a weighted objective?\n- How would you report the trade-off between accuracy, latency, and cost?",
       "metadata_path": "knowledge_base/concepts/Multi-objective Optimization/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Multi-objective Optimization/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Multi-objective Optimization/metadata.json",
       "node_id": "multi-objective-optimization",
       "prerequisites": [
         "Hyperparameter Optimization",
@@ -7108,7 +7108,7 @@
       ],
       "concept_key": "neural architecture search",
       "concept_name": "Neural Architecture Search",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Neural Architecture Search/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Neural Architecture Search/concept.md",
       "connected_edge_count": 5,
       "contributing_courses": [
         "Auto-ML"
@@ -7125,7 +7125,7 @@
       "importance_score": 5,
       "interview_notes": "- What are the search space, search strategy, and evaluation strategy in NAS?\n- Why can weight sharing make architecture ranking unreliable?\n- How would you compare NAS results under a fixed latency or compute budget?\n- Why must the selected architecture be retrained before final evaluation?",
       "metadata_path": "knowledge_base/concepts/Neural Architecture Search/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Neural Architecture Search/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Neural Architecture Search/metadata.json",
       "node_id": "neural-architecture-search",
       "prerequisites": [
         "Gradient Descent",
@@ -7171,7 +7171,7 @@
       ],
       "concept_key": "null hypothesis",
       "concept_name": "Null Hypothesis",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Null Hypothesis/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Null Hypothesis/concept.md",
       "connected_edge_count": 6,
       "contributing_courses": [
         "BT1101",
@@ -7191,7 +7191,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Null Hypothesis solve, and what is its output?\n- Explain Null Hypothesis using one concrete input-to-decision example.\n- What assumptions must hold before using Null Hypothesis?\n- Which trade-off decides whether to use Null Hypothesis instead of an alternative?\n- How does Null Hypothesis compare with Alternative Hypothesis?",
       "metadata_path": "knowledge_base/concepts/Null Hypothesis/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Null Hypothesis/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Null Hypothesis/metadata.json",
       "node_id": "null-hypothesis",
       "prerequisites": [
         "Hypothesis Testing"
@@ -7231,7 +7231,7 @@
       ],
       "concept_key": "overfitting",
       "concept_name": "Overfitting",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Overfitting/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Overfitting/concept.md",
       "connected_edge_count": 2,
       "contributing_courses": [
         "CS3244"
@@ -7246,7 +7246,7 @@
       "importance_score": 4,
       "interview_notes": "- What problem does Overfitting solve, and what is its output?\n- Explain Overfitting using one concrete input-to-decision example.\n- What assumptions must hold before using Overfitting?\n- Which trade-off decides whether to use Overfitting instead of an alternative?\n- How does Overfitting compare with Cross Validation?",
       "metadata_path": "knowledge_base/concepts/Overfitting/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Overfitting/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Overfitting/metadata.json",
       "node_id": "overfitting",
       "prerequisites": [
         "Bias-Variance Tradeoff"
@@ -7284,7 +7284,7 @@
       ],
       "concept_key": "p value",
       "concept_name": "p-value",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/p-value/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/p-value/concept.md",
       "connected_edge_count": 7,
       "contributing_courses": [
         "ST1131"
@@ -7302,7 +7302,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does p-value solve, and what is its output?\n- Explain p-value using one concrete input-to-decision example.\n- What does the denominator of p-value include or exclude?\n- What assumptions must hold before using p-value?\n- Which trade-off decides whether to use p-value instead of an alternative?\n- How does p-value compare with Hypothesis Testing?",
       "metadata_path": "knowledge_base/concepts/p-value/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/p-value/metadata.json",
+      "metadata_url": "../knowledge_base/refined/p-value/metadata.json",
       "node_id": "p-value",
       "prerequisites": [
         "Null Hypothesis",
@@ -7348,7 +7348,7 @@
       ],
       "concept_key": "pca",
       "concept_name": "PCA",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/PCA/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/PCA/concept.md",
       "connected_edge_count": 1,
       "contributing_courses": [
         "BT1101",
@@ -7366,7 +7366,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does PCA solve, and what is its output?\n- Explain PCA using one concrete input-to-decision example.\n- Walk through PCA step by step and name its stopping or evaluation rule.\n- What assumptions must hold before using PCA?\n- Which trade-off decides whether to use PCA instead of an alternative?\n- How does PCA compare with Dimensionality Reduction?",
       "metadata_path": "knowledge_base/concepts/PCA/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/PCA/metadata.json",
+      "metadata_url": "../knowledge_base/refined/PCA/metadata.json",
       "node_id": "pca",
       "prerequisites": [
         "Linear Algebra",
@@ -7410,7 +7410,7 @@
       ],
       "concept_key": "precision",
       "concept_name": "Precision",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Precision/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Precision/concept.md",
       "connected_edge_count": 1,
       "contributing_courses": [
         "ST1131"
@@ -7425,7 +7425,7 @@
       "importance_score": 4,
       "interview_notes": "- What problem does Precision solve, and what is its output?\n- Explain Precision using one concrete input-to-decision example.\n- What does the denominator of Precision include or exclude?\n- What assumptions must hold before using Precision?\n- Which trade-off decides whether to use Precision instead of an alternative?\n- How does Precision compare with Classification Accuracy?",
       "metadata_path": "knowledge_base/concepts/Precision/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Precision/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Precision/metadata.json",
       "node_id": "precision",
       "prerequisites": [
         "Confusion Matrix"
@@ -7466,7 +7466,7 @@
       ],
       "concept_key": "probability",
       "concept_name": "Probability",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Probability/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Probability/concept.md",
       "connected_edge_count": 12,
       "contributing_courses": [
         "BT4012",
@@ -7508,7 +7508,7 @@
       "importance_score": 5,
       "interview_notes": "- Why is probability the foundation for statistical inference?\n- What is the difference between joint, marginal, and conditional probability?\n- How does Bayes' rule update a belief with new evidence?\n- What is the difference between independence and mutual exclusivity?",
       "metadata_path": "knowledge_base/concepts/Probability/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Probability/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Probability/metadata.json",
       "node_id": "probability",
       "prerequisites": [],
       "related_concepts": [
@@ -7554,7 +7554,7 @@
       ],
       "concept_key": "project management",
       "concept_name": "Project Management",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Project Management/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Project Management/concept.md",
       "connected_edge_count": 3,
       "contributing_courses": [
         "IS3103"
@@ -7571,7 +7571,7 @@
       "importance_score": 4,
       "interview_notes": "- What problem does Project Management solve in the workplace?\n- How would you apply Project Management to a real team or organisational scenario?\n- What can go wrong if Project Management is handled poorly?\n- How does Project Management relate to communication, alignment, or change?",
       "metadata_path": "knowledge_base/concepts/Project Management/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Project Management/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Project Management/metadata.json",
       "node_id": "project-management",
       "prerequisites": [],
       "related_concepts": [
@@ -7615,7 +7615,7 @@
       ],
       "concept_key": "random forest",
       "concept_name": "Random Forest",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Random Forest/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Random Forest/concept.md",
       "connected_edge_count": 2,
       "contributing_courses": [
         "CS3244"
@@ -7630,7 +7630,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Random Forest solve, and what is its output?\n- Explain Random Forest using one concrete input-to-decision example.\n- Walk through Random Forest step by step and name its stopping or evaluation rule.\n- What assumptions must hold before using Random Forest?\n- Which trade-off decides whether to use Random Forest instead of an alternative?\n- How does Random Forest compare with Decision Trees?",
       "metadata_path": "knowledge_base/concepts/Random Forest/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Random Forest/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Random Forest/metadata.json",
       "node_id": "random-forest",
       "prerequisites": [
         "Bagging",
@@ -7675,7 +7675,7 @@
       ],
       "concept_key": "recall",
       "concept_name": "Recall",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Recall/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Recall/concept.md",
       "connected_edge_count": 1,
       "contributing_courses": [
         "BT1101",
@@ -7700,7 +7700,7 @@
       "importance_score": 4,
       "interview_notes": "- Why does recall matter in imbalanced or high-cost-miss problems?\n- How is recall computed from the confusion matrix?\n- How does recall trade off against precision?\n- Why can accuracy be misleading when recall is low?",
       "metadata_path": "knowledge_base/concepts/Recall/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Recall/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Recall/metadata.json",
       "node_id": "recall",
       "prerequisites": [
         "Confusion Matrix"
@@ -7746,7 +7746,7 @@
       ],
       "concept_key": "regularization",
       "concept_name": "Regularization",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Regularization/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Regularization/concept.md",
       "connected_edge_count": 7,
       "contributing_courses": [
         "BT4240"
@@ -7761,7 +7761,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Regularization solve, and what is its output?\n- Explain Regularization using one concrete input-to-decision example.\n- Walk through Regularization step by step and name its stopping or evaluation rule.\n- What assumptions must hold before using Regularization?\n- Which trade-off decides whether to use Regularization instead of an alternative?\n- How does Regularization compare with Lasso Regression?",
       "metadata_path": "knowledge_base/concepts/Regularization/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Regularization/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Regularization/metadata.json",
       "node_id": "regularization",
       "prerequisites": [
         "Linear Regression",
@@ -7810,7 +7810,7 @@
       ],
       "concept_key": "reinforcement learning",
       "concept_name": "Reinforcement Learning",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Reinforcement Learning/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Reinforcement Learning/concept.md",
       "connected_edge_count": 5,
       "contributing_courses": [
         "BT3102"
@@ -7826,7 +7826,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Reinforcement Learning solve, and what is its output?\n- Explain Reinforcement Learning using one concrete input-to-decision example.\n- Walk through Reinforcement Learning step by step and name its stopping or evaluation rule.\n- What assumptions must hold before using Reinforcement Learning?\n- Which trade-off decides whether to use Reinforcement Learning instead of an alternative?\n- How does Reinforcement Learning compare with Dynamic Programming?",
       "metadata_path": "knowledge_base/concepts/Reinforcement Learning/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Reinforcement Learning/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Reinforcement Learning/metadata.json",
       "node_id": "reinforcement-learning",
       "prerequisites": [
         "Markov Models",
@@ -7875,7 +7875,7 @@
       ],
       "concept_key": "relational data model",
       "concept_name": "Relational Data Model",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Relational Data Model/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Relational Data Model/concept.md",
       "connected_edge_count": 7,
       "contributing_courses": [
         "BT2102"
@@ -7891,7 +7891,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Relational Data Model solve, and what is its output?\n- Explain Relational Data Model using one concrete input-to-decision example.\n- What assumptions must hold before using Relational Data Model?\n- Which trade-off decides whether to use Relational Data Model instead of an alternative?\n- How does Relational Data Model compare with Database Normalization?",
       "metadata_path": "knowledge_base/concepts/Relational Data Model/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Relational Data Model/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Relational Data Model/metadata.json",
       "node_id": "relational-data-model",
       "prerequisites": [
         "Data Model",
@@ -7941,7 +7941,7 @@
       ],
       "concept_key": "sampling",
       "concept_name": "Sampling",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Sampling/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Sampling/concept.md",
       "connected_edge_count": 7,
       "contributing_courses": [
         "BT1101",
@@ -7965,7 +7965,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Sampling solve, and what is its output?\n- Explain Sampling using one concrete input-to-decision example.\n- Walk through Sampling step by step and name its stopping or evaluation rule.\n- What assumptions must hold before using Sampling?\n- Which trade-off decides whether to use Sampling instead of an alternative?\n- How does Sampling compare with Confidence Interval?",
       "metadata_path": "knowledge_base/concepts/Sampling/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Sampling/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Sampling/metadata.json",
       "node_id": "sampling",
       "prerequisites": [
         "Probability",
@@ -8014,7 +8014,7 @@
       ],
       "concept_key": "sampling distribution",
       "concept_name": "Sampling Distribution",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Sampling Distribution/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Sampling Distribution/concept.md",
       "connected_edge_count": 9,
       "contributing_courses": [
         "ST1131"
@@ -8033,7 +8033,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Sampling Distribution solve, and what is its output?\n- Explain Sampling Distribution using one concrete input-to-decision example.\n- What assumptions must hold before using Sampling Distribution?\n- Which trade-off decides whether to use Sampling Distribution instead of an alternative?\n- How does Sampling Distribution compare with Central Limit Theorem?",
       "metadata_path": "knowledge_base/concepts/Sampling Distribution/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Sampling Distribution/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Sampling Distribution/metadata.json",
       "node_id": "sampling-distribution",
       "prerequisites": [
         "Probability",
@@ -8078,7 +8078,7 @@
       ],
       "concept_key": "sql",
       "concept_name": "SQL",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/SQL/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/SQL/concept.md",
       "connected_edge_count": 4,
       "contributing_courses": [
         "BT2102"
@@ -8093,7 +8093,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does SQL solve, and what is its output?\n- Explain SQL using one concrete input-to-decision example.\n- What assumptions must hold before using SQL?\n- Which trade-off decides whether to use SQL instead of an alternative?\n- How does SQL compare with Database Management System?",
       "metadata_path": "knowledge_base/concepts/SQL/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/SQL/metadata.json",
+      "metadata_url": "../knowledge_base/refined/SQL/metadata.json",
       "node_id": "sql",
       "prerequisites": [
         "Database",
@@ -8141,7 +8141,7 @@
       ],
       "concept_key": "stakeholder management",
       "concept_name": "Stakeholder Management",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Stakeholder Management/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Stakeholder Management/concept.md",
       "connected_edge_count": 6,
       "contributing_courses": [
         "IS3103"
@@ -8156,7 +8156,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Stakeholder Management solve in the workplace?\n- How would you apply Stakeholder Management to a real team or organisational scenario?\n- What can go wrong if Stakeholder Management is handled poorly?\n- How does Stakeholder Management relate to communication, alignment, or change?",
       "metadata_path": "knowledge_base/concepts/Stakeholder Management/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Stakeholder Management/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Stakeholder Management/metadata.json",
       "node_id": "stakeholder-management",
       "prerequisites": [],
       "related_concepts": [
@@ -8197,7 +8197,7 @@
       ],
       "concept_key": "standard error",
       "concept_name": "Standard Error",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Standard Error/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Standard Error/concept.md",
       "connected_edge_count": 7,
       "contributing_courses": [
         "BT1101",
@@ -8220,7 +8220,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Standard Error solve, and what is its output?\n- Explain Standard Error using one concrete input-to-decision example.\n- What does the denominator of Standard Error include or exclude?\n- What assumptions must hold before using Standard Error?\n- Which trade-off decides whether to use Standard Error instead of an alternative?\n- How does Standard Error compare with Confidence Interval?",
       "metadata_path": "knowledge_base/concepts/Standard Error/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Standard Error/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Standard Error/metadata.json",
       "node_id": "standard-error",
       "prerequisites": [
         "Sampling Distribution"
@@ -8267,7 +8267,7 @@
       ],
       "concept_key": "team collaboration",
       "concept_name": "Team Collaboration",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Team Collaboration/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Team Collaboration/concept.md",
       "connected_edge_count": 3,
       "contributing_courses": [
         "IS3103"
@@ -8282,7 +8282,7 @@
       "importance_score": 4,
       "interview_notes": "- What problem does Team Collaboration solve in the workplace?\n- How would you apply Team Collaboration to a real team or organisational scenario?\n- What can go wrong if Team Collaboration is handled poorly?\n- How does Team Collaboration relate to communication, alignment, or change?",
       "metadata_path": "knowledge_base/concepts/Team Collaboration/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Team Collaboration/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Team Collaboration/metadata.json",
       "node_id": "team-collaboration",
       "prerequisites": [],
       "related_concepts": [
@@ -8323,7 +8323,7 @@
       ],
       "concept_key": "test statistic",
       "concept_name": "Test Statistic",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Test Statistic/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Test Statistic/concept.md",
       "connected_edge_count": 5,
       "contributing_courses": [
         "ST1131"
@@ -8340,7 +8340,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Test Statistic solve, and what is its output?\n- Explain Test Statistic using one concrete input-to-decision example.\n- What does the denominator of Test Statistic include or exclude?\n- What assumptions must hold before using Test Statistic?\n- Which trade-off decides whether to use Test Statistic instead of an alternative?\n- How does Test Statistic compare with Hypothesis Testing?",
       "metadata_path": "knowledge_base/concepts/Test Statistic/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Test Statistic/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Test Statistic/metadata.json",
       "node_id": "test-statistic",
       "prerequisites": [
         "Null Hypothesis",
@@ -8380,7 +8380,7 @@
       ],
       "concept_key": "type i error",
       "concept_name": "Type I Error",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Type I Error/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Type I Error/concept.md",
       "connected_edge_count": 5,
       "contributing_courses": [
         "ST1131"
@@ -8395,7 +8395,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Type I Error solve, and what is its output?\n- Explain Type I Error using one concrete input-to-decision example.\n- What assumptions must hold before using Type I Error?\n- Which trade-off decides whether to use Type I Error instead of an alternative?\n- How does Type I Error compare with Statistical Significance?",
       "metadata_path": "knowledge_base/concepts/Type I Error/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Type I Error/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Type I Error/metadata.json",
       "node_id": "type-i-error",
       "prerequisites": [
         "Hypothesis Testing"
@@ -8436,7 +8436,7 @@
       ],
       "concept_key": "type ii error",
       "concept_name": "Type II Error",
-      "concept_url": "./concept.html?path=../knowledge_base/concepts/Type II Error/concept.md",
+      "concept_url": "./concept.html?path=../knowledge_base/refined/Type II Error/concept.md",
       "connected_edge_count": 4,
       "contributing_courses": [
         "ST1131"
@@ -8451,7 +8451,7 @@
       "importance_score": 5,
       "interview_notes": "- What problem does Type II Error solve, and what is its output?\n- Explain Type II Error using one concrete input-to-decision example.\n- What assumptions must hold before using Type II Error?\n- Which trade-off decides whether to use Type II Error instead of an alternative?\n- How does Type II Error compare with Power?",
       "metadata_path": "knowledge_base/concepts/Type II Error/metadata.json",
-      "metadata_url": "../knowledge_base/concepts/Type II Error/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Type II Error/metadata.json",
       "node_id": "type-ii-error",
       "prerequisites": [
         "Hypothesis Testing"

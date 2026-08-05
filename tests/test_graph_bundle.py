@@ -10,7 +10,7 @@ from knowledge_review_agent.models import ConceptMetadata, GraphEdge, GraphNode
 
 def test_graph_bundle_enriches_nodes_and_writes_graph_json(tmp_path: Path) -> None:
     graphs_root = tmp_path / "knowledge_base" / "graphs"
-    concepts_root = tmp_path / "knowledge_base" / "refined" / "concepts"
+    concepts_root = tmp_path / "knowledge_base" / "concepts"
     concept_dir = concepts_root / "Gradient Descent"
     concept_dir.mkdir(parents=True)
 
@@ -74,6 +74,7 @@ def test_graph_bundle_enriches_nodes_and_writes_graph_json(tmp_path: Path) -> No
     assert bundle.stats["multi_course_concepts"] == 1
     assert bundle.nodes[0].concept_name == "Gradient Descent"
     assert bundle.nodes[0].concept_url.endswith("concept.md")
+    assert "../knowledge_base/refined/Gradient Descent/concept.md" in bundle.nodes[0].concept_url
     assert "Calculus" in bundle.nodes[0].search_terms
     assert bundle.nodes[0].connected_edge_count == 1
 

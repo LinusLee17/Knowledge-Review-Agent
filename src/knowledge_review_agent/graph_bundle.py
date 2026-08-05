@@ -82,6 +82,7 @@ def _site_url(repo_root: Path, path: Path) -> str:
 
 def _concept_viewer_url(repo_root: Path, path: Path) -> str:
     relative = _relative_site_path(repo_root, path).replace("metadata.json", "concept.md")
+    relative = relative.replace("knowledge_base/concepts/", "knowledge_base/refined/", 1)
     return f"./concept.html?path=../{relative}"
 
 

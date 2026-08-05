@@ -93,7 +93,10 @@ function conceptViewerUrl(metadataPath) {
   const marker = "/knowledge_base/";
   const idx = normalized.lastIndexOf(marker);
   if (idx >= 0) {
-    const rel = normalized.slice(idx + 1).replace(/metadata\.json$/i, "concept.md");
+    const rel = normalized
+      .slice(idx + 1)
+      .replace("knowledge_base/concepts/", "knowledge_base/refined/")
+      .replace(/metadata\.json$/i, "concept.md");
     return `./concept.html?path=${encodeURIComponent(`../${rel}`)}&view=20260805`;
   }
   return `./concept.html?path=${encodeURIComponent(normalized.replace(/metadata\.json$/i, "concept.md"))}&view=20260805`;
@@ -182,7 +185,7 @@ function buildFallbackGraph(nodesPayload, edgesPayload) {
 }
 
 async function loadGraphData() {
-  const graphUrl = new URL("../knowledge_base/graphs/graph.json", window.location.href);
+  const graphUrl = new URL("../knowledge_base/graphs/graph.json?v=20260805-6", window.location.href);
   const response = await fetch(graphUrl);
   if (response.ok) {
     return response.json();
