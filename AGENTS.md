@@ -32,7 +32,7 @@ Treat the repository as a persistent knowledge system, not a rebuild-on-every-ru
 - Do not mutate raw lecture PDFs.
 - Do not normalize away important source detail.
 - Do not implement quiz, flashcard, or interview features in MVP.
-- Do not add graph visualization in MVP.
+- Include graph visualization in the MVP website. Keep graph data generation separate from website presentation.
 - Do not reprocess unchanged PDFs unless explicitly requested.
 - Do not use CSV as long-term repository state.
 - Do not let presentation refinement change technical meaning.
@@ -86,6 +86,13 @@ Treat the repository as a persistent knowledge system, not a rebuild-on-every-ru
 - Preserve original terminology alongside canonical concept names.
 - Never overwrite source material with a cleaned summary.
 - Leave unchanged concepts untouched during incremental updates.
+
+## Submission packaging rules
+
+- Final GitHub submission must include source code, tests, evaluation evidence, concise reproduction instructions, and the functional website.
+- Include generated refined concept pages and graph presentation bundles required for the website to work without `data/`.
+- Exclude local-only inputs, caches, intermediate artifacts, old evaluation runs, and rebuildable outputs from GitHub tracking when they are not required by the submission.
+- Exclusion from GitHub does not authorize permanent local deletion. Preserve excluded files locally unless the user explicitly requests deletion.
 
 ## Human-in-the-loop
 
