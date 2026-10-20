@@ -1,0 +1,418 @@
+[
+  {
+    "name": "version",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "schema_version"
+        ],
+        "value": 3
+      }
+    ],
+    "valid": false,
+    "code": "schema_version"
+  },
+  {
+    "name": "boolversion",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "schema_version"
+        ],
+        "value": true
+      }
+    ],
+    "valid": false,
+    "code": "schema_version"
+  },
+  {
+    "name": "missing",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "remove",
+        "path": [
+          "nodes",
+          0,
+          "definition"
+        ],
+        "value": null
+      }
+    ],
+    "valid": false,
+    "code": "field_type"
+  },
+  {
+    "name": "null",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "nodes",
+          0,
+          "aliases"
+        ],
+        "value": null
+      }
+    ],
+    "valid": false,
+    "code": "field_type"
+  },
+  {
+    "name": "date",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "generated_at"
+        ],
+        "value": "2026-02-30T00:00:00Z"
+      }
+    ],
+    "valid": false,
+    "code": "timestamp"
+  },
+  {
+    "name": "rank",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "nodes",
+          0,
+          "scope_level"
+        ],
+        "value": "3"
+      }
+    ],
+    "valid": false,
+    "code": "field_type"
+  },
+  {
+    "name": "boolrank",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "nodes",
+          0,
+          "scope_level"
+        ],
+        "value": true
+      }
+    ],
+    "valid": false,
+    "code": "field_type"
+  },
+  {
+    "name": "duplicate_id",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "nodes",
+          1,
+          "node_id"
+        ],
+        "value": "p"
+      }
+    ],
+    "valid": false,
+    "code": "duplicate_id"
+  },
+  {
+    "name": "cross_id",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "edges",
+          0,
+          "edge_id"
+        ],
+        "value": "p"
+      }
+    ],
+    "valid": false,
+    "code": "duplicate_id"
+  },
+  {
+    "name": "duplicate_key",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "nodes",
+          1,
+          "concept_key"
+        ],
+        "value": "probability"
+      }
+    ],
+    "valid": false,
+    "code": "duplicate_key"
+  },
+  {
+    "name": "source",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "edges",
+          0,
+          "source"
+        ],
+        "value": "absent"
+      }
+    ],
+    "valid": false,
+    "code": "dangling_endpoint"
+  },
+  {
+    "name": "target",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "edges",
+          0,
+          "target"
+        ],
+        "value": "absent"
+      }
+    ],
+    "valid": false,
+    "code": "dangling_endpoint"
+  },
+  {
+    "name": "key",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "edges",
+          0,
+          "source_concept_key"
+        ],
+        "value": "other"
+      }
+    ],
+    "valid": false,
+    "code": "endpoint_key"
+  },
+  {
+    "name": "unresolved",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "edges",
+          0,
+          "target_resolved"
+        ],
+        "value": false
+      }
+    ],
+    "valid": false,
+    "code": "unresolved_edge"
+  },
+  {
+    "name": "self",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "edges",
+          0,
+          "target"
+        ],
+        "value": "p"
+      }
+    ],
+    "valid": false,
+    "code": "self_edge"
+  },
+  {
+    "name": "relation",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "edges",
+          0,
+          "relation_type"
+        ],
+        "value": "used_in"
+      }
+    ],
+    "valid": false,
+    "code": "relation_type"
+  },
+  {
+    "name": "stats",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "stats",
+          "total_concepts"
+        ],
+        "value": 99
+      }
+    ],
+    "valid": false,
+    "code": "stats"
+  },
+  {
+    "name": "degree",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "nodes",
+          0,
+          "degree"
+        ],
+        "value": 0
+      }
+    ],
+    "valid": false,
+    "code": "node_degree"
+  },
+  {
+    "name": "external",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "nodes",
+          0,
+          "metadata_url"
+        ],
+        "value": "https://evil.example/metadata.json"
+      }
+    ],
+    "valid": false,
+    "code": "published_path"
+  },
+  {
+    "name": "prefix",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "nodes",
+          0,
+          "metadata_url"
+        ],
+        "value": "../knowledge_base/refined-other/Probability/metadata.json"
+      }
+    ],
+    "valid": false,
+    "code": "published_path"
+  },
+  {
+    "name": "traversal",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "nodes",
+          0,
+          "metadata_url"
+        ],
+        "value": "../knowledge_base/refined/%2e%2e/private/metadata.json"
+      }
+    ],
+    "valid": false,
+    "code": "published_path"
+  },
+  {
+    "name": "badpercent",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "nodes",
+          0,
+          "metadata_url"
+        ],
+        "value": "../knowledge_base/refined/%zz/metadata.json"
+      }
+    ],
+    "valid": false,
+    "code": "published_path"
+  },
+  {
+    "name": "wrongfile",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "nodes",
+          0,
+          "concept_url"
+        ],
+        "value": "./concept.html?path=../knowledge_base/refined/Probability/other.md"
+      }
+    ],
+    "valid": false,
+    "code": "published_path"
+  },
+  {
+    "name": "duplicated_path",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "nodes",
+          0,
+          "concept_url"
+        ],
+        "value": "./concept.html?path=x&path=y"
+      }
+    ],
+    "valid": false,
+    "code": "published_path"
+  },
+  {
+    "name": "offset_minute",
+    "base": "valid-v2.json",
+    "operations": [
+      {
+        "op": "set",
+        "path": [
+          "generated_at"
+        ],
+        "value": "2026-10-20T00:00:00+00:60"
+      }
+    ],
+    "valid": false,
+    "code": "timestamp"
+  }
+]

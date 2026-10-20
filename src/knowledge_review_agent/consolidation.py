@@ -2,15 +2,25 @@ from __future__ import annotations
 
 import json
 import re
-import shutil
+import os
+from hashlib import sha256
 from collections import Counter, defaultdict
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, fields, replace
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterable
+from typing import Callable, Iterable
+from urllib.parse import quote, unquote, urlsplit, urlunsplit
 
-from .concept_store import concept_directory, concept_paths, load_concept_metadata, save_concept_metadata
-from .models import ConceptMetadata
+from .concept_document import (
+    REFERENCE_PATTERN, _lines as _document_lines, map_document_links, parse_concept_document,
+)
+from .concept_store import (
+    concept_directory, load_concept_metadata, merge_concept_metadata,
+    normalize_concept_metadata, write_concept_record, recover_concept_transactions,
+    concept_history_root,
+)
+from .source_occurrences import SourceIndex, SourceIssue, SourceValidationError, index_sources, load_source_index
+from .models import ConceptMetadata, PersistenceAlternative, PersistenceConflict
 from .concept_rules import (
     canonical_candidate_label,
     canonical_common_mistakes_for_label,
@@ -40,6 +50,7 @@ class LectureArtifact:
     relative_path: str
     sha256: str
     payload: dict
+    source_index: SourceIndex | None = None
 
 
 @dataclass(frozen=True)
@@ -74,6 +85,7 @@ class ConceptMention:
     page_number: int
     page_heading: str
     evidence: str
+    occurrence_ids: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -118,23 +130,11 @@ def sha256_file(path: Path, chunk_size: int = 1024 * 1024) -> str:
 
 
 def discover_lecture_artifacts(processed_root: Path) -> list[LectureArtifact]:
-    artifacts: list[LectureArtifact] = []
-    for path in sorted(processed_root.rglob("lecture.json")):
-        if not path.is_file():
-            continue
-        try:
-            payload = json.loads(path.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            continue
-        artifacts.append(
-            LectureArtifact(
-                path=path,
-                relative_path=path.relative_to(processed_root).as_posix(),
-                sha256=sha256_file(path),
-                payload=payload,
-            )
-        )
-    return artifacts
+    index = load_source_index(processed_root)
+    if index.issues:
+        raise SourceValidationError(index.issues)
+    return [LectureArtifact(processed_root / r.relative_path, r.relative_path, r.sha256,
+                            json.loads(r.raw), index) for r in index.records]
 
 
 def discover_concept_records(concepts_root: Path) -> list[ConceptRecord]:
@@ -395,73 +395,44 @@ def _select_evidence(label: str, heading: str, lines: list[str]) -> str:
 
 
 def build_mentions(artifact: LectureArtifact) -> list[ConceptMention]:
-    payload = artifact.payload
-    course_id, course_name = _lecture_course(payload)
-    mentions: list[ConceptMention] = []
-    seen: set[tuple[str, int, str]] = set()
-
-    for page in payload.get("pages", []) or []:
-        page_number = int(page.get("page_number", 0) or 0)
-        heading = normalize_spaces(str(page.get("heading", "") or ""))
-        lines = normalize_lines(str(page.get("extracted_text", "") or ""))
-        page_mentions: list[ConceptMention] = []
-        structured = page.get("concepts", []) or []
-        if structured:
-            for item in structured:
-                mention = _normalise_concept_source(item or {}, artifact, page_number, course_id, course_name)
-                if mention:
-                    page_mentions.append(mention)
+    index = artifact.source_index
+    if index is None:
+        raw = artifact.path.read_bytes()
+        if sha256(raw).hexdigest() != artifact.sha256:
+            raise SourceValidationError((SourceIssue(artifact.relative_path, "source_hash_mismatch", "", "Artifact bytes changed"),))
+        index = index_sources([(artifact.relative_path, raw)])
+    if index.issues:
+        raise SourceValidationError(index.issues)
+    record = next(r for r in index.records if r.relative_path == artifact.relative_path)
+    mentions = []
+    positions = {}
+    # Synthesis selection follows original array order, not lexical locator order.
+    selected = (o for o in index.occurrences if o.source.relative_path == artifact.relative_path
+                and o.kind in {"structured", "candidate"})
+    selected = sorted(selected, key=lambda o: (int(o.json_pointer.split("/")[2]),
+                                              int(o.json_pointer.split("/")[-1])))
+    for occurrence in selected:
+        page = record.payload["pages"][int(occurrence.json_pointer.split("/")[2])]
+        heading = normalize_spaces(occurrence.page_heading)
+        if occurrence.kind == "structured":
+            mention = _normalise_concept_source(occurrence.item, artifact, occurrence.page_number,
+                                               record.course_id, record.course_name)
+            candidates = [mention] if mention else []
+        elif not page.get("concepts"):
+            candidates = _fallback_mentions_from_candidates(artifact, occurrence.page_number, heading,
+                list(occurrence.labels), record.course_id, record.course_name)
         else:
-            page_mentions = _fallback_mentions_from_candidates(
-                artifact,
-                page_number,
-                heading,
-                page.get("concept_candidates", []) or [],
-                course_id,
-                course_name,
-            )
-
-        for mention in page_mentions:
-            evidence = normalize_spaces(mention.evidence or _select_evidence(mention.concept_label, heading, lines))
-            dedupe_key = (mention.concept_key, page_number, evidence.lower())
-            if dedupe_key in seen:
-                continue
-            seen.add(dedupe_key)
-            mentions.append(
-                ConceptMention(
-                    concept_label=mention.concept_label,
-                    concept_key=mention.concept_key,
-                    concept_type=mention.concept_type,
-                    domain=mention.domain,
-                    topic=mention.topic,
-                    importance_score=mention.importance_score,
-                    confidence_score=mention.confidence_score,
-                    evidence_strength=mention.evidence_strength,
-                    definition_quality_score=mention.definition_quality_score,
-                    interview_relevance=mention.interview_relevance,
-                    reason_for_inclusion=mention.reason_for_inclusion,
-                    definition=mention.definition,
-                    intuition=mention.intuition,
-                    mathematical_foundation=mention.mathematical_foundation,
-                    assumptions=mention.assumptions,
-                    applications=mention.applications,
-                    limitations=mention.limitations,
-                    advantages=mention.advantages,
-                    broader_topics=mention.broader_topics,
-                    prerequisites=mention.prerequisites,
-                    related_concepts=mention.related_concepts,
-                    aliases=mention.aliases,
-                    course_id=mention.course_id,
-                    course_name=mention.course_name,
-                    lecture_file=mention.lecture_file,
-                    lecture_hash=mention.lecture_hash,
-                    source_pdf=mention.source_pdf,
-                    page_number=mention.page_number,
-                    page_heading=mention.page_heading,
-                    evidence=evidence,
-                )
-            )
-
+            candidates = []
+        for mention in candidates:
+            evidence = normalize_spaces(mention.evidence or _select_evidence(mention.concept_label,
+                heading, normalize_lines(page.get("extracted_text", ""))))
+            key = (mention.concept_key, mention.page_number, evidence.lower())
+            if key in positions:
+                old = mentions[positions[key]]
+                mentions[positions[key]] = replace(old, occurrence_ids=tuple(sorted(set(old.occurrence_ids) | {occurrence.occurrence_id})))
+            else:
+                positions[key] = len(mentions)
+                mentions.append(replace(mention, evidence=evidence, occurrence_ids=(occurrence.occurrence_id,)))
     return mentions
 
 
@@ -486,65 +457,6 @@ def _choose_primary_record(records: list[ConceptRecord]) -> ConceptRecord:
         reverse=True,
     )
     return ordered[0]
-
-
-def _merge_existing_records(records: list[ConceptRecord]) -> ConceptRecord:
-    primary = _choose_primary_record(records)
-    merged_courses = sorted(
-        set().union(*(record.metadata.contributing_courses for record in records))
-    )
-    merged_lecture_files = sorted(
-        set().union(*(record.metadata.contributing_lecture_files for record in records))
-    )
-    merged_hashes: dict[str, str] = {}
-    for record in records:
-        merged_hashes.update(record.metadata.source_lecture_hashes or {})
-    merged_related = sorted(set().union(*(record.metadata.related_concepts for record in records)))
-    merged_prereqs = sorted(set().union(*(record.metadata.prerequisites for record in records)))
-    merged_used_in = sorted(set().union(*(record.metadata.used_in for record in records)))
-    merged_name = primary.metadata.concept_name or canonical_concept_name(primary.key) or primary.key
-    merged_key = primary.metadata.canonical_key or primary.key
-    merged_graph_node_id = primary.metadata.graph_node_id or slugify(primary.key)
-    merged_timestamp = max(
-        (record.metadata.last_updated_timestamp for record in records if record.metadata.last_updated_timestamp),
-        default=primary.metadata.last_updated_timestamp,
-    )
-
-    merged_metadata = ConceptMetadata(
-        concept_name=merged_name,
-        canonical_key=merged_key,
-        contributing_courses=merged_courses,
-        contributing_lecture_files=merged_lecture_files,
-        source_lecture_hashes=merged_hashes,
-        last_updated_timestamp=merged_timestamp,
-        version_number=max(record.metadata.version_number for record in records),
-        related_concepts=merged_related,
-        prerequisites=merged_prereqs,
-        used_in=merged_used_in,
-        graph_node_id=merged_graph_node_id,
-    )
-
-    if any(record.metadata != merged_metadata for record in records):
-        merged_metadata = ConceptMetadata(
-            concept_name=merged_metadata.concept_name,
-            canonical_key=merged_metadata.canonical_key,
-            contributing_courses=merged_metadata.contributing_courses,
-            contributing_lecture_files=merged_metadata.contributing_lecture_files,
-            source_lecture_hashes=merged_metadata.source_lecture_hashes,
-            last_updated_timestamp=datetime.now(timezone.utc).isoformat(),
-            version_number=max(record.metadata.version_number for record in records) + 1,
-            related_concepts=merged_metadata.related_concepts,
-            prerequisites=merged_metadata.prerequisites,
-            used_in=merged_metadata.used_in,
-            graph_node_id=merged_metadata.graph_node_id,
-        )
-
-    return ConceptRecord(
-        key=primary.key,
-        directory=primary.directory,
-        metadata_path=primary.metadata_path,
-        metadata=merged_metadata,
-    )
 
 
 def _preferred_display_name(mentions: list[ConceptMention], fallback_key: str) -> str:
@@ -990,11 +902,11 @@ def build_concept_markdown(
     metadata: ConceptMetadata,
     mentions: list[ConceptMention],
 ) -> str:
-    definition = _synthesized_definition(concept_name, metadata, mentions)
+    definition = metadata.definition or _synthesized_definition(concept_name, metadata, mentions)
     why_it_matters = _why_it_matters(concept_name, metadata, mentions)
-    intuition = _synthesized_intuition(concept_name, metadata, mentions)
+    intuition = metadata.intuition or _synthesized_intuition(concept_name, metadata, mentions)
     how_it_works = _how_it_works(concept_name, metadata, mentions)
-    mathematical_foundation = _synthesized_math(concept_name, metadata, mentions)
+    mathematical_foundation = metadata.mathematical_foundation or _synthesized_math(concept_name, metadata, mentions)
     key_components = _key_components(concept_name, metadata, mentions)
     assumptions = metadata.assumptions or _merged_text_list(mentions, "assumptions")
     advantages = metadata.advantages or _merged_text_list(mentions, "advantages")
@@ -1199,111 +1111,42 @@ def _merge_metadata(
         return _clean_field_list(values, attr)
 
     if existing:
-        merged_courses = sorted(set(existing.contributing_courses + course_names))
-        merged_lecture_files = sorted(set(existing.contributing_lecture_files + lecture_files))
-        merged_hashes = dict(existing.source_lecture_hashes)
-        merged_hashes.update(lecture_hashes)
-        merged_related = _merged_list("related_concepts")
-        merged_prereqs = _merged_list("prerequisites")
-        merged_used_in = _merged_list("used_in")
-        merged_assumptions = canonical_assumptions_for_label(concept_name) or _merged_list("assumptions")
-        merged_applications = _merged_list("applications")
-        merged_limitations = canonical_limitations_for_label(concept_name) or _merged_list("limitations")
-        merged_advantages = canonical_advantages_for_label(concept_name) or _merged_list("advantages")
-        merged_broader_topics = _merged_list("broader_topics")
-        merged_aliases = _merged_list("aliases")
-        merged_domain = _best_text("domain", existing.domain)
-        merged_topic = _best_text("topic", existing.topic)
-        merged_definition = _best_text("definition", existing.definition)
-        merged_intuition = _best_text("intuition", existing.intuition)
-        merged_math = _clean_math(_best_text("mathematical_foundation", existing.mathematical_foundation))
-        merged_concept_type = _best_text("concept_type", getattr(existing, "concept_type", ""))
-        merged_confidence_score = max([getattr(existing, "confidence_score", 0.0), *[getattr(mention, "confidence_score", 0.0) for mention in mentions]], default=getattr(existing, "confidence_score", 0.0))
-        merged_evidence_strength = max([getattr(existing, "evidence_strength", 0.0), *[getattr(mention, "evidence_strength", 0.0) for mention in mentions]], default=getattr(existing, "evidence_strength", 0.0))
-        merged_definition_quality_score = max([getattr(existing, "definition_quality_score", 0.0), *[getattr(mention, "definition_quality_score", 0.0) for mention in mentions]], default=getattr(existing, "definition_quality_score", 0.0))
-        merged_interview_relevance = max([getattr(existing, "interview_relevance", 0.0), *[getattr(mention, "interview_relevance", 0.0) for mention in mentions]], default=getattr(existing, "interview_relevance", 0.0))
-        merged_importance = max([existing.importance_score, *[mention.importance_score for mention in mentions]])
-        merged_graph_node_id = existing.graph_node_id or slugify(canonical_key)
-        preview_metadata = ConceptMetadata(
-            concept_name=concept_name,
-            canonical_key=canonical_key,
-            concept_type=merged_concept_type,
-            domain=merged_domain,
-            topic=merged_topic,
-            importance_score=merged_importance,
-            applications=merged_applications,
-            limitations=merged_limitations,
-            assumptions=merged_assumptions,
-            advantages=merged_advantages,
-            broader_topics=merged_broader_topics,
-            aliases=merged_aliases,
-            contributing_courses=merged_courses,
-            contributing_lecture_files=merged_lecture_files,
-            source_lecture_hashes=merged_hashes,
-            last_updated_timestamp=now,
-            version_number=existing.version_number + 1,
-            related_concepts=merged_related,
-            prerequisites=merged_prereqs,
-            used_in=merged_used_in,
-            graph_node_id=merged_graph_node_id,
-        )
-        merged_definition = _synthesized_definition(concept_name, preview_metadata, mentions)
-        merged_intuition = _synthesized_intuition(concept_name, preview_metadata, mentions)
-        merged_math = _synthesized_math(concept_name, preview_metadata, mentions)
-        changed = (
-            existing.concept_name != concept_name
-            or existing.canonical_key != canonical_key
-            or getattr(existing, "concept_type", "") != merged_concept_type
-            or existing.domain != merged_domain
-            or existing.topic != merged_topic
-            or existing.importance_score != merged_importance
-            or existing.definition != merged_definition
-            or existing.intuition != merged_intuition
-            or existing.mathematical_foundation != merged_math
-            or existing.assumptions != merged_assumptions
-            or existing.applications != merged_applications
-            or existing.limitations != merged_limitations
-            or existing.advantages != merged_advantages
-            or existing.broader_topics != merged_broader_topics
-            or existing.aliases != merged_aliases
-            or existing.contributing_courses != merged_courses
-            or existing.contributing_lecture_files != merged_lecture_files
-            or existing.source_lecture_hashes != merged_hashes
-            or existing.related_concepts != merged_related
-            or existing.prerequisites != merged_prereqs
-            or existing.used_in != merged_used_in
-        )
-
-        return ConceptMetadata(
-            concept_name=concept_name,
-            canonical_key=canonical_key,
-            concept_type=merged_concept_type,
-            domain=merged_domain,
-            topic=merged_topic,
-            importance_score=merged_importance,
-            confidence_score=merged_confidence_score,
-            evidence_strength=merged_evidence_strength,
-            definition_quality_score=merged_definition_quality_score,
-            interview_relevance=merged_interview_relevance,
-            definition=merged_definition,
-            intuition=merged_intuition,
-            mathematical_foundation=merged_math,
-            assumptions=merged_assumptions,
-            applications=merged_applications,
-            limitations=merged_limitations,
-            advantages=merged_advantages,
-            broader_topics=merged_broader_topics,
-            aliases=merged_aliases,
-            contributing_courses=merged_courses,
-            contributing_lecture_files=merged_lecture_files,
-            source_lecture_hashes=merged_hashes,
-            last_updated_timestamp=now if changed else existing.last_updated_timestamp,
-            version_number=existing.version_number + 1 if changed else existing.version_number,
-            related_concepts=merged_related,
-            prerequisites=merged_prereqs,
-            used_in=merged_used_in,
-            graph_node_id=merged_graph_node_id,
-        )
+        if not mentions:
+            return existing
+        incoming = _merge_metadata(concept_name, canonical_key, mentions, None)
+        values = {}
+        conflicts = {conflict.field_name: conflict for conflict in existing.persistence_conflicts}
+        for name in ("definition", "mathematical_foundation"):
+            prior = getattr(existing, name)
+            if not prior:
+                continue
+            conflict = conflicts.get(name)
+            alternatives = set(conflict.alternatives if conflict else [])
+            for mention in mentions:
+                current = getattr(mention, name)
+                if not current or normalize_spaces(current) == normalize_spaces(prior):
+                    continue
+                # Lecture alternatives refer to immutable source identities, not concept snapshots.
+                reference = (f"lecture:{mention.lecture_file}#page={mention.page_number}"
+                             f"&occurrences={','.join(sorted(mention.occurrence_ids))}")
+                alternatives.add(PersistenceAlternative(reference, mention.lecture_hash, current))
+            if alternatives:
+                conflicts[name] = PersistenceConflict(name, prior, sorted(alternatives, key=lambda a: (
+                    a.source_record, a.record_sha256, a.value, a.snapshot_id,
+                )))
+        for spec in fields(existing):
+            name = spec.name
+            prior, current = getattr(existing, name), getattr(incoming, name)
+            if name == "persistence_conflicts":
+                continue
+            if isinstance(prior, list):
+                values[name] = sorted(set(prior + current))
+            elif isinstance(prior, dict):
+                values[name] = {**prior, **current}
+            elif isinstance(prior, str) and name != "last_updated_timestamp":
+                values[name] = prior or current
+        values["persistence_conflicts"] = [conflicts[name] for name in sorted(conflicts)]
+        return normalize_concept_metadata(replace(existing, **values))
 
     merged_assumptions = canonical_assumptions_for_label(concept_name) or _merged_list("assumptions")
     merged_applications = _merged_list("applications")
@@ -1384,118 +1227,332 @@ def _merge_metadata(
     )
 
 
-def _write_concept_record(
-    directory: Path,
-    metadata_path: Path,
-    concept_name: str,
-    canonical_key: str,
-    metadata: ConceptMetadata,
-    mentions: list[ConceptMention],
-    *,
-    force: bool = False,
-) -> bool:
-    directory.mkdir(parents=True, exist_ok=True)
-    concept_md_path = directory / "concept.md"
-    markdown = build_concept_markdown(concept_name, canonical_key, metadata, mentions)
-    existing_markdown = concept_md_path.read_text(encoding="utf-8") if concept_md_path.exists() else None
-    existing_metadata = load_concept_metadata(metadata_path)
+def _page_sections(markdown: str) -> list[tuple[str, str]]:
+    return [(section.heading, section.content.strip("\n"))
+            for section in parse_concept_document(markdown).sections]
 
-    if not force and existing_markdown == markdown and existing_metadata == metadata:
-        return False
 
-    concept_md_path.write_text(markdown, encoding="utf-8")
-    save_concept_metadata(metadata_path, metadata)
-    return True
+def _reference_text_parts(markdown: str) -> list[tuple[str, bool]]:
+    """Keep fenced blocks and front matter outside reference rewriting."""
+    runs: list[tuple[str, bool]] = []
+    for line, visible in _document_lines(markdown):
+        if runs and runs[-1][1] == visible:
+            runs[-1] = (runs[-1][0] + line, visible)
+        else:
+            runs.append((line, visible))
+    return runs
+
+
+def _mask_reference_code(text: str) -> tuple[str, dict[str, str]]:
+    """Mask code without cutting outer link/image labels into separate parser inputs."""
+    replacements = {}
+    def mask(match):
+        token = "KRA_CODE_" + sha256(f"{len(replacements)}\n{match[0]}".encode()).hexdigest()
+        while token in text or token in replacements:
+            token += "_CODE"
+        replacements[token] = match[0]
+        return token
+    return re.sub(r"(?<!`)(`+)(?!`)[\s\S]*?(?<!`)\1(?!`)", mask, text), replacements
+
+
+def _restore_reference_code(text: str, replacements: dict[str, str]) -> str:
+    for token, original in replacements.items():
+        text = text.replace(token, original)
+    return text
+
+
+def _source_reference_definitions(markdown: str) -> dict[str, tuple[str, str]]:
+    definitions = {}
+    for text, visible in _reference_text_parts(markdown):
+        if not visible:
+            continue
+        masked, codes = _mask_reference_code(text)
+        for line in masked.splitlines(keepends=True):
+            match = REFERENCE_PATTERN.match(line)
+            if match:
+                label = match[1].split("[", 1)[1].rsplit("]", 1)[0]
+                definitions.setdefault(normalize_spaces(label).casefold(),
+                    (label, _restore_reference_code(match[2], codes)))
+    return definitions
+
+
+def _namespace_reference_uses(text: str, labels: dict[str, str]) -> str:
+    result = []
+    index = 0
+    while index < len(text):
+        if text[index] == "\\":
+            result.append(text[index:index + 2])
+            index += 2
+            continue
+        if text[index] != "[":
+            result.append(text[index])
+            index += 1
+            continue
+        end, depth = index + 1, 1
+        while end < len(text) and depth:
+            if text[end] == "\\":
+                end += 2
+                continue
+            depth += (text[end] == "[") - (text[end] == "]")
+            end += 1
+        if depth:
+            result.append(text[index:])
+            break
+        label = text[index + 1:end - 1]
+        rendered = "[" + _namespace_reference_uses(label, labels) + "]"
+        suffix = re.match(r"[ \t]*\[([^\]\n]*)\]", text[end:])
+        if suffix:
+            key = normalize_spaces(suffix[1] or label).casefold()
+            replacement = labels.get(key)
+            result.append(rendered + (f"[{replacement}]" if replacement else suffix[0]))
+            index = end + suffix.end()
+        elif text[end:end + 1] == "(":
+            # Leave inline destinations/titles opaque, including bracket-shaped URL text.
+            stop, depth, quote_mark, angle = end + 1, 1, "", False
+            while stop < len(text) and depth:
+                char = text[stop]
+                if char == "\\":
+                    stop += 2
+                    continue
+                if quote_mark:
+                    if char == quote_mark:
+                        quote_mark = ""
+                elif angle:
+                    angle = char != ">"
+                elif char == "<":
+                    angle = True
+                elif char in "\"'" and text[stop - 1].isspace():
+                    quote_mark = char
+                else:
+                    depth += (char == "(") - (char == ")")
+                stop += 1
+            result.append(rendered + text[end:stop])
+            index = stop
+        else:
+            replacement = labels.get(normalize_spaces(label).casefold())
+            result.append(rendered + (f"[{replacement}]" if replacement else ""))
+            index = end
+    return "".join(result)
+
+
+def _isolate_source_references(originals: dict[str, str]) -> dict[str, str]:
+    """Namespace document-local labels before source documents share one Markdown scope."""
+    parts = {origin: _reference_text_parts(text) for origin, text in originals.items()}
+    definitions = {origin: _source_reference_definitions(text) for origin, text in originals.items()}
+    counts = Counter(label for labels in definitions.values() for label in labels)
+    reserved = set(counts)
+    result = {}
+    for origin, chunks in parts.items():
+        document = parse_concept_document(originals[origin])
+        skipped = {"classification", "contributing courses", "extraction metadata", "quality review"}
+        dropped = _source_reference_definitions(document.prefix)
+        for section in document.sections:
+            if section.heading.lower() in skipped:
+                dropped.update(_source_reference_definitions(section.content))
+        hoist = set(dropped)
+        labels = {}
+        for label in sorted(definitions[origin]):
+            if counts[label] < 2:
+                continue
+            candidate = "kra-ref-" + sha256(f"{origin}\n{label}".encode()).hexdigest()
+            while candidate in reserved:
+                candidate += "-ref"
+            reserved.add(candidate)
+            labels[label] = candidate
+            hoist.add(label)
+        if not hoist:
+            result[origin] = originals[origin]
+            continue
+        body = []
+        for text, visible in chunks:
+            if not visible:
+                body.append(text)
+                continue
+            masked, codes = _mask_reference_code(text)
+            rewritten = []
+            for line in masked.splitlines(keepends=True):
+                match = REFERENCE_PATTERN.match(line)
+                if match:
+                    label = match[1].split("[", 1)[1].rsplit("]", 1)[0]
+                    if normalize_spaces(label).casefold() in hoist:
+                        continue
+                    rewritten.append(line)
+                else:
+                    rewritten.append(_namespace_reference_uses(line, labels))
+            body.append(_restore_reference_code("".join(rewritten), codes))
+        # Hoist definitions so references survive even if their original section is skipped.
+        hoisted = [f"[{labels.get(label, definitions[origin][label][0])}]: {definitions[origin][label][1]}"
+                   for label in sorted(hoist)]
+        result[origin] = ("".join(body).rstrip() + "\n\n## Retained Reference Definitions\n"
+                          + "\n".join(hoisted) + "\n")
+    return result
+
+
+def _retain_source_sections(
+    markdown: str, originals: dict[str, str],
+    rebase_links: Callable[[str, str], str] | None = None,
+) -> str:
+    """Keep evidence/custom sections as attributed, non-nesting content blocks."""
+    pipeline_sections = {"classification", "contributing courses", "extraction metadata",
+                         "quality review", "retained source material"}
+    current_sections = {name.lower(): content for name, content in _page_sections(markdown)}
+    pattern = re.compile(r'<!-- retained-evidence (\{[^\n]+\}) -->\n(.*?)\n<!-- /retained-evidence -->', re.S)
+    blocks: dict[tuple[str, str], dict] = {}
+
+    def retain(section: str, content: str, sources: list[str]) -> None:
+        content = content.strip("\n")
+        if not content:
+            return
+        key = (section.lower(), sha256(content.encode()).hexdigest())
+        block = blocks.setdefault(key, {"section": section, "content": content, "sources": set()})
+        block["sources"].update(sources)
+
+    for origin, original in sorted(_isolate_source_references(originals).items()):
+        for match in pattern.finditer(original):
+            header = json.loads(match[1])
+            content = match[2].split("\n\n", 1)[1]
+            if rebase_links:
+                content = rebase_links(origin, content)
+            retain(header["section"], content, header["sources"])
+        # Retained blocks have their own stable attribution. Never nest them.
+        cleaned = pattern.sub("", original)
+        for section, content in _page_sections(cleaned):
+            if section.lower() not in pipeline_sections and content != current_sections.get(section.lower()):
+                if rebase_links:
+                    content = rebase_links(origin, content)
+                retain(section, content, [origin])
+    if not blocks:
+        return markdown
+    rendered = ["## Retained Source Material"]
+    for key, block in sorted(blocks.items()):
+        header = {"section": block["section"], "digest": key[1], "sources": sorted(block["sources"])}
+        rendered.extend(["", f"<!-- retained-evidence {json.dumps(header, ensure_ascii=True, sort_keys=True)} -->",
+                         f"### {block['section']}", f"Source records: {', '.join(header['sources'])}", "",
+                         block["content"], "<!-- /retained-evidence -->"])
+    insertion = markdown.find("## Provenance")
+    if insertion < 0:
+        insertion = len(markdown)
+    return markdown[:insertion].rstrip() + "\n\n" + "\n".join(rendered) + "\n\n" + markdown[insertion:]
+
+
+def _rebase_evidence_links(content: str, source: Path, target: Path, archives: dict[Path, Path]) -> str:
+    def rewrite(destination: str) -> str:
+        url = urlsplit(destination)
+        if url.scheme or url.netloc or not url.path or url.path.startswith("/"):
+            return destination
+        original = (source / unquote(url.path)).resolve()
+        mapped = original
+        for directory, archive in sorted(archives.items(), key=lambda item: len(item[0].parts), reverse=True):
+            if original.is_relative_to(directory):
+                mapped = archive / original.relative_to(directory)
+                break
+        relative = os.path.relpath(mapped, target).replace(os.sep, "/")
+        return urlunsplit(("", "", quote(relative, safe="/~"), url.query, url.fragment))
+    parts = []
+    for text, visible in _reference_text_parts(content):
+        if not visible:
+            parts.append(text)
+            continue
+        masked, codes = _mask_reference_code(text)
+        parts.append(_restore_reference_code(map_document_links(masked, rewrite), codes))
+    return "".join(parts)
+
+
+def _metadata_from_page(record: ConceptRecord, concepts_root: Path) -> ConceptMetadata:
+    """Retain literal page values when metadata omitted them, without synthesis."""
+    path = record.directory / "concept.md"
+    if not path.exists():
+        return record.metadata
+    names = {"definition": "definition", "core intuition": "intuition",
+             "mathematical foundation": "mathematical_foundation"}
+    values = {}
+    conflicts = list(record.metadata.persistence_conflicts)
+    for heading, content in _page_sections(path.read_text(encoding="utf-8")):
+        field_name = names.get(heading.lower())
+        if not field_name or not content:
+            continue
+        prior = getattr(record.metadata, field_name)
+        if not prior:
+            values[field_name] = content
+        elif prior != content:
+            conflicts.append(PersistenceConflict(field_name, prior, [PersistenceAlternative(
+                record.directory.relative_to(concepts_root).as_posix(), sha256_file(record.metadata_path), content,
+            )]))
+    return replace(record.metadata, **values, persistence_conflicts=conflicts)
+
+
+def _render_persistence_review(
+    markdown: str, metadata: ConceptMetadata, history_prefix: str = "../../.concepts_history",
+) -> str:
+    if not metadata.persistence_conflicts:
+        return markdown
+    if "## Quality Review" not in markdown:
+        markdown = markdown.rstrip() + "\n\n## Quality Review\n"
+    lines = [markdown.rstrip(), "", "Unresolved persistence conflicts (preferred current values retained):"]
+    for conflict in metadata.persistence_conflicts:
+        for alternative in conflict.alternatives:
+            if alternative.source_record.startswith("lecture:"):
+                lines.append(f"- `{conflict.field_name}`: alternative from `{alternative.source_record}` "
+                             f"(lecture SHA-256 `{alternative.record_sha256}`).")
+                continue
+            archive = f"{history_prefix}/{alternative.snapshot_id}/manifest.json"
+            reference = f"[archive manifest]({archive})" if alternative.snapshot_id else "archive pending"
+            lines.append(f"- `{conflict.field_name}`: alternative from `{alternative.source_record}` "
+                         f"(metadata SHA-256 `{alternative.record_sha256}`; {reference}).")
+    return "\n".join(lines) + "\n"
 
 
 def consolidate_concepts(processed_root: Path, concepts_root: Path) -> ConsolidationReport:
     artifacts = discover_lecture_artifacts(processed_root)
+    recover_concept_transactions(concepts_root)
     mentions_by_key, _lecture_hashes = collect_mentions(artifacts)
-    existing_records = discover_concept_records(concepts_root)
-
-    records_by_key: dict[str, list[ConceptRecord]] = defaultdict(list)
-    for record in existing_records:
-        records_by_key[record.key].append(record)
-
+    grouped: dict[str, list[ConceptRecord]] = defaultdict(list)
+    for record in discover_concept_records(concepts_root):
+        grouped[record.key].append(record)
     report = ConsolidationReport(total_mentions=sum(len(v) for v in mentions_by_key.values()))
-
-    for key, records in sorted(list(records_by_key.items())):
-        if len(records) <= 1:
-            continue
-        primary_record = _choose_primary_record(records)
-        merged_record = _merge_existing_records(records)
-        records_by_key[key] = [merged_record]
-        for duplicate in records:
-            if duplicate.directory == primary_record.directory:
+    for key in sorted(set(grouped) | set(mentions_by_key)):
+        records = grouped.get(key, [])
+        mentions = mentions_by_key.get(key, [])
+        primary = _choose_primary_record(records) if records else None
+        if len(records) == 1:
+            hashes = {mention.lecture_file: mention.lecture_hash for mention in mentions}
+            if all(primary.metadata.source_lecture_hashes.get(path) == digest for path, digest in hashes.items()):
+                report.unchanged.append(key)
                 continue
-            report.duplicate_dirs.append(duplicate.directory.as_posix())
-            if duplicate.directory.exists():
-                shutil.rmtree(duplicate.directory)
-        concept_name = merged_record.metadata.concept_name or _preferred_display_name(mentions_by_key.get(key, []), key)
-        if _write_concept_record(
-            primary_record.directory,
-            primary_record.metadata_path,
-            concept_name,
-            key,
-            merged_record.metadata,
-            [],
-            force=True,
-        ):
-            report.updated.append(key)
+        existing = merge_concept_metadata(concepts_root, [
+            (r.directory, _metadata_from_page(r, concepts_root)) for r in records
+        ]) if records else None
+        name = existing.concept_name if existing else _preferred_display_name(mentions, key)
+        metadata = _merge_metadata(name, key, mentions, existing)
+        directory = primary.directory if primary else concept_directory(concepts_root, name)
+        originals = {}
+        origin_directories = {}
+        for record in records:
+            path = record.directory / "concept.md"
+            if path.exists():
+                origin = record.directory.relative_to(concepts_root).as_posix()
+                origin += f" (metadata SHA-256 {sha256_file(record.metadata_path)})"
+                originals[origin] = path.read_text(encoding="utf-8")
+                origin_directories[origin] = record.directory
 
-    current_keys = set(mentions_by_key.keys())
-    for key in sorted(current_keys):
-        mentions = mentions_by_key[key]
-        existing_record = records_by_key.get(key, [None])[0] if records_by_key.get(key) else None
-        existing_meta = existing_record.metadata if existing_record else None
-        concept_name = (
-            existing_meta.concept_name
-            if existing_meta and existing_meta.concept_name
-            else _preferred_display_name(mentions, key)
-        )
-        current_meta = _merge_metadata(concept_name, key, mentions, existing_meta)
+        def render(final: ConceptMetadata) -> str:
+            markdown = build_concept_markdown(name, key, final, mentions)
+            snapshot = concept_history_root(concepts_root) / final.persistence_snapshot_id
+            archives = {record.directory.resolve(): snapshot / "records" / f"{i:04d}"
+                        for i, record in enumerate(sorted(records, key=lambda r: r.directory.as_posix()))}
+            markdown = _retain_source_sections(markdown, originals, lambda origin, content: _rebase_evidence_links(
+                content, origin_directories[origin], directory, archives,
+            ))
+            prefix = os.path.relpath(concept_history_root(concepts_root), directory).replace(os.sep, "/")
+            return _render_persistence_review(markdown, final, prefix)
 
-        if existing_record:
-            directory = existing_record.directory
-            metadata_path = existing_record.metadata_path
-        else:
-            directory = concept_directory(concepts_root, concept_name)
-            metadata_path = concept_paths(concepts_root, concept_name)[1]
-
-        if _write_concept_record(
-            directory,
-            metadata_path,
-            concept_name,
-            key,
-            current_meta,
-            mentions,
-        ):
-            if existing_meta:
-                if key not in report.updated:
-                    report.updated.append(key)
-            else:
-                report.created.append(key)
+        superseded = tuple(r.directory for r in records if r != primary)
+        result = write_concept_record(concepts_root, directory, metadata, render,
+                                      superseded_directories=superseded,
+                                      reason="duplicate merge" if superseded else "source update")
+        if result.changed:
+            (report.updated if primary else report.created).append(key)
+            report.duplicate_dirs.extend(str(path) for path in superseded)
         else:
             report.unchanged.append(key)
-
-    # Legacy concept pages may have no mention in the current processed corpus
-    # but still need migration to the current study-page format.
-    for key, records in sorted(records_by_key.items()):
-        if key in current_keys or not records:
-            continue
-        record = records[0]
-        concept_name = record.metadata.concept_name or canonical_concept_name(key) or key
-        normalized_meta = _merge_metadata(concept_name, key, [], record.metadata)
-        if _write_concept_record(
-            record.directory,
-            record.metadata_path,
-            concept_name,
-            key,
-            normalized_meta,
-            [],
-        ):
-            report.updated.append(key)
-        else:
-            report.unchanged.append(key)
-
     return report

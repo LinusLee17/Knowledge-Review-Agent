@@ -54,3 +54,27 @@ Results:
 
 Full historical run artifacts remain local under `evaluation/runs/` and are not
 part of the GitHub submission.
+
+## Regression validation (2026-10-20)
+
+Commands run against the working tree after review fixes:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 pytest -q -p no:cacheprovider
+node --test tests/js/*.test.mjs
+PYTHONDONTWRITEBYTECODE=1 python3 evaluation/evaluate_graph.py --presentation
+git diff --check
+```
+
+- Python: 289 passed, including repair recovery, published-root rejection,
+  source conflicts, reference isolation, placeholders, and asset freshness.
+- JavaScript: 62 passed, including concept rendering and graph contract checks.
+  The HTTP roundtrip test used a temporary loopback listener.
+- Published presentation bundle: schema 1, 66 concepts, 159 edges, valid.
+- Browser smoke check: graph search and concept navigation; Linear Regression
+  equations, table, and legacy source-link targets; no horizontal overflow at
+  a 390-pixel viewport. This is sampled UI verification, not a corpus-wide audit.
+- Gate policy: 3. Earlier eligibility reports require reevaluation before any
+  new refinement; existing published pages remain available without a rebuild.
+- No source PDFs parsed and no production ingestion, consolidation, repair,
+  refinement, or graph regeneration performed. No new corpus quality score claimed.

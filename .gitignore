@@ -33,9 +33,11 @@ scripts/create_overview_excalidraw.py
 data/
 
 evaluation/runs/
+evaluation/reviews/
 evaluation/workflow_test_report.md
 
 knowledge_base/concepts/
+knowledge_base/.*_history/
 knowledge_base/refined/
 knowledge_base/graphs/*.json
 knowledge_base/graphs/deltas/

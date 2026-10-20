@@ -1,44 +1,22 @@
+"""Presentation preparation guarded by exact, source-bound evaluation evidence."""
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 import json
-import re
+import os
 from pathlib import Path
+import tempfile
+from urllib.parse import quote, unquote, urlsplit, urlunsplit
 
-from .concept_store import load_concept_metadata, save_concept_metadata
-from .utils import normalize_spaces
-
-
-CANONICAL_SECTION_ORDER = [
-    "Classification",
-    "Contributing Courses",
-    "Definition",
-    "Why it Matters",
-    "Core Intuition",
-    "How it Works",
-    "Mathematical Foundation",
-    "Key Components",
-    "Advantages",
-    "Limitations",
-    "Common Mistakes",
-    "Common Variants",
-    "Real-world Applications",
-    "Interview Questions",
-    "Related Concepts",
-    "Connections",
-    "Prerequisites",
-    "Further Reading",
-    "Slide-derived Evidence",
-    "Provenance",
-    "Extraction Metadata",
-]
-
-SECTION_ALIASES = {
-    "real-world applications": "Real-world Applications",
-    "real world applications": "Real-world Applications",
-    "applications": "Real-world Applications",
-    "assumptions": "Assumptions",
-}
+from .concept_document import (
+    CANONICAL_SECTION_ORDER, SECTION_ALIASES, format_concept_document,
+    assert_presentation_preserved, map_document_links,
+)
+from .concept_store import concept_history_root
+from .quality_gate import (
+    GateError, GateSnapshot, require_eligible_report, load_evaluation_report,
+    assert_gate_snapshot_current,
+)
 
 
 @dataclass(frozen=True)
@@ -59,147 +37,114 @@ class RefinementReport:
     concepts_processed: int = 0
 
 
-def discover_concept_directories(concepts_root: Path) -> list[Path]:
-    if not concepts_root.exists():
-        return []
-    return sorted(path for path in concepts_root.iterdir() if path.is_dir())
+def _validate_destination(snapshot: GateSnapshot, refined_root: Path, report_path: Path) -> None:
+    source = snapshot.paths.concepts_root.resolve()
+    output = refined_root.resolve()
+    if refined_root.is_symlink() or output.is_relative_to(source) or source.is_relative_to(output):
+        raise GateError("Draft and refined roots must be separate, non-overlapping directories")
+    if report_path.resolve().is_relative_to(source) or report_path.resolve().is_relative_to(output):
+        raise GateError("Evaluation report must be outside draft and refined roots")
+    # Output cannot overwrite any other evaluated source/review/evidence root.
+    for root in (snapshot.paths.processed_root, snapshot.paths.reviews_root,
+                 concept_history_root(snapshot.paths.concepts_root), *snapshot.paths.asset_roots):
+        if output.is_relative_to(root.resolve()) or root.resolve().is_relative_to(output):
+            raise GateError("Refined output overlaps evaluated evidence/review inputs")
+    for concept in snapshot.concepts:
+        for suffix in ("concept.md", "metadata.json"):
+            path = refined_root / concept.relative_dir / suffix
+            cursor = refined_root
+            for part in path.relative_to(refined_root).parts:
+                cursor /= part
+                if cursor.is_symlink():
+                    raise GateError(f"Symlink refined output path: {cursor}")
+                if cursor.exists() and cursor != path and not cursor.is_dir():
+                    raise GateError(f"Invalid refined output directory: {cursor}")
+            if path.exists() and not path.is_file():
+                raise GateError(f"Invalid refined output file: {path}")
 
 
-def _canonical_section_name(raw_name: str) -> str:
-    cleaned = normalize_spaces(raw_name).strip()
-    key = cleaned.lower()
-    if key in SECTION_ALIASES:
-        return SECTION_ALIASES[key]
-    for section in CANONICAL_SECTION_ORDER:
-        if section.lower() == key:
-            return section
-    return cleaned
+def _relocate_links(markdown: str, source: Path, output: Path) -> str:
+    def rebase(destination):
+        url = urlsplit(destination)
+        if url.scheme or url.netloc or not url.path or url.path.startswith("/"):
+            return destination
+        original = (source / unquote(url.path)).resolve()
+        relative = os.path.relpath(original, output.resolve()).replace(os.sep, "/")
+        return urlunsplit(("", "", quote(relative, safe="/~"), url.query, url.fragment))
+    return map_document_links(markdown, rebase)
 
 
-def _parse_sections(markdown: str) -> tuple[list[str], str, dict[str, list[str]], list[str]]:
-    prefix_lines: list[str] = []
-    title = ""
-    sections: dict[str, list[str]] = {}
-    ordered_sections: list[str] = []
-    current = "__preamble__"
-    sections[current] = []
-    seen_title = False
-
-    for line in markdown.splitlines():
-        if line.startswith("# ") and not seen_title:
-            title = line[2:].strip()
-            seen_title = True
-            continue
-        match = re.match(r"^##\s+(.*)$", line)
-        if match:
-            current = _canonical_section_name(match.group(1))
-            if current not in sections:
-                sections[current] = []
-                ordered_sections.append(current)
-            continue
-        if not seen_title and current == "__preamble__":
-            prefix_lines.append(line)
-            continue
-        sections.setdefault(current, []).append(line)
-
-    return prefix_lines, title, sections, ordered_sections
+def _atomic_output(path: Path, content: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary = tempfile.mkstemp(prefix=".refinement-", dir=path.parent)
+    try:
+        with os.fdopen(descriptor, "wb") as stream:
+            stream.write(content)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
 
 
-def _render_sections(
-    prefix_lines: list[str],
-    title: str,
-    sections: dict[str, list[str]],
-    ordered_sections: list[str],
-) -> str:
-    lines: list[str] = []
-    if prefix_lines:
-        lines.extend(prefix_lines)
-        if lines[-1] != "":
-            lines.append("")
-    if title:
-        lines.append(f"# {title}")
-    else:
-        lines.append("# Concept")
-
-    if sections.get("__preamble__"):
-        preamble = "\n".join(sections["__preamble__"]).strip()
-        if preamble:
-            lines.extend(["", preamble])
-
-    seen: set[str] = set()
-    ordered = [section for section in CANONICAL_SECTION_ORDER if section in sections]
-    extras = [section for section in ordered_sections if section not in CANONICAL_SECTION_ORDER]
-    tail = [section for section in extras if section not in ordered]
-
-    for section in [*ordered, *tail]:
-        if section == "__preamble__" or section in seen:
-            continue
-        seen.add(section)
-        content = sections.get(section, [])
-        cleaned_content = "\n".join(content).rstrip()
-        if cleaned_content:
-            lines.extend(["", f"## {section}", cleaned_content])
-        else:
-            lines.extend(["", f"## {section}"])
-
-    return "\n".join(lines).rstrip() + "\n"
+def _prepare_and_publish(snapshot: GateSnapshot, refined_root: Path, report_path: Path, selected=None) -> list[RefinementResult]:
+    _validate_destination(snapshot, refined_root, report_path)
+    results = []
+    prepared = []
+    with tempfile.TemporaryDirectory(prefix="knowledge-refinement-") as staging:
+        stage = Path(staging)
+        for index, concept in enumerate(snapshot.concepts):
+            if selected is not None and concept.relative_dir != selected:
+                continue
+            source = snapshot.paths.concepts_root / concept.relative_dir
+            output = refined_root / concept.relative_dir
+            original = concept.markdown.decode("utf-8")
+            formatted = format_concept_document(original)
+            assert_presentation_preserved(original, formatted)
+            formatted = _relocate_links(formatted, source, output)
+            payloads = {"concept.md": formatted.encode("utf-8"), "metadata.json": concept.metadata}
+            created = any(not (output / name).exists() for name in payloads)
+            updated = False
+            for name, content in payloads.items():
+                destination = output / name
+                if not destination.exists() or destination.read_bytes() != content:
+                    staged = stage / str(index) / name
+                    staged.parent.mkdir(parents=True, exist_ok=True)
+                    staged.write_bytes(content)
+                    prepared.append((destination, staged))
+                    updated = True
+            results.append(RefinementResult(json.loads(concept.metadata)["concept_name"], source, output, created, updated))
+        if not results:
+            raise GateError("Requested concept is not in evaluated corpus")
+        assert_gate_snapshot_current(snapshot)
+        # Revalidate destination topology after staging; no partial output on validation failure.
+        _validate_destination(snapshot, refined_root, report_path)
+        for destination, staged in prepared:
+            _atomic_output(destination, staged.read_bytes())
+    return results
 
 
-def refine_concept_page(concept_dir: Path, refined_root: Path) -> RefinementResult:
-    concept_md = concept_dir / "concept.md"
-    metadata_path = concept_dir / "metadata.json"
-    if not concept_md.exists() or not metadata_path.exists():
-        return RefinementResult(
-            concept_name=concept_dir.name,
-            source_dir=concept_dir,
-            refined_dir=refined_root / concept_dir.name,
-            created=False,
-            updated=False,
-        )
-
-    metadata = load_concept_metadata(metadata_path)
-    if not metadata:
-        return RefinementResult(
-            concept_name=concept_dir.name,
-            source_dir=concept_dir,
-            refined_dir=refined_root / concept_dir.name,
-            created=False,
-            updated=False,
-        )
-
-    prefix_lines, title, sections, ordered_sections = _parse_sections(concept_md.read_text(encoding="utf-8"))
-    refined_dir = refined_root / concept_dir.name
-    refined_md = refined_dir / "concept.md"
-    refined_metadata = refined_dir / "metadata.json"
-    created = not refined_md.exists() or not refined_metadata.exists()
-    refined_dir.mkdir(parents=True, exist_ok=True)
-
-    new_markdown = _render_sections(prefix_lines, title or metadata.concept_name or concept_dir.name, sections, ordered_sections)
-    existing_markdown = refined_md.read_text(encoding="utf-8") if refined_md.exists() else None
-    existing_metadata = load_concept_metadata(refined_metadata)
-
-    updated = existing_markdown != new_markdown or existing_metadata != metadata
-    if updated:
-        refined_md.write_text(new_markdown, encoding="utf-8")
-        save_concept_metadata(refined_metadata, metadata)
-
-    return RefinementResult(
-        concept_name=metadata.concept_name or concept_dir.name,
-        source_dir=concept_dir,
-        refined_dir=refined_dir,
-        created=created,
-        updated=updated,
-    )
+def refine_concept_page(concept_dir: Path, refined_root: Path, *, evaluation_report: Path | None = None) -> RefinementResult:
+    if evaluation_report is None:
+        raise GateError("Evaluation report required before refinement")
+    report = load_evaluation_report(evaluation_report)
+    root = Path(report["roots"]["concepts"])
+    snapshot = require_eligible_report(evaluation_report, root)
+    if concept_dir.is_symlink():
+        raise GateError("Symlink concept directory")
+    try:
+        selected = concept_dir.resolve().relative_to(root.resolve()).as_posix()
+    except ValueError as exc:
+        raise GateError("Requested concept outside evaluated corpus") from exc
+    return _prepare_and_publish(snapshot, refined_root, evaluation_report, selected)[0]
 
 
-def refine_concepts(concepts_root: Path, refined_root: Path) -> RefinementReport:
-    report = RefinementReport()
-    for concept_dir in discover_concept_directories(concepts_root):
-        result = refine_concept_page(concept_dir, refined_root)
-        report.concepts_processed += 1
-        if not result.refined_dir.exists():
-            report.skipped.append(result.concept_name)
-            continue
+def refine_concepts(concepts_root: Path, refined_root: Path, *, evaluation_report: Path | None = None) -> RefinementReport:
+    snapshot = require_eligible_report(evaluation_report, concepts_root)
+    results = _prepare_and_publish(snapshot, refined_root, evaluation_report)
+    report = RefinementReport(concepts_processed=len(results))
+    for result in results:
         if result.created:
             report.created.append(result.concept_name)
         if result.updated:
@@ -210,14 +155,4 @@ def refine_concepts(concepts_root: Path, refined_root: Path) -> RefinementReport
 
 
 def refinement_report_to_json(report: RefinementReport) -> str:
-    return json.dumps(
-        {
-            "concepts_processed": report.concepts_processed,
-            "created": report.created,
-            "updated": report.updated,
-            "unchanged": report.unchanged,
-            "skipped": report.skipped,
-        },
-        indent=2,
-        ensure_ascii=True,
-    )
+    return json.dumps(asdict(report), indent=2, ensure_ascii=True)

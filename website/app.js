@@ -1,3 +1,5 @@
+import { loadGraphData } from './graph-contract.mjs?v=2';
+
 const DOMAIN_COLORS = {
   "Machine Learning": "#2563eb",
   Statistics: "#16a34a",
@@ -77,31 +79,6 @@ function normalizeText(value) {
     .toLowerCase();
 }
 
-function siteUrlFromMetadataPath(metadataPath, suffix = "metadata.json") {
-  const normalized = String(metadataPath ?? "").replaceAll("\\", "/");
-  const marker = "/knowledge_base/";
-  const idx = normalized.lastIndexOf(marker);
-  if (idx >= 0) {
-    const rel = normalized.slice(idx + 1).replace(/metadata\.json$/i, suffix);
-    return `../${encodeURI(rel)}`;
-  }
-  return `../${encodeURI(normalized.replace(/metadata\.json$/i, suffix))}`;
-}
-
-function conceptViewerUrl(metadataPath) {
-  const normalized = String(metadataPath ?? "").replaceAll("\\", "/");
-  const marker = "/knowledge_base/";
-  const idx = normalized.lastIndexOf(marker);
-  if (idx >= 0) {
-    const rel = normalized
-      .slice(idx + 1)
-      .replace("knowledge_base/concepts/", "knowledge_base/refined/")
-      .replace(/metadata\.json$/i, "concept.md");
-    return `./concept.html?path=${encodeURIComponent(`../${rel}`)}&view=20260805`;
-  }
-  return `./concept.html?path=${encodeURIComponent(normalized.replace(/metadata\.json$/i, "concept.md"))}&view=20260805`;
-}
-
 function domainColor(domain) {
   return DOMAIN_COLORS[domain] || DOMAIN_COLORS.Other;
 }
@@ -112,94 +89,15 @@ function nodeSearchBlob(node) {
     node.concept_key,
     node.domain,
     node.topic,
-    ...(node.aliases || []),
-    ...(node.prerequisites || []),
-    ...(node.related_concepts || []),
-    ...(node.broader_topics || []),
-    ...(node.applications || []),
-    ...(node.contributing_courses || []),
+    ...(node.aliases),
+    ...(node.prerequisites),
+    ...(node.related_concepts),
+    ...(node.broader_topics),
+    ...(node.applications),
+    ...(node.contributing_courses),
   ]
     .map(normalizeText)
     .join(" ");
-}
-
-function buildFallbackGraph(nodesPayload, edgesPayload) {
-  const nodes = (nodesPayload.nodes || []).map((node) => {
-    const metadataUrl = siteUrlFromMetadataPath(node.metadata_path, "metadata.json");
-    return {
-      ...node,
-      scope_level: Number(node.scope_level || 3),
-      study_priority: Number(node.study_priority || node.importance_score || 1),
-      aliases: [],
-      prerequisites: [],
-      related_concepts: [],
-      broader_topics: [],
-      applications: [],
-      definition: "",
-      core_idea: "",
-      interview_notes: "",
-      connected_edge_count: 0,
-      degree: 0,
-      metadata_url: metadataUrl,
-      concept_url: conceptViewerUrl(node.metadata_path),
-      search_terms: [
-        node.concept_name,
-        node.concept_key,
-        node.domain,
-        node.topic,
-        ...(node.contributing_courses || []),
-      ],
-    };
-  });
-  const edges = edgesPayload.edges || [];
-  const degree = new Map();
-  edges.forEach((edge) => {
-    degree.set(edge.source, (degree.get(edge.source) || 0) + 1);
-    degree.set(edge.target, (degree.get(edge.target) || 0) + 1);
-  });
-  nodes.forEach((node) => {
-    const count = degree.get(node.node_id) || 0;
-    node.connected_edge_count = count;
-    node.degree = count;
-  });
-  const domains = [...new Set(nodes.map((node) => node.domain).filter(Boolean))].sort();
-  const multiCourse = nodes.filter((node) => (node.contributing_courses || []).length > 1).length;
-  const relationCounts = edges.reduce((acc, edge) => {
-    acc[edge.relation_type] = (acc[edge.relation_type] || 0) + 1;
-    return acc;
-  }, {});
-  return {
-    schema_version: 1,
-    generated_at: nodesPayload.generated_at || edgesPayload.generated_at || "",
-    stats: {
-      total_concepts: nodes.length,
-      total_edges: edges.length,
-      domains,
-      average_node_degree: nodes.length ? Number((edges.length * 2 / nodes.length).toFixed(2)) : 0,
-      multi_course_concepts: multiCourse,
-      relation_counts: relationCounts,
-    },
-    nodes,
-    edges,
-  };
-}
-
-async function loadGraphData() {
-  const graphUrl = new URL("../knowledge_base/graphs/graph.json?v=20260805-6", window.location.href);
-  const response = await fetch(graphUrl);
-  if (response.ok) {
-    return response.json();
-  }
-
-  const [nodesResponse, edgesResponse] = await Promise.all([
-    fetch(new URL("../knowledge_base/graphs/nodes.json", window.location.href)),
-    fetch(new URL("../knowledge_base/graphs/edges.json", window.location.href)),
-  ]);
-  if (!nodesResponse.ok || !edgesResponse.ok) {
-    throw new Error("Unable to load graph data. Run the graph build command first.");
-  }
-  const [nodesPayload, edgesPayload] = await Promise.all([nodesResponse.json(), edgesResponse.json()]);
-  return buildFallbackGraph(nodesPayload, edgesPayload);
 }
 
 function domainSet(graph) {
@@ -207,7 +105,7 @@ function domainSet(graph) {
 }
 
 function courseSet(graph) {
-  return [...new Set(graph.nodes.flatMap((node) => node.contributing_courses || []))].sort((a, b) => a.localeCompare(b));
+  return [...new Set(graph.nodes.flatMap((node) => node.contributing_courses))].sort((a, b) => a.localeCompare(b));
 }
 
 function relationSet(graph) {
@@ -321,8 +219,8 @@ function updateStatsPanel() {
   const visibleEdges = visibleEdgeIds(visibleNodes);
   const stats = state.graph.stats || {};
   const visibleNodeData = state.cy.nodes().filter((node) => visibleNodes.has(node.id())).map((node) => node.data());
-  const connectedCount = visibleNodeData.filter((node) => Number(node.connected_edge_count || 0) > 0).length;
-  const crossCourseCount = visibleNodeData.filter((node) => (node.contributing_courses || []).length > 1).length;
+  const connectedCount = visibleNodeData.filter((node) => node.connected_edge_count > 0).length;
+  const crossCourseCount = visibleNodeData.filter((node) => (node.contributing_courses).length > 1).length;
   const relationCounts = state.cy
     .edges()
     .filter((edge) => visibleEdges.has(edge.id()))
@@ -494,8 +392,8 @@ function searchNodes(query) {
       if (blob.includes(normalized)) score += 40;
       if (topic.includes(normalized)) score += 30;
       if (domain.includes(normalized)) score += 25;
-      if ((node.aliases || []).some((alias) => normalizeText(alias) === normalized)) score += 90;
-      if ((node.aliases || []).some((alias) => normalizeText(alias).includes(normalized))) score += 50;
+      if ((node.aliases).some((alias) => normalizeText(alias) === normalized)) score += 90;
+      if ((node.aliases).some((alias) => normalizeText(alias).includes(normalized))) score += 50;
       return { node, score };
     })
     .filter((item) => item.score > 0)
@@ -607,25 +505,25 @@ function createCy() {
         domain: node.domain || "Other",
         domainColor: domainColor(node.domain || "Other"),
         topic: node.topic || "",
-        importance_score: Number(node.importance_score || node.study_priority || 1),
-        scope_level: Number(node.scope_level || 3),
-        study_priority: Number(node.study_priority || node.importance_score || 1),
-        contributing_courses: node.contributing_courses || [],
-        contributing_lecture_files: node.contributing_lecture_files || [],
-        aliases: node.aliases || [],
-        prerequisites: node.prerequisites || [],
-        related_concepts: node.related_concepts || [],
-        broader_topics: node.broader_topics || [],
-        applications: node.applications || [],
+        importance_score: node.importance_score,
+        scope_level: node.scope_level,
+        study_priority: node.study_priority,
+        contributing_courses: node.contributing_courses,
+        contributing_lecture_files: node.contributing_lecture_files,
+        aliases: node.aliases,
+        prerequisites: node.prerequisites,
+        related_concepts: node.related_concepts,
+        broader_topics: node.broader_topics,
+        applications: node.applications,
         definition: node.definition || "",
         core_idea: node.core_idea || "",
         interview_notes: node.interview_notes || "",
-        connected_edge_count: Number(node.connected_edge_count || 0),
-        degree: Number(node.degree || 0),
+        connected_edge_count: node.connected_edge_count,
+        degree: node.degree,
         metadata_path: node.metadata_path || "",
-        metadata_url: node.metadata_url || siteUrlFromMetadataPath(node.metadata_path, "metadata.json"),
-        concept_url: node.concept_url || conceptViewerUrl(node.metadata_path),
-        search_terms: node.search_terms || [],
+        metadata_url: node.metadata_url,
+        concept_url: node.concept_url,
+        search_terms: node.search_terms,
       },
     })),
     ...state.graph.edges.map((edge) => ({
@@ -638,9 +536,9 @@ function createCy() {
         target_concept_key: edge.target_concept_key,
         source_concept_name: edge.source_concept_name,
         target_concept_name: edge.target_concept_name,
-        target_resolved: Boolean(edge.target_resolved),
+        target_resolved: edge.target_resolved,
       },
-      classes: `edge-${edge.relation_type || "related"}`,
+      classes: `edge-${edge.relation_type}`,
     })),
   ];
 
@@ -835,7 +733,12 @@ function wireControls() {
 async function init() {
   renderLegend();
   updateScopeLabel();
-  state.graph = await loadGraphData();
+  state.graph = await loadGraphData({
+    baseUrl: window.location.href,
+    graphUrl: document.documentElement.dataset.graphUrl || undefined,
+    repoRootUrl: document.documentElement.dataset.repoRootUrl || undefined,
+    refinedRootUrl: document.documentElement.dataset.refinedRootUrl || undefined,
+  });
   renderFilters();
   createCy();
   wireControls();

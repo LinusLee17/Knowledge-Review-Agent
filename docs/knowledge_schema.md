@@ -132,3 +132,60 @@ After:
 - Logistic Regression
 
 Avoid overly broad concepts when a more specific canonical name is available.
+
+## Persistence conflicts
+
+Canonical metadata optionally contains `persistence_conflicts` (default `[]` for
+legacy records). Each conflict records `field_name`, `selected_value`, and an
+`alternatives` list. Each alternative records:
+
+- `source_record`: original concept directory, relative to concepts root.
+- `record_sha256`: SHA-256 of original metadata bytes.
+- `value`: exact alternative text or lecture hash.
+- `snapshot_id`: immutable snapshot path relative to the sibling history root.
+
+`persistence_snapshot_id` optionally records the current write's original
+snapshot path (default empty for legacy/new records without previous bytes).
+The renderer uses it to rebase local evidence links to archived files. This is
+storage provenance, not a technical content claim. Metadata-only helpers do not
+allocate snapshots.
+
+For a lecture-hash conflict, `field_name` is
+`source_lecture_hashes.<lecture-reference>`. Duplicate primary ordering remains
+highest version, latest timestamp, then descending directory path. Preferred
+nonempty scalar values stay active; lists union without deleting distinct
+contributions. Explicit numeric values remain primary values.
+
+Unresolved alternatives appear under `Quality Review`, with original-record
+identity, metadata hash, and archive-manifest reference. Different equations are
+not concatenated into an invented mathematical statement. Prior content remains
+available in exact original snapshots. Active `Retained Source Material` blocks
+keep earlier source evidence and custom sections with attribution, deduplicated
+by section name and exact content hash.
+
+Unmatched technical sections in original Markdown also remain visible as
+attributed source material. Definitions, intuition, and equations absent from
+metadata can be copied literally from their original page sections. Competing
+values retain original-record references and review flags; no equation is guessed.
+
+Store-generated versions and timestamps describe committed content changes.
+New records start at version 1; updates and duplicate merges advance once from
+the maximum contributing version. No-op runs and recovery do not advance them.
+
+## Source occurrence identity
+
+Occurrences are derived in memory from lecture JSON, not stored as a second
+canonical metadata database. Source kinds are `structured`, `candidate` and
+`text_line`. Each location retains course, lecture-relative path, exact lecture
+SHA-256, PDF path, positive page number and JSON pointer. Text lines additionally
+retain 1-based line number and zero-based character offsets excluding newline.
+Raw wording/spacing remains exact; cleaned display wording is separate.
+
+Occurrence IDs hash source policy `1`, lecture-relative path/hash and locator
+using deterministic canonical JSON. Changed lecture bytes create new IDs. Equal
+wording on different pages/lectures retains distinct IDs. Existing canonical
+metadata needs no new field, version bump or implicit rewrite.
+
+Audit `source_coverage` lists all accepted text occurrences before display cap;
+each displayed evidence group's `occurrences` lists every citation for that
+wording. Source presence alone does not verify a definition or approve a merge.

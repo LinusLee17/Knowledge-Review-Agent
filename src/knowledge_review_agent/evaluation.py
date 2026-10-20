@@ -151,7 +151,7 @@ def _is_generic_concept(name: str) -> bool:
     return normalize_concept_key(name) in _GENERIC_CONCEPT_KEYS
 
 
-def _definition_quality(metadata) -> float:
+def evaluate_definition_quality(metadata) -> float:
     definition = normalize_spaces(metadata.definition)
     if not definition:
         return 0.0
@@ -165,6 +165,10 @@ def _definition_quality(metadata) -> float:
     if metadata.mathematical_foundation:
         score += 0.1
     return min(1.0, score)
+
+
+# Backward-compatible diagnostic helper; eligibility uses the public name.
+_definition_quality = evaluate_definition_quality
 
 
 def _specificity(metadata) -> float:

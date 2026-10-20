@@ -1,0 +1,102 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-10-20T00:00:00+00:00",
+  "nodes": [
+    {
+      "node_id": "p",
+      "concept_key": "probability",
+      "concept_name": "Probability",
+      "domain": "Statistics",
+      "topic": "Models",
+      "importance_score": 3,
+      "scope_level": 2,
+      "study_priority": 3,
+      "contributing_courses": [
+        "C1"
+      ],
+      "contributing_lecture_files": [
+        "C1/L1/lecture.json"
+      ],
+      "aliases": [],
+      "prerequisites": [],
+      "related_concepts": [],
+      "broader_topics": [],
+      "applications": [],
+      "definition": "Probability is an exact published definition.",
+      "core_idea": "Exact published intuition.",
+      "interview_notes": "",
+      "connected_edge_count": 1,
+      "degree": 1,
+      "metadata_path": "knowledge_base/refined/Probability/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Probability/metadata.json",
+      "concept_url": "./concept.html?path=..%2Fknowledge_base%2Frefined%2FProbability%2Fconcept.md",
+      "search_terms": [
+        "Probability"
+      ]
+    },
+    {
+      "node_id": "r",
+      "concept_key": "linear regression",
+      "concept_name": "Linear Regression",
+      "domain": "Statistics",
+      "topic": "Models",
+      "importance_score": 3,
+      "scope_level": 2,
+      "study_priority": 3,
+      "contributing_courses": [
+        "C1"
+      ],
+      "contributing_lecture_files": [
+        "C1/L1/lecture.json"
+      ],
+      "aliases": [],
+      "prerequisites": [],
+      "related_concepts": [],
+      "broader_topics": [],
+      "applications": [],
+      "definition": "Linear Regression is an exact published definition.",
+      "core_idea": "Exact published intuition.",
+      "interview_notes": "",
+      "connected_edge_count": 1,
+      "degree": 1,
+      "metadata_path": "knowledge_base/refined/Linear Regression/metadata.json",
+      "metadata_url": "../knowledge_base/refined/Linear%20Regression/metadata.json",
+      "concept_url": "./concept.html?path=..%2Fknowledge_base%2Frefined%2FLinear%2520Regression%2Fconcept.md",
+      "search_terms": [
+        "Linear Regression"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "e",
+      "source": "p",
+      "target": "r",
+      "relation_type": "prerequisite",
+      "source_concept_key": "probability",
+      "target_concept_key": "linear regression",
+      "source_concept_name": "Probability",
+      "target_concept_name": "Linear Regression",
+      "target_resolved": true,
+      "supporting_courses": [
+        "C1"
+      ],
+      "supporting_lecture_files": [
+        "C1/L1/lecture.json"
+      ],
+      "supporting_lecture_hashes": {}
+    }
+  ],
+  "stats": {
+    "total_concepts": 2,
+    "total_edges": 1,
+    "domains": [
+      "Statistics"
+    ],
+    "average_node_degree": 1,
+    "multi_course_concepts": 0,
+    "relation_counts": {
+      "prerequisite": 1
+    }
+  }
+}
