@@ -1,0 +1,59 @@
+{
+  "concept_name": "Reinforcement Learning",
+  "canonical_key": "reinforcement learning",
+  "concept_type": "method",
+  "domain": "Machine Learning",
+  "topic": "Sequential Decision Making",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.692,
+  "evidence_strength": 0.86,
+  "definition_quality_score": 0.28,
+  "interview_relevance": 0.98,
+  "definition": "Reinforcement Learning learns how an agent should act by interacting with an environment and using rewards as feedback. The objective is to maximize expected cumulative return over time.",
+  "intuition": "Try actions, observe rewards, and improve the policy that chooses future actions.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Control",
+    "Planning",
+    "Recommendation"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Machine Learning",
+    "Sequential Decision Making"
+  ],
+  "aliases": [
+    "Reinforcement Learning",
+    "markov decision process",
+    "mdp",
+    "reinforcement-learning"
+  ],
+  "contributing_courses": [
+    "BT3102"
+  ],
+  "contributing_lecture_files": [
+    "BT3102/W0_Logistics/lecture.json",
+    "BT3102/W12-MDP_RL/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT3102/W0_Logistics/lecture.json": "d8887b7dd1fe314fa594b8b76fcaf39dd961082c8cf6fdbd7519b5b61fce8e1f",
+    "BT3102/W12-MDP_RL/lecture.json": "862f501eb57709bca83a456fe1021110b9d094fa12b0d116d3ee09001064c093"
+  },
+  "last_updated_timestamp": "2026-08-05T17:13:39.255247+00:00",
+  "version_number": 2,
+  "related_concepts": [
+    "Dynamic Programming",
+    "Hidden Markov Models",
+    "Model Selection"
+  ],
+  "prerequisites": [
+    "Markov Models",
+    "Probability"
+  ],
+  "used_in": [],
+  "graph_node_id": "reinforcement-learning"
+}

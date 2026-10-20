@@ -1,0 +1,53 @@
+{
+  "concept_name": "Type I Error",
+  "canonical_key": "type i error",
+  "concept_type": "concept",
+  "domain": "Statistics",
+  "topic": "Hypothesis Testing",
+  "importance_score": 5,
+  "scope_level": 2,
+  "study_priority": 5,
+  "confidence_score": 0.853,
+  "evidence_strength": 0.84,
+  "definition_quality_score": 0.78,
+  "interview_relevance": 0.98,
+  "definition": "Type I Error occurs when a test rejects a true null hypothesis; its probability is the significance level \u03b1. It is used in Testing.",
+  "intuition": "Think of Type I Error as a durable building block in Hypothesis Testing.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Testing"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Hypothesis Testing",
+    "Statistical Inference",
+    "Statistics"
+  ],
+  "aliases": [
+    "Type I Error",
+    "false positive"
+  ],
+  "contributing_courses": [
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "ST1131/Topic8_HypothesisTest/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "ST1131/Topic8_HypothesisTest/lecture.json": "f23d23067535be87b6e2304f89a067bd085f2301da1929b078ef17463be46823"
+  },
+  "last_updated_timestamp": "2026-08-05T16:27:50.536762+00:00",
+  "version_number": 6,
+  "related_concepts": [
+    "Statistical Significance",
+    "Type II Error",
+    "p-value"
+  ],
+  "prerequisites": [
+    "Hypothesis Testing"
+  ],
+  "used_in": [],
+  "graph_node_id": "type-i-error"
+}

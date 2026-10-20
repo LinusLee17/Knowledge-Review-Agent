@@ -1,0 +1,66 @@
+{
+  "concept_name": "HPO Speedup Techniques",
+  "canonical_key": "hpo speedup technique",
+  "concept_type": "method",
+  "domain": "Machine Learning",
+  "topic": "AutoML",
+  "importance_score": 4,
+  "scope_level": 3,
+  "study_priority": 4,
+  "confidence_score": 0.464,
+  "evidence_strength": 0.5,
+  "definition_quality_score": 0.14,
+  "interview_relevance": 0.86,
+  "definition": "HPO Speedup Techniques reduce the cost or wall-clock time of hyperparameter search. The lecture material emphasizes early stopping, multi-fidelity evaluation, learning-curve information, parallelism, and reuse of information from previous trials.",
+  "intuition": "Make each search decision cheaper or make bad trials stop sooner; the goal is better performance per unit of compute, not just more trials.",
+  "mathematical_foundation": "",
+  "advantages": [
+    "Combines early stopping, fidelity reduction, parallelism, and information reuse.",
+    "Improves quality found per unit of time or compute."
+  ],
+  "assumptions": [],
+  "applications": [
+    "Early Stopping",
+    "Parallel Search",
+    "Reducing Search Cost"
+  ],
+  "limitations": [
+    "Parallel and asynchronous search may consume budget less efficiently than carefully sequenced trials.",
+    "Speedups can reduce fidelity or introduce ranking bias."
+  ],
+  "broader_topics": [
+    "AutoML",
+    "Computational Efficiency",
+    "Machine Learning",
+    "Optimization"
+  ],
+  "aliases": [
+    "HPO Speedup Techniques",
+    "speedup for hyperparameter optimisation",
+    "speedup for hyperparameter optimization",
+    "speedup techniques"
+  ],
+  "contributing_courses": [
+    "Auto-ML"
+  ],
+  "contributing_lecture_files": [
+    "Auto-ML/5_Speedup_ALL/lecture.json",
+    "Auto-ML/ss25-AutoML-lecture-6 NAS /lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "Auto-ML/5_Speedup_ALL/lecture.json": "55457ae1aa82349f262028301baf3dc3fb372d67a794e4031e01e8de7b87d593",
+    "Auto-ML/ss25-AutoML-lecture-6 NAS /lecture.json": "c4e7118a29e0bd850d848929d96a7b6ac75dfd531dab122fd60c67df0d927033"
+  },
+  "last_updated_timestamp": "2026-08-05T17:21:13.206747+00:00",
+  "version_number": 10,
+  "related_concepts": [
+    "Hyperband / BOHB",
+    "Multi-fidelity Optimization"
+  ],
+  "prerequisites": [
+    "Hyperparameter Optimization",
+    "Multi-fidelity Optimization"
+  ],
+  "used_in": [],
+  "graph_node_id": "hpo-speedup-technique"
+}

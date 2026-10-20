@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from dataclasses import asdict
 import json
 import sys
 from datetime import datetime, timezone
@@ -14,21 +15,31 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from knowledge_review_agent.graph_builder import build_knowledge_graph  # noqa: E402
-from knowledge_review_agent.graph_bundle import write_graph_bundle  # noqa: E402
+from knowledge_review_agent.graph_bundle import GraphPresentationPaths, GraphContractError, GraphContractIssue, validate_graph_paths, write_graph_bundle  # noqa: E402
 from knowledge_review_agent.graph_store import load_graph_edges, load_graph_nodes  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build incremental graph data from canonical concepts.")
-    parser.add_argument("--concepts", default=str(ROOT / "knowledge_base" / "concepts"), help="Canonical concept root")
-    parser.add_argument("--graphs", default=str(ROOT / "knowledge_base" / "graphs"), help="Graph output root")
+    parser.add_argument("--concepts", help="Canonical concept root relative to repo")
+    parser.add_argument("--graphs", help="Graph output root relative to repo")
+    parser.add_argument("--repo-root", default=str(ROOT))
+    parser.add_argument("--refined", help="Refined concept root relative to repo")
+    parser.add_argument("--site", help="Website root relative to repo")
     return parser.parse_args()
 
 
-def main() -> int:
+def _run() -> int:
     args = parse_args()
-    graphs_root = Path(args.graphs)
-    concepts_root = Path(args.concepts)
+    repo = Path(args.repo_root).absolute()
+    def configured(value, default):
+        path = Path(value or default)
+        return path if path.is_absolute() else repo/path
+    paths = GraphPresentationPaths(repo, configured(args.concepts, "knowledge_base/concepts"),
+        configured(args.refined, "knowledge_base/refined"), configured(args.site, "website"))
+    graphs_root = configured(args.graphs, "knowledge_base/graphs")
+    validate_graph_paths(paths, graphs_root=graphs_root)
+    concepts_root = paths.concepts_root
     if not any(concepts_root.rglob("metadata.json")):
         print(
             json.dumps(
@@ -53,6 +64,7 @@ def main() -> int:
         nodes=nodes,
         edges=edges,
         generated_at=datetime.now(timezone.utc).isoformat(),
+        paths=paths,
     )
     print(
         json.dumps(
@@ -73,6 +85,15 @@ def main() -> int:
         )
     )
     return 0
+
+
+def main() -> int:
+    try:
+        return _run()
+    except (OSError, ValueError, TypeError, AttributeError) as exc:
+        issues = exc.issues if isinstance(exc, GraphContractError) else (GraphContractIssue("io_error", "graph", str(exc)),)
+        print(json.dumps({"error": str(exc), "issues": [asdict(i) for i in issues]}), file=sys.stderr)
+        return 1
 
 
 if __name__ == "__main__":

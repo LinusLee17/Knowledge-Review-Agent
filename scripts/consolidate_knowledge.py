@@ -12,6 +12,8 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
+from dataclasses import asdict
+from knowledge_review_agent.source_occurrences import SourceValidationError
 from knowledge_review_agent.consolidation import consolidate_concepts  # noqa: E402
 
 
@@ -44,4 +46,8 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except SourceValidationError as exc:
+        print(json.dumps({"error": str(exc), "issues": [asdict(i) for i in exc.issues]}), file=sys.stderr)
+        raise SystemExit(1)

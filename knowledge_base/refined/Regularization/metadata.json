@@ -1,0 +1,56 @@
+{
+  "concept_name": "Regularization",
+  "canonical_key": "regularization",
+  "concept_type": "method",
+  "domain": "Machine Learning",
+  "topic": "Model Selection",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.84,
+  "evidence_strength": 0.76,
+  "definition_quality_score": 0.84,
+  "interview_relevance": 0.98,
+  "definition": "Regularization controls model complexity by adding a penalty or constraint that discourages unstable parameter values and improves generalization. It is used in Feature Selection, Generalization. It is commonly considered alongside Lasso Regression, Overfitting, Ridge Regression.",
+  "intuition": "Mental model: transform inputs through explicit steps until output meets its evaluation rule.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Feature Selection",
+    "Generalization"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Bias-Variance Tradeoff",
+    "Machine Learning",
+    "Model Selection"
+  ],
+  "aliases": [
+    "Regularization",
+    "lasso regularization",
+    "ridge regularization"
+  ],
+  "contributing_courses": [
+    "BT4240"
+  ],
+  "contributing_lecture_files": [
+    "BT4240/L7-NeuralNetworks/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT4240/L7-NeuralNetworks/lecture.json": "e03c94a53aba31cb99c97f6c1b00ee72702110a1a81128a62962aa6ecf1c8198"
+  },
+  "last_updated_timestamp": "2026-08-05T16:27:50.506869+00:00",
+  "version_number": 7,
+  "related_concepts": [
+    "Lasso Regression",
+    "Overfitting",
+    "Ridge Regression"
+  ],
+  "prerequisites": [
+    "Linear Regression",
+    "Logistic Regression"
+  ],
+  "used_in": [],
+  "graph_node_id": "regularization"
+}

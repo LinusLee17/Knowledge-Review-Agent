@@ -1,0 +1,55 @@
+{
+  "concept_name": "Stakeholder Management",
+  "canonical_key": "stakeholder management",
+  "concept_type": "practice",
+  "domain": "Leadership",
+  "topic": "Stakeholder Engagement",
+  "importance_score": 5,
+  "scope_level": 2,
+  "study_priority": 5,
+  "confidence_score": 0.826,
+  "evidence_strength": 0.84,
+  "definition_quality_score": 0.7,
+  "interview_relevance": 0.98,
+  "definition": "Stakeholder Management is a practice in Leadership focused on Stakeholder Engagement. It helps people coordinate action, manage change, and make better decisions in organisational settings.",
+  "intuition": "Think of Stakeholder Management as a repeatable way to align people, decisions, and execution so the team moves toward Stakeholder Engagement with less friction.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Change Initiatives",
+    "Cross-functional Alignment",
+    "Project Delivery"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Business",
+    "Leadership",
+    "Professional Skills",
+    "Stakeholder Engagement"
+  ],
+  "aliases": [
+    "Stakeholder Management",
+    "managing stakeholders",
+    "stakeholder engagement"
+  ],
+  "contributing_courses": [
+    "IS3103"
+  ],
+  "contributing_lecture_files": [
+    "IS3103/IS3103 Workshop 7 - Leading Organizational Change and Stakeholder Management - Canvas/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "IS3103/IS3103 Workshop 7 - Leading Organizational Change and Stakeholder Management - Canvas/lecture.json": "e6f0cbc540535a6ecab02389c6b62a34ed885acb4a783640e405ae6eb265afd9"
+  },
+  "last_updated_timestamp": "2026-07-11T11:47:38.774491+00:00",
+  "version_number": 1,
+  "related_concepts": [
+    "Change Management",
+    "Communication",
+    "Leadership"
+  ],
+  "prerequisites": [],
+  "used_in": [],
+  "graph_node_id": "stakeholder-management"
+}

@@ -1,0 +1,58 @@
+{
+  "concept_name": "Decision Making",
+  "canonical_key": "decision making",
+  "concept_type": "skill",
+  "domain": "Business",
+  "topic": "Decision Making",
+  "importance_score": 4,
+  "scope_level": 2,
+  "study_priority": 4,
+  "confidence_score": 0.55,
+  "evidence_strength": 0.66,
+  "definition_quality_score": 0.18,
+  "interview_relevance": 0.88,
+  "definition": "Decision Making is a workplace skill in Business focused on Decision Making. It supports everyday execution, collaboration, and communication.",
+  "intuition": "Think of Decision Making as a repeatable way to align people, decisions, and execution so the team moves toward Decision Making with less friction.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Planning",
+    "Priority Setting",
+    "Trade-off Analysis"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Business",
+    "Decision Making",
+    "Professional Skills"
+  ],
+  "aliases": [
+    "Decision Making",
+    "decision analysis",
+    "decision-making"
+  ],
+  "contributing_courses": [
+    "IS3103"
+  ],
+  "contributing_lecture_files": [
+    "IS3103/IS3103 Workshop 1 - Overview of Leadership and Management - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 8 - Managing IT Teams - Canvas/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "IS3103/IS3103 Workshop 1 - Overview of Leadership and Management - Canvas/lecture.json": "c094eeb145823ec048dc888737a9aee25ccc2c61cc7602348da481db73369813",
+    "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json": "a7aeb83206c6f129bb8c3437a4bef9f41067273c2916c8af5144fa4464cc36c2",
+    "IS3103/IS3103 Workshop 8 - Managing IT Teams - Canvas/lecture.json": "d5b2615b6736c5a6a5aa04c032038649c34152dccb2ca83ff984b3a9e3da5233"
+  },
+  "last_updated_timestamp": "2026-07-11T11:47:38.735338+00:00",
+  "version_number": 1,
+  "related_concepts": [
+    "Business Strategy",
+    "Leadership",
+    "Stakeholder Management"
+  ],
+  "prerequisites": [],
+  "used_in": [],
+  "graph_node_id": "decision-making"
+}

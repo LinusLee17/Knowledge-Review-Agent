@@ -1,0 +1,68 @@
+{
+  "concept_name": "Logistic Regression",
+  "canonical_key": "logistic regression",
+  "concept_type": "model",
+  "domain": "Machine Learning",
+  "topic": "Supervised Learning",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.928,
+  "evidence_strength": 0.92,
+  "definition_quality_score": 0.98,
+  "interview_relevance": 0.98,
+  "definition": "Logistic Regression is a classification model that maps a linear score into a probability using the logistic function. It is widely used when the goal is to predict class membership, estimate odds, and produce a model that remains interpretable enough for business and technical review.",
+  "intuition": "Model class probability directly, then threshold it for classification when needed.",
+  "mathematical_foundation": "$$\np(y = 1 \\mid x) = \\sigma(\\beta_0 + \\beta^T x)\n$$\n\n$$\n\\sigma(z) = \\frac{1}{1 + e^{-z}}\n$$\n\n| Symbol | Meaning |\n| --- | --- |\n| `p(y = 1 | x)` | Probability of class 1 |\n| `\\sigma` | Sigmoid function |\n| `\\beta` | Coefficients |\n| `x` | Features |",
+  "advantages": [
+    "Fast to train and effective as a classification baseline.",
+    "Produces interpretable class probabilities.",
+    "Supports regularization and scales well to high-dimensional features."
+  ],
+  "assumptions": [
+    "Observations are independent unless the model explicitly accounts for dependence.",
+    "Perfect separation is absent or handled with an appropriate remedy.",
+    "The predictors have a linear relationship with the log-odds of the outcome."
+  ],
+  "applications": [
+    "Classification",
+    "Customer Churn",
+    "Risk Scoring"
+  ],
+  "limitations": [
+    "Assumes a linear relationship between features and log-odds unless transformed or extended.",
+    "Can be affected by multicollinearity, separation, and severe class imbalance."
+  ],
+  "broader_topics": [
+    "Machine Learning",
+    "Supervised Learning"
+  ],
+  "aliases": [
+    "Logistic Regression",
+    "binary logistic regression"
+  ],
+  "contributing_courses": [
+    "BT4240",
+    "CS3244"
+  ],
+  "contributing_lecture_files": [
+    "BT4240/L2-Regression/lecture.json",
+    "CS3244/Lecture04_linear_models_svm/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT4240/L2-Regression/lecture.json": "112db82c50b1e68e2d8e19d67a420dd31e078409b50f6a508326e8a3c2920c41",
+    "CS3244/Lecture04_linear_models_svm/lecture.json": "2684560ba2adcc9363b68acaffb7192c07171c90faff6207e514bc95dcd1b51b"
+  },
+  "last_updated_timestamp": "2026-08-05T17:21:13.250386+00:00",
+  "version_number": 23,
+  "related_concepts": [
+    "Classification",
+    "Regularization"
+  ],
+  "prerequisites": [
+    "Linear Regression",
+    "Probability"
+  ],
+  "used_in": [],
+  "graph_node_id": "logistic-regression"
+}

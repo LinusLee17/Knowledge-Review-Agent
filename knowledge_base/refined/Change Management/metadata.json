@@ -1,0 +1,57 @@
+{
+  "concept_name": "Change Management",
+  "canonical_key": "change management",
+  "concept_type": "practice",
+  "domain": "Leadership",
+  "topic": "Organizational Change",
+  "importance_score": 5,
+  "scope_level": 2,
+  "study_priority": 5,
+  "confidence_score": 0.692,
+  "evidence_strength": 0.86,
+  "definition_quality_score": 0.28,
+  "interview_relevance": 0.98,
+  "definition": "Change Management is a practice in Leadership focused on Organizational Change. It helps people coordinate action, manage change, and make better decisions in organisational settings.",
+  "intuition": "Think of Change Management as a repeatable way to align people, decisions, and execution so the team moves toward Organizational Change with less friction.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Adoption Planning",
+    "Culture Change",
+    "Transformation Programs"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Business",
+    "Leadership",
+    "Organizational Change",
+    "Professional Skills"
+  ],
+  "aliases": [
+    "Change Management",
+    "change leadership",
+    "leading organizational change",
+    "organisational change",
+    "organizational change"
+  ],
+  "contributing_courses": [
+    "IS3103"
+  ],
+  "contributing_lecture_files": [
+    "IS3103/IS3103 Workshop 7 - Leading Organizational Change and Stakeholder Management - Canvas/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "IS3103/IS3103 Workshop 7 - Leading Organizational Change and Stakeholder Management - Canvas/lecture.json": "e6f0cbc540535a6ecab02389c6b62a34ed885acb4a783640e405ae6eb265afd9"
+  },
+  "last_updated_timestamp": "2026-07-11T11:47:38.725266+00:00",
+  "version_number": 1,
+  "related_concepts": [
+    "Digital Transformation",
+    "Leadership",
+    "Stakeholder Management"
+  ],
+  "prerequisites": [],
+  "used_in": [],
+  "graph_node_id": "change-management"
+}

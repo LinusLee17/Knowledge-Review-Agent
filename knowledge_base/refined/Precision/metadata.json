@@ -1,0 +1,52 @@
+{
+  "concept_name": "Precision",
+  "canonical_key": "precision",
+  "concept_type": "metric",
+  "domain": "Machine Learning",
+  "topic": "Model Evaluation",
+  "importance_score": 4,
+  "scope_level": 1,
+  "study_priority": 4,
+  "confidence_score": 0.544,
+  "evidence_strength": 0.54,
+  "definition_quality_score": 0.75,
+  "interview_relevance": 0.98,
+  "definition": "Precision is the fraction of predicted positive cases that are actually positive: TP/(TP+FP). It penalizes false positives. It is used in Classification Evaluation. It is commonly considered alongside Classification Accuracy, Confusion Matrix, Recall.",
+  "intuition": "Think of Precision as a summary number: it compresses many outcomes into one interpretable value so you can compare models or decisions.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Classification Evaluation"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Machine Learning",
+    "Model Evaluation"
+  ],
+  "aliases": [
+    "Precision",
+    "positive predictive value"
+  ],
+  "contributing_courses": [
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "ST1131/Topic7_CI/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "ST1131/Topic7_CI/lecture.json": "49707f32434ce06d9f7dd569649c766e4623e24bfa406cb00daa0df8c6b5093a"
+  },
+  "last_updated_timestamp": "2026-08-05T16:27:50.542746+00:00",
+  "version_number": 7,
+  "related_concepts": [
+    "Classification Accuracy",
+    "Confusion Matrix",
+    "Recall"
+  ],
+  "prerequisites": [
+    "Confusion Matrix"
+  ],
+  "used_in": [],
+  "graph_node_id": "precision"
+}

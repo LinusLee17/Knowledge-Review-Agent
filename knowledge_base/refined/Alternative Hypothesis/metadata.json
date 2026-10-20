@@ -1,0 +1,56 @@
+{
+  "concept_name": "Alternative Hypothesis",
+  "canonical_key": "alternative hypothesis",
+  "concept_type": "concept",
+  "domain": "Statistics",
+  "topic": "Hypothesis Testing",
+  "importance_score": 5,
+  "scope_level": 2,
+  "study_priority": 5,
+  "confidence_score": 0.907,
+  "evidence_strength": 0.92,
+  "definition_quality_score": 0.84,
+  "interview_relevance": 0.98,
+  "definition": "Alternative Hypothesis is the statement about a population parameter supported when evidence is inconsistent with the null hypothesis. It is used in Testing.",
+  "intuition": "Think of Alternative Hypothesis as a durable building block in Hypothesis Testing.",
+  "mathematical_foundation": "alternative hypothesis: true ratio of variances is not equal to 1",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Testing"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Hypothesis Testing",
+    "Statistical Inference",
+    "Statistics"
+  ],
+  "aliases": [
+    "Alternative Hypothesis",
+    "h1",
+    "ha"
+  ],
+  "contributing_courses": [
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "ST1131/Topic8_HypothesisTest/lecture.json",
+    "ST1131/Topic8_HypothesisTest_2/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "ST1131/Topic8_HypothesisTest/lecture.json": "f23d23067535be87b6e2304f89a067bd085f2301da1929b078ef17463be46823",
+    "ST1131/Topic8_HypothesisTest_2/lecture.json": "9353adcce66f732b5365a8e0de35f94020a233d862673cbf480294693022737c"
+  },
+  "last_updated_timestamp": "2026-08-05T16:27:50.326041+00:00",
+  "version_number": 7,
+  "related_concepts": [
+    "Null Hypothesis",
+    "Type II Error",
+    "p-value"
+  ],
+  "prerequisites": [
+    "Hypothesis Testing"
+  ],
+  "used_in": [],
+  "graph_node_id": "alternative-hypothesis"
+}

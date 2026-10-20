@@ -1,0 +1,62 @@
+{
+  "concept_name": "Digital Transformation",
+  "canonical_key": "digital transformation",
+  "concept_type": "framework",
+  "domain": "Digital Transformation",
+  "topic": "Transformation Strategy",
+  "importance_score": 5,
+  "scope_level": 5,
+  "study_priority": 5,
+  "confidence_score": 0.924,
+  "evidence_strength": 0.96,
+  "definition_quality_score": 0.84,
+  "interview_relevance": 0.98,
+  "definition": "Digital Transformation is a framework in Digital Transformation focused on Transformation Strategy. It helps people coordinate action, manage change, and make better decisions in organisational settings.",
+  "intuition": "Think of Digital Transformation as a repeatable way to align people, decisions, and execution so the team moves toward Transformation Strategy with less friction.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Organisational Change",
+    "Process Redesign",
+    "Technology Adoption"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Business",
+    "Digital Transformation",
+    "Transformation Strategy"
+  ],
+  "aliases": [
+    "Digital Transformation",
+    "digital transformation strategy",
+    "digitalization",
+    "digitisation",
+    "service process digitisation"
+  ],
+  "contributing_courses": [
+    "IS3103"
+  ],
+  "contributing_lecture_files": [
+    "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 5 - Organizing for Digital Innovation - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 7 - Leading Organizational Change and Stakeholder Management - Canvas/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json": "9ee50291b2400ca619bc662b87ae3ce5a6c62a386e36e27522ea91d31e44f785",
+    "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json": "a7aeb83206c6f129bb8c3437a4bef9f41067273c2916c8af5144fa4464cc36c2",
+    "IS3103/IS3103 Workshop 5 - Organizing for Digital Innovation - Canvas/lecture.json": "2a89d369dfcb1d189cad1b3f7ded7c963097b9f50319a34d443edc91123a9835",
+    "IS3103/IS3103 Workshop 7 - Leading Organizational Change and Stakeholder Management - Canvas/lecture.json": "e6f0cbc540535a6ecab02389c6b62a34ed885acb4a783640e405ae6eb265afd9"
+  },
+  "last_updated_timestamp": "2026-07-11T11:47:38.738177+00:00",
+  "version_number": 1,
+  "related_concepts": [
+    "Change Management",
+    "Digital Innovation",
+    "IS Governance"
+  ],
+  "prerequisites": [],
+  "used_in": [],
+  "graph_node_id": "digital-transformation"
+}

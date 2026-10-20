@@ -1,0 +1,55 @@
+{
+  "concept_name": "Business Continuity Management",
+  "canonical_key": "business continuity management",
+  "concept_type": "framework",
+  "domain": "Business",
+  "topic": "Resilience",
+  "importance_score": 4,
+  "scope_level": 5,
+  "study_priority": 4,
+  "confidence_score": 0.857,
+  "evidence_strength": 0.92,
+  "definition_quality_score": 0.72,
+  "interview_relevance": 0.94,
+  "definition": "Business Continuity Management is a framework in Business focused on Resilience. It helps people coordinate action, manage change, and make better decisions in organisational settings.",
+  "intuition": "Think of Business Continuity Management as a repeatable way to align people, decisions, and execution so the team moves toward Resilience with less friction.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Disruption Planning",
+    "Recovery",
+    "Service Resilience"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Business",
+    "Resilience"
+  ],
+  "aliases": [
+    "Business Continuity Management",
+    "business continuity",
+    "continuity management"
+  ],
+  "contributing_courses": [
+    "IS3103"
+  ],
+  "contributing_lecture_files": [
+    "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json",
+    "IS3103/IS3103 Workshop 9 - Business Continuity Management and Emerging Issues of Digital Leadership - Canvas/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json": "9ee50291b2400ca619bc662b87ae3ce5a6c62a386e36e27522ea91d31e44f785",
+    "IS3103/IS3103 Workshop 9 - Business Continuity Management and Emerging Issues of Digital Leadership - Canvas/lecture.json": "c1bb0933812c1de2df17978a9971e86219b2653e487156dec319698d858f1188"
+  },
+  "last_updated_timestamp": "2026-07-11T11:47:38.720752+00:00",
+  "version_number": 1,
+  "related_concepts": [
+    "Digital Transformation",
+    "IS Governance",
+    "Risk Management"
+  ],
+  "prerequisites": [],
+  "used_in": [],
+  "graph_node_id": "business-continuity-management"
+}

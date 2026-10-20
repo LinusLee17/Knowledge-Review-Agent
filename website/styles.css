@@ -579,6 +579,11 @@ select {
   line-height: 1.7;
 }
 
+.concept-article img {
+  max-width: 100%;
+  height: auto;
+}
+
 .concept-section {
   scroll-margin-top: 1rem;
   padding: 1.75rem 0 1.9rem;

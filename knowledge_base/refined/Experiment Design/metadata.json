@@ -1,0 +1,80 @@
+{
+  "concept_name": "Experiment Design",
+  "canonical_key": "experiment design",
+  "concept_type": "method",
+  "domain": "Statistics",
+  "topic": "Causal Analysis",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.692,
+  "evidence_strength": 0.86,
+  "definition_quality_score": 0.75,
+  "interview_relevance": 0.98,
+  "definition": "Experiment Design is a systematic procedure for transforming inputs into an output or decision in Causal Analysis. It is used in A/B Testing, Policy Evaluation, Treatment Effects. It is commonly considered alongside Causal Inference, Hypothesis Testing, Internal Validity.",
+  "intuition": "Plan the comparison before collecting outcomes so treatment differences have a credible interpretation.",
+  "mathematical_foundation": "",
+  "advantages": [
+    "Or take advantage of a natural experiment",
+    "Quasi Experiments: Take advantage of \u201cnatural\u201d variations in the key",
+    "Take advantage of a \u201cnatural experiment\u201d",
+    "You are unable to take advantage of a natural experiment"
+  ],
+  "assumptions": [],
+  "applications": [
+    "A/B Testing",
+    "Policy Evaluation",
+    "Treatment Effects"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Causal Analysis",
+    "Statistical Inference",
+    "Statistics"
+  ],
+  "aliases": [
+    "Experiment Design",
+    "design of experiments",
+    "experiment",
+    "experiment guidelines",
+    "experimental design",
+    "experiments",
+    "guidelines for a good experiment",
+    "randomized experiment"
+  ],
+  "contributing_courses": [
+    "BT1101",
+    "BT2101"
+  ],
+  "contributing_lecture_files": [
+    "BT1101/Week 5 Probability distributions and Modeling/lecture.json",
+    "BT1101/Week 6 Hypothesis testing/lecture.json",
+    "BT1101/Week 6 Sampling and Estimation/lecture.json",
+    "BT2101/BT2101 Midterms (L1-6)/lecture.json",
+    "BT2101/VK.wk13.2024/lecture.json",
+    "BT2101/VK.wk8.2024/lecture.json",
+    "BT2101/VK.wk9.2024/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT1101/Week 5 Probability distributions and Modeling/lecture.json": "7a72a253148e7fff77cdc852b0764af5c027bb3b3c117a062c569102253c8225",
+    "BT1101/Week 6 Hypothesis testing/lecture.json": "4f296333b48c52fcdb62e493c2b138a517e38094850f5550fe35ae35947fa666",
+    "BT1101/Week 6 Sampling and Estimation/lecture.json": "23bd84b3f0e63307a91008f82f8308e063ae6061b81f8cc12e86f5fa74d7eee3",
+    "BT2101/BT2101 Midterms (L1-6)/lecture.json": "03dc65ad077068acc70ed20aaf77b6ca84df5053ab13fa8338680e53d50b4c8f",
+    "BT2101/VK.wk13.2024/lecture.json": "f1e467304bdf14ecb0f74c94a5d3ea0a20d056a47b9867226b6f8035169e89aa",
+    "BT2101/VK.wk8.2024/lecture.json": "e753202a3de40d0c324a8e334a07edd9a8128a7f252d74c3119eabe254777e2c",
+    "BT2101/VK.wk9.2024/lecture.json": "71adf2597cd2dfa3b24b489ca6609279a0dcd0e4d96325cbd35709878f777f03"
+  },
+  "last_updated_timestamp": "2026-08-05T17:17:19.260216+00:00",
+  "version_number": 5,
+  "related_concepts": [
+    "Causal Inference",
+    "Hypothesis Testing",
+    "Internal Validity"
+  ],
+  "prerequisites": [
+    "Hypothesis Testing",
+    "Sampling"
+  ],
+  "used_in": [],
+  "graph_node_id": "experiment-design"
+}

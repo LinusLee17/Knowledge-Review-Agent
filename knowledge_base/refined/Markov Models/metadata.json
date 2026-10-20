@@ -1,0 +1,69 @@
+{
+  "concept_name": "Markov Models",
+  "canonical_key": "markov model",
+  "concept_type": "model",
+  "domain": "Machine Learning",
+  "topic": "Probabilistic Modeling",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.746,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.34,
+  "interview_relevance": 0.98,
+  "definition": "Markov Models describe systems whose next state depends on the current state through a transition model, rather than on the full history. They provide a foundation for reasoning about sequential data.",
+  "intuition": "The present state is a compact summary of the past; use transitions to project what may happen next.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [
+    "Markov Models & Its Assumptions"
+  ],
+  "applications": [
+    "Forecasting",
+    "State Modeling",
+    "Time Series"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Machine Learning",
+    "Probabilistic Graphical Models",
+    "Probabilistic Modeling",
+    "Sequential Modeling"
+  ],
+  "aliases": [
+    "Markov Models",
+    "markov chain",
+    "markov chains",
+    "markov model"
+  ],
+  "contributing_courses": [
+    "BT3102"
+  ],
+  "contributing_lecture_files": [
+    "BT3102/W0_Logistics/lecture.json",
+    "BT3102/W2-Probability_Basics/lecture.json",
+    "BT3102/W6-BN-MarkovModels/lecture.json",
+    "BT3102/W7_HMM_Semantics/lecture.json",
+    "BT3102/W8-HMM-Viterbi/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT3102/W0_Logistics/lecture.json": "d8887b7dd1fe314fa594b8b76fcaf39dd961082c8cf6fdbd7519b5b61fce8e1f",
+    "BT3102/W2-Probability_Basics/lecture.json": "cdbeecd85a742034ac810250b8436914048669ed567624c702fba64c880a846b",
+    "BT3102/W6-BN-MarkovModels/lecture.json": "9f5fdedd0be24dd27c5186c8009f6420a864c1b19eb64d4add2a886367dd7e85",
+    "BT3102/W7_HMM_Semantics/lecture.json": "f05d0f800717028573a583e11fdffa0d62aababed5f9b7583eec2ac113a39ba6",
+    "BT3102/W8-HMM-Viterbi/lecture.json": "6a0c0436b869cab06594afe48059bd464de34c6c1df04c025eb19cd39465abe6"
+  },
+  "last_updated_timestamp": "2026-08-05T17:13:39.198943+00:00",
+  "version_number": 1,
+  "related_concepts": [
+    "Bayesian Networks",
+    "Hidden Markov Models",
+    "Reinforcement Learning"
+  ],
+  "prerequisites": [
+    "Conditional Probability",
+    "Probability"
+  ],
+  "used_in": [],
+  "graph_node_id": "markov-model"
+}

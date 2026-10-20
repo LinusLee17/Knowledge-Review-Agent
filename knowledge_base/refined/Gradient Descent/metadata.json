@@ -1,0 +1,75 @@
+{
+  "concept_name": "Gradient Descent",
+  "canonical_key": "gradient descent",
+  "concept_type": "method",
+  "domain": "Machine Learning",
+  "topic": "Optimization",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.924,
+  "evidence_strength": 0.96,
+  "definition_quality_score": 0.84,
+  "interview_relevance": 0.98,
+  "definition": "Gradient Descent is an iterative optimization method that updates parameters in the direction of steepest decrease of the objective function. It is the standard workhorse for fitting many machine learning models when closed-form solutions are unavailable or too expensive.",
+  "intuition": "Move parameters downhill on the loss surface until improvement becomes small or stable.",
+  "mathematical_foundation": "$$\n\\theta_{t+1} = \\theta_t - \\alpha \\nabla J(\\theta_t)\n$$\n\n| Symbol | Meaning |\n| --- | --- |\n| `\\theta_t` | Current parameters |\n| `\\alpha` | Learning rate |\n| `\\nabla J(\\theta_t)` | Gradient of the loss at the current point |",
+  "advantages": [
+    "Applies to many differentiable objectives and model architectures.",
+    "Works for large parameter spaces where closed-form optimization is impractical."
+  ],
+  "assumptions": [],
+  "applications": [
+    "Model Fitting",
+    "Neural Networks",
+    "Regression"
+  ],
+  "limitations": [
+    "A poor learning rate can cause slow convergence or divergence.",
+    "Convergence depends on the objective, initialization, conditioning, and stopping rule."
+  ],
+  "broader_topics": [
+    "Machine Learning",
+    "Model Training",
+    "Optimization"
+  ],
+  "aliases": [
+    "Gradient Descent",
+    "batch gradient descent",
+    "bgd",
+    "mini-batch gradient descent",
+    "sgd",
+    "stochastic gradient descent"
+  ],
+  "contributing_courses": [
+    "BT4240",
+    "CS3244"
+  ],
+  "contributing_lecture_files": [
+    "BT4240/L1-ContinuousOptimization/lecture.json",
+    "BT4240/L2-Regression/lecture.json",
+    "BT4240/L7-NeuralNetworks/lecture.json",
+    "CS3244/Lecture04_linear_models_svm/lecture.json",
+    "CS3244/Lecture10_perceptron_neural_networks/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT4240/L1-ContinuousOptimization/lecture.json": "0e6d779089fffdd99a98c398bb58f8da4e01116c414ccbd7f274d833aa81e190",
+    "BT4240/L2-Regression/lecture.json": "112db82c50b1e68e2d8e19d67a420dd31e078409b50f6a508326e8a3c2920c41",
+    "BT4240/L7-NeuralNetworks/lecture.json": "e03c94a53aba31cb99c97f6c1b00ee72702110a1a81128a62962aa6ecf1c8198",
+    "CS3244/Lecture04_linear_models_svm/lecture.json": "2684560ba2adcc9363b68acaffb7192c07171c90faff6207e514bc95dcd1b51b",
+    "CS3244/Lecture10_perceptron_neural_networks/lecture.json": "086c68798e0a7adb98152d8054c7cef6a06aa7e42a2789874b17519b8590290e"
+  },
+  "last_updated_timestamp": "2026-08-05T17:21:13.199037+00:00",
+  "version_number": 23,
+  "related_concepts": [
+    "Learning Rate",
+    "Loss Function",
+    "Regularization"
+  ],
+  "prerequisites": [
+    "Calculus",
+    "Optimization"
+  ],
+  "used_in": [],
+  "graph_node_id": "gradient-descent"
+}

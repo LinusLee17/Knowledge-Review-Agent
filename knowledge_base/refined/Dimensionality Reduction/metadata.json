@@ -1,0 +1,57 @@
+{
+  "concept_name": "Dimensionality Reduction",
+  "canonical_key": "dimensionality reduction",
+  "concept_type": "method",
+  "domain": "Machine Learning",
+  "topic": "Unsupervised Learning",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.973,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.96,
+  "interview_relevance": 0.98,
+  "definition": "Dimensionality Reduction is a systematic procedure for transforming inputs into an output or decision in Unsupervised Learning. It is used in Compression, Noise Reduction, Visualization. It is commonly considered alongside Feature Engineering, Model Selection, PCA.",
+  "intuition": "Keep the strongest structure while replacing many noisy coordinates with fewer useful ones.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Compression",
+    "Noise Reduction",
+    "Visualization"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Data Preparation",
+    "Machine Learning",
+    "Unsupervised Learning"
+  ],
+  "aliases": [
+    "Dimensionality Reduction",
+    "dimension reduction",
+    "feature space reduction"
+  ],
+  "contributing_courses": [
+    "BT1101"
+  ],
+  "contributing_lecture_files": [
+    "BT1101/Week 9 Model Selection & Data Dimensionality Reduction/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT1101/Week 9 Model Selection & Data Dimensionality Reduction/lecture.json": "2ccf7b74167e79a5346d347237a977bcb235861a52b612aef4fe11846342510e"
+  },
+  "last_updated_timestamp": "2026-08-05T17:20:40.734779+00:00",
+  "version_number": 6,
+  "related_concepts": [
+    "Feature Engineering",
+    "Model Selection",
+    "PCA"
+  ],
+  "prerequisites": [
+    "Linear Algebra",
+    "Variance"
+  ],
+  "used_in": [],
+  "graph_node_id": "dimensionality-reduction"
+}

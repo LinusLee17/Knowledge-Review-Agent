@@ -1,0 +1,62 @@
+{
+  "concept_name": "Sampling Distribution",
+  "canonical_key": "sampling distribution",
+  "concept_type": "theory",
+  "domain": "Statistics",
+  "topic": "Inference",
+  "importance_score": 5,
+  "scope_level": 4,
+  "study_priority": 5,
+  "confidence_score": 0.953,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.9,
+  "interview_relevance": 0.98,
+  "definition": "Sampling Distribution is the probability distribution of a statistic across repeated samples from a population or data-generating process. It is used in Confidence Intervals, Hypothesis Testing.",
+  "intuition": "The sampling distribution helps us determine how close to the population How Knowing the Sampling Distribution Helps",
+  "mathematical_foundation": "> #hist(ave, col = 2, xlab = \"Sampling Distribution of X-bar\") In Topic 06 (Sampling Distributions), we saw that the variance of X\u00af is \u03c32/n When H is true, p = p , the sampling distribution of p\u02c6 is then",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Confidence Intervals",
+    "Hypothesis Testing"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Inference",
+    "Statistical Inference",
+    "Statistics"
+  ],
+  "aliases": [
+    "Sampling Distribution"
+  ],
+  "contributing_courses": [
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "ST1131/Topic0_Introduction/lecture.json",
+    "ST1131/Topic6_SamplingDistribution/lecture.json",
+    "ST1131/Topic6_SamplingDistribution_R/lecture.json",
+    "ST1131/Topic7_CI/lecture.json",
+    "ST1131/Topic8_HypothesisTest/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "ST1131/Topic0_Introduction/lecture.json": "38da302706ca014de7b3a526ef8f3d9adc17fd9e2ec0fce2dffcd9549d871360",
+    "ST1131/Topic6_SamplingDistribution/lecture.json": "7ccc900c22502c9ea7bf10cd731408bdc83b807abab5dbe6f7f18134453f6a79",
+    "ST1131/Topic6_SamplingDistribution_R/lecture.json": "1131a7261beaca53ba4a179fc307856bf54bb1de5138863b1663676433ce7f85",
+    "ST1131/Topic7_CI/lecture.json": "69f661a8147c1a358e9ccc1457321ce0a33fc433449d732d673d32b385a30825",
+    "ST1131/Topic8_HypothesisTest/lecture.json": "f23d23067535be87b6e2304f89a067bd085f2301da1929b078ef17463be46823"
+  },
+  "last_updated_timestamp": "2026-08-05T16:27:50.509243+00:00",
+  "version_number": 8,
+  "related_concepts": [
+    "Central Limit Theorem",
+    "Confidence Interval",
+    "Standard Error"
+  ],
+  "prerequisites": [
+    "Probability",
+    "Random Variable"
+  ],
+  "used_in": [],
+  "graph_node_id": "sampling-distribution"
+}

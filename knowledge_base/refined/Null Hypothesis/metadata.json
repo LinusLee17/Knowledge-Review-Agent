@@ -1,0 +1,62 @@
+{
+  "concept_name": "Null Hypothesis",
+  "canonical_key": "null hypothesis",
+  "concept_type": "concept",
+  "domain": "Statistics",
+  "topic": "Hypothesis Testing",
+  "importance_score": 5,
+  "scope_level": 2,
+  "study_priority": 5,
+  "confidence_score": 0.907,
+  "evidence_strength": 0.92,
+  "definition_quality_score": 0.84,
+  "interview_relevance": 0.98,
+  "definition": "Null Hypothesis is the baseline statement about a population parameter that a statistical test evaluates for possible rejection. It is used in Testing.",
+  "intuition": "Think of Null Hypothesis as a durable building block in Hypothesis Testing.",
+  "mathematical_foundation": "H0: average age = 35; H1: average age \u2260 35 H0: V - V = 0 ; H1: V - V i.e. reject a true null, i.e.",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Testing"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Hypothesis Testing",
+    "Statistical Inference",
+    "Statistics"
+  ],
+  "aliases": [
+    "Null Hypothesis",
+    "h0"
+  ],
+  "contributing_courses": [
+    "BT1101",
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "BT1101/Week 6 Hypothesis testing/lecture.json",
+    "BT1101/Week 8 Classification and Logistics Regression 2023/lecture.json",
+    "ST1131/Topic8_HypothesisTest/lecture.json",
+    "ST1131/Topic8_HypothesisTest_2/lecture.json",
+    "ST1131/Topic9_LinearRegression/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT1101/Week 6 Hypothesis testing/lecture.json": "4f296333b48c52fcdb62e493c2b138a517e38094850f5550fe35ae35947fa666",
+    "BT1101/Week 8 Classification and Logistics Regression 2023/lecture.json": "4adb1bf4d01b2c87a57686d891c3bbd6549e454a8da8111a1875eaf7f5567fe4",
+    "ST1131/Topic8_HypothesisTest/lecture.json": "f23d23067535be87b6e2304f89a067bd085f2301da1929b078ef17463be46823",
+    "ST1131/Topic8_HypothesisTest_2/lecture.json": "9353adcce66f732b5365a8e0de35f94020a233d862673cbf480294693022737c",
+    "ST1131/Topic9_LinearRegression/lecture.json": "f850e60dd2f36ea85c51b03485504f4217855c3f1bb701b93fae72519e4e5ba4"
+  },
+  "last_updated_timestamp": "2026-08-05T17:17:19.352643+00:00",
+  "version_number": 10,
+  "related_concepts": [
+    "Alternative Hypothesis",
+    "Type I Error",
+    "p-value"
+  ],
+  "prerequisites": [
+    "Hypothesis Testing"
+  ],
+  "used_in": [],
+  "graph_node_id": "null-hypothesis"
+}

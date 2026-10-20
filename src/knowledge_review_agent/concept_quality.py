@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass, asdict
+from collections.abc import Mapping
+from .source_occurrences import SourceIndex, SourceOccurrence, SourceIssue, SourceValidationError, load_source_index
 from pathlib import Path
 
 from .utils import normalize_concept_key, normalize_spaces
@@ -17,6 +19,7 @@ class SourceEvidence:
     lecture_file: str
     page_number: int
     text: str
+    occurrences: tuple[SourceOccurrence, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -30,7 +33,9 @@ class QualityFinding:
     action: str
 
     def to_dict(self) -> dict[str, object]:
-        return asdict(self)
+        return {"concept_name": self.concept_name, "courses": self.courses, "score": self.score,
+                "flags": self.flags, "definition": self.definition, "action": self.action,
+                "evidence": [_evidence_payload(e) for e in self.evidence]}
 
 
 def _sections(markdown: str) -> dict[str, str]:
@@ -77,60 +82,73 @@ def _is_source_candidate(text: str, concept_name: str, aliases: list[str]) -> bo
     return any(name and name in normalized for name in names)
 
 
-def collect_source_evidence(
-    processed_root: Path,
-    concept_name: str,
-    aliases: list[str],
-    allowed_courses: set[str],
-    limit: int = 8,
-) -> list[SourceEvidence]:
-    candidates: list[tuple[float, SourceEvidence]] = []
-    for lecture_path in sorted(processed_root.rglob("lecture.json")):
-        try:
-            payload = json.loads(lecture_path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            continue
-        course = payload.get("course", {}) or {}
-        course_id = str(course.get("course_id", "") or "")
-        if course_id not in allowed_courses:
-            continue
-        relative = lecture_path.relative_to(processed_root).as_posix()
-        for page in payload.get("pages", []) or []:
-            page_number = int(page.get("page_number", 0) or 0)
-            raw_lines = str(page.get("extracted_text", "") or "").splitlines()
-            for raw_line in raw_lines:
-                text = _clean_source_line(raw_line)
-                if not _is_source_candidate(text, concept_name, aliases):
-                    continue
-                lowered = text.lower()
-                score = 0.0
-                if re.search(r"\b(is|are|occurs|measures|describes|represents|called|refers to|defined as)\b", lowered):
-                    score += 3.0
-                if lowered.startswith(tuple(alias.lower() for alias in [concept_name, *aliases])):
-                    score += 2.0
-                if any(token in lowered for token in ("when", "used to", "distribution", "probability", "error", "generalize", "uncertainty")):
-                    score += 1.0
-                if text.endswith((".", ".\"", "?", "!")):
-                    score += 1.0
-                else:
-                    score -= 1.0
-                if text.endswith(("is", "of", "because", "then", "as", "to", "in")):
-                    score -= 3.0
-                evidence = SourceEvidence(course_id, relative, page_number, text)
-                candidates.append((score, evidence))
+def _reference(o: SourceOccurrence) -> dict:
+    return {"occurrence_id": o.occurrence_id, "lecture_file": o.source.relative_path,
+            "lecture_sha256": o.source.sha256, "course": o.source.course, "source_pdf": o.source.source_pdf,
+            "page_number": o.page_number, "json_pointer": o.json_pointer, "line_number": o.line_number,
+            "start": o.start, "end": o.end, "text": o.text}
 
-    candidates.sort(key=lambda item: (-item[0], len(item[1].text), item[1].lecture_file, item[1].page_number))
-    selected: list[SourceEvidence] = []
-    seen: set[str] = set()
-    for _, evidence in candidates:
-        key = evidence.text.lower()
-        if key in seen:
+
+def _evidence_payload(e: SourceEvidence) -> dict:
+    return {"course_id": e.course_id, "lecture_file": e.lecture_file, "page_number": e.page_number,
+            "text": e.text, "occurrences": [_reference(o) for o in e.occurrences]}
+
+
+@dataclass(frozen=True)
+class SourceEvidenceSelection:
+    evidence: tuple[SourceEvidence, ...]
+    coverage: tuple[SourceOccurrence, ...]
+    issues: tuple[SourceIssue, ...]
+
+    def to_dict(self) -> dict:
+        return {"source_coverage": [_reference(o) for o in self.coverage],
+                "source_issues": [asdict(i) for i in self.issues]}
+
+
+def select_source_evidence(index: SourceIndex, concept_name: str, aliases: list[str],
+                           allowed_courses: set[str], limit: int = 8, *,
+                           lecture_hashes: Mapping[str, str] | None = None) -> SourceEvidenceSelection:
+    if limit < 0:
+        raise ValueError("Evidence limit must be nonnegative")
+    matches = index.find(concept_name, aliases, lecture_hashes=lecture_hashes,
+                         allowed_courses=allowed_courses, kinds=("text_line",), text_search=True)
+    candidates = []
+    for occurrence in matches.occurrences:
+        text = _clean_source_line(occurrence.text)
+        if not _is_source_candidate(text, concept_name, aliases):
             continue
-        seen.add(key)
-        selected.append(evidence)
-        if len(selected) >= limit:
-            break
-    return selected
+        lowered = text.lower()
+        score = 0.0
+        if re.search(r"\b(is|are|occurs|measures|describes|represents|called|refers to|defined as)\b", lowered): score += 3.0
+        if lowered.startswith(tuple(alias.lower() for alias in [concept_name, *aliases] if alias.strip())): score += 2.0
+        if any(token in lowered for token in ("when", "used to", "distribution", "probability", "error", "generalize", "uncertainty")): score += 1.0
+        score += 1.0 if text.endswith((".", '."', "?", "!")) else -1.0
+        if text.endswith(("is", "of", "because", "then", "as", "to", "in")): score -= 3.0
+        candidates.append((score, text, occurrence))
+    candidates.sort(key=lambda c: (-c[0], len(c[1]), c[2].source.relative_path, c[2].page_number,
+                                   c[2].json_pointer, c[2].line_number))
+    grouped = {}
+    for _, text, occurrence in candidates:
+        grouped.setdefault(text.lower(), []).append((text, occurrence))
+    evidence = []
+    for values in list(grouped.values())[:limit]:
+        text, first = values[0]
+        evidence.append(SourceEvidence(first.source.course, first.source.relative_path, first.page_number,
+                                       text, tuple(o for _, o in values)))
+    coverage = tuple(sorted((o for _, _, o in candidates),
+        key=lambda o: (o.source.relative_path, o.page_number, o.json_pointer, o.line_number)))
+    return SourceEvidenceSelection(tuple(evidence), coverage, matches.issues)
+
+
+def collect_source_evidence(processed_root: Path, concept_name: str, aliases: list[str],
+                            allowed_courses: set[str], limit: int = 8, *,
+                            source_index: SourceIndex | None = None,
+                            lecture_hashes: Mapping[str, str] | None = None) -> list[SourceEvidence]:
+    selection = select_source_evidence(source_index if source_index is not None else load_source_index(processed_root),
+        concept_name, aliases, allowed_courses, limit, lecture_hashes=lecture_hashes)
+    if selection.issues:
+        raise SourceValidationError(selection.issues)
+    return list(selection.evidence)
 
 
 def audit_definition(concept_name: str, metadata: dict, markdown: str, evidence: list[SourceEvidence]) -> QualityFinding:

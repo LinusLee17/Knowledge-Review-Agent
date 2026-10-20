@@ -1,0 +1,72 @@
+{
+  "concept_name": "Recall",
+  "canonical_key": "recall",
+  "concept_type": "metric",
+  "domain": "Machine Learning",
+  "topic": "Model Evaluation",
+  "importance_score": 4,
+  "scope_level": 1,
+  "study_priority": 4,
+  "confidence_score": 0.877,
+  "evidence_strength": 0.88,
+  "definition_quality_score": 0.8,
+  "interview_relevance": 0.98,
+  "definition": "Recall is a classification metric that measures the fraction of actual positive cases that a model correctly identifies. It matters when missing a positive case is more costly than producing a false alarm.",
+  "intuition": "Count how many real positives you captured, not just how many predictions were correct overall.",
+  "mathematical_foundation": "$$\n\\text{Recall} = \\frac{TP}{TP + FN}\n$$\n\n| Symbol | Meaning |\n| --- | --- |\n| `TP` | True positives |\n| `FN` | False negatives |",
+  "advantages": [],
+  "assumptions": [
+    "Source: Mroz, T. (1987) \u201cThe sensitivity of an empirical model of married women's hours of work to economic and statistical assumptions\u201d,Econometrica, 55, 765"
+  ],
+  "applications": [
+    "Classification Evaluation"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Machine Learning",
+    "Model Evaluation"
+  ],
+  "aliases": [
+    "Recall",
+    "sensitivity",
+    "true positive rate"
+  ],
+  "contributing_courses": [
+    "BT1101",
+    "BT4240",
+    "CS3244",
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "BT1101/Week 9 Model Selection & Data Dimensionality Reduction/lecture.json",
+    "BT4240/L1-ContinuousOptimization/lecture.json",
+    "BT4240/L2-Regression/lecture.json",
+    "BT4240/L3-SVM/lecture.json",
+    "CS3244/Lecture02_learning_paradigms_knn/lecture.json",
+    "ST1131/Topic6_SamplingDistribution/lecture.json",
+    "ST1131/Topic7_CI/lecture.json",
+    "ST1131/Topic9_LinearRegression/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT1101/Week 9 Model Selection & Data Dimensionality Reduction/lecture.json": "2ccf7b74167e79a5346d347237a977bcb235861a52b612aef4fe11846342510e",
+    "BT4240/L1-ContinuousOptimization/lecture.json": "0e6d779089fffdd99a98c398bb58f8da4e01116c414ccbd7f274d833aa81e190",
+    "BT4240/L2-Regression/lecture.json": "112db82c50b1e68e2d8e19d67a420dd31e078409b50f6a508326e8a3c2920c41",
+    "BT4240/L3-SVM/lecture.json": "a3d55a0fa62c9b8df2e4005c91f411e7aa579c2b22a442c04743b90f85464573",
+    "CS3244/Lecture02_learning_paradigms_knn/lecture.json": "bdb2bf5ef30ee4bee5b8b2161688a3e34ebd847b5c4f4931df251162f9b1e02d",
+    "ST1131/Topic6_SamplingDistribution/lecture.json": "223670e847c5a3a030d8b5d5518b085da0b32209cfbc4d62a874f38d842bb411",
+    "ST1131/Topic7_CI/lecture.json": "49707f32434ce06d9f7dd569649c766e4623e24bfa406cb00daa0df8c6b5093a",
+    "ST1131/Topic9_LinearRegression/lecture.json": "f850e60dd2f36ea85c51b03485504f4217855c3f1bb701b93fae72519e4e5ba4"
+  },
+  "last_updated_timestamp": "2026-08-05T17:20:40.871114+00:00",
+  "version_number": 8,
+  "related_concepts": [
+    "Classification Accuracy",
+    "Confusion Matrix",
+    "Precision"
+  ],
+  "prerequisites": [
+    "Confusion Matrix"
+  ],
+  "used_in": [],
+  "graph_node_id": "recall"
+}

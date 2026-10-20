@@ -1,0 +1,57 @@
+{
+  "concept_name": "Database",
+  "canonical_key": "database",
+  "concept_type": "system",
+  "domain": "Data Science",
+  "topic": "Data Management",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.941,
+  "evidence_strength": 0.92,
+  "definition_quality_score": 0.94,
+  "interview_relevance": 0.98,
+  "definition": "A database is an organized collection of related data stored so it can be accessed, managed, and updated reliably. It separates durable organizational information from the applications that use it.",
+  "intuition": "Think of a database as a well-organized, shared store of related facts with rules that keep the facts usable.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Analytics",
+    "Information Systems",
+    "Operational Data Management"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Data Management",
+    "Data Science"
+  ],
+  "aliases": [
+    "Database",
+    "databases"
+  ],
+  "contributing_courses": [
+    "BT2102"
+  ],
+  "contributing_lecture_files": [
+    "BT2102/BT2102-03-DatabaseSystemDevelopmentLifecycle/lecture.json",
+    "BT2102/BT2102-07-Normalization/lecture.json",
+    "BT2102/BT2102-09-SQL/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT2102/BT2102-03-DatabaseSystemDevelopmentLifecycle/lecture.json": "2b8627c63147f11d89fa2ea3bf31195311b91782785e66528c6a469f002215a7",
+    "BT2102/BT2102-07-Normalization/lecture.json": "ede91ba5a40aa31093b8d523101d93ee51dd2817bb66b23505af19b57201727a",
+    "BT2102/BT2102-09-SQL/lecture.json": "0d4160779b87122cb5a8f805c06376a2428addaa43ea916752df6c8f7bf4d45a"
+  },
+  "last_updated_timestamp": "2026-07-14T17:35:38.255350+00:00",
+  "version_number": 2,
+  "related_concepts": [
+    "Data Model",
+    "Database Management System",
+    "NoSQL",
+    "SQL"
+  ],
+  "prerequisites": [],
+  "used_in": [],
+  "graph_node_id": "database"
+}

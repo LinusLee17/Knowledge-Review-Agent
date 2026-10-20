@@ -1,0 +1,59 @@
+{
+  "concept_name": "Model Selection",
+  "canonical_key": "model selection",
+  "concept_type": "method",
+  "domain": "Machine Learning",
+  "topic": "Model Evaluation",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.953,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.9,
+  "interview_relevance": 0.98,
+  "definition": "Model Selection is a systematic procedure for transforming inputs into an output or decision in Model Evaluation. It is used in Generalization, Hyperparameter Tuning. It is commonly considered alongside Cross Validation, Dimensionality Reduction, Regularization.",
+  "intuition": "Prefer the model that should perform well on new data, balancing fit against complexity.",
+  "mathematical_foundation": "\uf0a7 Model selection: loss of information but more interpretable",
+  "advantages": [
+    "Instead of using F-based model selection sometimes a more efficient approach is a stepwise",
+    "\uf0a7 Model selection: loss of information but more interpretable"
+  ],
+  "assumptions": [],
+  "applications": [
+    "Generalization",
+    "Hyperparameter Tuning"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Machine Learning",
+    "Model Evaluation",
+    "Predictive Modeling"
+  ],
+  "aliases": [
+    "Model Selection",
+    "model comparison",
+    "selecting a model"
+  ],
+  "contributing_courses": [
+    "BT1101"
+  ],
+  "contributing_lecture_files": [
+    "BT1101/Week 9 Model Selection & Data Dimensionality Reduction/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT1101/Week 9 Model Selection & Data Dimensionality Reduction/lecture.json": "2ccf7b74167e79a5346d347237a977bcb235861a52b612aef4fe11846342510e"
+  },
+  "last_updated_timestamp": "2026-08-05T17:21:13.263221+00:00",
+  "version_number": 4,
+  "related_concepts": [
+    "Cross Validation",
+    "Dimensionality Reduction",
+    "Regularization"
+  ],
+  "prerequisites": [
+    "Cross Validation",
+    "Overfitting"
+  ],
+  "used_in": [],
+  "graph_node_id": "model-selection"
+}

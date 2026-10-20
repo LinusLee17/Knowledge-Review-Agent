@@ -4,19 +4,25 @@ import json
 from pathlib import Path
 
 from knowledge_review_agent.concept_store import save_concept_metadata
-from knowledge_review_agent.graph_bundle import build_graph_bundle, write_graph_bundle
+from knowledge_review_agent.graph_bundle import GraphPresentationPaths, build_graph_bundle, write_graph_bundle
+from urllib.parse import parse_qs, urlsplit, unquote
 from knowledge_review_agent.models import ConceptMetadata, GraphEdge, GraphNode
 
 
 def test_graph_bundle_enriches_nodes_and_writes_graph_json(tmp_path: Path) -> None:
     graphs_root = tmp_path / "knowledge_base" / "graphs"
-    concepts_root = tmp_path / "knowledge_base" / "refined" / "concepts"
+    concepts_root = tmp_path / "knowledge_base" / "refined"
+    site = tmp_path / "website"
+    site.mkdir()
+    (site / "concept.html").write_text("viewer")
+    paths = GraphPresentationPaths(tmp_path, tmp_path / "knowledge_base" / "concepts", concepts_root, site)
     concept_dir = concepts_root / "Gradient Descent"
     concept_dir.mkdir(parents=True)
 
     save_concept_metadata(
         concept_dir / "metadata.json",
         ConceptMetadata(
+            last_updated_timestamp="2026-07-10T00:00:00+00:00",
             concept_name="Gradient Descent",
             canonical_key="gradient descent",
             domain="Machine Learning",
@@ -34,6 +40,8 @@ def test_graph_bundle_enriches_nodes_and_writes_graph_json(tmp_path: Path) -> No
         ),
     )
 
+    (concept_dir / "concept.md").write_text("# Gradient Descent\n")
+
     node = GraphNode(
         node_id="gradient-descent",
         concept_key="gradient descent",
@@ -44,6 +52,7 @@ def test_graph_bundle_enriches_nodes_and_writes_graph_json(tmp_path: Path) -> No
         domain="Machine Learning",
         topic="Optimization",
         importance_score=5,
+        study_priority=5,
         contributing_courses=["BT4240", "CS3244"],
         contributing_lecture_files=["BT4240/L4/lecture.json"],
         graph_node_id="gradient-descent",
@@ -68,18 +77,25 @@ def test_graph_bundle_enriches_nodes_and_writes_graph_json(tmp_path: Path) -> No
         last_updated_timestamp="2026-07-10T00:00:00+00:00",
     )
 
-    bundle = build_graph_bundle([node], [edge], graphs_root=graphs_root, generated_at="2026-07-10T00:00:00+00:00")
-    assert bundle.stats["total_concepts"] == 1
+    calculus_dir = concepts_root / "Calculus"
+    calculus_dir.mkdir()
+    save_concept_metadata(calculus_dir / "metadata.json", ConceptMetadata(concept_name="Calculus", canonical_key="calculus", last_updated_timestamp="2026-07-10T00:00:00+00:00"))
+    (calculus_dir / "concept.md").write_text("# Calculus\n")
+    calculus = GraphNode("calculus", "calculus", "Calculus", str(calculus_dir / "metadata.json"), 1, "2026-07-10T00:00:00+00:00")
+    bundle = build_graph_bundle([node, calculus], [edge], graphs_root=graphs_root, generated_at="2026-07-10T00:00:00+00:00", paths=paths)
+    gradient = next(n for n in bundle.nodes if n.node_id == "gradient-descent")
+    assert bundle.stats["total_concepts"] == 2
     assert bundle.stats["total_edges"] == 1
     assert bundle.stats["multi_course_concepts"] == 1
-    assert bundle.nodes[0].concept_name == "Gradient Descent"
-    assert bundle.nodes[0].concept_url.endswith("concept.md")
-    assert "Calculus" in bundle.nodes[0].search_terms
-    assert bundle.nodes[0].connected_edge_count == 1
+    assert gradient.concept_name == "Gradient Descent"
+    assert gradient.concept_url.endswith("concept.md")
+    assert "../knowledge_base/refined/Gradient Descent/concept.md" in unquote(parse_qs(urlsplit(gradient.concept_url).query)["path"][0])
+    assert "Calculus" in gradient.search_terms
+    assert gradient.connected_edge_count == 1
 
-    graph_json = write_graph_bundle(graphs_root, [node], [edge], generated_at="2026-07-10T00:00:00+00:00")
+    graph_json = write_graph_bundle(graphs_root, [node, calculus], [edge], generated_at="2026-07-10T00:00:00+00:00", paths=paths)
     payload = json.loads(graph_json.read_text(encoding="utf-8"))
-    assert payload["stats"]["total_concepts"] == 1
-    assert payload["nodes"][0]["definition"] == "Gradient Descent iteratively minimizes a loss function."
-    assert payload["nodes"][0]["interview_notes"] == ""
+    assert payload["stats"]["total_concepts"] == 2
+    assert next(n for n in payload["nodes"] if n["node_id"] == "gradient-descent")["definition"] == "Gradient Descent iteratively minimizes a loss function."
+    assert next(n for n in payload["nodes"] if n["node_id"] == "gradient-descent")["interview_notes"] == ""
     assert payload["edges"][0]["relation_type"] == "prerequisite"

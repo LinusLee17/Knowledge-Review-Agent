@@ -1,0 +1,61 @@
+{
+  "concept_name": "Hypothesis Testing",
+  "canonical_key": "hypothesis testing",
+  "concept_type": "method",
+  "domain": "Statistics",
+  "topic": "Inference",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.932,
+  "evidence_strength": 0.98,
+  "definition_quality_score": 0.84,
+  "interview_relevance": 0.98,
+  "definition": "Hypothesis Testing is a procedure that compares sample evidence with a null hypothesis using a test statistic and decision rule. It is used in A/B Testing, Experimentation. It is commonly considered alongside Confidence Interval, Type I Error, Type II Error.",
+  "intuition": "Mental model: transform inputs through explicit steps until output meets its evaluation rule.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "A/B Testing",
+    "Experimentation"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Inference",
+    "Statistical Inference",
+    "Statistics"
+  ],
+  "aliases": [
+    "Hypothesis Testing",
+    "significance testing",
+    "test of hypothesis"
+  ],
+  "contributing_courses": [
+    "ST1131"
+  ],
+  "contributing_lecture_files": [
+    "ST1131/Topic0_Introduction/lecture.json",
+    "ST1131/Topic8_HypothesisTest/lecture.json",
+    "ST1131/Topic8_HypothesisTest_2/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "ST1131/Topic0_Introduction/lecture.json": "38da302706ca014de7b3a526ef8f3d9adc17fd9e2ec0fce2dffcd9549d871360",
+    "ST1131/Topic8_HypothesisTest/lecture.json": "f23d23067535be87b6e2304f89a067bd085f2301da1929b078ef17463be46823",
+    "ST1131/Topic8_HypothesisTest_2/lecture.json": "9353adcce66f732b5365a8e0de35f94020a233d862673cbf480294693022737c"
+  },
+  "last_updated_timestamp": "2026-08-05T16:27:50.414852+00:00",
+  "version_number": 8,
+  "related_concepts": [
+    "Confidence Interval",
+    "Type I Error",
+    "Type II Error",
+    "p-value"
+  ],
+  "prerequisites": [
+    "Probability",
+    "Sampling"
+  ],
+  "used_in": [],
+  "graph_node_id": "hypothesis-testing"
+}

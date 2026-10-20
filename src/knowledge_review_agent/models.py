@@ -183,6 +183,21 @@ class IngestionResult:
 
 
 @dataclass(frozen=True)
+class PersistenceAlternative:
+    source_record: str
+    record_sha256: str
+    value: str
+    snapshot_id: str = ""
+
+
+@dataclass(frozen=True)
+class PersistenceConflict:
+    field_name: str
+    selected_value: str
+    alternatives: list[PersistenceAlternative] = field(default_factory=list)
+
+
+@dataclass(frozen=True)
 class ConceptMetadata:
     concept_name: str
     canonical_key: str = ""
@@ -214,6 +229,9 @@ class ConceptMetadata:
     prerequisites: list[str] = field(default_factory=list)
     used_in: list[str] = field(default_factory=list)
     graph_node_id: str = ""
+
+    persistence_conflicts: list[PersistenceConflict] = field(default_factory=list)
+    persistence_snapshot_id: str = ""
 
     def __post_init__(self) -> None:
         if self.scope_level <= 0:

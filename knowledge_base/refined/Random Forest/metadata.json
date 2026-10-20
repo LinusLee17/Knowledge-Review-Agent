@@ -1,0 +1,56 @@
+{
+  "concept_name": "Random Forest",
+  "canonical_key": "random forest",
+  "concept_type": "algorithm",
+  "domain": "Machine Learning",
+  "topic": "Ensemble Methods",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.786,
+  "evidence_strength": 0.68,
+  "definition_quality_score": 0.78,
+  "interview_relevance": 0.98,
+  "definition": "Random Forest is an ensemble that combines predictions from many randomized decision trees to reduce variance and improve generalization. It is used in Customer Analytics, Fraud Detection, Healthcare Prediction. It is commonly considered alongside Decision Trees, Gradient Boosting, XGBoost.",
+  "intuition": "Mental model: transform inputs through explicit steps until output meets its evaluation rule.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Customer Analytics",
+    "Fraud Detection",
+    "Healthcare Prediction"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Ensemble Methods",
+    "Machine Learning",
+    "Tree-Based Models"
+  ],
+  "aliases": [
+    "Random Forest",
+    "random forests"
+  ],
+  "contributing_courses": [
+    "CS3244"
+  ],
+  "contributing_lecture_files": [
+    "CS3244/Lecture03_decision_trees/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "CS3244/Lecture03_decision_trees/lecture.json": "aee1d23ae4e11f5b5cc0cbbfc82b9397dca578cad2607ca9f098d780a3e9277a"
+  },
+  "last_updated_timestamp": "2026-08-05T16:27:50.502924+00:00",
+  "version_number": 7,
+  "related_concepts": [
+    "Decision Trees",
+    "Gradient Boosting",
+    "XGBoost"
+  ],
+  "prerequisites": [
+    "Bagging",
+    "Decision Trees"
+  ],
+  "used_in": [],
+  "graph_node_id": "random-forest"
+}

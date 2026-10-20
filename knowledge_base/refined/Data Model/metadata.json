@@ -1,0 +1,57 @@
+{
+  "concept_name": "Data Model",
+  "canonical_key": "data model",
+  "concept_type": "model",
+  "domain": "Data Science",
+  "topic": "Data Management",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.853,
+  "evidence_strength": 0.84,
+  "definition_quality_score": 0.78,
+  "interview_relevance": 0.98,
+  "definition": "A data model is a structured description of the data an organization needs, the relationships among data items, and the rules that constrain valid data. It provides the blueprint for designing a database.",
+  "intuition": "Think of a data model as a blueprint: it decides what information exists, how pieces connect, and what counts as valid.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Analytics Systems",
+    "Data Integration",
+    "Database Design"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Data Management",
+    "Data Science"
+  ],
+  "aliases": [
+    "Data Model",
+    "data modeling",
+    "data modelling"
+  ],
+  "contributing_courses": [
+    "BT2102"
+  ],
+  "contributing_lecture_files": [
+    "BT2102/BT2102-01-DatabaseAndDataModel/lecture.json",
+    "BT2102/BT2102-02-TheRelationalDataModel/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT2102/BT2102-01-DatabaseAndDataModel/lecture.json": "3934c1bc3f6c2788f32eeca86078999272c2b9764b708037c52ed1e486135d40",
+    "BT2102/BT2102-02-TheRelationalDataModel/lecture.json": "167de5542bfa396fbeb638c417b00aff977ac0f360f9b0b698b8d8a07494ba62"
+  },
+  "last_updated_timestamp": "2026-07-14T17:35:38.253792+00:00",
+  "version_number": 2,
+  "related_concepts": [
+    "Database Normalization",
+    "Entity-Relationship Model",
+    "Relational Data Model"
+  ],
+  "prerequisites": [
+    "Database"
+  ],
+  "used_in": [],
+  "graph_node_id": "data-model"
+}

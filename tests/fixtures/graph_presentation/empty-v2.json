@@ -1,0 +1,14 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-10-20T00:00:00+00:00",
+  "nodes": [],
+  "edges": [],
+  "stats": {
+    "total_concepts": 0,
+    "total_edges": 0,
+    "domains": [],
+    "average_node_degree": 0,
+    "multi_course_concepts": 0,
+    "relation_counts": {}
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "concept_name": "Multi-fidelity Optimization",
+  "canonical_key": "multi fidelity optimization",
+  "concept_type": "method",
+  "domain": "Machine Learning",
+  "topic": "AutoML",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.624,
+  "evidence_strength": 0.7,
+  "definition_quality_score": 0.28,
+  "interview_relevance": 0.98,
+  "definition": "Multi-fidelity Optimization uses cheap, lower-fidelity evaluations, such as fewer epochs or fewer data points, to allocate computation toward promising configurations before spending the full budget.",
+  "intuition": "Use cheap imperfect signals to eliminate weak trials early; reserve full training budgets for candidates that survive.",
+  "mathematical_foundation": "$$\nc(\\lambda, r), \\quad r \\in \\mathcal{R}\n$$\n\n`r` is a resource or fidelity level, such as epochs, data volume, or resolution. Low `r` gives a cheaper but noisier estimate of final cost.",
+  "advantages": [
+    "Can trade fidelity bias against much lower evaluation cost.",
+    "Converts partial learning-curve information into search savings.",
+    "Rejects weak configurations before full training."
+  ],
+  "assumptions": [],
+  "applications": [
+    "Budgeted Optimization",
+    "Early Stopping",
+    "Expensive Model Training"
+  ],
+  "limitations": [
+    "Low-fidelity performance may not rank configurations reliably at full budget.",
+    "The method needs a meaningful resource axis and a useful early signal."
+  ],
+  "broader_topics": [
+    "AutoML",
+    "Machine Learning",
+    "Optimization",
+    "Resource Allocation"
+  ],
+  "aliases": [
+    "Multi-fidelity Optimization",
+    "multi fidelity optimization",
+    "multi-fidelity methods",
+    "multi-fidelity optimisation"
+  ],
+  "contributing_courses": [
+    "Auto-ML"
+  ],
+  "contributing_lecture_files": [
+    "Auto-ML/5_Speedup_ALL/lecture.json",
+    "Auto-ML/8_dac_lectures/lecture.json",
+    "Auto-ML/ss25-AutoML-lecture-6 NAS /lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "Auto-ML/5_Speedup_ALL/lecture.json": "55457ae1aa82349f262028301baf3dc3fb372d67a794e4031e01e8de7b87d593",
+    "Auto-ML/8_dac_lectures/lecture.json": "cd3c2aac34b9533142757a1839de075e92bdbaec81eb6bb75a4d77748364d4b7",
+    "Auto-ML/ss25-AutoML-lecture-6 NAS /lecture.json": "c4e7118a29e0bd850d848929d96a7b6ac75dfd531dab122fd60c67df0d927033"
+  },
+  "last_updated_timestamp": "2026-08-05T17:21:13.265392+00:00",
+  "version_number": 12,
+  "related_concepts": [
+    "HPO Speedup Techniques",
+    "Hyperband / BOHB"
+  ],
+  "prerequisites": [
+    "Bayesian Optimization",
+    "Hyperparameter Optimization"
+  ],
+  "used_in": [],
+  "graph_node_id": "multi-fidelity-optimization"
+}

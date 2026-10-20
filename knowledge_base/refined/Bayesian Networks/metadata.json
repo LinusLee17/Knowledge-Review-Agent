@@ -1,0 +1,74 @@
+{
+  "concept_name": "Bayesian Networks",
+  "canonical_key": "bayesian network",
+  "concept_type": "model",
+  "domain": "Machine Learning",
+  "topic": "Probabilistic Modeling",
+  "importance_score": 5,
+  "scope_level": 3,
+  "study_priority": 5,
+  "confidence_score": 0.692,
+  "evidence_strength": 0.86,
+  "definition_quality_score": 0.28,
+  "interview_relevance": 0.98,
+  "definition": "Bayesian Networks represent a joint probability distribution with a directed acyclic graph and local conditional probability tables. They make conditional independence assumptions explicit and support probabilistic inference.",
+  "intuition": "Draw dependencies as a graph, then use local probability rules to answer global uncertainty questions.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Diagnosis",
+    "Prediction",
+    "Reasoning Under Uncertainty"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Machine Learning",
+    "Probabilistic Graphical Models",
+    "Probabilistic Modeling"
+  ],
+  "aliases": [
+    "Bayesian Networks",
+    "bayesian network",
+    "belief network",
+    "belief networks"
+  ],
+  "contributing_courses": [
+    "BT3102"
+  ],
+  "contributing_lecture_files": [
+    "BT3102/W10-BN-Sampling/lecture.json",
+    "BT3102/W2-BN-Syntax/lecture.json",
+    "BT3102/W2-Probability_Basics/lecture.json",
+    "BT3102/W3-BN-Semantics/lecture.json",
+    "BT3102/W5-BN-MLE/lecture.json",
+    "BT3102/W6-BN-MarkovModels/lecture.json",
+    "BT3102/W9-BN-ExactInference-Updated(2)/lecture.json",
+    "BT3102/W9-BN-ExactInference-Updated/lecture.json",
+    "BT3102/W9-BN-ExactInference/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT3102/W10-BN-Sampling/lecture.json": "e11f052d176f10f663990efcee232abc4f7220a57d2c0a4f787240988b142c82",
+    "BT3102/W2-BN-Syntax/lecture.json": "e9b1b4fa17c4ee4807a19d0d75f3386043fc24da13ac148bc640289c3fae55b4",
+    "BT3102/W2-Probability_Basics/lecture.json": "cdbeecd85a742034ac810250b8436914048669ed567624c702fba64c880a846b",
+    "BT3102/W3-BN-Semantics/lecture.json": "716796d5f90e1d43e1f086b4eb8b7c8865e575bcf459242f0106ab92c3943d59",
+    "BT3102/W5-BN-MLE/lecture.json": "f4ee36d71e7e10ca0e6e3740f2801f6b41dbe6415da75ff9a3a3b81caf650a46",
+    "BT3102/W6-BN-MarkovModels/lecture.json": "9f5fdedd0be24dd27c5186c8009f6420a864c1b19eb64d4add2a886367dd7e85",
+    "BT3102/W9-BN-ExactInference-Updated(2)/lecture.json": "a1a849c179d34f7ff89e55a29cb5e71ffea4d38986e2318f20e805c42fff6e17",
+    "BT3102/W9-BN-ExactInference-Updated/lecture.json": "c54921627289e81a906dfc9089df637fe7a46636eba7ea47a1be04bbf74171b6",
+    "BT3102/W9-BN-ExactInference/lecture.json": "efeb8e58892492589fb7c256d82311a5a8875a76cfe6427566fc7264190354bf"
+  },
+  "last_updated_timestamp": "2026-08-05T17:13:39.051012+00:00",
+  "version_number": 1,
+  "related_concepts": [
+    "Causal Inference",
+    "Markov Models",
+    "Maximum Likelihood Estimation"
+  ],
+  "prerequisites": [
+    "Conditional Independence",
+    "Probability"
+  ],
+  "used_in": [],
+  "graph_node_id": "bayesian-network"
+}

@@ -1,0 +1,56 @@
+{
+  "concept_name": "Entropy",
+  "canonical_key": "entropy",
+  "concept_type": "theory",
+  "domain": "Statistics",
+  "topic": "Information Theory",
+  "importance_score": 4,
+  "scope_level": 4,
+  "study_priority": 4,
+  "confidence_score": 0.86,
+  "evidence_strength": 0.84,
+  "definition_quality_score": 0.8,
+  "interview_relevance": 0.98,
+  "definition": "Entropy is a formal account that connects assumptions, objects, and implications in Information Theory. It is used in Classification, Decision Trees.",
+  "intuition": "Mental model: use stated assumptions to connect observable inputs with conclusions or decisions.",
+  "mathematical_foundation": "",
+  "advantages": [],
+  "assumptions": [],
+  "applications": [
+    "Classification",
+    "Decision Trees"
+  ],
+  "limitations": [],
+  "broader_topics": [
+    "Information Theory",
+    "Model Evaluation",
+    "Statistics"
+  ],
+  "aliases": [
+    "Entropy",
+    "shannon entropy"
+  ],
+  "contributing_courses": [
+    "BT4240",
+    "CS3244"
+  ],
+  "contributing_lecture_files": [
+    "BT4240/L4-InformationBasedLearning/lecture.json",
+    "CS3244/Lecture03_decision_trees/lecture.json"
+  ],
+  "source_lecture_hashes": {
+    "BT4240/L4-InformationBasedLearning/lecture.json": "def7f44d6bf22a828ec59400bc35d2bc6ec1ec55e31d3cfdcad8ea6cfac82cf2",
+    "CS3244/Lecture03_decision_trees/lecture.json": "aee1d23ae4e11f5b5cc0cbbfc82b9397dca578cad2607ca9f098d780a3e9277a"
+  },
+  "last_updated_timestamp": "2026-08-05T16:27:50.400785+00:00",
+  "version_number": 5,
+  "related_concepts": [
+    "Cross Entropy",
+    "Information Gain"
+  ],
+  "prerequisites": [
+    "Probability"
+  ],
+  "used_in": [],
+  "graph_node_id": "entropy"
+}

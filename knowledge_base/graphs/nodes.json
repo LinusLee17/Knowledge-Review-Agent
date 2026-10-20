@@ -1,0 +1,1525 @@
+{
+  "generated_at": "2026-08-05T20:21:56.694149+00:00",
+  "nodes": [
+    {
+      "concept_key": "algorithm selection",
+      "concept_name": "Algorithm Selection",
+      "contributing_courses": [
+        "Auto-ML"
+      ],
+      "contributing_lecture_files": [
+        "Auto-ML/4_BO-for-HPO_all/lecture.json",
+        "Auto-ML/7_ss23_automl_algo_sel_ALL/lecture.json",
+        "Auto-ML/w01_t01_04_big_picture/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "algorithm-selection",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:21:13.097455+00:00",
+      "metadata_path": "knowledge_base/concepts/Algorithm Selection/metadata.json",
+      "node_id": "algorithm-selection",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "AutoML",
+      "version_number": 1
+    },
+    {
+      "concept_key": "alternative hypothesis",
+      "concept_name": "Alternative Hypothesis",
+      "contributing_courses": [
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "ST1131/Topic8_HypothesisTest/lecture.json",
+        "ST1131/Topic8_HypothesisTest_2/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "alternative-hypothesis",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T16:27:50.326041+00:00",
+      "metadata_path": "knowledge_base/concepts/Alternative Hypothesis/metadata.json",
+      "node_id": "alternative-hypothesis",
+      "scope_level": 2,
+      "study_priority": 5,
+      "topic": "Hypothesis Testing",
+      "version_number": 7
+    },
+    {
+      "concept_key": "automl evaluation and benchmarking",
+      "concept_name": "AutoML Evaluation and Benchmarking",
+      "contributing_courses": [
+        "Auto-ML"
+      ],
+      "contributing_lecture_files": [
+        "Auto-ML/10_evaluation_and_benchmarking_slides/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "automl-evaluation-and-benchmarking",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:21:13.104438+00:00",
+      "metadata_path": "knowledge_base/concepts/AutoML Evaluation and Benchmarking/metadata.json",
+      "node_id": "automl-evaluation-and-benchmarking",
+      "scope_level": 4,
+      "study_priority": 5,
+      "topic": "AutoML",
+      "version_number": 9
+    },
+    {
+      "concept_key": "bayesian network",
+      "concept_name": "Bayesian Networks",
+      "contributing_courses": [
+        "BT3102"
+      ],
+      "contributing_lecture_files": [
+        "BT3102/W10-BN-Sampling/lecture.json",
+        "BT3102/W2-BN-Syntax/lecture.json",
+        "BT3102/W2-Probability_Basics/lecture.json",
+        "BT3102/W3-BN-Semantics/lecture.json",
+        "BT3102/W5-BN-MLE/lecture.json",
+        "BT3102/W6-BN-MarkovModels/lecture.json",
+        "BT3102/W9-BN-ExactInference-Updated(2)/lecture.json",
+        "BT3102/W9-BN-ExactInference-Updated/lecture.json",
+        "BT3102/W9-BN-ExactInference/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "bayesian-network",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:13:39.051012+00:00",
+      "metadata_path": "knowledge_base/concepts/Bayesian Networks/metadata.json",
+      "node_id": "bayesian-network",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Probabilistic Modeling",
+      "version_number": 1
+    },
+    {
+      "concept_key": "bayesian optimization",
+      "concept_name": "Bayesian Optimization",
+      "contributing_courses": [
+        "Auto-ML"
+      ],
+      "contributing_lecture_files": [
+        "Auto-ML/10_Interpretability_ALL-2/lecture.json",
+        "Auto-ML/4_BO-for-HPO_all/lecture.json",
+        "Auto-ML/5_Speedup_ALL/lecture.json",
+        "Auto-ML/6_Multicriteria_ALL/lecture.json",
+        "Auto-ML/8_dac_lectures/lecture.json",
+        "Auto-ML/ss25-AutoML-lecture-6 NAS /lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "bayesian-optimization",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:21:13.112138+00:00",
+      "metadata_path": "knowledge_base/concepts/Bayesian Optimization/metadata.json",
+      "node_id": "bayesian-optimization",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "AutoML",
+      "version_number": 14
+    },
+    {
+      "concept_key": "business continuity management",
+      "concept_name": "Business Continuity Management",
+      "contributing_courses": [
+        "IS3103"
+      ],
+      "contributing_lecture_files": [
+        "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 9 - Business Continuity Management and Emerging Issues of Digital Leadership - Canvas/lecture.json"
+      ],
+      "domain": "Business",
+      "graph_node_id": "business-continuity-management",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-07-11T11:47:38.720752+00:00",
+      "metadata_path": "knowledge_base/concepts/Business Continuity Management/metadata.json",
+      "node_id": "business-continuity-management",
+      "scope_level": 5,
+      "study_priority": 4,
+      "topic": "Resilience",
+      "version_number": 1
+    },
+    {
+      "concept_key": "business strategy",
+      "concept_name": "Business Strategy",
+      "contributing_courses": [
+        "IS3103"
+      ],
+      "contributing_lecture_files": [
+        "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 3 - Business Strategy and IS Strategy - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json"
+      ],
+      "domain": "Business",
+      "graph_node_id": "business-strategy",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-07-11T11:47:38.722016+00:00",
+      "metadata_path": "knowledge_base/concepts/Business Strategy/metadata.json",
+      "node_id": "business-strategy",
+      "scope_level": 5,
+      "study_priority": 5,
+      "topic": "Strategy Alignment",
+      "version_number": 1
+    },
+    {
+      "concept_key": "causal inference",
+      "concept_name": "Causal Inference",
+      "contributing_courses": [
+        "BT2101"
+      ],
+      "contributing_lecture_files": [
+        "BT2101/BT2101 Midterms (L1-6)/lecture.json",
+        "BT2101/VK.wk11.2024/lecture.json",
+        "BT2101/VK.wk13.2024/lecture.json",
+        "BT2101/VK.wk8.2024/lecture.json",
+        "BT2101/VK.wk9.2024/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "causal-inference",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T16:42:30.423650+00:00",
+      "metadata_path": "knowledge_base/concepts/Causal Inference/metadata.json",
+      "node_id": "causal-inference",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Causal Analysis",
+      "version_number": 1
+    },
+    {
+      "concept_key": "central limit theorem",
+      "concept_name": "Central Limit Theorem",
+      "contributing_courses": [
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "ST1131/Topic6_SamplingDistribution/lecture.json",
+        "ST1131/Topic6_SamplingDistribution_R/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "central-limit-theorem",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T16:27:50.350573+00:00",
+      "metadata_path": "knowledge_base/concepts/Central Limit Theorem/metadata.json",
+      "node_id": "central-limit-theorem",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Inference",
+      "version_number": 7
+    },
+    {
+      "concept_key": "change management",
+      "concept_name": "Change Management",
+      "contributing_courses": [
+        "IS3103"
+      ],
+      "contributing_lecture_files": [
+        "IS3103/IS3103 Workshop 7 - Leading Organizational Change and Stakeholder Management - Canvas/lecture.json"
+      ],
+      "domain": "Leadership",
+      "graph_node_id": "change-management",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-07-11T11:47:38.725266+00:00",
+      "metadata_path": "knowledge_base/concepts/Change Management/metadata.json",
+      "node_id": "change-management",
+      "scope_level": 2,
+      "study_priority": 5,
+      "topic": "Organizational Change",
+      "version_number": 1
+    },
+    {
+      "concept_key": "communication",
+      "concept_name": "Communication",
+      "contributing_courses": [
+        "IS3103"
+      ],
+      "contributing_lecture_files": [
+        "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 1 - Overview of Leadership and Management - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 2 - Foundations of Digital Leadership - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 3 - Business Strategy and IS Strategy - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 5 - Organizing for Digital Innovation - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 6 - Service Process Digitisation - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 7 - Leading Organizational Change and Stakeholder Management - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 8 - Managing IT Teams - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 9 - Business Continuity Management and Emerging Issues of Digital Leadership - Canvas/lecture.json"
+      ],
+      "domain": "Communication",
+      "graph_node_id": "communication",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-07-11T11:47:38.726459+00:00",
+      "metadata_path": "knowledge_base/concepts/Communication/metadata.json",
+      "node_id": "communication",
+      "scope_level": 2,
+      "study_priority": 5,
+      "topic": "Leadership Communication",
+      "version_number": 1
+    },
+    {
+      "concept_key": "confidence interval",
+      "concept_name": "Confidence Interval",
+      "contributing_courses": [
+        "BT1101",
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "BT1101/Week 7 Linear Regression and Interpretation 2023/lecture.json",
+        "ST1131/Topic7_CI/lecture.json",
+        "ST1131/Topic8_HypothesisTest/lecture.json",
+        "ST1131/Topic8_HypothesisTest_2/lecture.json",
+        "ST1131/Topic9_LinearRegression/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "confidence-interval",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:17:19.231134+00:00",
+      "metadata_path": "knowledge_base/concepts/Confidence Interval/metadata.json",
+      "node_id": "confidence-interval",
+      "scope_level": 1,
+      "study_priority": 5,
+      "topic": "Inference",
+      "version_number": 11
+    },
+    {
+      "concept_key": "data model",
+      "concept_name": "Data Model",
+      "contributing_courses": [
+        "BT2102"
+      ],
+      "contributing_lecture_files": [
+        "BT2102/BT2102-01-DatabaseAndDataModel/lecture.json",
+        "BT2102/BT2102-02-TheRelationalDataModel/lecture.json"
+      ],
+      "domain": "Data Science",
+      "graph_node_id": "data-model",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-07-14T17:35:38.253792+00:00",
+      "metadata_path": "knowledge_base/concepts/Data Model/metadata.json",
+      "node_id": "data-model",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Data Management",
+      "version_number": 2
+    },
+    {
+      "concept_key": "data visualization",
+      "concept_name": "Data Visualization",
+      "contributing_courses": [
+        "BT2102"
+      ],
+      "contributing_lecture_files": [
+        "BT2102/BT2102-12-DataVisualisation/lecture.json"
+      ],
+      "domain": "Data Science",
+      "graph_node_id": "data-visualization",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-07-14T17:35:38.254621+00:00",
+      "metadata_path": "knowledge_base/concepts/Data Visualization/metadata.json",
+      "node_id": "data-visualization",
+      "scope_level": 4,
+      "study_priority": 5,
+      "topic": "Data Communication",
+      "version_number": 2
+    },
+    {
+      "concept_key": "database",
+      "concept_name": "Database",
+      "contributing_courses": [
+        "BT2102"
+      ],
+      "contributing_lecture_files": [
+        "BT2102/BT2102-03-DatabaseSystemDevelopmentLifecycle/lecture.json",
+        "BT2102/BT2102-07-Normalization/lecture.json",
+        "BT2102/BT2102-09-SQL/lecture.json"
+      ],
+      "domain": "Data Science",
+      "graph_node_id": "database",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-07-14T17:35:38.255350+00:00",
+      "metadata_path": "knowledge_base/concepts/Database/metadata.json",
+      "node_id": "database",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Data Management",
+      "version_number": 2
+    },
+    {
+      "concept_key": "decision making",
+      "concept_name": "Decision Making",
+      "contributing_courses": [
+        "IS3103"
+      ],
+      "contributing_lecture_files": [
+        "IS3103/IS3103 Workshop 1 - Overview of Leadership and Management - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 8 - Managing IT Teams - Canvas/lecture.json"
+      ],
+      "domain": "Business",
+      "graph_node_id": "decision-making",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-07-11T11:47:38.735338+00:00",
+      "metadata_path": "knowledge_base/concepts/Decision Making/metadata.json",
+      "node_id": "decision-making",
+      "scope_level": 2,
+      "study_priority": 4,
+      "topic": "Decision Making",
+      "version_number": 1
+    },
+    {
+      "concept_key": "decision tree",
+      "concept_name": "Decision Trees",
+      "contributing_courses": [
+        "BT4240",
+        "CS3244"
+      ],
+      "contributing_lecture_files": [
+        "BT4240/L4-InformationBasedLearning/lecture.json",
+        "CS3244/Lecture03_decision_trees/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "decision-tree",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T16:27:50.385854+00:00",
+      "metadata_path": "knowledge_base/concepts/Decision Trees/metadata.json",
+      "node_id": "decision-tree",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Supervised Learning",
+      "version_number": 8
+    },
+    {
+      "concept_key": "digital innovation",
+      "concept_name": "Digital Innovation",
+      "contributing_courses": [
+        "IS3103"
+      ],
+      "contributing_lecture_files": [
+        "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 5 - Organizing for Digital Innovation - Canvas/lecture.json"
+      ],
+      "domain": "Digital Transformation",
+      "graph_node_id": "digital-innovation",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-07-11T11:47:38.736905+00:00",
+      "metadata_path": "knowledge_base/concepts/Digital Innovation/metadata.json",
+      "node_id": "digital-innovation",
+      "scope_level": 3,
+      "study_priority": 4,
+      "topic": "Innovation",
+      "version_number": 1
+    },
+    {
+      "concept_key": "digital transformation",
+      "concept_name": "Digital Transformation",
+      "contributing_courses": [
+        "IS3103"
+      ],
+      "contributing_lecture_files": [
+        "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 5 - Organizing for Digital Innovation - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 7 - Leading Organizational Change and Stakeholder Management - Canvas/lecture.json"
+      ],
+      "domain": "Digital Transformation",
+      "graph_node_id": "digital-transformation",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-07-11T11:47:38.738177+00:00",
+      "metadata_path": "knowledge_base/concepts/Digital Transformation/metadata.json",
+      "node_id": "digital-transformation",
+      "scope_level": 5,
+      "study_priority": 5,
+      "topic": "Transformation Strategy",
+      "version_number": 1
+    },
+    {
+      "concept_key": "dimensionality reduction",
+      "concept_name": "Dimensionality Reduction",
+      "contributing_courses": [
+        "BT1101"
+      ],
+      "contributing_lecture_files": [
+        "BT1101/Week 9 Model Selection & Data Dimensionality Reduction/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "dimensionality-reduction",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:20:40.734779+00:00",
+      "metadata_path": "knowledge_base/concepts/Dimensionality Reduction/metadata.json",
+      "node_id": "dimensionality-reduction",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Unsupervised Learning",
+      "version_number": 6
+    },
+    {
+      "concept_key": "dynamic algorithm configuration",
+      "concept_name": "Dynamic Algorithm Configuration",
+      "contributing_courses": [
+        "Auto-ML"
+      ],
+      "contributing_lecture_files": [
+        "Auto-ML/8_dac_lectures/lecture.json",
+        "Auto-ML/w01_t01_04_big_picture/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "dynamic-algorithm-configuration",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:21:13.177260+00:00",
+      "metadata_path": "knowledge_base/concepts/Dynamic Algorithm Configuration/metadata.json",
+      "node_id": "dynamic-algorithm-configuration",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "AutoML",
+      "version_number": 13
+    },
+    {
+      "concept_key": "entropy",
+      "concept_name": "Entropy",
+      "contributing_courses": [
+        "BT4240",
+        "CS3244"
+      ],
+      "contributing_lecture_files": [
+        "BT4240/L4-InformationBasedLearning/lecture.json",
+        "CS3244/Lecture03_decision_trees/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "entropy",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-08-05T18:50:56+00:00",
+      "metadata_path": "knowledge_base/concepts/Entropy/metadata.json",
+      "node_id": "entropy",
+      "scope_level": 4,
+      "study_priority": 4,
+      "topic": "Information Theory",
+      "version_number": 5
+    },
+    {
+      "concept_key": "experiment design",
+      "concept_name": "Experiment Design",
+      "contributing_courses": [
+        "BT1101",
+        "BT2101"
+      ],
+      "contributing_lecture_files": [
+        "BT1101/Week 5 Probability distributions and Modeling/lecture.json",
+        "BT1101/Week 6 Hypothesis testing/lecture.json",
+        "BT1101/Week 6 Sampling and Estimation/lecture.json",
+        "BT2101/BT2101 Midterms (L1-6)/lecture.json",
+        "BT2101/VK.wk13.2024/lecture.json",
+        "BT2101/VK.wk8.2024/lecture.json",
+        "BT2101/VK.wk9.2024/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "experiment-design",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:17:19.260216+00:00",
+      "metadata_path": "knowledge_base/concepts/Experiment Design/metadata.json",
+      "node_id": "experiment-design",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Causal Analysis",
+      "version_number": 5
+    },
+    {
+      "concept_key": "exploratory data analysis",
+      "concept_name": "Exploratory Data Analysis",
+      "contributing_courses": [
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "ST1131/Topic0_Introduction/lecture.json",
+        "ST1131/Topic2_EDA_1/lecture.json",
+        "ST1131/Topic2_EDA_2/lecture.json",
+        "ST1131/Topic2_EDA_3/lecture.json",
+        "ST1131/Topic2_EDA_4/lecture.json",
+        "ST1131/Topic2_EDA_5/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "exploratory-data-analysis",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-08-05T18:50:56+00:00",
+      "metadata_path": "knowledge_base/concepts/Exploratory Data Analysis/metadata.json",
+      "node_id": "exploratory-data-analysis",
+      "scope_level": 4,
+      "study_priority": 4,
+      "topic": "Data Exploration",
+      "version_number": 4
+    },
+    {
+      "concept_key": "functional dependency",
+      "concept_name": "Functional Dependency",
+      "contributing_courses": [
+        "BT2102"
+      ],
+      "contributing_lecture_files": [
+        "BT2102/BT2102-06-FunctionalDependency/lecture.json"
+      ],
+      "domain": "Data Science",
+      "graph_node_id": "functional-dependency",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-07-14T17:35:38.268683+00:00",
+      "metadata_path": "knowledge_base/concepts/Functional Dependency/metadata.json",
+      "node_id": "functional-dependency",
+      "scope_level": 4,
+      "study_priority": 4,
+      "topic": "Database Design",
+      "version_number": 2
+    },
+    {
+      "concept_key": "gradient descent",
+      "concept_name": "Gradient Descent",
+      "contributing_courses": [
+        "BT4240",
+        "CS3244"
+      ],
+      "contributing_lecture_files": [
+        "BT4240/L1-ContinuousOptimization/lecture.json",
+        "BT4240/L2-Regression/lecture.json",
+        "BT4240/L7-NeuralNetworks/lecture.json",
+        "CS3244/Lecture04_linear_models_svm/lecture.json",
+        "CS3244/Lecture10_perceptron_neural_networks/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "gradient-descent",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:21:13.199037+00:00",
+      "metadata_path": "knowledge_base/concepts/Gradient Descent/metadata.json",
+      "node_id": "gradient-descent",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Optimization",
+      "version_number": 23
+    },
+    {
+      "concept_key": "hidden markov model",
+      "concept_name": "Hidden Markov Models",
+      "contributing_courses": [
+        "BT3102"
+      ],
+      "contributing_lecture_files": [
+        "BT3102/W0_Logistics/lecture.json",
+        "BT3102/W2-Probability_Basics/lecture.json",
+        "BT3102/W6-BN-MarkovModels/lecture.json",
+        "BT3102/W7_HMM_Semantics/lecture.json",
+        "BT3102/W8-HMM-Viterbi/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "hidden-markov-model",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:13:39.145567+00:00",
+      "metadata_path": "knowledge_base/concepts/Hidden Markov Models/metadata.json",
+      "node_id": "hidden-markov-model",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Sequential Modeling",
+      "version_number": 1
+    },
+    {
+      "concept_key": "hpo speedup technique",
+      "concept_name": "HPO Speedup Techniques",
+      "contributing_courses": [
+        "Auto-ML"
+      ],
+      "contributing_lecture_files": [
+        "Auto-ML/5_Speedup_ALL/lecture.json",
+        "Auto-ML/ss25-AutoML-lecture-6 NAS /lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "hpo-speedup-technique",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-08-05T17:21:13.206747+00:00",
+      "metadata_path": "knowledge_base/concepts/HPO Speedup Techniques/metadata.json",
+      "node_id": "hpo-speedup-technique",
+      "scope_level": 3,
+      "study_priority": 4,
+      "topic": "AutoML",
+      "version_number": 10
+    },
+    {
+      "concept_key": "hyperband bohb",
+      "concept_name": "Hyperband / BOHB",
+      "contributing_courses": [
+        "Auto-ML"
+      ],
+      "contributing_lecture_files": [
+        "Auto-ML/5_Speedup_ALL/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "hyperband-bohb",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-08-05T15:34:07.902137+00:00",
+      "metadata_path": "knowledge_base/concepts/Hyperband - BOHB/metadata.json",
+      "node_id": "hyperband-bohb",
+      "scope_level": 3,
+      "study_priority": 4,
+      "topic": "AutoML",
+      "version_number": 4
+    },
+    {
+      "concept_key": "hyperparameter optimization",
+      "concept_name": "Hyperparameter Optimization",
+      "contributing_courses": [
+        "Auto-ML"
+      ],
+      "contributing_lecture_files": [
+        "Auto-ML/3_Basic-of-HPO_ALL/lecture.json",
+        "Auto-ML/4_BO-for-HPO_all/lecture.json",
+        "Auto-ML/5_Speedup_ALL/lecture.json",
+        "Auto-ML/6_Multicriteria_ALL/lecture.json",
+        "Auto-ML/8_dac_lectures/lecture.json",
+        "Auto-ML/ss25-AutoML-lecture-6 NAS /lecture.json",
+        "Auto-ML/w01_t01_04_big_picture/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "hyperparameter-optimization",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:21:13.209312+00:00",
+      "metadata_path": "knowledge_base/concepts/Hyperparameter Optimization/metadata.json",
+      "node_id": "hyperparameter-optimization",
+      "scope_level": 4,
+      "study_priority": 5,
+      "topic": "AutoML",
+      "version_number": 13
+    },
+    {
+      "concept_key": "hypothesis testing",
+      "concept_name": "Hypothesis Testing",
+      "contributing_courses": [
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "ST1131/Topic0_Introduction/lecture.json",
+        "ST1131/Topic8_HypothesisTest/lecture.json",
+        "ST1131/Topic8_HypothesisTest_2/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "hypothesis-testing",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T16:27:50.414852+00:00",
+      "metadata_path": "knowledge_base/concepts/Hypothesis Testing/metadata.json",
+      "node_id": "hypothesis-testing",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Inference",
+      "version_number": 8
+    },
+    {
+      "concept_key": "internal validity",
+      "concept_name": "Internal Validity",
+      "contributing_courses": [
+        "BT2101"
+      ],
+      "contributing_lecture_files": [
+        "BT2101/BT2101 Midterms (L1-6)/lecture.json",
+        "BT2101/VK.wk12.2024/lecture.json",
+        "BT2101/VK.wk13.2024/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "internal-validity",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T16:42:30.515815+00:00",
+      "metadata_path": "knowledge_base/concepts/Internal Validity/metadata.json",
+      "node_id": "internal-validity",
+      "scope_level": 2,
+      "study_priority": 5,
+      "topic": "Causal Analysis",
+      "version_number": 2
+    },
+    {
+      "concept_key": "is governance",
+      "concept_name": "IS Governance",
+      "contributing_courses": [
+        "IS3103"
+      ],
+      "contributing_lecture_files": [
+        "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 3 - Business Strategy and IS Strategy - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json"
+      ],
+      "domain": "Digital Transformation",
+      "graph_node_id": "is-governance",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-07-11T11:47:38.745124+00:00",
+      "metadata_path": "knowledge_base/concepts/IS Governance/metadata.json",
+      "node_id": "is-governance",
+      "scope_level": 5,
+      "study_priority": 5,
+      "topic": "Governance",
+      "version_number": 1
+    },
+    {
+      "concept_key": "leadership",
+      "concept_name": "Leadership",
+      "contributing_courses": [
+        "IS3103"
+      ],
+      "contributing_lecture_files": [
+        "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 1 - Overview of Leadership and Management - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 2 - Foundations of Digital Leadership - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 3 - Business Strategy and IS Strategy - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 5 - Organizing for Digital Innovation - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 6 - Service Process Digitisation - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 7 - Leading Organizational Change and Stakeholder Management - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 8 - Managing IT Teams - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 9 - Business Continuity Management and Emerging Issues of Digital Leadership - Canvas/lecture.json"
+      ],
+      "domain": "Leadership",
+      "graph_node_id": "leadership",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-07-11T11:47:38.747168+00:00",
+      "metadata_path": "knowledge_base/concepts/Leadership/metadata.json",
+      "node_id": "leadership",
+      "scope_level": 5,
+      "study_priority": 5,
+      "topic": "Leadership Foundations",
+      "version_number": 1
+    },
+    {
+      "concept_key": "linear regression",
+      "concept_name": "Linear Regression",
+      "contributing_courses": [
+        "BT1101",
+        "BT2101",
+        "BT4240",
+        "CS3244",
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "BT1101/Week 7 Linear Regression and Interpretation 2023/lecture.json",
+        "BT2101/BT2101 Midterms (L1-6)/lecture.json",
+        "BT4240/L2-Regression/lecture.json",
+        "CS3244/Lecture04_linear_models_svm/lecture.json",
+        "ST1131/Topic0_Introduction/lecture.json",
+        "ST1131/Topic9_LinearRegression/lecture.json",
+        "ST1131/Topic9_More_Details_R/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "linear-regression",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:21:13.242941+00:00",
+      "metadata_path": "knowledge_base/concepts/Linear Regression/metadata.json",
+      "node_id": "linear-regression",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Regression",
+      "version_number": 26
+    },
+    {
+      "concept_key": "logistic regression",
+      "concept_name": "Logistic Regression",
+      "contributing_courses": [
+        "BT4240",
+        "CS3244"
+      ],
+      "contributing_lecture_files": [
+        "BT4240/L2-Regression/lecture.json",
+        "CS3244/Lecture04_linear_models_svm/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "logistic-regression",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:21:13.250386+00:00",
+      "metadata_path": "knowledge_base/concepts/Logistic Regression/metadata.json",
+      "node_id": "logistic-regression",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Supervised Learning",
+      "version_number": 23
+    },
+    {
+      "concept_key": "margin of error",
+      "concept_name": "Margin of Error",
+      "contributing_courses": [
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "ST1131/Topic7_CI/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "margin-of-error",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T16:27:50.446475+00:00",
+      "metadata_path": "knowledge_base/concepts/Margin of Error/metadata.json",
+      "node_id": "margin-of-error",
+      "scope_level": 1,
+      "study_priority": 5,
+      "topic": "Inference",
+      "version_number": 8
+    },
+    {
+      "concept_key": "markov model",
+      "concept_name": "Markov Models",
+      "contributing_courses": [
+        "BT3102"
+      ],
+      "contributing_lecture_files": [
+        "BT3102/W0_Logistics/lecture.json",
+        "BT3102/W2-Probability_Basics/lecture.json",
+        "BT3102/W6-BN-MarkovModels/lecture.json",
+        "BT3102/W7_HMM_Semantics/lecture.json",
+        "BT3102/W8-HMM-Viterbi/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "markov-model",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:13:39.198943+00:00",
+      "metadata_path": "knowledge_base/concepts/Markov Models/metadata.json",
+      "node_id": "markov-model",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Probabilistic Modeling",
+      "version_number": 1
+    },
+    {
+      "concept_key": "maximum likelihood estimation",
+      "concept_name": "Maximum Likelihood Estimation",
+      "contributing_courses": [
+        "BT3102",
+        "BT4240"
+      ],
+      "contributing_lecture_files": [
+        "BT3102/W5-BN-MLE/lecture.json",
+        "BT4240/L2-Regression/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "maximum-likelihood-estimation",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:13:39.203591+00:00",
+      "metadata_path": "knowledge_base/concepts/Maximum Likelihood Estimation/metadata.json",
+      "node_id": "maximum-likelihood-estimation",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Estimation",
+      "version_number": 4
+    },
+    {
+      "concept_key": "meta learning for automl",
+      "concept_name": "Meta-learning for AutoML",
+      "contributing_courses": [
+        "Auto-ML"
+      ],
+      "contributing_lecture_files": [
+        "Auto-ML/3_Basic-of-HPO_ALL/lecture.json",
+        "Auto-ML/4_BO-for-HPO_all/lecture.json",
+        "Auto-ML/5_Speedup_ALL/lecture.json",
+        "Auto-ML/8_dac_lectures/lecture.json",
+        "Auto-ML/ss25-AutoML-lecture-6 NAS /lecture.json",
+        "Auto-ML/w01_t01_04_big_picture/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "meta-learning-for-automl",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:21:13.259567+00:00",
+      "metadata_path": "knowledge_base/concepts/Meta-learning for AutoML/metadata.json",
+      "node_id": "meta-learning-for-automl",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "AutoML",
+      "version_number": 12
+    },
+    {
+      "concept_key": "model interpretability",
+      "concept_name": "Model Interpretability",
+      "contributing_courses": [
+        "Auto-ML",
+        "BT1101"
+      ],
+      "contributing_lecture_files": [
+        "Auto-ML/10_Interpretability_ALL-2/lecture.json",
+        "BT1101/Week 9 Model Selection & Data Dimensionality Reduction/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "model-interpretability",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-08-05T17:21:13.262071+00:00",
+      "metadata_path": "knowledge_base/concepts/Model Interpretability/metadata.json",
+      "node_id": "model-interpretability",
+      "scope_level": 4,
+      "study_priority": 4,
+      "topic": "AutoML",
+      "version_number": 10
+    },
+    {
+      "concept_key": "model selection",
+      "concept_name": "Model Selection",
+      "contributing_courses": [
+        "BT1101"
+      ],
+      "contributing_lecture_files": [
+        "BT1101/Week 9 Model Selection & Data Dimensionality Reduction/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "model-selection",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:21:13.263221+00:00",
+      "metadata_path": "knowledge_base/concepts/Model Selection/metadata.json",
+      "node_id": "model-selection",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Model Evaluation",
+      "version_number": 4
+    },
+    {
+      "concept_key": "multi fidelity optimization",
+      "concept_name": "Multi-fidelity Optimization",
+      "contributing_courses": [
+        "Auto-ML"
+      ],
+      "contributing_lecture_files": [
+        "Auto-ML/5_Speedup_ALL/lecture.json",
+        "Auto-ML/8_dac_lectures/lecture.json",
+        "Auto-ML/ss25-AutoML-lecture-6 NAS /lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "multi-fidelity-optimization",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:21:13.265392+00:00",
+      "metadata_path": "knowledge_base/concepts/Multi-fidelity Optimization/metadata.json",
+      "node_id": "multi-fidelity-optimization",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "AutoML",
+      "version_number": 12
+    },
+    {
+      "concept_key": "multi objective optimization",
+      "concept_name": "Multi-objective Optimization",
+      "contributing_courses": [
+        "Auto-ML"
+      ],
+      "contributing_lecture_files": [
+        "Auto-ML/6_Multicriteria_ALL/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "multi-objective-optimization",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-08-05T17:21:13.267514+00:00",
+      "metadata_path": "knowledge_base/concepts/Multi-objective Optimization/metadata.json",
+      "node_id": "multi-objective-optimization",
+      "scope_level": 3,
+      "study_priority": 4,
+      "topic": "AutoML",
+      "version_number": 11
+    },
+    {
+      "concept_key": "neural architecture search",
+      "concept_name": "Neural Architecture Search",
+      "contributing_courses": [
+        "Auto-ML"
+      ],
+      "contributing_lecture_files": [
+        "Auto-ML/8_dac_lectures/lecture.json",
+        "Auto-ML/ss25-AutoML-lecture-6 NAS /lecture.json",
+        "Auto-ML/w01_t01_04_big_picture/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "neural-architecture-search",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T15:34:07.945816+00:00",
+      "metadata_path": "knowledge_base/concepts/Neural Architecture Search/metadata.json",
+      "node_id": "neural-architecture-search",
+      "scope_level": 4,
+      "study_priority": 5,
+      "topic": "AutoML",
+      "version_number": 7
+    },
+    {
+      "concept_key": "null hypothesis",
+      "concept_name": "Null Hypothesis",
+      "contributing_courses": [
+        "BT1101",
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "BT1101/Week 6 Hypothesis testing/lecture.json",
+        "BT1101/Week 8 Classification and Logistics Regression 2023/lecture.json",
+        "ST1131/Topic8_HypothesisTest/lecture.json",
+        "ST1131/Topic8_HypothesisTest_2/lecture.json",
+        "ST1131/Topic9_LinearRegression/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "null-hypothesis",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:17:19.352643+00:00",
+      "metadata_path": "knowledge_base/concepts/Null Hypothesis/metadata.json",
+      "node_id": "null-hypothesis",
+      "scope_level": 2,
+      "study_priority": 5,
+      "topic": "Hypothesis Testing",
+      "version_number": 10
+    },
+    {
+      "concept_key": "overfitting",
+      "concept_name": "Overfitting",
+      "contributing_courses": [
+        "CS3244"
+      ],
+      "contributing_lecture_files": [
+        "CS3244/Lecture12a.deep-learning-rnn_26/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "overfitting",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-08-05T16:27:50.474765+00:00",
+      "metadata_path": "knowledge_base/concepts/Overfitting/metadata.json",
+      "node_id": "overfitting",
+      "scope_level": 2,
+      "study_priority": 4,
+      "topic": "Model Evaluation",
+      "version_number": 6
+    },
+    {
+      "concept_key": "p value",
+      "concept_name": "p-value",
+      "contributing_courses": [
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "ST1131/Topic8_HypothesisTest/lecture.json",
+        "ST1131/Topic8_HypothesisTest_2/lecture.json",
+        "ST1131/Topic8_QQplots_R/lecture.json",
+        "ST1131/Topic9_LinearRegression/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "p-value",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T16:27:50.475565+00:00",
+      "metadata_path": "knowledge_base/concepts/p-value/metadata.json",
+      "node_id": "p-value",
+      "scope_level": 1,
+      "study_priority": 5,
+      "topic": "Hypothesis Testing",
+      "version_number": 8
+    },
+    {
+      "concept_key": "pca",
+      "concept_name": "PCA",
+      "contributing_courses": [
+        "BT1101",
+        "CS3244"
+      ],
+      "contributing_lecture_files": [
+        "BT1101/Week 9 Model Selection & Data Dimensionality Reduction/lecture.json",
+        "CS3244/Lecture08_data-processing/lecture.json",
+        "CS3244/Lecture09_feature-engineering/lecture.json"
+      ],
+      "domain": "Data Science",
+      "graph_node_id": "pca",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:20:40.853940+00:00",
+      "metadata_path": "knowledge_base/concepts/PCA/metadata.json",
+      "node_id": "pca",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Dimensionality Reduction",
+      "version_number": 11
+    },
+    {
+      "concept_key": "precision",
+      "concept_name": "Precision",
+      "contributing_courses": [
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "ST1131/Topic7_CI/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "precision",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-08-05T16:27:50.542746+00:00",
+      "metadata_path": "knowledge_base/concepts/Precision/metadata.json",
+      "node_id": "precision",
+      "scope_level": 1,
+      "study_priority": 4,
+      "topic": "Model Evaluation",
+      "version_number": 7
+    },
+    {
+      "concept_key": "probability",
+      "concept_name": "Probability",
+      "contributing_courses": [
+        "BT4012",
+        "BT4240",
+        "CS3244",
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "BT4012/02 Data Visualization and Analysis/lecture.json",
+        "BT4012/04 Predictive Analytics/lecture.json",
+        "BT4012/05 Deep Learning for Fraud Detection/lecture.json",
+        "BT4012/L10_Detecting LLM-Generated Content/lecture.json",
+        "BT4012/L7 Social Network Analysis/lecture.json",
+        "BT4240/L2-Regression/lecture.json",
+        "BT4240/L4-InformationBasedLearning/lecture.json",
+        "BT4240/L6-GeneticAlgorithm/lecture.json",
+        "BT4240/L8-BayesianLearning/lecture.json",
+        "BT4240/L9-BayesianNetworks/lecture.json",
+        "CS3244/Lecture04_linear_models_svm/lecture.json",
+        "CS3244/Lecture05_bias_variance/lecture.json",
+        "ST1131/Topic0_Introduction/lecture.json",
+        "ST1131/Topic2_EDA_1/lecture.json",
+        "ST1131/Topic2_EDA_3/lecture.json",
+        "ST1131/Topic2_EDA_4/lecture.json",
+        "ST1131/Topic2_EDA_5/lecture.json",
+        "ST1131/Topic4_Probability/lecture.json",
+        "ST1131/Topic5_RandomVariables/lecture.json",
+        "ST1131/Topic5_RandomVariables_R/lecture.json",
+        "ST1131/Topic6_SamplingDistribution/lecture.json",
+        "ST1131/Topic7_CI/lecture.json",
+        "ST1131/Topic8_HypothesisTest/lecture.json",
+        "ST1131/Topic8_HypothesisTest_2/lecture.json",
+        "ST1131/Topic8_QQplots_R/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "probability",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-07-11T11:37:30.889974+00:00",
+      "metadata_path": "knowledge_base/concepts/Probability/metadata.json",
+      "node_id": "probability",
+      "scope_level": 4,
+      "study_priority": 5,
+      "topic": "Foundations",
+      "version_number": 3
+    },
+    {
+      "concept_key": "project management",
+      "concept_name": "Project Management",
+      "contributing_courses": [
+        "IS3103"
+      ],
+      "contributing_lecture_files": [
+        "IS3103/IS3103 Workshop 4 - IS Governance and Digital Transformation Strategy - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 5 - Organizing for Digital Innovation - Canvas/lecture.json",
+        "IS3103/IS3103 Workshop 8 - Managing IT Teams - Canvas/lecture.json"
+      ],
+      "domain": "Project Management",
+      "graph_node_id": "project-management",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-07-11T11:47:38.769355+00:00",
+      "metadata_path": "knowledge_base/concepts/Project Management/metadata.json",
+      "node_id": "project-management",
+      "scope_level": 2,
+      "study_priority": 4,
+      "topic": "Project Delivery",
+      "version_number": 1
+    },
+    {
+      "concept_key": "random forest",
+      "concept_name": "Random Forest",
+      "contributing_courses": [
+        "CS3244"
+      ],
+      "contributing_lecture_files": [
+        "CS3244/Lecture03_decision_trees/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "random-forest",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T16:27:50.502924+00:00",
+      "metadata_path": "knowledge_base/concepts/Random Forest/metadata.json",
+      "node_id": "random-forest",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Ensemble Methods",
+      "version_number": 7
+    },
+    {
+      "concept_key": "recall",
+      "concept_name": "Recall",
+      "contributing_courses": [
+        "BT1101",
+        "BT4240",
+        "CS3244",
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "BT1101/Week 9 Model Selection & Data Dimensionality Reduction/lecture.json",
+        "BT4240/L1-ContinuousOptimization/lecture.json",
+        "BT4240/L2-Regression/lecture.json",
+        "BT4240/L3-SVM/lecture.json",
+        "CS3244/Lecture02_learning_paradigms_knn/lecture.json",
+        "ST1131/Topic6_SamplingDistribution/lecture.json",
+        "ST1131/Topic7_CI/lecture.json",
+        "ST1131/Topic9_LinearRegression/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "recall",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-08-05T17:20:40.871114+00:00",
+      "metadata_path": "knowledge_base/concepts/Recall/metadata.json",
+      "node_id": "recall",
+      "scope_level": 1,
+      "study_priority": 4,
+      "topic": "Model Evaluation",
+      "version_number": 8
+    },
+    {
+      "concept_key": "regularization",
+      "concept_name": "Regularization",
+      "contributing_courses": [
+        "BT4240"
+      ],
+      "contributing_lecture_files": [
+        "BT4240/L7-NeuralNetworks/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "regularization",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T16:27:50.506869+00:00",
+      "metadata_path": "knowledge_base/concepts/Regularization/metadata.json",
+      "node_id": "regularization",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Model Selection",
+      "version_number": 7
+    },
+    {
+      "concept_key": "reinforcement learning",
+      "concept_name": "Reinforcement Learning",
+      "contributing_courses": [
+        "BT3102"
+      ],
+      "contributing_lecture_files": [
+        "BT3102/W0_Logistics/lecture.json",
+        "BT3102/W12-MDP_RL/lecture.json"
+      ],
+      "domain": "Machine Learning",
+      "graph_node_id": "reinforcement-learning",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:13:39.255247+00:00",
+      "metadata_path": "knowledge_base/concepts/Reinforcement Learning/metadata.json",
+      "node_id": "reinforcement-learning",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Sequential Decision Making",
+      "version_number": 2
+    },
+    {
+      "concept_key": "relational data model",
+      "concept_name": "Relational Data Model",
+      "contributing_courses": [
+        "BT2102"
+      ],
+      "contributing_lecture_files": [
+        "BT2102/BT2102-01-DatabaseAndDataModel/lecture.json",
+        "BT2102/BT2102-02-TheRelationalDataModel/lecture.json"
+      ],
+      "domain": "Data Science",
+      "graph_node_id": "relational-data-model",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-07-14T17:35:38.329961+00:00",
+      "metadata_path": "knowledge_base/concepts/Relational Data Model/metadata.json",
+      "node_id": "relational-data-model",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Data Management",
+      "version_number": 2
+    },
+    {
+      "concept_key": "sampling",
+      "concept_name": "Sampling",
+      "contributing_courses": [
+        "BT1101",
+        "BT2101",
+        "BT3102"
+      ],
+      "contributing_lecture_files": [
+        "BT1101/Week 6 Hypothesis testing/lecture.json",
+        "BT1101/Week 6 Sampling and Estimation/lecture.json",
+        "BT1101/Week 7 Linear Regression and Interpretation 2023/lecture.json",
+        "BT2101/BT2101 Midterms (L1-6)/lecture.json",
+        "BT2101/VK.wk13.2024/lecture.json",
+        "BT3102/W0_Logistics/lecture.json",
+        "BT3102/W10-BN-Sampling/lecture.json",
+        "BT3102/W12-MDP_RL/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "sampling",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:17:19.393694+00:00",
+      "metadata_path": "knowledge_base/concepts/Sampling/metadata.json",
+      "node_id": "sampling",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Statistical Inference",
+      "version_number": 6
+    },
+    {
+      "concept_key": "sampling distribution",
+      "concept_name": "Sampling Distribution",
+      "contributing_courses": [
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "ST1131/Topic0_Introduction/lecture.json",
+        "ST1131/Topic6_SamplingDistribution/lecture.json",
+        "ST1131/Topic6_SamplingDistribution_R/lecture.json",
+        "ST1131/Topic7_CI/lecture.json",
+        "ST1131/Topic8_HypothesisTest/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "sampling-distribution",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T16:27:50.509243+00:00",
+      "metadata_path": "knowledge_base/concepts/Sampling Distribution/metadata.json",
+      "node_id": "sampling-distribution",
+      "scope_level": 4,
+      "study_priority": 5,
+      "topic": "Inference",
+      "version_number": 8
+    },
+    {
+      "concept_key": "sql",
+      "concept_name": "SQL",
+      "contributing_courses": [
+        "BT2102"
+      ],
+      "contributing_lecture_files": [
+        "BT2102/BT2102-09-SQL/lecture.json"
+      ],
+      "domain": "Data Science",
+      "graph_node_id": "sql",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-07-14T17:35:38.337612+00:00",
+      "metadata_path": "knowledge_base/concepts/SQL/metadata.json",
+      "node_id": "sql",
+      "scope_level": 3,
+      "study_priority": 5,
+      "topic": "Data Management",
+      "version_number": 2
+    },
+    {
+      "concept_key": "stakeholder management",
+      "concept_name": "Stakeholder Management",
+      "contributing_courses": [
+        "IS3103"
+      ],
+      "contributing_lecture_files": [
+        "IS3103/IS3103 Workshop 7 - Leading Organizational Change and Stakeholder Management - Canvas/lecture.json"
+      ],
+      "domain": "Leadership",
+      "graph_node_id": "stakeholder-management",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-07-11T11:47:38.774491+00:00",
+      "metadata_path": "knowledge_base/concepts/Stakeholder Management/metadata.json",
+      "node_id": "stakeholder-management",
+      "scope_level": 2,
+      "study_priority": 5,
+      "topic": "Stakeholder Engagement",
+      "version_number": 1
+    },
+    {
+      "concept_key": "standard error",
+      "concept_name": "Standard Error",
+      "contributing_courses": [
+        "BT1101",
+        "BT2101",
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "BT1101/Week 7 Linear Regression and Interpretation 2023/lecture.json",
+        "BT2101/BT2101 Midterms (L1-6)/lecture.json",
+        "BT2101/VK.wk10.2024/lecture.json",
+        "ST1131/Topic6_SamplingDistribution/lecture.json",
+        "ST1131/Topic7_CI/lecture.json",
+        "ST1131/Topic8_HypothesisTest/lecture.json",
+        "ST1131/Topic9_LinearRegression/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "standard-error",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T17:17:19.418071+00:00",
+      "metadata_path": "knowledge_base/concepts/Standard Error/metadata.json",
+      "node_id": "standard-error",
+      "scope_level": 1,
+      "study_priority": 5,
+      "topic": "Inference",
+      "version_number": 12
+    },
+    {
+      "concept_key": "team collaboration",
+      "concept_name": "Team Collaboration",
+      "contributing_courses": [
+        "IS3103"
+      ],
+      "contributing_lecture_files": [
+        "IS3103/IS3103 Workshop 0 - Course Overview - Canvas/lecture.json"
+      ],
+      "domain": "Soft Skills",
+      "graph_node_id": "team-collaboration",
+      "importance_score": 4,
+      "last_updated_timestamp": "2026-07-11T11:47:38.777811+00:00",
+      "metadata_path": "knowledge_base/concepts/Team Collaboration/metadata.json",
+      "node_id": "team-collaboration",
+      "scope_level": 2,
+      "study_priority": 4,
+      "topic": "Collaboration",
+      "version_number": 1
+    },
+    {
+      "concept_key": "test statistic",
+      "concept_name": "Test Statistic",
+      "contributing_courses": [
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "ST1131/Topic8_HypothesisTest/lecture.json",
+        "ST1131/Topic8_HypothesisTest_2/lecture.json",
+        "ST1131/Topic9_LinearRegression/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "test-statistic",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T16:27:50.529295+00:00",
+      "metadata_path": "knowledge_base/concepts/Test Statistic/metadata.json",
+      "node_id": "test-statistic",
+      "scope_level": 1,
+      "study_priority": 5,
+      "topic": "Hypothesis Testing",
+      "version_number": 8
+    },
+    {
+      "concept_key": "type i error",
+      "concept_name": "Type I Error",
+      "contributing_courses": [
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "ST1131/Topic8_HypothesisTest/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "type-i-error",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T16:27:50.536762+00:00",
+      "metadata_path": "knowledge_base/concepts/Type I Error/metadata.json",
+      "node_id": "type-i-error",
+      "scope_level": 2,
+      "study_priority": 5,
+      "topic": "Hypothesis Testing",
+      "version_number": 6
+    },
+    {
+      "concept_key": "type ii error",
+      "concept_name": "Type II Error",
+      "contributing_courses": [
+        "ST1131"
+      ],
+      "contributing_lecture_files": [
+        "ST1131/Topic8_HypothesisTest/lecture.json"
+      ],
+      "domain": "Statistics",
+      "graph_node_id": "type-ii-error",
+      "importance_score": 5,
+      "last_updated_timestamp": "2026-08-05T16:27:50.539777+00:00",
+      "metadata_path": "knowledge_base/concepts/Type II Error/metadata.json",
+      "node_id": "type-ii-error",
+      "scope_level": 2,
+      "study_priority": 5,
+      "topic": "Hypothesis Testing",
+      "version_number": 6
+    }
+  ],
+  "schema_version": 1
+}
